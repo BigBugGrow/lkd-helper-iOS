@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EFFC6AF11C04852500469F99 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFC6AF01C04852500469F99 /* main.m */; };
-		EFFC6AF41C04852500469F99 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFC6AF31C04852500469F99 /* AppDelegate.m */; };
-		EFFC6AF71C04852500469F99 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFC6AF61C04852500469F99 /* ViewController.m */; };
-		EFFC6AFA1C04852500469F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFFC6AF81C04852500469F99 /* Main.storyboard */; };
+		EF56D68B1C09DA8B00A3B314 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D6821C09DA8B00A3B314 /* AppDelegate.m */; };
+		EF56D68C1C09DA8B00A3B314 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D6841C09DA8B00A3B314 /* main.m */; };
+		EF56D68F1C09DC2000A3B314 /* ZSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D68E1C09DC2000A3B314 /* ZSTabBarController.m */; };
 		EFFC6AFC1C04852500469F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFFC6AFB1C04852500469F99 /* Assets.xcassets */; };
 		EFFC6AFF1C04852500469F99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFFC6AFD1C04852500469F99 /* LaunchScreen.storyboard */; };
 		EFFC6B0A1C04852500469F99 /* _____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFC6B091C04852500469F99 /* _____Tests.m */; };
@@ -35,13 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF56D6811C09DA8B00A3B314 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EF56D6821C09DA8B00A3B314 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EF56D6841C09DA8B00A3B314 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EF56D68D1C09DC2000A3B314 /* ZSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTabBarController.h; sourceTree = "<group>"; };
+		EF56D68E1C09DC2000A3B314 /* ZSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTabBarController.m; sourceTree = "<group>"; };
 		EFFC6AEC1C04852500469F99 /* 辽科大助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "辽科大助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFFC6AF01C04852500469F99 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EFFC6AF21C04852500469F99 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EFFC6AF31C04852500469F99 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EFFC6AF51C04852500469F99 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EFFC6AF61C04852500469F99 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		EFFC6AF91C04852500469F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EFFC6AFB1C04852500469F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFFC6AFE1C04852500469F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFFC6B001C04852500469F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,6 +76,211 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF56D66F1C09DA8B00A3B314 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EF56D6701C09DA8B00A3B314 /* Discover */,
+				EF56D6741C09DA8B00A3B314 /* Home */,
+				EF56D6781C09DA8B00A3B314 /* Main */,
+				EF56D67C1C09DA8B00A3B314 /* Message */,
+				EF56D6801C09DA8B00A3B314 /* Other */,
+				EF56D6871C09DA8B00A3B314 /* Profile */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		EF56D6701C09DA8B00A3B314 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				EF56D6711C09DA8B00A3B314 /* Controller */,
+				EF56D6721C09DA8B00A3B314 /* Model */,
+				EF56D6731C09DA8B00A3B314 /* View */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		EF56D6711C09DA8B00A3B314 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF56D6721C09DA8B00A3B314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF56D6731C09DA8B00A3B314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF56D6741C09DA8B00A3B314 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EF56D6751C09DA8B00A3B314 /* Controller */,
+				EF56D6761C09DA8B00A3B314 /* Model */,
+				EF56D6771C09DA8B00A3B314 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EF56D6751C09DA8B00A3B314 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF56D6761C09DA8B00A3B314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF56D6771C09DA8B00A3B314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF56D6781C09DA8B00A3B314 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				EF56D6791C09DA8B00A3B314 /* Controller */,
+				EF56D67A1C09DA8B00A3B314 /* Model */,
+				EF56D67B1C09DA8B00A3B314 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		EF56D6791C09DA8B00A3B314 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EF56D68D1C09DC2000A3B314 /* ZSTabBarController.h */,
+				EF56D68E1C09DC2000A3B314 /* ZSTabBarController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF56D67A1C09DA8B00A3B314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF56D67B1C09DA8B00A3B314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF56D67C1C09DA8B00A3B314 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				EF56D67D1C09DA8B00A3B314 /* Controller */,
+				EF56D67E1C09DA8B00A3B314 /* Model */,
+				EF56D67F1C09DA8B00A3B314 /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		EF56D67D1C09DA8B00A3B314 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF56D67E1C09DA8B00A3B314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF56D67F1C09DA8B00A3B314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF56D6801C09DA8B00A3B314 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				EFFC6AFD1C04852500469F99 /* LaunchScreen.storyboard */,
+				EF56D6811C09DA8B00A3B314 /* AppDelegate.h */,
+				EF56D6821C09DA8B00A3B314 /* AppDelegate.m */,
+				EF56D6831C09DA8B00A3B314 /* Controller */,
+				EF56D6841C09DA8B00A3B314 /* main.m */,
+				EF56D6851C09DA8B00A3B314 /* Model */,
+				EF56D6861C09DA8B00A3B314 /* View */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		EF56D6831C09DA8B00A3B314 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF56D6851C09DA8B00A3B314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF56D6861C09DA8B00A3B314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF56D6871C09DA8B00A3B314 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EF56D6881C09DA8B00A3B314 /* Controller */,
+				EF56D6891C09DA8B00A3B314 /* Model */,
+				EF56D68A1C09DA8B00A3B314 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		EF56D6881C09DA8B00A3B314 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF56D6891C09DA8B00A3B314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF56D68A1C09DA8B00A3B314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		EFFC6AE31C04852500469F99 = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +304,7 @@
 		EFFC6AEE1C04852500469F99 /* 辽科大助手 */ = {
 			isa = PBXGroup;
 			children = (
-				EFFC6AF21C04852500469F99 /* AppDelegate.h */,
-				EFFC6AF31C04852500469F99 /* AppDelegate.m */,
-				EFFC6AF51C04852500469F99 /* ViewController.h */,
-				EFFC6AF61C04852500469F99 /* ViewController.m */,
-				EFFC6AF81C04852500469F99 /* Main.storyboard */,
-				EFFC6AFB1C04852500469F99 /* Assets.xcassets */,
-				EFFC6AFD1C04852500469F99 /* LaunchScreen.storyboard */,
-				EFFC6B001C04852500469F99 /* Info.plist */,
+				EF56D66F1C09DA8B00A3B314 /* Classes */,
 				EFFC6AEF1C04852500469F99 /* Supporting Files */,
 			);
 			path = "辽科大助手";
@@ -117,7 +313,8 @@
 		EFFC6AEF1C04852500469F99 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EFFC6AF01C04852500469F99 /* main.m */,
+				EFFC6AFB1C04852500469F99 /* Assets.xcassets */,
+				EFFC6B001C04852500469F99 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -202,6 +399,7 @@
 		EFFC6AE41C04852500469F99 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ZS;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = DongAn;
 				TargetAttributes = {
@@ -245,7 +443,6 @@
 			files = (
 				EFFC6AFF1C04852500469F99 /* LaunchScreen.storyboard in Resources */,
 				EFFC6AFC1C04852500469F99 /* Assets.xcassets in Resources */,
-				EFFC6AFA1C04852500469F99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,9 +467,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFFC6AF71C04852500469F99 /* ViewController.m in Sources */,
-				EFFC6AF41C04852500469F99 /* AppDelegate.m in Sources */,
-				EFFC6AF11C04852500469F99 /* main.m in Sources */,
+				EF56D68F1C09DC2000A3B314 /* ZSTabBarController.m in Sources */,
+				EF56D68B1C09DA8B00A3B314 /* AppDelegate.m in Sources */,
+				EF56D68C1C09DA8B00A3B314 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,20 +505,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EFFC6AF81C04852500469F99 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EFFC6AF91C04852500469F99 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EFFC6AFD1C04852500469F99 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EFFC6AFE1C04852500469F99 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -498,6 +688,7 @@
 				EFFC6B1B1C04852500469F99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EFFC6B1C1C04852500469F99 /* Build configuration list for PBXNativeTarget "辽科大助手Tests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +697,7 @@
 				EFFC6B1E1C04852500469F99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EFFC6B1F1C04852500469F99 /* Build configuration list for PBXNativeTarget "辽科大助手UITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +706,7 @@
 				EFFC6B211C04852500469F99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
