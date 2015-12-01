@@ -1,0 +1,33 @@
+//
+//  lkdhelper.pch
+//  辽科大助手
+//
+//  Created by DongAn on 15/11/28.
+//  Copyright © 2015年 DongAn. All rights reserved.
+//
+
+#ifdef __OBJC__
+
+#import "UIImage+Image.h"
+
+//主窗口
+#define ZSKeyWindow [UIApplication sharedApplication].keyWindow
+//屏幕宽度
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+//屏幕高度
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
+
+// ...表示宏定义的可变参数
+// __VA_ARGS__:表示函数里面的可变参数
+#ifdef DEBUG // 调试
+
+#define DALog(...) NSLog(__VA_ARGS__)
+
+#else // 发布
+
+#define DALog(...)
+
+#endif
+
+#endif
