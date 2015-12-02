@@ -12,4 +12,6 @@
 
 @property (nonatomic,strong)NSMutableArray *cellData;
 
+- (void)setUpTableHeaderView:(NSString *)headViewName;
+- (void)initModelData;
 @end

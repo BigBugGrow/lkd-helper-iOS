@@ -20,19 +20,29 @@
 
 @implementation ZSProfileViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setUpTableHeaderView:@"ZSProfileImageCell"];
+    [self initModelData];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = NO;
+}
 //初始化模型数据
 - (void)initModelData
 {
-    ZSModel *item1 = [ZSModel itemWithIcon:@"me" title:@"我" vcClass:[ZSMyInfoViewController class]];
-    ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"我的糯米粒"];
-    ZSModel *item3 = [ZSModel itemWithIcon:@"mylost_found" title:@"我的寻物公告"];
+    ZSModel *item1 = [ZSModel itemWithIcon:@"me" title:@"我"detailTitle:@""  vcClass:[ZSMyInfoViewController class]];
+    ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"我的糯米粒" detailTitle:@""];
+    ZSModel *item3 = [ZSModel itemWithIcon:@"mylost_found" title:@"我的寻物公告" detailTitle:@""];
     
     ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
     group1.items = @[item1,item2,item3];
     [self.cellData addObject:group1];
     
-    ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置"];
-    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"消息提醒模式"];
+    ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置" detailTitle:@""];
+    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"消息提醒模式" detailTitle:@""];
     item5.operation = ^(){
         if ([item5.title isEqualToString:@"消息提醒模式"]) {
             item5.title = @"静音模式";
@@ -45,15 +55,13 @@
 
         }
     };
-    ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手"];
+    ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@""];
     
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
     group2.items = @[item4,item5,item6];
     [self.cellData addObject:group2];
 
 }
-
-
 
 /*
 // Override to support conditional editing of the table view.

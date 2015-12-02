@@ -28,19 +28,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //初始化模型数据
-    [self initModelData];
-    
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     self.tableView.rowHeight = 54;
-    self.tableView.tableHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"ZSProfileImageCell" owner:nil options:nil] lastObject];
 }
 //初始化模型数据
 - (void)initModelData
 {
     
 }
-
+//配置headerView
+- (void)setUpTableHeaderView:(NSString *)headViewName
+{
+    self.tableView.tableHeaderView = [[[NSBundle mainBundle] loadNibNamed:headViewName owner:nil options:nil] lastObject];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -58,7 +58,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ZSTableViewCell *cell = [ZSTableViewCell cellWithTableView:tableView];
-    
     ZSGroupModel *group = self.cellData[indexPath.section];
     ZSModel *item = group.items[indexPath.row];
     cell.item = item;

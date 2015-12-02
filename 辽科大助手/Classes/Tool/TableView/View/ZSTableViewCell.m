@@ -27,11 +27,11 @@
 - (void)setItem:(ZSModel *)item
 {
     _item = item;
-    
-    self.font = [UIFont systemFontOfSize:12];
-    
+    self.textLabel.font = [UIFont systemFontOfSize:12];
     self.textLabel.text = item.title;
     self.imageView.image = [UIImage imageNamed:item.icon];
+    self.detailTextLabel.text = item.detailTitle;
+    self.detailTextLabel.textAlignment = NSTextAlignmentRight;
     
 }
 
