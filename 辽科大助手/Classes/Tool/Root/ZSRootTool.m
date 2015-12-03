@@ -7,6 +7,11 @@
 //
 
 #import "ZSRootTool.h"
+#import "ZSLoginViewController.h"
+#import "ZSNewFeatureController.h"
+#import "ZSNavigationController.h"
+#import "ZSAccountTool.h"
+#import "ZSTabBarController.h"
 #define ZSVersionKey @"version"
 @implementation ZSRootTool
 + (void)chooseRootViewController:(UIWindow *)window
@@ -15,16 +20,29 @@
     
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:ZSVersionKey];
     
+#warning 当前逻辑不太对
+    
     if ([currentVersion isEqualToString:lastVersion]) {
         
         //判断是否登录过
-        if (1) {
-            //直接进入主页
+        if ([ZSAccountTool account]) {
+            ZSTabBarController *tabBarVC = [[ZSTabBarController alloc] init];
+            window.rootViewController = tabBarVC;
         } else {
-            //进入登录界面
+           //进入 登录界面
+                ZSLoginViewController *loginVC = [[ZSLoginViewController alloc] init];
+            
+                ZSNavigationController *loginNavigationVC = [[ZSNavigationController alloc] initWithRootViewController:loginVC];
+            
+                window.rootViewController = loginNavigationVC;
         }
     } else {
         //进入新特性界面
+        ZSNewFeatureController *vc = [[ZSNewFeatureController alloc] init];
+        window.rootViewController = vc;
+        
+        //保存当前版本
+        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:ZSVersionKey];
     }
 }
 @end

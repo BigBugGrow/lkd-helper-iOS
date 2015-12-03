@@ -7,8 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSLoginViewController">
             <connections>
-                <outlet property="passwordTextField" destination="MSO-D7-Tyb" id="M1k-ZH-JN5"/>
-                <outlet property="userNameTextField" destination="9Du-tV-QPI" id="zUG-HS-h9a"/>
+                <outlet property="activityIndicator" destination="B57-r8-UbG" id="Mrd-kD-2mx"/>
+                <outlet property="passwordText" destination="tRr-hM-MKL" id="cUG-yA-W5d"/>
+                <outlet property="userNameText" destination="76X-yO-KLq" id="SpR-Ry-Fw6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,6 +33,14 @@
                             <rect key="frame" x="15" y="77" width="46" height="38"/>
                             <animations/>
                         </imageView>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="B57-r8-UbG">
+                            <rect key="frame" x="140" y="115" width="20" height="20"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="TPw-SV-BgS"/>
+                                <constraint firstAttribute="height" constant="20" id="aYK-tM-veg"/>
+                            </constraints>
+                        </activityIndicatorView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piW-y7-M88">
                             <rect key="frame" x="27" y="140" width="246" height="33"/>
                             <animations/>
@@ -68,7 +77,7 @@
                             <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                     </subviews>
                     <animations/>
@@ -78,6 +87,7 @@
                         <constraint firstItem="76X-yO-KLq" firstAttribute="bottom" secondItem="9Du-tV-QPI" secondAttribute="bottom" id="D84-dy-WmP"/>
                         <constraint firstItem="MSO-D7-Tyb" firstAttribute="width" secondItem="9Du-tV-QPI" secondAttribute="width" id="II7-xd-qrO"/>
                         <constraint firstItem="tRr-hM-MKL" firstAttribute="height" secondItem="76X-yO-KLq" secondAttribute="height" id="JG1-l6-Yer"/>
+                        <constraint firstAttribute="trailing" secondItem="B57-r8-UbG" secondAttribute="trailing" constant="140" id="KXA-gl-PBP"/>
                         <constraint firstAttribute="height" constant="211" id="OYU-iW-bdl"/>
                         <constraint firstItem="MSO-D7-Tyb" firstAttribute="leading" secondItem="9Du-tV-QPI" secondAttribute="leading" id="Thh-va-G1J"/>
                         <constraint firstAttribute="bottom" secondItem="piW-y7-M88" secondAttribute="bottom" constant="27" id="WHP-Ew-8vV"/>
@@ -86,6 +96,7 @@
                         <constraint firstAttribute="width" constant="300" id="YP3-BU-gaT"/>
                         <constraint firstItem="9Du-tV-QPI" firstAttribute="top" secondItem="D9I-qI-18k" secondAttribute="top" constant="24" id="cPi-iq-gkD"/>
                         <constraint firstItem="tRr-hM-MKL" firstAttribute="leading" secondItem="76X-yO-KLq" secondAttribute="leading" id="cpK-9A-7Qn"/>
+                        <constraint firstItem="piW-y7-M88" firstAttribute="top" secondItem="B57-r8-UbG" secondAttribute="bottom" constant="5" id="hNZ-me-5rz"/>
                         <constraint firstItem="9Du-tV-QPI" firstAttribute="leading" secondItem="D9I-qI-18k" secondAttribute="leading" constant="15" id="i5W-gU-Qlp"/>
                         <constraint firstItem="MSO-D7-Tyb" firstAttribute="top" secondItem="9Du-tV-QPI" secondAttribute="bottom" constant="15" id="w09-Dr-MZf"/>
                         <constraint firstAttribute="width" constant="321" id="x9V-FU-6ds"/>

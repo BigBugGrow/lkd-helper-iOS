@@ -90,7 +90,7 @@ static NSString * const reuseIdentifier = @"Cell";
     ZSNewFeatureCell *cell = [collectionView
     dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
-    NSString *imgName = [NSString stringWithFormat:@"firstguide_0%d",indexPath.row + 1];
+    NSString *imgName = [NSString stringWithFormat:@"firstguide_0%ld",indexPath.row + 1];
 
     cell.image = [UIImage imageNamed:imgName];
     

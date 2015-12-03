@@ -8,6 +8,8 @@
 
 #import "ZSNewFeatureCell.h"
 #import "ZSTabBarController.h"
+#import "ZSLoginViewController.h"
+#import "ZSAccountTool.h"
 @interface ZSNewFeatureCell()
 @property (nonatomic,weak)UIImageView *imageView;
 @end
@@ -41,7 +43,14 @@
     if (indexPath.row == count - 1) {
         ZSTabBarController *tabBarVC = [[ZSTabBarController alloc] init];
         
-        ZSKeyWindow.rootViewController = tabBarVC;
+        //判断是否登录过
+        if ([ZSAccountTool account]) {//登录过
+            ZSKeyWindow.rootViewController = tabBarVC;
+        } else {
+            ZSLoginViewController *vc = [[ZSLoginViewController alloc] init];
+            ZSKeyWindow.rootViewController = vc;
+        }
+       
     }
 }
 

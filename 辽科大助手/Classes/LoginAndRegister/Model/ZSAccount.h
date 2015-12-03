@@ -6,46 +6,13 @@
 //  Copyright © 2015年 DongAn. All rights reserved.
 //
 
-/**
- code	:	1
- 
- wxid	:	olQUJj4lSI9lU31iOBwDbcrEwFtA
- 
- nickname	:	infinitytron
- 
- xh	:	120143206067
- 
- password	:	iu
- 
- sex	:	boy
- 
- school	:	材冶学院
- 
- major	:	能源
- 
- home	:	广东省汕头市
- 
- date	:	2015-11-30
- 
- wx	:	lee-1450
- 
- wb	:	Libra-铭
- 
- qq	:	372110675
- 
- phone	:	13592821928
- 
- startweek	:	36
- 
- timetable	:
- */
 
 #import <Foundation/Foundation.h>
+#import "MJExtension.h"
+#import "ZSTimeTable.h"
 
-@interface ZSAccount : NSObject
-/**
- *  code是什么？
- */
+@interface ZSAccount : NSObject<MJKeyValue,NSCoding>
+
 @property (nonatomic,assign)NSInteger code;
 
 @property (nonatomic,copy)NSString *wxid;
@@ -77,8 +44,5 @@
 @property (nonatomic,copy)NSString *startweek;
 
 @property (nonatomic,strong)NSArray *timetable;
-
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)accountWithDict:(NSDictionary *)dict;
 
 @end
