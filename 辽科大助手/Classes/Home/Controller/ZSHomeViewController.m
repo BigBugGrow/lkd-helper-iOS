@@ -24,9 +24,11 @@
 #import "ZSInquireCell.h"
 
 #import "ZSAccount.h"
-
 #import "ZSAccountTool.h"
 #import "MJExtension.h"
+#import "MJRefresh.h"
+
+#import "ZSInquireWebViewController.h"
 
 
 @interface ZSHomeViewController ()
@@ -36,6 +38,8 @@
 @property (nonatomic,strong)NSMutableArray *cellData;
 
 @property (nonatomic,strong)ZSWeatherCell *weathrHeader;
+
+@property (nonatomic,strong)ZSTimeTableCell *timeTable;
 
 @property (nonatomic,assign)long currentWeek;
 
@@ -81,10 +85,13 @@
     ZSWeatherCell *weathrHeader = [[[NSBundle mainBundle] loadNibNamed:@"ZSWeatherCell" owner:nil options:nil] lastObject];
     self.weathrHeader = weathrHeader;
     self.tableView.tableHeaderView = self.weathrHeader;
-    
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
+    // 添加下拉刷新控件
+    [self.tableView addHeaderWithTarget:self action:@selector(initTimeTabelData)];
 }
+
 #pragma mark -配置表格数据
 - (void)initWeatherData
 {
@@ -123,6 +130,7 @@
     NSTimeInterval dayInterVal = [currentDay timeIntervalSinceDate:dateWithStartSemester] / (3600*24);
     int week = dayInterVal / 7 + 1;
     long weekday = currentDay.weekday - 1;
+    
     self.currentWeek = week;
     // NSLog(@"%d,%ld",week,weekday);
     
@@ -139,7 +147,13 @@
     
     ZSHomeGroupModel *group1 = [[ZSHomeGroupModel alloc] init];
     group1.items = @[timetable0,timetable1,timetable2,timetable3,timetable4];
-    [self.cellData addObject:group1];
+    
+    self.cellData[0] = group1;
+    
+    [self.tableView reloadData];
+    
+    //结束下拉刷新
+    [self.tableView headerEndRefreshing];
 
    // NSLog(@"%@",timetable2.orderLesson);
     
@@ -147,15 +161,15 @@
 
 - (void)initInquireData
 {
-    ZSInquireModel *item1 = [ZSInquireModel itemWithIcon:@"timetable" title:@"详细课表" ];
-    ZSInquireModel *item2 = [ZSInquireModel itemWithIcon:@"evaluate" title:@"评教" ];
-    ZSInquireModel *item3 = [ZSInquireModel itemWithIcon:@"select" title:@"选课"];
+    ZSInquireModel *item1 = [ZSInquireModel itemWithIcon:@"timetable" title:@"详细课表"];
+    ZSInquireModel *item2 = [ZSInquireModel itemWithIcon:@"evaluate" title:@"评教" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item3 = [ZSInquireModel itemWithIcon:@"select" title:@"选课" vcClass:[ZSInquireWebViewController class]];
     
-    ZSInquireModel *item4 = [ZSInquireModel itemWithIcon:@"archives" title:@"毕业生档案查询" ];
-    ZSInquireModel *item5 = [ZSInquireModel itemWithIcon:@"cat" title:@"四六级报名"];
+    ZSInquireModel *item4 = [ZSInquireModel itemWithIcon:@"archives" title:@"毕业生档案查询" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item5 = [ZSInquireModel itemWithIcon:@"cat" title:@"四六级报名" vcClass:[ZSInquireWebViewController class]];
 
-    ZSInquireModel *item6 = [ZSInquireModel itemWithIcon:@"mark" title:@"查成绩"];
-    ZSInquireModel *item7 = [ZSInquireModel itemWithIcon:@"classroom" title:@"空教室"];
+    ZSInquireModel *item6 = [ZSInquireModel itemWithIcon:@"mark" title:@"查成绩" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item7 = [ZSInquireModel itemWithIcon:@"classroom" title:@"空教室" vcClass:[ZSInquireWebViewController class]];
     
     ZSHomeGroupModel *group2 = [[ZSHomeGroupModel alloc] init];
     group2.items = @[item1,item2,item3,item4,item5,item6,item7];
@@ -188,11 +202,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -211,60 +220,76 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-#warning 出错的原因是这里应该是section，这样写的思路没有问题
-    
-    if (indexPath.section == 0) {
 
-        ZSTimeTableCell *cell = [ZSTimeTableCell timeTabelCellWithTableView:tableView];
+    
+//    if (indexPath.section == 0) {
+//
+//
+//    }
+    if (indexPath.section == 1) {
+        ZSInquireCell *cell = [ZSInquireCell cellWithTableView:tableView];
         ZSHomeGroupModel *group = self.cellData[indexPath.section];
-        ZSTimeTabelModel *item = group.items[indexPath.row];
-        cell.model = item;
+        ZSInquireModel *item = group.items[indexPath.row];
+        cell.item = item;
+        
         return cell;
 
     }
-    
-    ZSInquireCell *cell = [ZSInquireCell cellWithTableView:tableView];
+    ZSTimeTableCell *cell = [ZSTimeTableCell timeTabelCellWithTableView:tableView];
+    ZSHomeGroupModel *group = self.cellData[indexPath.section];
+    ZSTimeTabelModel *item = group.items[indexPath.row];
+    cell.model = item;
+    return cell;
+
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     ZSHomeGroupModel *group = self.cellData[indexPath.section];
     ZSInquireModel *item = group.items[indexPath.row];
-    cell.item = item;
     
-    return cell;
-}
+    if (indexPath.section == 1) {
+        
+        if(item.class) {
+            
+           // id vc = [[item.vcClass alloc] init];
+            ZSInquireWebViewController *inquireVC = [[ZSInquireWebViewController alloc] init];
+            ZSAccount *account = [ZSAccountTool account];
+            switch (indexPath.row) {
+                case 1:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/TeachingEvaluation&wxid=%@",account.wxid];
+                    break;
+                case 2:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Xuanke&wxid=%@",account.wxid];
+                    break;
 
+                case 3:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Gradudoc&wxid=%@",account.wxid];
+                    break;
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+                case 4:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/ExamApply&wxid=%@",account.wxid];
+                    break;
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+                case 5:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Score&wxid=%@",account.wxid];
+                    break;
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+                case 6:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/EmptyClassroom&wxid=%@",account.wxid];
+                    break;
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+                    
+                default:
+                    break;
+            }
+        
+            [self.navigationController pushViewController:inquireVC animated:YES];
+        }
+    }
+    
 }
-*/
 
 /*
 #pragma mark - Navigation

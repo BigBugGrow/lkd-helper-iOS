@@ -10,4 +10,6 @@
 
 @interface ZSInquireWebViewController : UIViewController
 
+@property (nonatomic,copy)NSString *inquireURL;
+
 @end

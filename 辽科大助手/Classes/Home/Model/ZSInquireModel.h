@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^OperationBlock)();
+
 @interface ZSInquireModel : NSObject
 @property (nonatomic,copy)NSString *title;
 @property (nonatomic,copy)NSString *icon;
 
 @property (nonatomic,assign)Class vcClass;
+
+@property (nonatomic,copy)OperationBlock operation;
 
 - (instancetype)initWithIcon:(NSString *)icon title:(NSString *)title;
 + (instancetype)itemWithIcon:(NSString *)icon title:(NSString *)title;

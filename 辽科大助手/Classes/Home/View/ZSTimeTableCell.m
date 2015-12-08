@@ -33,8 +33,12 @@
 {
     static NSString *ID = @"timeTableCell";
     
-
-      ZSTimeTableCell *cell = [[ZSTimeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    ZSTimeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    if (cell == nil) {
+        
+        cell = [[self alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
 
     return cell;
 }
@@ -137,7 +141,7 @@
 
     self.orderLabel.text = model.orderLesson ? [NSString stringWithFormat:@"%d",[model.orderLesson intValue] + 1]: @"--" ;
        //3.课程名label
-    self.courseNameLabel.text = (model.course) ?  model.course : @"无课啦~";
+    self.courseNameLabel.text = (model.course) ?  model.course : @"没课啦~";
     
     //4.地点图片
     self.adressImage.image = [UIImage imageNamed:@"adress"];
@@ -195,21 +199,21 @@
     self.adressLabel.frame = CGRectMake(adressLabelX, adressLabelY, adressLabelW, adressLabelH);
     
     //6.时间laebl
-    CGFloat timeLabelX = cellWidth - 5;
+    CGFloat timeLabelX = ScreenWidth - 35;
     CGFloat timeLabelY = cellHeigt / 2;
-    CGFloat timeLabelW = 40;
+    CGFloat timeLabelW = 35;
     CGFloat timeLabelH = cellTextHeigt;
     self.timeLabel.frame = CGRectMake(timeLabelX, timeLabelY, timeLabelW, timeLabelH);
     
     //7.老师图标
-    CGFloat teacherImageX = cellWidth - 40;
+    CGFloat teacherImageX = ScreenWidth - 60;
     CGFloat teacherImageY = adressImageY;
     CGFloat teacherImageW = 20;
     CGFloat teacherImageH = 20;
     self.teacherImage.frame = CGRectMake(teacherImageX, teacherImageY, teacherImageW, teacherImageH);
     
     //8.老师label
-    CGFloat teacherLabelX = CGRectGetMaxX(self.teacherImage.frame) + 15;
+    CGFloat teacherLabelX = CGRectGetMaxX(self.teacherImage.frame);
     CGFloat teacherLabelY = teacherImageY + 5;
     CGFloat teacherLabelW = 40;
     CGFloat teacherLabelH = cellTextHeigt;

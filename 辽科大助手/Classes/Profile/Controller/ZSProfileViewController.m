@@ -26,7 +26,7 @@
     [self setUpTableHeaderView:@"ZSProfileImageCell"];
     [self initModelData];
 }
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
 }

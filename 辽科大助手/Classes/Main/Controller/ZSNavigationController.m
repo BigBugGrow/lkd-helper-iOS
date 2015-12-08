@@ -29,6 +29,8 @@
     titleAttr[NSForegroundColorAttributeName] = [UIColor whiteColor];
     bar.titleTextAttributes = titleAttr;
     
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
 
 }
 
