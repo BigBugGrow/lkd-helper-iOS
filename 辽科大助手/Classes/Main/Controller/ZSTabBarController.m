@@ -61,7 +61,7 @@
 - (void)setUpAllChildViewController
 {
     //首页
-    ZSHomeViewController *homeVC = [[ZSHomeViewController alloc] init];
+    ZSHomeViewController *homeVC = [[ZSHomeViewController alloc] initWithStyle:UITableViewStyleGrouped];
     //homeVC.view.backgroundColor = [UIColor redColor];
     [self setUpOneChildViewController:homeVC image:[UIImage imageNamed:@"tab_home_normal"] selectedImage:[UIImage imageNamed:@"tab_home_pressed"] title:@"辽科大助手"];
     

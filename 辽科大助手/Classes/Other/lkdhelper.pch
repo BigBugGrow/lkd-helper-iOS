@@ -18,6 +18,14 @@
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 
 
+//cell
+#define ZSStatusCellMargin 20
+#define ZSCourseNameFont [UIFont systemFontOfSize:15]
+#define ZSTimeFont [UIFont systemFontOfSize:12]
+#define ZSSourceFont WBTimeFont
+#define ZSTextFont [UIFont systemFontOfSize:12]
+#define ZSScreenW [UIScreen mainScreen].bounds.size.width
+
 // ...表示宏定义的可变参数
 // __VA_ARGS__:表示函数里面的可变参数
 #ifdef DEBUG // 调试

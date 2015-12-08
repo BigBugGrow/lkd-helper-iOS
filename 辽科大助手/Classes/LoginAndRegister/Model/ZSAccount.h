@@ -9,7 +9,6 @@
 
 #import <Foundation/Foundation.h>
 #import "MJExtension.h"
-#import "ZSTimeTable.h"
 
 @interface ZSAccount : NSObject<MJKeyValue,NSCoding>
 

@@ -9,6 +9,7 @@
 #import "ZSNewFeatureCell.h"
 #import "ZSTabBarController.h"
 #import "ZSLoginViewController.h"
+#import "ZSNavigationController.h"
 #import "ZSAccountTool.h"
 @interface ZSNewFeatureCell()
 @property (nonatomic,weak)UIImageView *imageView;
@@ -47,8 +48,10 @@
         if ([ZSAccountTool account]) {//登录过
             ZSKeyWindow.rootViewController = tabBarVC;
         } else {
+            
             ZSLoginViewController *vc = [[ZSLoginViewController alloc] init];
-            ZSKeyWindow.rootViewController = vc;
+            ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:vc];
+            ZSKeyWindow.rootViewController = nav;
         }
        
     }

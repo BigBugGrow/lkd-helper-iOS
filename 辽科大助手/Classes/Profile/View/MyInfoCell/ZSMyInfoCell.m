@@ -14,7 +14,7 @@
     // Initialization code
     
     CGFloat cellW = ScreenWidth;
-    CGFloat cellH = 44;
+    CGFloat cellH = 100;
     self.frame = CGRectMake(0, 0, cellW, cellH);
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -20,8 +20,6 @@
     
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:ZSVersionKey];
     
-#warning 当前逻辑不太对
-    
     if ([currentVersion isEqualToString:lastVersion]) {
         
         //判断是否登录过
