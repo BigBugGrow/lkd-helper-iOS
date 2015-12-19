@@ -29,14 +29,14 @@
     CGFloat imageH = 250;
     self.frame = CGRectMake(0, 0, imageW, imageH);
     
-    //添加返回button
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-
-    [backBtn setImage:[UIImage imageNamed:@"tab_back"] forState:UIControlStateNormal];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.backButton = backBtn;
-    [self.blurryView addSubview:backBtn];
+//    //添加返回button
+//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//
+//    [backBtn setImage:[UIImage imageNamed:@"tab_back"] forState:UIControlStateNormal];
+//    [backBtn setBackgroundImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
+//    [backBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    self.backButton = backBtn;
+//    [self.blurryView addSubview:backBtn];
     
     //添加头像
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -77,7 +77,7 @@
     self.nickNameLabel.frame = CGRectMake(70, 80, 10, 15);
     self.nickNameLabel.center = CGPointMake(ScreenWidth/2 - 30, self.blurryView.center.y + 85);
     [self.nickNameLabel sizeToFit];
-    self.nickNameLabel.layer.cornerRadius = 10.0;
+    self.nickNameLabel.layer.cornerRadius = 10;
     
 }
 

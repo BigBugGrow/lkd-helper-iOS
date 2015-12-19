@@ -59,6 +59,7 @@
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    [MBProgressHUD hideHUDForView:self.view];
     [MBProgressHUD showError:@"网络可能有问题咯~~"];
 }
 

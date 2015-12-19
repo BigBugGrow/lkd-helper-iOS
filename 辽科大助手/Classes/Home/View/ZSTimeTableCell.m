@@ -11,11 +11,6 @@
 #import "NSDate+Utilities.h"
 
 
-#define cellHeigt self.frame.size.height
-#define cellWidth self.frame.size.width
-#define cellTextHeigt 12
-#define marginOfCell 10
-
 @interface ZSTimeTableCell ()
 @property (nonatomic,weak)UIImageView *dotImage;
 @property (nonatomic,weak)UILabel *orderLabel;

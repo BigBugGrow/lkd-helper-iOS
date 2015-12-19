@@ -27,6 +27,7 @@
 #import "ZSAccountTool.h"
 #import "MJExtension.h"
 #import "MJRefresh.h"
+#import "MBProgressHUD+MJ.h"
 
 #import "ZSInquireWebViewController.h"
 
@@ -89,7 +90,13 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     // 添加下拉刷新控件
-    [self.tableView addHeaderWithTarget:self action:@selector(initTimeTabelData)];
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshWeatherDataAndTimeTableData)];
+}
+
+- (void)refreshWeatherDataAndTimeTableData
+{
+    [self initTimeTabelData];
+    [self getWeatherData];
 }
 
 #pragma mark -配置表格数据
@@ -115,28 +122,28 @@
         
         
     } failure:^(NSError *error) {
+        
         NSLog(@"%@",error);
+        [MBProgressHUD showError:@"联网获取天气信息"];
     }];
 }
 
 - (void)initTimeTabelData
 {
+    //得到账户信息
+    ZSAccount *account = [ZSAccountTool account];
+    
     //初始化课表数据
     //1.计算当前是第几周，星期几
-    NSDate *dateWithStartSemester = [NSDate dateFromString:@"2015-08-31 00:00:00"];
     NSDate *currentDay = [NSDate date];
-    // NSLog(@"%@",dateWithStartSemester);
-    // NSLog(@"%@",currentDay);
-    NSTimeInterval dayInterVal = [currentDay timeIntervalSinceDate:dateWithStartSemester] / (3600*24);
-    int week = dayInterVal / 7 + 1;
+    //星期几
     long weekday = currentDay.weekday - 1;
     
-    self.currentWeek = week;
-    // NSLog(@"%d,%ld",week,weekday);
+    //第几周
+    self.currentWeek = currentDay.week - [account.startweek intValue] + 1;
     
     //1.得到当天的课表字典
-    ZSAccount *account = [ZSAccountTool account];
-    NSDictionary *dayDict = account.timetable[week][weekday];
+    NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
 
     
     ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];

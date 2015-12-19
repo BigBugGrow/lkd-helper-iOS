@@ -82,6 +82,21 @@
 		EFB6CA6D1C1124860065BAF8 /* ZSHomeGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6CA6C1C1124860065BAF8 /* ZSHomeGroupModel.m */; };
 		EFD44CFA1C164B460016A602 /* ZSInquireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44CF91C164B460016A602 /* ZSInquireModel.m */; };
 		EFD44CFD1C167CA60016A602 /* ZSInquireWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44CFC1C167CA60016A602 /* ZSInquireWebViewController.m */; };
+		EFD44D031C16DAF90016A602 /* ZSMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D021C16DAF90016A602 /* ZSMessageModel.m */; };
+		EFD44D061C16DB140016A602 /* ZSMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D051C16DB140016A602 /* ZSMessageCell.m */; };
+		EFD44D091C16DB730016A602 /* ZSMessageGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D081C16DB730016A602 /* ZSMessageGroupModel.m */; };
+		EFD44D0C1C16E0D20016A602 /* ZSDiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D0B1C16E0D20016A602 /* ZSDiscoverModel.m */; };
+		EFD44D0F1C16E1090016A602 /* ZSDiscoverGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D0E1C16E1090016A602 /* ZSDiscoverGroupModel.m */; };
+		EFD44D121C16E1230016A602 /* ZSDiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D111C16E1230016A602 /* ZSDiscoverCell.m */; };
+		EFD44D151C16E1640016A602 /* ZSNoveltyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D141C16E1640016A602 /* ZSNoveltyViewController.m */; };
+		EFD44D3E1C17B1200016A602 /* ZSNewsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D3D1C17B1200016A602 /* ZSNewsTool.m */; };
+		EFD44D451C182B210016A602 /* ZSNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D441C182B210016A602 /* ZSNewsController.m */; };
+		EFD44D491C182BDE0016A602 /* ZSNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D481C182BDE0016A602 /* ZSNewsCell.m */; };
+		EFD44D531C182CBC0016A602 /* ZSNewsParams.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D4D1C182CBC0016A602 /* ZSNewsParams.m */; };
+		EFD44D541C182CBC0016A602 /* ZSNewsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D501C182CBC0016A602 /* ZSNewsResult.m */; };
+		EFD44D551C182CBC0016A602 /* ZSNewsDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D521C182CBC0016A602 /* ZSNewsDataTool.m */; };
+		EFD44D581C1857E20016A602 /* ZSNewsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D571C1857E20016A602 /* ZSNewsInfo.m */; };
+		EFD44D5B1C18674D0016A602 /* ZSNewsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D5A1C18674D0016A602 /* ZSNewsWebViewController.m */; };
 		EFE538211C15229E00A2B6EF /* ZSLoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE538201C15229E00A2B6EF /* ZSLoginParam.m */; };
 		EFE538241C1522B800A2B6EF /* ZSLoginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE538231C1522B800A2B6EF /* ZSLoginResult.m */; };
 		EFE538271C15242C00A2B6EF /* ZSLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE538261C15242C00A2B6EF /* ZSLoginTool.m */; };
@@ -271,6 +286,36 @@
 		EFD44CF91C164B460016A602 /* ZSInquireModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSInquireModel.m; sourceTree = "<group>"; };
 		EFD44CFB1C167CA60016A602 /* ZSInquireWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSInquireWebViewController.h; sourceTree = "<group>"; };
 		EFD44CFC1C167CA60016A602 /* ZSInquireWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSInquireWebViewController.m; sourceTree = "<group>"; };
+		EFD44D011C16DAF90016A602 /* ZSMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMessageModel.h; sourceTree = "<group>"; };
+		EFD44D021C16DAF90016A602 /* ZSMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMessageModel.m; sourceTree = "<group>"; };
+		EFD44D041C16DB140016A602 /* ZSMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMessageCell.h; sourceTree = "<group>"; };
+		EFD44D051C16DB140016A602 /* ZSMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMessageCell.m; sourceTree = "<group>"; };
+		EFD44D071C16DB730016A602 /* ZSMessageGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMessageGroupModel.h; sourceTree = "<group>"; };
+		EFD44D081C16DB730016A602 /* ZSMessageGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMessageGroupModel.m; sourceTree = "<group>"; };
+		EFD44D0A1C16E0D20016A602 /* ZSDiscoverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDiscoverModel.h; sourceTree = "<group>"; };
+		EFD44D0B1C16E0D20016A602 /* ZSDiscoverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDiscoverModel.m; sourceTree = "<group>"; };
+		EFD44D0D1C16E1090016A602 /* ZSDiscoverGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDiscoverGroupModel.h; sourceTree = "<group>"; };
+		EFD44D0E1C16E1090016A602 /* ZSDiscoverGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDiscoverGroupModel.m; sourceTree = "<group>"; };
+		EFD44D101C16E1230016A602 /* ZSDiscoverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDiscoverCell.h; sourceTree = "<group>"; };
+		EFD44D111C16E1230016A602 /* ZSDiscoverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDiscoverCell.m; sourceTree = "<group>"; };
+		EFD44D131C16E1640016A602 /* ZSNoveltyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNoveltyViewController.h; sourceTree = "<group>"; };
+		EFD44D141C16E1640016A602 /* ZSNoveltyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNoveltyViewController.m; sourceTree = "<group>"; };
+		EFD44D3C1C17B1200016A602 /* ZSNewsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsTool.h; sourceTree = "<group>"; };
+		EFD44D3D1C17B1200016A602 /* ZSNewsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsTool.m; sourceTree = "<group>"; };
+		EFD44D431C182B210016A602 /* ZSNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsController.h; sourceTree = "<group>"; };
+		EFD44D441C182B210016A602 /* ZSNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsController.m; sourceTree = "<group>"; };
+		EFD44D471C182BDE0016A602 /* ZSNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsCell.h; sourceTree = "<group>"; };
+		EFD44D481C182BDE0016A602 /* ZSNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsCell.m; sourceTree = "<group>"; };
+		EFD44D4C1C182CBC0016A602 /* ZSNewsParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsParams.h; sourceTree = "<group>"; };
+		EFD44D4D1C182CBC0016A602 /* ZSNewsParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsParams.m; sourceTree = "<group>"; };
+		EFD44D4F1C182CBC0016A602 /* ZSNewsResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsResult.h; sourceTree = "<group>"; };
+		EFD44D501C182CBC0016A602 /* ZSNewsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsResult.m; sourceTree = "<group>"; };
+		EFD44D511C182CBC0016A602 /* ZSNewsDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsDataTool.h; sourceTree = "<group>"; };
+		EFD44D521C182CBC0016A602 /* ZSNewsDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsDataTool.m; sourceTree = "<group>"; };
+		EFD44D561C1857E20016A602 /* ZSNewsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsInfo.h; sourceTree = "<group>"; };
+		EFD44D571C1857E20016A602 /* ZSNewsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsInfo.m; sourceTree = "<group>"; };
+		EFD44D591C18674D0016A602 /* ZSNewsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsWebViewController.h; sourceTree = "<group>"; };
+		EFD44D5A1C18674D0016A602 /* ZSNewsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsWebViewController.m; sourceTree = "<group>"; };
 		EFE5381F1C15229E00A2B6EF /* ZSLoginParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLoginParam.h; sourceTree = "<group>"; };
 		EFE538201C15229E00A2B6EF /* ZSLoginParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLoginParam.m; sourceTree = "<group>"; };
 		EFE538221C1522B800A2B6EF /* ZSLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLoginResult.h; sourceTree = "<group>"; };
@@ -537,6 +582,8 @@
 			children = (
 				EF56D6911C09E14100A3B314 /* ZSDiscoverViewController.h */,
 				EF56D6921C09E14100A3B314 /* ZSDiscoverViewController.m */,
+				EFD44D131C16E1640016A602 /* ZSNoveltyViewController.h */,
+				EFD44D141C16E1640016A602 /* ZSNoveltyViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -544,6 +591,10 @@
 		EF56D6721C09DA8B00A3B314 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EFD44D0A1C16E0D20016A602 /* ZSDiscoverModel.h */,
+				EFD44D0B1C16E0D20016A602 /* ZSDiscoverModel.m */,
+				EFD44D0D1C16E1090016A602 /* ZSDiscoverGroupModel.h */,
+				EFD44D0E1C16E1090016A602 /* ZSDiscoverGroupModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -551,6 +602,8 @@
 		EF56D6731C09DA8B00A3B314 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EFD44D101C16E1230016A602 /* ZSDiscoverCell.h */,
+				EFD44D111C16E1230016A602 /* ZSDiscoverCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -655,6 +708,7 @@
 		EF56D67D1C09DA8B00A3B314 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EFD44D421C182B210016A602 /* NewsController */,
 				EF56D6971C09E18500A3B314 /* ZSMessageViewController.h */,
 				EF56D6981C09E18500A3B314 /* ZSMessageViewController.m */,
 			);
@@ -664,6 +718,10 @@
 		EF56D67E1C09DA8B00A3B314 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EFD44D011C16DAF90016A602 /* ZSMessageModel.h */,
+				EFD44D021C16DAF90016A602 /* ZSMessageModel.m */,
+				EFD44D071C16DB730016A602 /* ZSMessageGroupModel.h */,
+				EFD44D081C16DB730016A602 /* ZSMessageGroupModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -671,6 +729,9 @@
 		EF56D67F1C09DA8B00A3B314 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EFD44D461C182BDE0016A602 /* NewsCell */,
+				EFD44D041C16DB140016A602 /* ZSMessageCell.h */,
+				EFD44D051C16DB140016A602 /* ZSMessageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -757,6 +818,8 @@
 		EF99E8751C0D0529002ACD9D /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				EFD44D3B1C17B1060016A602 /* News */,
+				EFD44D4A1C182CBC0016A602 /* NewsData */,
 				EFE5381C1C15225C00A2B6EF /* Login */,
 				EF2AB62F1C0F4AF200DB93FC /* Account */,
 				EF2AB59B1C0F13D300DB93FC /* Http */,
@@ -803,6 +866,66 @@
 				EF99E8871C0D0731002ACD9D /* ZSTableViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		EFD44D3B1C17B1060016A602 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				EFD44D3C1C17B1200016A602 /* ZSNewsTool.h */,
+				EFD44D3D1C17B1200016A602 /* ZSNewsTool.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		EFD44D421C182B210016A602 /* NewsController */ = {
+			isa = PBXGroup;
+			children = (
+				EFD44D431C182B210016A602 /* ZSNewsController.h */,
+				EFD44D441C182B210016A602 /* ZSNewsController.m */,
+				EFD44D591C18674D0016A602 /* ZSNewsWebViewController.h */,
+				EFD44D5A1C18674D0016A602 /* ZSNewsWebViewController.m */,
+			);
+			path = NewsController;
+			sourceTree = "<group>";
+		};
+		EFD44D461C182BDE0016A602 /* NewsCell */ = {
+			isa = PBXGroup;
+			children = (
+				EFD44D471C182BDE0016A602 /* ZSNewsCell.h */,
+				EFD44D481C182BDE0016A602 /* ZSNewsCell.m */,
+			);
+			path = NewsCell;
+			sourceTree = "<group>";
+		};
+		EFD44D4A1C182CBC0016A602 /* NewsData */ = {
+			isa = PBXGroup;
+			children = (
+				EFD44D4B1C182CBC0016A602 /* Params */,
+				EFD44D4E1C182CBC0016A602 /* Result */,
+				EFD44D511C182CBC0016A602 /* ZSNewsDataTool.h */,
+				EFD44D521C182CBC0016A602 /* ZSNewsDataTool.m */,
+			);
+			path = NewsData;
+			sourceTree = "<group>";
+		};
+		EFD44D4B1C182CBC0016A602 /* Params */ = {
+			isa = PBXGroup;
+			children = (
+				EFD44D4C1C182CBC0016A602 /* ZSNewsParams.h */,
+				EFD44D4D1C182CBC0016A602 /* ZSNewsParams.m */,
+			);
+			path = Params;
+			sourceTree = "<group>";
+		};
+		EFD44D4E1C182CBC0016A602 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				EFD44D4F1C182CBC0016A602 /* ZSNewsResult.h */,
+				EFD44D501C182CBC0016A602 /* ZSNewsResult.m */,
+				EFD44D561C1857E20016A602 /* ZSNewsInfo.h */,
+				EFD44D571C1857E20016A602 /* ZSNewsInfo.m */,
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 		EFE5381C1C15225C00A2B6EF /* Login */ = {
@@ -1123,6 +1246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF2AB6141C0F17A500DB93FC /* MJRefreshFooterView.m in Sources */,
+				EFD44D451C182B210016A602 /* ZSNewsController.m in Sources */,
 				EF2AB6201C0F17A500DB93FC /* SDWebImageManager.m in Sources */,
 				EF2AB6021C0F17A500DB93FC /* AFSecurityPolicy.m in Sources */,
 				EF2AB6211C0F17A500DB93FC /* SDWebImagePrefetcher.m in Sources */,
@@ -1135,6 +1259,8 @@
 				EF2AB6191C0F17A500DB93FC /* MKAnnotationView+WebCache.m in Sources */,
 				EFB6CA611C1111230065BAF8 /* ZSTimeTableCell.m in Sources */,
 				EF2AB60B1C0F17A500DB93FC /* MJFoundation.m in Sources */,
+				EFD44D031C16DAF90016A602 /* ZSMessageModel.m in Sources */,
+				EFD44D0F1C16E1090016A602 /* ZSDiscoverGroupModel.m in Sources */,
 				EFE538301C1574E200A2B6EF /* ZSTimeTabelModel.m in Sources */,
 				EF2AB6101C0F17A500DB93FC /* NSObject+MJKeyValue.m in Sources */,
 				EF2AB6151C0F17A500DB93FC /* MJRefreshHeaderView.m in Sources */,
@@ -1144,6 +1270,7 @@
 				EF2AB61E1C0F17A500DB93FC /* SDWebImageDownloader.m in Sources */,
 				EF2AB61F1C0F17A500DB93FC /* SDWebImageDownloaderOperation.m in Sources */,
 				EF2AB6231C0F17A500DB93FC /* UIImage+GIF.m in Sources */,
+				EFD44D121C16E1230016A602 /* ZSDiscoverCell.m in Sources */,
 				EF56D6E61C0A9C8800A3B314 /* ZSTabBar.m in Sources */,
 				EFE538331C157EA700A2B6EF /* NSDate+Convert.m in Sources */,
 				EF2AB6031C0F17A500DB93FC /* AFURLConnectionOperation.m in Sources */,
@@ -1164,26 +1291,35 @@
 				EF2AB60D1C0F17A500DB93FC /* MJType.m in Sources */,
 				EFD44CFA1C164B460016A602 /* ZSInquireModel.m in Sources */,
 				EF2AB6221C0F17A500DB93FC /* UIButton+WebCache.m in Sources */,
+				EFD44D061C16DB140016A602 /* ZSMessageCell.m in Sources */,
 				EF99E8881C0D0731002ACD9D /* ZSTableViewCell.m in Sources */,
 				EF2AB6271C0F17A500DB93FC /* UIImageView+WebCache.m in Sources */,
 				EF56D6991C09E18500A3B314 /* ZSMessageViewController.m in Sources */,
 				EF56D68F1C09DC2000A3B314 /* ZSTabBarController.m in Sources */,
 				EF56D6E91C0A9FEF00A3B314 /* ZSNavigationController.m in Sources */,
 				EF56D68B1C09DA8B00A3B314 /* AppDelegate.m in Sources */,
+				EFD44D551C182CBC0016A602 /* ZSNewsDataTool.m in Sources */,
+				EFD44D581C1857E20016A602 /* ZSNewsInfo.m in Sources */,
 				EF2AB60E1C0F17A500DB93FC /* NSObject+MJCoding.m in Sources */,
+				EFD44D491C182BDE0016A602 /* ZSNewsCell.m in Sources */,
 				EF2AB6051C0F17A500DB93FC /* AFURLResponseSerialization.m in Sources */,
 				EF2AB6121C0F17A500DB93FC /* MJRefreshBaseView.m in Sources */,
 				EF2AB5FF1C0F17A500DB93FC /* AFHTTPRequestOperationManager.m in Sources */,
 				EF2AB5FE1C0F17A500DB93FC /* AFHTTPRequestOperation.m in Sources */,
 				EF56D6961C09E15600A3B314 /* ZSHomeViewController.m in Sources */,
+				EFD44D091C16DB730016A602 /* ZSMessageGroupModel.m in Sources */,
 				EF2AB6161C0F17A500DB93FC /* UIScrollView+MJExtension.m in Sources */,
 				EFB6CA6D1C1124860065BAF8 /* ZSHomeGroupModel.m in Sources */,
 				EFE5382D1C152E5B00A2B6EF /* NSString+StringOfTimeTableConvertToDictArray.m in Sources */,
 				EFB6CA551C1110690065BAF8 /* ZSWeatherModel.m in Sources */,
 				EFB6CA691C1111D20065BAF8 /* ZSInquireCell.m in Sources */,
+				EFD44D541C182CBC0016A602 /* ZSNewsResult.m in Sources */,
 				EF56D6EC1C0ABE4F00A3B314 /* UIBarButtonItem+Item.m in Sources */,
+				EFD44D531C182CBC0016A602 /* ZSNewsParams.m in Sources */,
+				EFD44D5B1C18674D0016A602 /* ZSNewsWebViewController.m in Sources */,
 				EF2AB6321C0F4B1600DB93FC /* ZSAccountTool.m in Sources */,
 				EFB6CA591C11109C0065BAF8 /* ZSWeatherCell.m in Sources */,
+				EFD44D151C16E1640016A602 /* ZSNoveltyViewController.m in Sources */,
 				EF99E8821C0D06EE002ACD9D /* ZSModel.m in Sources */,
 				EF2AB59F1C0F145D00DB93FC /* ZSRootTool.m in Sources */,
 				EFE9D8AB1C0E52DB0072A4F7 /* ZSNewFeatureCell.m in Sources */,
@@ -1191,6 +1327,8 @@
 				EF56D6E31C0A934D00A3B314 /* UIImage+Image.m in Sources */,
 				EF2AB5991C0F015F00DB93FC /* ZSLoginViewController.m in Sources */,
 				EF99E87F1C0D06CF002ACD9D /* ZSGroupTableViewController.m in Sources */,
+				EFD44D0C1C16E0D20016A602 /* ZSDiscoverModel.m in Sources */,
+				EFD44D3E1C17B1200016A602 /* ZSNewsTool.m in Sources */,
 				EF2AB61D1C0F17A500DB93FC /* SDWebImageDecoder.m in Sources */,
 				EF2AB6071C0F17A500DB93FC /* MBProgressHUD+MJ.m in Sources */,
 				EFD44CFD1C167CA60016A602 /* ZSInquireWebViewController.m in Sources */,
@@ -1342,7 +1480,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/DongAn/360云盘/iOS Development/辽科大助手/辽科大助手/辽科大助手/Classes/Other/lkdhelper.pch";
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.dongan.-----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1357,7 +1495,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/DongAn/360云盘/iOS Development/辽科大助手/辽科大助手/辽科大助手/Classes/Other/lkdhelper.pch";
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.dongan.-----";
 				PRODUCT_NAME = "$(TARGET_NAME)";

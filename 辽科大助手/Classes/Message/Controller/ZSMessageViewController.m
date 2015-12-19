@@ -7,21 +7,61 @@
 //
 
 #import "ZSMessageViewController.h"
+#import "ZSMessageGroupModel.h"
+#import "ZSMessageModel.h"
+#import "ZSMessageCell.h"
+
+#import "ZSNewsController.h"
 
 @interface ZSMessageViewController ()
+
+@property (nonatomic,strong)NSMutableArray *cellData;
 
 @end
 
 @implementation ZSMessageViewController
 
+- (NSMutableArray *)cellData
+{
+    if (_cellData == nil) {
+        _cellData = [NSMutableArray array];
+    }
+    return _cellData;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self initModelData];
+
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    self.tableView.rowHeight = 84;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.sectionFooterHeight = 10;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+//初始化模型数据
+- (void)initModelData
+{
+    ZSMessageModel *item1 = [ZSMessageModel itemWithIcon:@"news_lkdhelper" title:@"辽科大助手"detailTitle:@"消息：辽科大助手的功能你都了解么？"  vcClass:[ZSNewsController class]];
+    ZSMessageGroupModel *group1 = [[ZSMessageGroupModel alloc] init];
+    group1.items = @[item1];
+    [self.cellData addObject:group1];
+    
+    ZSMessageModel *item2 = [ZSMessageModel itemWithIcon:@"news_ustl" title:@"科大资讯" detailTitle:@"消息： 暂无" vcClass:[ZSNewsController class]];
+    
+    ZSMessageGroupModel *group2 = [[ZSMessageGroupModel alloc] init];
+    group2.items = @[item2];
+    [self.cellData addObject:group2];
+    
+    
+    ZSMessageModel *item3 = [ZSMessageModel itemWithIcon:@"privatenews" title:@"私信" detailTitle:@"消息： 暂无"];
+
+    ZSMessageGroupModel *group3 = [[ZSMessageGroupModel alloc] init];
+    group3.items = @[item3];
+    [self.cellData addObject:group3];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +72,56 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return self.cellData.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+
+    ZSMessageGroupModel *group = [[ZSMessageGroupModel alloc] init];
+    group = self.cellData[section];
+    return group.items.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+
+    ZSMessageCell *cell = [ZSMessageCell cellWithTableView:tableView];
+    ZSMessageGroupModel *group = self.cellData[indexPath.section];
+    ZSMessageModel *item = group.items[indexPath.row];
+    cell.item = item;
     
     return cell;
 }
-*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZSMessageGroupModel *group = self.cellData[indexPath.section];
+    ZSMessageModel *item = group.items[indexPath.row];
+    
+    if(item.class) {
+        
+        if (indexPath.section == 0) {
+            
+            ZSNewsController *vc = [[item.vcClass alloc] init];
+            vc.newsType = @"newslkdhelperread";
+            vc.newsPictureType = @"pic_news_lkdhelper";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+        if (indexPath.section == 1) {
+            ZSNewsController *vc = [[item.vcClass alloc] init];
+            vc.newsType = @"newsustlread";
+            vc.newsPictureType = @"pic_news_ustl";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
 
 /*
 // Override to support conditional editing of the table view.
