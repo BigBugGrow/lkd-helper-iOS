@@ -44,4 +44,9 @@
 
 @property (nonatomic,strong)NSArray *timetable;
 
+#warning 新登录接口增加的字段,接口还不完善，之后还会修改
+
+@property (nonatomic,copy)NSString *zjh;
+@property (nonatomic,copy)NSString *mm;
+@property (nonatomic,copy)NSString *key;
 @end

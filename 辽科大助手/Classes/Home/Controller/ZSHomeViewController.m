@@ -64,6 +64,8 @@
     return  _weatherData;
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -138,12 +140,17 @@
     NSDate *currentDay = [NSDate date];
     //星期几
     long weekday = currentDay.weekday - 1;
-    
+#warning 这里周数计算有问题
     //第几周
-    self.currentWeek = currentDay.week - [account.startweek intValue] + 1;
-    
+    self.currentWeek = currentDay.week + 51 - [account.startweek intValue] + 1;
+    NSLog(@"ccc%@",currentDay);
+    NSLog(@"bbb%ld",(long)currentDay.week);
+    NSLog(@"aaaa%@",account.startweek);
+    NSLog(@"%ld--%ld",self.currentWeek,weekday);
+    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
     //1.得到当天的课表字典
     NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
+    NSLog(@"%@",account);
 
     
     ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];

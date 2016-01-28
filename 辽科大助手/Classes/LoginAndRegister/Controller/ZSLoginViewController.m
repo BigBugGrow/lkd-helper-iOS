@@ -18,8 +18,8 @@
 
 #import "ZSLoginTool.h"
 
-#define ZSUser @"user"
-#define ZSPassword @"password"
+#import "ZSRegisterViewController.h"
+
 
 @interface ZSLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
@@ -38,7 +38,11 @@
     self.activityIndicator.hidden = YES;
     self.userNameText.text = [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser];
     self.passwordText.text = [[NSUserDefaults standardUserDefaults] objectForKey:ZSPassword];
-
+    
+    //设置返回按钮文字
+    UIBarButtonItem *returnButtonItem = [[UIBarButtonItem alloc] init];
+    returnButtonItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = returnButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,7 +95,9 @@
 }
 - (IBAction)registerButtonClicked:(id)sender
 {
-    
+    ZSRegisterViewController *registerVC = [[ZSRegisterViewController alloc] init];
+    [self.navigationController pushViewController:registerVC animated:YES];
+
 }
 
 

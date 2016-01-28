@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSLoginViewController">
@@ -23,7 +23,6 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="9Du-tV-QPI">
                             <rect key="frame" x="15" y="24" width="46" height="38"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="SHc-sX-Rib"/>
                                 <constraint firstAttribute="height" constant="38" id="bhm-6r-4mr"/>
@@ -31,11 +30,9 @@
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="MSO-D7-Tyb">
                             <rect key="frame" x="15" y="77" width="46" height="38"/>
-                            <animations/>
                         </imageView>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="B57-r8-UbG">
                             <rect key="frame" x="140" y="115" width="20" height="20"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="TPw-SV-BgS"/>
                                 <constraint firstAttribute="height" constant="20" id="aYK-tM-veg"/>
@@ -43,7 +40,6 @@
                         </activityIndicatorView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piW-y7-M88">
                             <rect key="frame" x="27" y="140" width="246" height="33"/>
-                            <animations/>
                             <color key="backgroundColor" red="0.14117647059999999" green="0.71764705880000002" blue="0.99928381899999996" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="33" id="HRU-Nt-Lmb"/>
@@ -63,7 +59,6 @@
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="昵称 或 学号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="76X-yO-KLq">
                             <rect key="frame" x="69" y="32" width="192" height="30"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="UvR-2A-dZG"/>
@@ -74,13 +69,11 @@
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tRr-hM-MKL">
                             <rect key="frame" x="69" y="85" width="192" height="30"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="piW-y7-M88" firstAttribute="leading" secondItem="D9I-qI-18k" secondAttribute="leading" constant="27" id="CdB-yR-k52"/>
@@ -118,7 +111,6 @@
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_portrait" translatesAutoresizingMaskIntoConstraints="NO" id="RDG-JJ-JfJ">
                     <rect key="frame" x="146" y="19" width="80" height="80"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="L8D-es-aMp"/>
                         <constraint firstAttribute="height" constant="80" id="ynE-e5-q2A"/>
@@ -126,7 +118,6 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第一次使用辽科大助手APP？" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdM-OE-eBt">
                     <rect key="frame" x="57" y="331" width="161" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="161" id="4qR-OY-JsO"/>
                         <constraint firstAttribute="height" constant="21" id="Om2-dJ-7D6"/>
@@ -137,7 +128,6 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tvd-Ih-ZZW">
                     <rect key="frame" x="226" y="329" width="45" height="26"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="45" id="N09-7R-qAA"/>
                         <constraint firstAttribute="height" constant="26" id="rmi-Yd-VWo"/>
@@ -157,7 +147,6 @@
                     </connections>
                 </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" red="0.65490196078431373" green="0.89411764705882346" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="D9I-qI-18k" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7Ch-DN-yzP"/>

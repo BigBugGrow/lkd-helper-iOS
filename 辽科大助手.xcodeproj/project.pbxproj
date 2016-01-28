@@ -58,6 +58,10 @@
 		EF2AB6321C0F4B1600DB93FC /* ZSAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB6311C0F4B1600DB93FC /* ZSAccountTool.m */; };
 		EF2AB67F1C1045D600DB93FC /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB67E1C1045D600DB93FC /* NSArray+Log.m */; };
 		EF2AB6821C105E3900DB93FC /* NSString+ReplaceUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB6811C105E3900DB93FC /* NSString+ReplaceUnicode.m */; };
+		EF4B1B891C3E3284000A48F2 /* ZSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4B1B871C3E3284000A48F2 /* ZSRegisterViewController.m */; };
+		EF4B1B8A1C3E3284000A48F2 /* ZSRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF4B1B881C3E3284000A48F2 /* ZSRegisterViewController.xib */; };
+		EF4B1B981C3EA7AD000A48F2 /* ZSStudentNumBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4B1B961C3EA7AD000A48F2 /* ZSStudentNumBindViewController.m */; };
+		EF4B1B991C3EA7AD000A48F2 /* ZSStudentNumBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF4B1B971C3EA7AD000A48F2 /* ZSStudentNumBindViewController.xib */; };
 		EF56D68B1C09DA8B00A3B314 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D6821C09DA8B00A3B314 /* AppDelegate.m */; };
 		EF56D68C1C09DA8B00A3B314 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D6841C09DA8B00A3B314 /* main.m */; };
 		EF56D68F1C09DC2000A3B314 /* ZSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D68E1C09DC2000A3B314 /* ZSTabBarController.m */; };
@@ -239,6 +243,12 @@
 		EF2AB67E1C1045D600DB93FC /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		EF2AB6801C105E3900DB93FC /* NSString+ReplaceUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ReplaceUnicode.h"; sourceTree = "<group>"; };
 		EF2AB6811C105E3900DB93FC /* NSString+ReplaceUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ReplaceUnicode.m"; sourceTree = "<group>"; };
+		EF4B1B861C3E3284000A48F2 /* ZSRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSRegisterViewController.h; sourceTree = "<group>"; };
+		EF4B1B871C3E3284000A48F2 /* ZSRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSRegisterViewController.m; sourceTree = "<group>"; };
+		EF4B1B881C3E3284000A48F2 /* ZSRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSRegisterViewController.xib; sourceTree = "<group>"; };
+		EF4B1B951C3EA7AD000A48F2 /* ZSStudentNumBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSStudentNumBindViewController.h; sourceTree = "<group>"; };
+		EF4B1B961C3EA7AD000A48F2 /* ZSStudentNumBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSStudentNumBindViewController.m; sourceTree = "<group>"; };
+		EF4B1B971C3EA7AD000A48F2 /* ZSStudentNumBindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSStudentNumBindViewController.xib; sourceTree = "<group>"; };
 		EF56D6811C09DA8B00A3B314 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EF56D6821C09DA8B00A3B314 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EF56D6841C09DA8B00A3B314 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1031,6 +1041,12 @@
 				EF2AB5961C0F015F00DB93FC /* ZSLoginViewController.h */,
 				EF2AB5971C0F015F00DB93FC /* ZSLoginViewController.m */,
 				EF2AB5981C0F015F00DB93FC /* ZSLoginViewController.xib */,
+				EF4B1B861C3E3284000A48F2 /* ZSRegisterViewController.h */,
+				EF4B1B871C3E3284000A48F2 /* ZSRegisterViewController.m */,
+				EF4B1B881C3E3284000A48F2 /* ZSRegisterViewController.xib */,
+				EF4B1B951C3EA7AD000A48F2 /* ZSStudentNumBindViewController.h */,
+				EF4B1B961C3EA7AD000A48F2 /* ZSStudentNumBindViewController.m */,
+				EF4B1B971C3EA7AD000A48F2 /* ZSStudentNumBindViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1175,7 +1191,7 @@
 				TargetAttributes = {
 					EFFC6AEB1C04852500469F99 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = JFVKYRL49B;
+						DevelopmentTeam = 4J8G66RP7C;
 					};
 					EFFC6B041C04852500469F99 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -1218,9 +1234,11 @@
 				EF2AB59A1C0F015F00DB93FC /* ZSLoginViewController.xib in Resources */,
 				EFE9D8921C0D94AE0072A4F7 /* ZSProfileImageCell.xib in Resources */,
 				EFE9D89B1C0DABAE0072A4F7 /* ZSMyInfoHeader.xib in Resources */,
+				EF4B1B8A1C3E3284000A48F2 /* ZSRegisterViewController.xib in Resources */,
 				EF2AB6111C0F17A500DB93FC /* MJRefresh.bundle in Resources */,
 				EFB6CA5A1C11109C0065BAF8 /* ZSWeatherCell.xib in Resources */,
 				EF2AB6081C0F17A500DB93FC /* MBProgressHUD.bundle in Resources */,
+				EF4B1B991C3EA7AD000A48F2 /* ZSStudentNumBindViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1319,6 +1337,7 @@
 				EFD44D5B1C18674D0016A602 /* ZSNewsWebViewController.m in Sources */,
 				EF2AB6321C0F4B1600DB93FC /* ZSAccountTool.m in Sources */,
 				EFB6CA591C11109C0065BAF8 /* ZSWeatherCell.m in Sources */,
+				EF4B1B981C3EA7AD000A48F2 /* ZSStudentNumBindViewController.m in Sources */,
 				EFD44D151C16E1640016A602 /* ZSNoveltyViewController.m in Sources */,
 				EF99E8821C0D06EE002ACD9D /* ZSModel.m in Sources */,
 				EF2AB59F1C0F145D00DB93FC /* ZSRootTool.m in Sources */,
@@ -1338,6 +1357,7 @@
 				EF56D69C1C09E19D00A3B314 /* ZSProfileViewController.m in Sources */,
 				EF2AB61B1C0F17A500DB93FC /* SDImageCache.m in Sources */,
 				EF2AB6131C0F17A500DB93FC /* MJRefreshConst.m in Sources */,
+				EF4B1B891C3E3284000A48F2 /* ZSRegisterViewController.m in Sources */,
 				EF2AB6281C0F17A500DB93FC /* UIView+WebCacheOperation.m in Sources */,
 				EF2AB6041C0F17A500DB93FC /* AFURLRequestSerialization.m in Sources */,
 				EF2AB6821C105E3900DB93FC /* NSString+ReplaceUnicode.m in Sources */,
@@ -1482,7 +1502,7 @@
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.dongan.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = me.dongan.lkdhelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1497,7 +1517,7 @@
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.dongan.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = me.dongan.lkdhelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

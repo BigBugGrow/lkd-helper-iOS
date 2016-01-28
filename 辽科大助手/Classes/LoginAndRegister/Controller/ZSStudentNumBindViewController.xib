@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSStudentNumBindViewController">
+            <connections>
+                <outlet property="activityIndicator" destination="jbm-gN-EPb" id="fjm-39-q9A"/>
+                <outlet property="passwordText" destination="ii9-aw-FzO" id="foN-ie-koC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="xHText" destination="fv3-p2-MUh" id="Ezw-h1-Ipg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jfh-Vn-om0">
+                    <rect key="frame" x="37" y="71" width="300" height="255"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jbm-gN-EPb">
+                            <rect key="frame" x="140" y="133" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="8jI-jl-Rjy"/>
+                                <constraint firstAttribute="width" constant="20" id="uRH-MI-ySo"/>
+                            </constraints>
+                        </activityIndicatorView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="TCO-2T-r6B">
+                            <rect key="frame" x="15" y="24" width="46" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="MAP-Bi-ZRW"/>
+                                <constraint firstAttribute="height" constant="38" id="zyf-AS-fEe"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="xiR-of-bBs">
+                            <rect key="frame" x="15" y="77" width="46" height="38"/>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="学号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fv3-p2-MUh">
+                            <rect key="frame" x="69" y="32" width="192" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="192" id="mZW-xT-jkH"/>
+                                <constraint firstAttribute="height" constant="30" id="rNr-4A-0EG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="教务处密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ii9-aw-FzO">
+                            <rect key="frame" x="69" y="85" width="192" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="192" id="hWB-Md-gId"/>
+                                <constraint firstAttribute="height" constant="30" id="nff-0I-roz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8y-Mh-rr9">
+                            <rect key="frame" x="27" y="167" width="246" height="33"/>
+                            <color key="backgroundColor" red="0.14117647059999999" green="0.71764705880000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="学号绑定">
+                                <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="enterHomeButtonClicked:" destination="-1" eventType="touchUpInside" id="gmF-kk-flB"/>
+                                <action selector="xHBindButtonClicked:" destination="-1" eventType="touchUpInside" id="01K-yu-rcN"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="没有学号？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPT-JP-F6I">
+                            <rect key="frame" x="117" y="218" width="67" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvU-i0-MfG">
+                            <rect key="frame" x="182" y="214" width="96" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="点击进入首页"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="ii9-aw-FzO" firstAttribute="top" secondItem="fv3-p2-MUh" secondAttribute="bottom" constant="23" id="6qC-xx-EBA"/>
+                        <constraint firstItem="TCO-2T-r6B" firstAttribute="top" secondItem="jfh-Vn-om0" secondAttribute="top" constant="24" id="DX7-gW-cJm"/>
+                        <constraint firstAttribute="height" constant="255" id="G3Q-LO-BJf"/>
+                        <constraint firstItem="ii9-aw-FzO" firstAttribute="leading" secondItem="fv3-p2-MUh" secondAttribute="leading" id="KTv-h3-Xz9"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="KYd-zp-Yen"/>
+                        <constraint firstItem="xiR-of-bBs" firstAttribute="leading" secondItem="TCO-2T-r6B" secondAttribute="leading" id="M7s-pl-hxp"/>
+                        <constraint firstItem="xiR-of-bBs" firstAttribute="width" secondItem="TCO-2T-r6B" secondAttribute="width" id="WXb-Sr-h5T"/>
+                        <constraint firstAttribute="width" constant="300" id="X0g-mc-Df7"/>
+                        <constraint firstItem="jbm-gN-EPb" firstAttribute="leading" secondItem="jfh-Vn-om0" secondAttribute="leading" constant="140" id="YKB-nF-OOq"/>
+                        <constraint firstAttribute="width" constant="321" id="ZMW-iG-YP4"/>
+                        <constraint firstItem="fv3-p2-MUh" firstAttribute="top" secondItem="jfh-Vn-om0" secondAttribute="top" constant="32" id="cqZ-DC-A1D"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="255" id="fZv-zd-5Mh"/>
+                        <constraint firstItem="xiR-of-bBs" firstAttribute="top" secondItem="TCO-2T-r6B" secondAttribute="bottom" constant="15" id="fqH-j1-UyI"/>
+                        <constraint firstItem="jbm-gN-EPb" firstAttribute="top" secondItem="ii9-aw-FzO" secondAttribute="bottom" constant="18" id="iII-4Q-yS8"/>
+                        <constraint firstItem="fv3-p2-MUh" firstAttribute="leading" secondItem="TCO-2T-r6B" secondAttribute="trailing" constant="8" id="jVu-rZ-scG"/>
+                        <constraint firstItem="xiR-of-bBs" firstAttribute="height" secondItem="TCO-2T-r6B" secondAttribute="height" id="pMq-I7-BuP"/>
+                        <constraint firstAttribute="height" constant="211" id="tL0-vF-PMn"/>
+                        <constraint firstItem="TCO-2T-r6B" firstAttribute="leading" secondItem="jfh-Vn-om0" secondAttribute="leading" constant="15" id="uZF-C6-V1U"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ZMW-iG-YP4"/>
+                            <exclude reference="tL0-vF-PMn"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.65490196078431373" green="0.89411764705882346" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="jfh-Vn-om0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="71" id="Ri6-MQ-oLh"/>
+                <constraint firstItem="jfh-Vn-om0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="37" id="mbT-5G-8Q0"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="password" width="160" height="161"/>
+        <image name="username" width="160" height="161"/>
+    </resources>
+</document>

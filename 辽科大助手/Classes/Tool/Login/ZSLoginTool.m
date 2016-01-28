@@ -27,26 +27,30 @@
 
 + (void)loginWithUser:(NSString *)user AndPassword:(NSString *)password success:(void(^)(NSInteger code))success failure:(void(^)(NSError *error))failure
 {
-
-    //保存账号和密码
-    [[NSUserDefaults standardUserDefaults] setObject:user forKey:ZSUser];
-    [[NSUserDefaults standardUserDefaults] setObject:password forKey:ZSPassword];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     ZSLoginParam *params = [[ZSLoginParam alloc] init];
     params.user = user;
     params.password =password;
     
 
-    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=site/login" parameters:params.keyValues success:^(id responseObject) {
-        
-        //字符串转字典数组
-        NSArray *dictArr = [NSString stringTimeTableConvertToDictArray:responseObject[@"timetable"]];
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=app/appLogin" parameters:params.keyValues success:^(id responseObject) {
+#warning 新接口课表不再是以字符串返回，而是字典数组，下面这个方法用不上了
+//        //字符串转字典数组
+//        NSArray *dictArr = [NSString stringTimeTableConvertToDictArray:responseObject[@"timetable"]];
 
         NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+#warning 新接口返回的课表中的周，还是以字符串形式返回的，还是得重新处理，烦人
+        NSLog(@"%@",accountDict);
+        if ([accountDict[@"timetable"][1][@"week"] isKindOfClass:[NSString class]]) {
+            NSLog(@"yes");
+            NSLog(@"%@",accountDict[@"timetable"][1][@"week"]);
+            for (id num in accountDict[@"timetable"][1][@"week"]) {
+                NSLog(@"%@",num);
+            }
+        }
         
         //字典数组转存放天课表，周课表的二维数组
-        NSArray *planarArr = [self timetableDictArrConvertToPlanarArr:dictArr];
+        NSArray *planarArr = [self timetableDictArrConvertToPlanarArr:responseObject[@"timetable"]];
         
         accountDict[@"timetable"] = planarArr;
         //字典转模型
@@ -56,7 +60,15 @@
             success(account.code);
             
             if (account.code == 1) {
+                
+                //保存账户信息
                 [ZSAccountTool saveAccount:account];
+                
+                //单独保存账号和密码，key，用用户偏好设置
+                [[NSUserDefaults standardUserDefaults] setObject:user forKey:ZSUser];
+                [[NSUserDefaults standardUserDefaults] setObject:password forKey:ZSPassword];
+                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"key"] forKey:ZSKey];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }
         }
         
