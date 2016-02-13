@@ -35,6 +35,8 @@
 #define ZSUser @"user"
 #define ZSPassword @"password"
 #define ZSKey @"key"
+#define ZSZjh @"zjh"
+#define ZSMm @"mm"
 
 // ...表示宏定义的可变参数
 // __VA_ARGS__:表示函数里面的可变参数

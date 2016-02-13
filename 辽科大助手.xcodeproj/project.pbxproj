@@ -73,6 +73,8 @@
 		EF56D6E61C0A9C8800A3B314 /* ZSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D6E51C0A9C8800A3B314 /* ZSTabBar.m */; };
 		EF56D6E91C0A9FEF00A3B314 /* ZSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D6E81C0A9FEF00A3B314 /* ZSNavigationController.m */; };
 		EF56D6EC1C0ABE4F00A3B314 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D6EB1C0ABE4F00A3B314 /* UIBarButtonItem+Item.m */; };
+		EF5FE0451C6C114100A2CEB1 /* ZSBindParam.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5FE0441C6C114100A2CEB1 /* ZSBindParam.m */; };
+		EF5FE04B1C6C11C700A2CEB1 /* ZSBindTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5FE04A1C6C11C700A2CEB1 /* ZSBindTool.m */; };
 		EF99E8711C0C6F3D002ACD9D /* ZSMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E86F1C0C6F3D002ACD9D /* ZSMyInfoViewController.m */; };
 		EF99E87F1C0D06CF002ACD9D /* ZSGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E87E1C0D06CF002ACD9D /* ZSGroupTableViewController.m */; };
 		EF99E8821C0D06EE002ACD9D /* ZSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E8811C0D06EE002ACD9D /* ZSModel.m */; };
@@ -271,6 +273,10 @@
 		EF56D6E81C0A9FEF00A3B314 /* ZSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNavigationController.m; sourceTree = "<group>"; };
 		EF56D6EA1C0ABE4F00A3B314 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
 		EF56D6EB1C0ABE4F00A3B314 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
+		EF5FE0431C6C114100A2CEB1 /* ZSBindParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSBindParam.h; sourceTree = "<group>"; };
+		EF5FE0441C6C114100A2CEB1 /* ZSBindParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSBindParam.m; sourceTree = "<group>"; };
+		EF5FE0491C6C11C700A2CEB1 /* ZSBindTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSBindTool.h; sourceTree = "<group>"; };
+		EF5FE04A1C6C11C700A2CEB1 /* ZSBindTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSBindTool.m; sourceTree = "<group>"; };
 		EF99E86E1C0C6F3D002ACD9D /* ZSMyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyInfoViewController.h; sourceTree = "<group>"; };
 		EF99E86F1C0C6F3D002ACD9D /* ZSMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyInfoViewController.m; sourceTree = "<group>"; };
 		EF99E87D1C0D06CF002ACD9D /* ZSGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSGroupTableViewController.h; sourceTree = "<group>"; };
@@ -830,7 +836,7 @@
 			children = (
 				EFD44D3B1C17B1060016A602 /* News */,
 				EFD44D4A1C182CBC0016A602 /* NewsData */,
-				EFE5381C1C15225C00A2B6EF /* Login */,
+				EFE5381C1C15225C00A2B6EF /* LoginAndBind */,
 				EF2AB62F1C0F4AF200DB93FC /* Account */,
 				EF2AB59B1C0F13D300DB93FC /* Http */,
 				EF2AB59C1C0F13D300DB93FC /* Root */,
@@ -938,14 +944,17 @@
 			path = Result;
 			sourceTree = "<group>";
 		};
-		EFE5381C1C15225C00A2B6EF /* Login */ = {
+		EFE5381C1C15225C00A2B6EF /* LoginAndBind */ = {
 			isa = PBXGroup;
 			children = (
 				EFE5381D1C15227900A2B6EF /* Param */,
 				EFE5381E1C15227900A2B6EF /* Result */,
 				EFE538251C15242C00A2B6EF /* ZSLoginTool.h */,
 				EFE538261C15242C00A2B6EF /* ZSLoginTool.m */,
+				EF5FE0491C6C11C700A2CEB1 /* ZSBindTool.h */,
+				EF5FE04A1C6C11C700A2CEB1 /* ZSBindTool.m */,
 			);
+			name = LoginAndBind;
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -954,6 +963,8 @@
 			children = (
 				EFE5381F1C15229E00A2B6EF /* ZSLoginParam.h */,
 				EFE538201C15229E00A2B6EF /* ZSLoginParam.m */,
+				EF5FE0431C6C114100A2CEB1 /* ZSBindParam.h */,
+				EF5FE0441C6C114100A2CEB1 /* ZSBindParam.m */,
 			);
 			path = Param;
 			sourceTree = "<group>";
@@ -1272,6 +1283,7 @@
 				EF2AB62B1C0F17DB00DB93FC /* ZSAccount.m in Sources */,
 				EFE9D8911C0D94AE0072A4F7 /* ZSProfileImageCell.m in Sources */,
 				EF2AB6251C0F17A500DB93FC /* UIImage+WebP.m in Sources */,
+				EF5FE0451C6C114100A2CEB1 /* ZSBindParam.m in Sources */,
 				EFE9D89A1C0DABAE0072A4F7 /* ZSMyInfoHeader.m in Sources */,
 				EF2AB62E1C0F205000DB93FC /* ZSHttpTool.m in Sources */,
 				EF2AB6191C0F17A500DB93FC /* MKAnnotationView+WebCache.m in Sources */,
@@ -1283,6 +1295,7 @@
 				EF2AB6101C0F17A500DB93FC /* NSObject+MJKeyValue.m in Sources */,
 				EF2AB6151C0F17A500DB93FC /* MJRefreshHeaderView.m in Sources */,
 				EF2AB6181C0F17A500DB93FC /* UIView+MJExtension.m in Sources */,
+				EF5FE04B1C6C11C700A2CEB1 /* ZSBindTool.m in Sources */,
 				EF99E8711C0C6F3D002ACD9D /* ZSMyInfoViewController.m in Sources */,
 				EF2AB67F1C1045D600DB93FC /* NSArray+Log.m in Sources */,
 				EF2AB61E1C0F17A500DB93FC /* SDWebImageDownloader.m in Sources */,

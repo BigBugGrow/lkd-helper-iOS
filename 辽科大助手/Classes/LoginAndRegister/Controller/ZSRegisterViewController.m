@@ -44,30 +44,35 @@
     self.activityIndicator.hidden = NO;
     [_activityIndicator startAnimating];
     
-    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=app/appRegister" parameters:parameters success:^(id responseObject) {
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/Register" parameters:parameters success:^(id responseObject) {
         
-       
         
-        if (![responseObject[@"code"] isEqualToString:@"100"]) {
+        if ([responseObject[@"state"] isEqualToString:@"500"] || [responseObject[@"state"] isEqualToString:@"101"] || [responseObject[@"state"] isEqualToString:@"000"]) {
             
+//            DALog(@"%@",responseObject[@"state"]);
+//            ;
+//            DALog(@"%@",[responseObject[@"state"] substringToIndex:1])
+//            ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.activityIndicator stopAnimating];
                 self.activityIndicator.hidden = YES;
-                [MBProgressHUD showError:@"注册失败"];
+                [MBProgressHUD showError:@"注册错误"];
                 
             });
-        } else if([responseObject[@"code"] isEqualToString:@"2"]) {
+            
+        } else if([[responseObject[@"state"] substringToIndex:1] isEqualToString:@"2"]) {
+            
             
             [self.activityIndicator stopAnimating];
             self.activityIndicator.hidden = YES;
-            [MBProgressHUD showError:@"该昵称已被占用"];
+            [MBProgressHUD showError:@"用户名由字母,数字,下划线组成"];
             
-        }else if([responseObject[@"code"] isEqualToString:@"3"]) {
+        }else if([responseObject[@"state"] isEqualToString:@"501"]) {
             
             [self.activityIndicator stopAnimating];
             self.activityIndicator.hidden = YES;
-            [MBProgressHUD showError:@"用户名由字母和数字组成"];
+            [MBProgressHUD showError:@"此用户名已被注册"];
             
         } else {
             
@@ -78,10 +83,10 @@
                 [MBProgressHUD showSuccess:@"注册成功"];
             });
             
-            //保存账号和密码,key(randString等价)
+            //保存账号和密码,key
             [[NSUserDefaults standardUserDefaults] setObject:userName forKey:ZSUser];
             [[NSUserDefaults standardUserDefaults] setObject:pwd forKey:ZSPassword];
-            [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"randString"] forKey:ZSKey];
+            [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"key"] forKey:ZSKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             ZSStudentNumBindViewController *studentNumBindVC = [[ZSStudentNumBindViewController alloc] init];
@@ -90,7 +95,10 @@
         }
         
     } failure:^(NSError *error) {
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = YES;
         
+        [MBProgressHUD showError:@"网络错误"];
     }];
 }
 

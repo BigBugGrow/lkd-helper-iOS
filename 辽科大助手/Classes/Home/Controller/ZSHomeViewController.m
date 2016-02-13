@@ -142,15 +142,16 @@
     long weekday = currentDay.weekday - 1;
 #warning 这里周数计算有问题
     //第几周
-    self.currentWeek = currentDay.week + 51 - [account.startweek intValue] + 1;
+#warning //self.currentWeek = currentDay.week + 51 - [account.startweek intValue] + 1;
+    self.currentWeek = 5;
     NSLog(@"ccc%@",currentDay);
     NSLog(@"bbb%ld",(long)currentDay.week);
-    NSLog(@"aaaa%@",account.startweek);
+   // NSLog(@"aaaa%@",account.startweek);
     NSLog(@"%ld--%ld",self.currentWeek,weekday);
     NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
     //1.得到当天的课表字典
     NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
-    NSLog(@"%@",account);
+    //NSLog(@"%@",account);
 
     
     ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];
@@ -263,6 +264,8 @@
     ZSHomeGroupModel *group = self.cellData[indexPath.section];
     ZSInquireModel *item = group.items[indexPath.row];
     
+   NSString *key = [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey];
+    
     if (indexPath.section == 1) {
         
         if(item.class) {
@@ -272,26 +275,26 @@
             ZSAccount *account = [ZSAccountTool account];
             switch (indexPath.row) {
                 case 1:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/TeachingEvaluation&wxid=%@",account.wxid];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/TeachingEvaluation&wxid=%@",key];
                     break;
                 case 2:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Xuanke&wxid=%@",account.wxid];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Xuanke&wxid=%@",key];
                     break;
 
                 case 3:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Gradudoc&wxid=%@",account.wxid];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Gradudoc&wxid=%@",key];
                     break;
 
                 case 4:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/ExamApply&wxid=%@",account.wxid];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/ExamApply&wxid=%@",key];
                     break;
 
                 case 5:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Score&wxid=%@",account.wxid];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Score&wxid=%@",key];
                     break;
 
                 case 6:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/EmptyClassroom&wxid=%@",account.wxid];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/EmptyClassroom&wxid=%@",key];
                     break;
 
                     

@@ -17,6 +17,7 @@
 
 static ZSNewsResult *_helperNews;
 static ZSNewsResult *_ustlNews;
+
 @implementation ZSNewsTool
 + (void)saveNewsResult:(ZSNewsResult *)newsResult WithType:(NSString *)newType
 {

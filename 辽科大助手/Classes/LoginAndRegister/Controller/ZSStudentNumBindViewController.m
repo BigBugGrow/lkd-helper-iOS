@@ -11,6 +11,8 @@
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
 
+#import "ZSBindTool.h"
+
 #import "ZSTabBarController.h"
 
 #import "MBProgressHUD+MJ.h"
@@ -43,17 +45,12 @@
     NSString *xh = self.xHText.text;
     NSString *pwd = self.passwordText.text;
     
-    NSDictionary *parameters = @{@"nickname":nickName,@"key":key,@"zjh":xh,@"mm":pwd};
-    
     self.activityIndicator.hidden = NO;
     [_activityIndicator startAnimating];
     
-    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=app/appBind" parameters:parameters success:^(id responseObject) {
-        
-        
-        
-        if (![responseObject[@"code"] isEqualToString:@"1"]) {
-            
+    [ZSBindTool bindWithUser:nickName key:key zjh:xh Andmm:pwd success:^(NSInteger code) {
+        if (code == 600) {
+           // [responseObject[@"state"] isEqualToString:@"600"]
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.activityIndicator stopAnimating];
@@ -61,6 +58,12 @@
                 [MBProgressHUD showError:@"绑定失败"];
                 
             });
+        } else if (code == 601) {
+            //[responseObject[@"state"] isEqualToString:@"601"]
+            [self.activityIndicator stopAnimating];
+            self.activityIndicator.hidden = YES;
+            [MBProgressHUD showError:@"学号已被绑定"];
+            
         } else {
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -70,16 +73,18 @@
                 [MBProgressHUD showSuccess:@"绑定成功"];
             });
             
-            
-            
             ZSTabBarController *tabBarVC = [[ZSTabBarController alloc] init];
             ZSKeyWindow.rootViewController = tabBarVC;
             
         }
+     } failure:^(NSError *error) {
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = YES;
         
-    } failure:^(NSError *error) {
+        [MBProgressHUD showError:@"网络错误"];
         
     }];
+    
     
 }
 
