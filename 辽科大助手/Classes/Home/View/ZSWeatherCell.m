@@ -53,7 +53,18 @@
     self.dayon_weatherLabel.text = item.weather;
     self.pm25Label.text = [NSString stringWithFormat:@"PM2.5: %@",item.pm25];
     self.daon_temperatureLabel.text = item.temperature;
-    self.currentWeekLabel.text = [NSString stringWithFormat:@"%@周",item.currentWeek];
+    self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",item.currentWeek];
     
 }
+
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    
+    ZSLog(@"点击了");
+    
+    return YES;
+}
+
+
 @end

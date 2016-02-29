@@ -32,7 +32,7 @@
     //添加头像
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     //    btn.imageView.image = [UIImage circleImageWithImageName:@"tab04_bgon" borderColor:nil borderWidth:1];
-    [btn setImage:[UIImage circleImageWithImageName:@"tab04_bgon" borderColor:nil borderWidth:1] forState:UIControlStateNormal];
+    [btn setImage:[UIImage circleImageWithImageName:@"chaoren" borderColor:nil borderWidth:1] forState:UIControlStateNormal];
 
     self.iconButton = btn;
     

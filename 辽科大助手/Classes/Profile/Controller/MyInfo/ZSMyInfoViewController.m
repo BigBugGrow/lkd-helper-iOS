@@ -15,7 +15,7 @@
 #import "ZSAccount.h"
 
 
-@interface ZSMyInfoViewController ()<ZSmyIofoHeaderDelegate>
+@interface ZSMyInfoViewController () <ZSmyIofoHeaderDelegate>
 
 @end
 
@@ -30,16 +30,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initModelData];
-    [self setUpTableHeaderView:@"ZSMyInfoHeader"];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.navigationController.navigationBar.hidden = YES;
-    self.tableView.contentOffset = CGPointMake(0, 24);
+    [self initModelData]
     
-//    ZSMyInfoHeader *headView = [[ZSMyInfoHeader alloc] init];
-//    headView.delegate = self;
-//    
-//    self.tableView.tableHeaderView = headView;
+    ;
+    [self setUpTableHeaderView:@"ZSMyInfoHeader"];
+    
+    //设置cell的类型， 隐藏导航栏
+    [self setBase];
+    
+    //接收cell发过来的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickBackBtn) name:ZSDidClickBackBtn object:nil];
+    
 }
 
 
@@ -47,6 +48,16 @@
 {
     return UIStatusBarStyleLightContent;
 }
+
+
+//设置cell界面的位置
+- (void)setBase
+{
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.navigationController.navigationBar.hidden = YES;
+    self.tableView.contentInset = UIEdgeInsetsMake(-24, 0, 0, 0);
+}
+
 
 //初始化模型数据
 - (void)initModelData
@@ -88,9 +99,13 @@
     return cell;
 }
 
-#pragma mark - backButton的代理
-- (void)backButtonClick
+
+#pragma mark 通知方法
+- (void)didClickBackBtn
 {
+    
+    ZSLog(@"退出");
+    
     [self.navigationController popViewControllerAnimated:YES];
     
 }

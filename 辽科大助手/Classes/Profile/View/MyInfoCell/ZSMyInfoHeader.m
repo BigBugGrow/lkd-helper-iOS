@@ -29,19 +29,20 @@
     CGFloat imageH = 250;
     self.frame = CGRectMake(0, 0, imageW, imageH);
     
-//    //添加返回button
-//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//
-//    [backBtn setImage:[UIImage imageNamed:@"tab_back"] forState:UIControlStateNormal];
-//    [backBtn setBackgroundImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
-//    [backBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-//    self.backButton = backBtn;
-//    [self.blurryView addSubview:backBtn];
+    //添加返回button
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    [backBtn setImage:[UIImage imageNamed:@"tab_back"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"gray"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.backButton = backBtn;
+    [self.blurryView addSubview:backBtn];
     
     //添加头像
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[UIImage circleImageWithImageName:@"me_background" borderColor:nil borderWidth:1] forState:UIControlStateNormal];
+    [btn setImage:[UIImage circleImageWithImageName:@"chaoren" borderColor:nil borderWidth:1] forState:UIControlStateNormal];
     
+    btn.userInteractionEnabled = NO;
     self.iconButton = btn;
     
     [self.blurryView addSubview:btn];
@@ -55,11 +56,12 @@
     
     //添加昵称label
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"DongAn";
+    label.text = @"超人强";
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor colorWithRed:50/255.0 green:128/225.0 blue:120/255.0 alpha:0.5];
-    // [label sizeToFit];
+    label.backgroundColor = [UIColor clearColor];
+    
+    
     self.nickNameLabel = label;
     [self.blurryView addSubview:label];
 }
@@ -74,15 +76,20 @@
     self.sexImage.frame = CGRectMake(0, 0, 30, 30);
         self.sexImage.center = CGPointMake(ScreenWidth/2, self.blurryView.center.y + 60);
     
-    self.nickNameLabel.frame = CGRectMake(70, 80, 10, 15);
-    self.nickNameLabel.center = CGPointMake(ScreenWidth/2 - 30, self.blurryView.center.y + 85);
-    [self.nickNameLabel sizeToFit];
-    self.nickNameLabel.layer.cornerRadius = 10;
+    self.nickNameLabel.frame = CGRectMake(0, CGRectGetMaxY(self.sexImage.frame), self.width, 15);
+//    self.nickNameLabel.center = CGPointMake(ScreenWidth/2 - 30, self.blurryView.center.y + 85);
+//    [self.nickNameLabel sizeToFit];
+//    self.nickNameLabel.layer.cornerRadius = 10;
     
 }
 
 - (void)backButtonClick:(UIButton *)btn
 {
+    ZSLog(@"退出当前控制器");
+    
+    //添加通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:ZSDidClickBackBtn object:self];
+    
     if ([_delegate respondsToSelector:@selector(backButtonClick)]) {
         [_delegate backButtonClick];
     }

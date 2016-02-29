@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52ACBCFE1C84158100BAE1A4 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */; settings = {ASSET_TAGS = (); }; };
+		52ACBD041C84247700BAE1A4 /* ZSConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBD031C84247700BAE1A4 /* ZSConst.m */; settings = {ASSET_TAGS = (); }; };
 		EF2AB5991C0F015F00DB93FC /* ZSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB5971C0F015F00DB93FC /* ZSLoginViewController.m */; };
 		EF2AB59A1C0F015F00DB93FC /* ZSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2AB5981C0F015F00DB93FC /* ZSLoginViewController.xib */; };
 		EF2AB59F1C0F145D00DB93FC /* ZSRootTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB59E1C0F145D00DB93FC /* ZSRootTool.m */; };
@@ -142,6 +144,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52ACBCFC1C84158100BAE1A4 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		52ACBD021C84247700BAE1A4 /* ZSConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSConst.h; sourceTree = "<group>"; };
+		52ACBD031C84247700BAE1A4 /* ZSConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSConst.m; sourceTree = "<group>"; };
 		EF2AB5961C0F015F00DB93FC /* ZSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLoginViewController.h; sourceTree = "<group>"; };
 		EF2AB5971C0F015F00DB93FC /* ZSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLoginViewController.m; sourceTree = "<group>"; };
 		EF2AB5981C0F015F00DB93FC /* ZSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSLoginViewController.xib; sourceTree = "<group>"; };
@@ -396,6 +402,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52ACBCFF1C84242700BAE1A4 /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				52ACBD021C84247700BAE1A4 /* ZSConst.h */,
+				52ACBD031C84247700BAE1A4 /* ZSConst.m */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
 		EF2AB59B1C0F13D300DB93FC /* Http */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,6 +770,7 @@
 		EF56D6801C09DA8B00A3B314 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				52ACBCFF1C84242700BAE1A4 /* Const */,
 				EF2AB5A01C0F178E00DB93FC /* Lib */,
 				EF56D6E01C0A933800A3B314 /* Category */,
 				EFFC6AFD1C04852500469F99 /* LaunchScreen.storyboard */,
@@ -818,6 +834,8 @@
 				EFE538321C157EA700A2B6EF /* NSDate+Convert.m */,
 				EFE538371C15850F00A2B6EF /* NSDate+Utilities.h */,
 				EFE538381C15850F00A2B6EF /* NSDate+Utilities.m */,
+				52ACBCFC1C84158100BAE1A4 /* UIView+Extension.h */,
+				52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1347,6 +1365,7 @@
 				EFD44D541C182CBC0016A602 /* ZSNewsResult.m in Sources */,
 				EF56D6EC1C0ABE4F00A3B314 /* UIBarButtonItem+Item.m in Sources */,
 				EFD44D531C182CBC0016A602 /* ZSNewsParams.m in Sources */,
+				52ACBCFE1C84158100BAE1A4 /* UIView+Extension.m in Sources */,
 				EFD44D5B1C18674D0016A602 /* ZSNewsWebViewController.m in Sources */,
 				EF2AB6321C0F4B1600DB93FC /* ZSAccountTool.m in Sources */,
 				EFB6CA591C11109C0065BAF8 /* ZSWeatherCell.m in Sources */,
@@ -1369,6 +1388,7 @@
 				EF56D68C1C09DA8B00A3B314 /* main.m in Sources */,
 				EF56D69C1C09E19D00A3B314 /* ZSProfileViewController.m in Sources */,
 				EF2AB61B1C0F17A500DB93FC /* SDImageCache.m in Sources */,
+				52ACBD041C84247700BAE1A4 /* ZSConst.m in Sources */,
 				EF2AB6131C0F17A500DB93FC /* MJRefreshConst.m in Sources */,
 				EF4B1B891C3E3284000A48F2 /* ZSRegisterViewController.m in Sources */,
 				EF2AB6281C0F17A500DB93FC /* UIView+WebCacheOperation.m in Sources */,

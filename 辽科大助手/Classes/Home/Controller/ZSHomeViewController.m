@@ -135,24 +135,29 @@
     //得到账户信息
     ZSAccount *account = [ZSAccountTool account];
     
+//    ZSLog(@"%@", account);
+    
+    
     //初始化课表数据
     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
     //星期几
-    long weekday = currentDay.weekday;
+    long weekday = (currentDay.weekday - 1) ? (currentDay.weekday - 1) : 7;
+    
 #warning 这里周数计算有问题
     //第几周
+    
 #warning //self.currentWeek = currentDay.week + 51 - [account.startweek intValue] + 1;
-    self.currentWeek = 6;
-    NSLog(@"ccc%@",currentDay);
-    NSLog(@"bbb%ld",(long)currentDay.week);
-   // NSLog(@"aaaa%@",account.startweek);
-    NSLog(@"%ld--%ld",self.currentWeek,weekday);
+    
+    self.currentWeek = 1;
+    
+//    NSLog(@"ccc%@",currentDay);
+    
+    
     NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
+    
     //1.得到当天的课表字典
     NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
-    //NSLog(@"%@",account);
-
     
     ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];
     ZSTimeTabelModel *timetable1 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@1]];
@@ -272,10 +277,10 @@
             
            // id vc = [[item.vcClass alloc] init];
             ZSInquireWebViewController *inquireVC = [[ZSInquireWebViewController alloc] init];
-            ZSAccount *account = [ZSAccountTool account];
+//            ZSAccount *account = [ZSAccountTool account];
             switch (indexPath.row) {
                 case 1:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/TeachingEvaluation&wxid=%@",key];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/timetable"];
                     break;
                 case 2:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Xuanke&wxid=%@",key];

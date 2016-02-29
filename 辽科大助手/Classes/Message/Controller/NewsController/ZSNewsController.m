@@ -86,7 +86,6 @@
     } failure:^(NSError *error) {
         if (error) {
             
-            DALog(@"%@",error);
             [MBProgressHUD showError:@"网络问题"];
             [self.tableView headerEndRefreshing];
         }

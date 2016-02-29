@@ -38,11 +38,15 @@
 #define ZSZjh @"zjh"
 #define ZSMm @"mm"
 
+//分类
+#import "UIView+Extension.h"
+#import "ZSConst.h"
+
 // ...表示宏定义的可变参数
 // __VA_ARGS__:表示函数里面的可变参数
 #ifdef DEBUG // 调试
 
-#define DALog(...) NSLog(__VA_ARGS__)
+#define ZSLog(...) NSLog(__VA_ARGS__)
 
 #else // 发布
 

@@ -31,6 +31,9 @@
     
     //拼接URL字符串
     
+    ZSLog(@"----%@", self.inquireURL);
+    
+    
     //创建URL
     NSURL *url = [NSURL URLWithString:self.inquireURL];
     
