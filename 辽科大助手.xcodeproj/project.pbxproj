@@ -1198,11 +1198,11 @@
 			attributes = {
 				CLASSPREFIX = ZS;
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = DongAn;
+				ORGANIZATIONNAME = USTL;
 				TargetAttributes = {
 					EFFC6AEB1C04852500469F99 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 4J8G66RP7C;
+						DevelopmentTeam = M6EBT7J6SN;
 					};
 					EFFC6B041C04852500469F99 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -1511,11 +1511,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/DongAn/360云盘/iOS Development/辽科大助手/辽科大助手/辽科大助手/Classes/Other/lkdhelper.pch";
+				GCC_PREFIX_HEADER = "/Users/macbookpro/Documents/workspace/LKDZS/lkd-helper-iOS/辽科大助手/Classes/Other/lkdhelper.pch";
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.dongan.lkdhelper;
+				PRODUCT_BUNDLE_IDENTIFIER = me.ustl.lkdhelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1526,11 +1526,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/DongAn/360云盘/iOS Development/辽科大助手/辽科大助手/辽科大助手/Classes/Other/lkdhelper.pch";
+				GCC_PREFIX_HEADER = "/Users/macbookpro/Documents/workspace/LKDZS/lkd-helper-iOS/辽科大助手/Classes/Other/lkdhelper.pch";
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.dongan.lkdhelper;
+				PRODUCT_BUNDLE_IDENTIFIER = me.ustl.lkdhelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
