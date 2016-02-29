@@ -11,6 +11,9 @@
 #import "ZSModel.h"
 #import "ZSGroupModel.h"
 #import "ZSMyInfoHeader.h"
+#import "ZSAccountTool.h"
+#import "ZSAccount.h"
+
 
 @interface ZSMyInfoViewController ()<ZSmyIofoHeaderDelegate>
 
@@ -49,8 +52,10 @@
 - (void)initModelData
 {
     
+    ZSAccount *account = [ZSAccountTool account];
     
-    ZSModel *item1 = [ZSModel itemWithIcon:nil title:@"学号" detailTitle:@"120133101070"];
+
+    ZSModel *item1 = [ZSModel itemWithIcon:nil title:@"学号" detailTitle:account.zjh];
     ZSModel *item2 = [ZSModel itemWithIcon:nil title:@"学院" detailTitle:@"电信学院"];
     ZSModel *item3 = [ZSModel itemWithIcon:nil title:@"专业" detailTitle:@"计算机"];
 
