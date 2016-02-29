@@ -112,7 +112,7 @@
 //请求天气数据
 - (void)getWeatherData
 {
-    [ZSHttpTool GET:@"http://infinitytron.sinaapp.com/tron/index.php?r=site/homeweather" parameters:nil success:^(id responseObject) {
+    [ZSHttpTool GET:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/simpleWeather" parameters:nil success:^(id responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSMutableDictionary *weatherDictWithCurrentWeek = [NSMutableDictionary dictionaryWithDictionary:responseObject];
@@ -139,11 +139,11 @@
     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
     //星期几
-    long weekday = currentDay.weekday - 1;
+    long weekday = currentDay.weekday;
 #warning 这里周数计算有问题
     //第几周
 #warning //self.currentWeek = currentDay.week + 51 - [account.startweek intValue] + 1;
-    self.currentWeek = 5;
+    self.currentWeek = 6;
     NSLog(@"ccc%@",currentDay);
     NSLog(@"bbb%ld",(long)currentDay.week);
    // NSLog(@"aaaa%@",account.startweek);

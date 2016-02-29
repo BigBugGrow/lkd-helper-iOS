@@ -61,7 +61,7 @@
     
     [ZSLoginTool loginWithUser:userName AndPassword:pwd success:^(NSInteger code) {
         
-        if (code != 1) {
+        if (code != 100) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 

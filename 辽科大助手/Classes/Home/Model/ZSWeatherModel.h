@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface ZSWeatherModel : NSObject
-@property (nonatomic,copy)NSString *dayon_wind;
+@property (nonatomic,copy)NSString *wind;
 @property (nonatomic,copy)NSString *pm25;
-@property (nonatomic,copy)NSString *dayon_temperature;
-@property (nonatomic,copy)NSString *dayon_weather;
-@property (nonatomic,copy)NSString *dayon_date;
+@property (nonatomic,copy)NSString *temperature;
+@property (nonatomic,copy)NSString *weather;
+@property (nonatomic,copy)NSString *date;
 @property (nonatomic,strong)NSNumber *currentWeek;
 @end

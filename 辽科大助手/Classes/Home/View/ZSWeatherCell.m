@@ -49,10 +49,10 @@
 {
     _item = item;
 
-    self.dayon_dateLabel.text = item.dayon_date;
-    self.dayon_weatherLabel.text = item.dayon_weather;
+    self.dayon_dateLabel.text = item.date;
+    self.dayon_weatherLabel.text = item.weather;
     self.pm25Label.text = [NSString stringWithFormat:@"PM2.5: %@",item.pm25];
-    self.daon_temperatureLabel.text = item.dayon_temperature;
+    self.daon_temperatureLabel.text = item.temperature;
     self.currentWeekLabel.text = [NSString stringWithFormat:@"%@周",item.currentWeek];
     
 }
