@@ -1,5 +1,5 @@
 # lkd-helper-iOS
-an campus app for ustl
+A campus app for USTL
 
 https://www.zhihu.com/question/38776976/answer/78187257?from=profile_answer_card（知乎上关于这个app的一个介绍）
 
