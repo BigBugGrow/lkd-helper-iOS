@@ -185,11 +185,13 @@
     ZSInquireModel *item2 = [ZSInquireModel itemWithIcon:@"evaluate" title:@"评教" vcClass:[ZSInquireWebViewController class]];
     ZSInquireModel *item3 = [ZSInquireModel itemWithIcon:@"select" title:@"选课" vcClass:[ZSInquireWebViewController class]];
     
-    ZSInquireModel *item4 = [ZSInquireModel itemWithIcon:@"archives" title:@"毕业生档案查询" vcClass:[ZSInquireWebViewController class]];
-    ZSInquireModel *item5 = [ZSInquireModel itemWithIcon:@"cat" title:@"四六级报名" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item4 = [ZSInquireModel itemWithIcon:@"archives" title:@"考试报名" vcClass:[ZSInquireWebViewController class]];
 
-    ZSInquireModel *item6 = [ZSInquireModel itemWithIcon:@"mark" title:@"查成绩" vcClass:[ZSInquireWebViewController class]];
-    ZSInquireModel *item7 = [ZSInquireModel itemWithIcon:@"classroom" title:@"空教室" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item5 = [ZSInquireModel itemWithIcon:@"mark" title:@"成绩查询" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item6 = [ZSInquireModel itemWithIcon:@"classroom" title:@"空教室" vcClass:[ZSInquireWebViewController class]];
+    
+    ZSInquireModel *item7 = [ZSInquireModel itemWithIcon:@"select" title:@"培养计划" vcClass:[ZSInquireWebViewController class]];
+    
     
     ZSHomeGroupModel *group2 = [[ZSHomeGroupModel alloc] init];
     group2.items = @[item1,item2,item3,item4,item5,item6,item7];
@@ -269,8 +271,6 @@
     ZSHomeGroupModel *group = self.cellData[indexPath.section];
     ZSInquireModel *item = group.items[indexPath.row];
     
-   NSString *key = [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey];
-    
     if (indexPath.section == 1) {
         
         if(item.class) {
@@ -278,31 +278,32 @@
            // id vc = [[item.vcClass alloc] init];
             ZSInquireWebViewController *inquireVC = [[ZSInquireWebViewController alloc] init];
 //            ZSAccount *account = [ZSAccountTool account];
-            switch (indexPath.row) {
+            switch (indexPath.row + 1) {
                 case 1:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/timetable"];
                     break;
                 case 2:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Xuanke&wxid=%@",key];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/teachingEvaluation"];
                     break;
 
                 case 3:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Gradudoc&wxid=%@",key];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/selectclass"];
                     break;
 
                 case 4:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/ExamApply&wxid=%@",key];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/ExamApply"];
                     break;
-
                 case 5:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/Score&wxid=%@",key];
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/score"];
                     break;
-
-                case 6:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://lkdhelper.sinaapp.com/web/index.php?r=ustl/EmptyClassroom&wxid=%@",key];
-                    break;
-
                     
+                case 6:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/EmptyClassroom"];
+                    break;
+    
+                case 7:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/TrainingPlan"];
+                    break;
                 default:
                     break;
             }

@@ -7,7 +7,8 @@
 //
 
 #import "ZSInquireWebViewController.h"
-
+#import "ZSAccount.h"
+#import "ZSAccountTool.h"
 #import "MBProgressHUD+MJ.h"
 
 @interface ZSInquireWebViewController ()<UIWebViewDelegate>
@@ -29,16 +30,24 @@
     //加载网页
     
     
+    //获取account
+    ZSAccount *account = [ZSAccountTool account];
+    
     //拼接URL字符串
-    
-    ZSLog(@"----%@", self.inquireURL);
-    
-    
     //创建URL
     NSURL *url = [NSURL URLWithString:self.inquireURL];
     
+    NSString *body = [NSString stringWithFormat:@"nickname=%@&key=%@", account.nickname, account.key];
+    
     //创建请求
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    //设置为post请求
+    [request setHTTPMethod:@"POST"];
+    
+    //设置请求体
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
     
     //加载请求
     [webView loadRequest:request];
@@ -52,19 +61,23 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     //提示用户正在加载
-   // [MBProgressHUD showMessage:@"正在加载..."];
     [MBProgressHUD showMessage:@"正在加载中..." toView:self.view];
 }
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [MBProgressHUD hideHUDForView:self.view];
-
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
 }
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [MBProgressHUD hideHUDForView:self.view];
+    //隐藏显示
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [MBProgressHUD showError:@"网络可能有问题咯~~"];
 }
+
 
 /*
 #pragma mark - Navigation
