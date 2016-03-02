@@ -15,4 +15,6 @@
 @property (nonatomic,copy)NSString *weather;
 @property (nonatomic,copy)NSString *date;
 @property (nonatomic,strong)NSNumber *currentWeek;
+
+
 @end

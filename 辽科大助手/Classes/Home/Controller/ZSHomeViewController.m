@@ -17,7 +17,8 @@
 
 #import "ZSHomeGroupModel.h"
 #import "ZSWeatherModel.h"
-#import "ZSWeatherCell.h"
+
+#import "ZSWeatherView.h"
 #import "ZSTimeTabelModel.h"
 #import "ZSTimeTableCell.h"
 #import "ZSInquireModel.h"
@@ -25,20 +26,20 @@
 
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
-#import "MJExtension.h"
 #import "MJRefresh.h"
 #import "MBProgressHUD+MJ.h"
 
 #import "ZSInquireWebViewController.h"
+#import "ZSDetailWeatherViewController.h"
 
 
-@interface ZSHomeViewController ()
+@interface ZSHomeViewController ()<ZSWeatherViewDelegate>
 
 @property (nonatomic,strong)NSDictionary *weatherData;
 
 @property (nonatomic,strong)NSMutableArray *cellData;
 
-@property (nonatomic,strong)ZSWeatherCell *weathrHeader;
+@property (nonatomic, strong) ZSWeatherView *weathrView;
 
 @property (nonatomic,strong)ZSTimeTableCell *timeTable;
 
@@ -69,7 +70,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     //设置导航栏按钮
     [self setUpNavigtionItem];
     
@@ -85,10 +85,18 @@
     self.tableView.rowHeight = 66;
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
-    ZSWeatherCell *weathrHeader = [[[NSBundle mainBundle] loadNibNamed:@"ZSWeatherCell" owner:nil options:nil] lastObject];
-    self.weathrHeader = weathrHeader;
-    self.tableView.tableHeaderView = self.weathrHeader;
-
+    //添加天气信息
+    ZSWeatherView *weatherView = [[[NSBundle mainBundle] loadNibNamed:@"ZSWeatherView" owner:nil options:nil] lastObject];
+    weatherView.delegate = self;
+    
+    [weatherView addTarget:self action:@selector(weatherDetailController) forControlEvents:UIControlEventTouchUpInside];
+    
+    ZSWeatherModel *weatherModel = [ZSWeatherModel objectWithKeyValues:self.weatherData];
+    
+    weatherView.weatherModel = weatherModel;
+    self.weathrView = weatherView;
+    self.tableView.tableHeaderView = self.weathrView;
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     // 添加下拉刷新控件
@@ -101,23 +109,33 @@
     [self getWeatherData];
 }
 
-#pragma mark -配置表格数据
+#pragma mark -配置表格数据'
+
+
 - (void)initWeatherData
 {
     //初始化天气数据
     ZSWeatherModel *weathItem = [ZSWeatherModel objectWithKeyValues:self.weatherData];
-    self.weathrHeader.item = weathItem;
+//    self.weathrHeader.item = weathItem;
+    self.weathrView.weatherModel = weathItem;
     
 }
+
 //请求天气数据
 - (void)getWeatherData
 {
     [ZSHttpTool GET:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/simpleWeather" parameters:nil success:^(id responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            
+            ZSLog(@"%@", responseObject);
+            
             NSMutableDictionary *weatherDictWithCurrentWeek = [NSMutableDictionary dictionaryWithDictionary:responseObject];
             weatherDictWithCurrentWeek[@"currentWeek"] = [NSNumber numberWithLong: self.currentWeek];
             self.weatherData = [NSDictionary dictionaryWithDictionary:weatherDictWithCurrentWeek];
+            
+            ZSLog(@"%@", self.weatherData);
+            
             //配置表格数据
             [self initWeatherData];
         });
@@ -224,6 +242,24 @@
     
 }
 
+#pragma mark - ZSWeather的代理方法
+
+- (void)weatherDetailController
+{
+    
+    
+    
+    
+    ZSDetailWeatherViewController *detailWeatherViewController = [[ZSDetailWeatherViewController alloc] init];
+    
+//    [self.navigationController presentViewController:detailWeatherViewController animated:YES completion:nil];
+    
+    detailWeatherViewController.title = @"详细天气";
+    
+    [self.navigationController pushViewController:detailWeatherViewController animated:YES];
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -268,6 +304,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     ZSHomeGroupModel *group = self.cellData[indexPath.section];
     ZSInquireModel *item = group.items[indexPath.row];
     

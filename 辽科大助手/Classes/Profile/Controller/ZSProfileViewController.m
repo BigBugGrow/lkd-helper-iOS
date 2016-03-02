@@ -43,6 +43,9 @@
     
     ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置" detailTitle:@""];
     ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"消息提醒模式" detailTitle:@""];
+    
+#warning 循环引用问题
+    
     item5.operation = ^(){
         if ([item5.title isEqualToString:@"消息提醒模式"]) {
             item5.title = @"静音模式";

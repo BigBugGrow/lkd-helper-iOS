@@ -16,10 +16,12 @@
     
     ZSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
+    
     if (cell == nil) {
         cell = [[ZSTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
     }
-    
+    //修改cell不可点击
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

@@ -10,4 +10,9 @@
 
 @implementation ZSWeatherModel
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"date: %@  wether: %@  pm: %@ temperature: %@ currentWeek: %@ wind: %@ day", self.date, self.weather, self.pm25, self.temperature, self.currentWeek, self.wind];
+}
+
 @end

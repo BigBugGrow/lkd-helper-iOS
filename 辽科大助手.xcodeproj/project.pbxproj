@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5248C26B1C85D0B2003D9668 /* ZSDetailWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5248C26A1C85D0B2003D9668 /* ZSDetailWeatherModel.m */; settings = {ASSET_TAGS = (); }; };
+		525764001C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 525763FF1C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m */; settings = {ASSET_TAGS = (); }; };
 		525F32BE1C852A4000014A64 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F32BA1C852A4000014A64 /* MBProgressHUD+MJ.m */; settings = {ASSET_TAGS = (); }; };
 		525F32BF1C852A4000014A64 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 525F32BB1C852A4000014A64 /* MBProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
 		525F32C01C852A4000014A64 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F32BD1C852A4000014A64 /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
+		525F32C81C8556A000014A64 /* ZSDetailWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F32C71C8556A000014A64 /* ZSDetailWeatherViewController.m */; settings = {ASSET_TAGS = (); }; };
+		529D09521C8669AB00DE8C7F /* ZSDetailWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D094E1C8669AB00DE8C7F /* ZSDetailWeatherCell.m */; settings = {ASSET_TAGS = (); }; };
+		529D09531C8669AB00DE8C7F /* ZSWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D09501C8669AB00DE8C7F /* ZSWeatherView.m */; settings = {ASSET_TAGS = (); }; };
+		529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529D09511C8669AB00DE8C7F /* ZSWeatherView.xib */; settings = {ASSET_TAGS = (); }; };
+		529D09571C8669FC00DE8C7F /* ZSDetailWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D09561C8669FC00DE8C7F /* ZSDetailWeatherView.m */; settings = {ASSET_TAGS = (); }; };
+		529D095C1C867E3600DE8C7F /* ZSDetailWeatherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D095B1C867E3600DE8C7F /* ZSDetailWeatherItem.m */; settings = {ASSET_TAGS = (); }; };
 		52ACBCFE1C84158100BAE1A4 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */; settings = {ASSET_TAGS = (); }; };
 		52ACBD041C84247700BAE1A4 /* ZSConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBD031C84247700BAE1A4 /* ZSConst.m */; settings = {ASSET_TAGS = (); }; };
 		EF2AB5991C0F015F00DB93FC /* ZSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB5971C0F015F00DB93FC /* ZSLoginViewController.m */; };
@@ -83,8 +91,6 @@
 		EF99E8851C0D06FC002ACD9D /* ZSGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E8841C0D06FC002ACD9D /* ZSGroupModel.m */; };
 		EF99E8881C0D0731002ACD9D /* ZSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E8871C0D0731002ACD9D /* ZSTableViewCell.m */; };
 		EFB6CA551C1110690065BAF8 /* ZSWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6CA541C1110690065BAF8 /* ZSWeatherModel.m */; };
-		EFB6CA591C11109C0065BAF8 /* ZSWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6CA571C11109C0065BAF8 /* ZSWeatherCell.m */; };
-		EFB6CA5A1C11109C0065BAF8 /* ZSWeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFB6CA581C11109C0065BAF8 /* ZSWeatherCell.xib */; };
 		EFB6CA611C1111230065BAF8 /* ZSTimeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6CA5F1C1111230065BAF8 /* ZSTimeTableCell.m */; };
 		EFB6CA691C1111D20065BAF8 /* ZSInquireCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6CA671C1111D20065BAF8 /* ZSInquireCell.m */; };
 		EFB6CA6D1C1124860065BAF8 /* ZSHomeGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB6CA6C1C1124860065BAF8 /* ZSHomeGroupModel.m */; };
@@ -144,11 +150,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5248C2691C85D0B2003D9668 /* ZSDetailWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherModel.h; sourceTree = "<group>"; };
+		5248C26A1C85D0B2003D9668 /* ZSDetailWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherModel.m; sourceTree = "<group>"; };
+		525763FE1C85DAC7004CFABA /* ZSDetailWeatherFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherFrameModel.h; sourceTree = "<group>"; };
+		525763FF1C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherFrameModel.m; sourceTree = "<group>"; };
 		525F32B91C852A4000014A64 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		525F32BA1C852A4000014A64 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		525F32BB1C852A4000014A64 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		525F32BC1C852A4000014A64 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		525F32BD1C852A4000014A64 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		525F32C61C8556A000014A64 /* ZSDetailWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherViewController.h; sourceTree = "<group>"; };
+		525F32C71C8556A000014A64 /* ZSDetailWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherViewController.m; sourceTree = "<group>"; };
+		529D094D1C8669AB00DE8C7F /* ZSDetailWeatherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherCell.h; sourceTree = "<group>"; };
+		529D094E1C8669AB00DE8C7F /* ZSDetailWeatherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherCell.m; sourceTree = "<group>"; };
+		529D094F1C8669AB00DE8C7F /* ZSWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWeatherView.h; sourceTree = "<group>"; };
+		529D09501C8669AB00DE8C7F /* ZSWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWeatherView.m; sourceTree = "<group>"; };
+		529D09511C8669AB00DE8C7F /* ZSWeatherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSWeatherView.xib; sourceTree = "<group>"; };
+		529D09551C8669FC00DE8C7F /* ZSDetailWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherView.h; sourceTree = "<group>"; };
+		529D09561C8669FC00DE8C7F /* ZSDetailWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherView.m; sourceTree = "<group>"; };
+		529D095A1C867E3600DE8C7F /* ZSDetailWeatherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherItem.h; sourceTree = "<group>"; };
+		529D095B1C867E3600DE8C7F /* ZSDetailWeatherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherItem.m; sourceTree = "<group>"; };
 		52ACBCFC1C84158100BAE1A4 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		52ACBD021C84247700BAE1A4 /* ZSConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSConst.h; sourceTree = "<group>"; };
@@ -295,9 +316,6 @@
 		EF99E8871C0D0731002ACD9D /* ZSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTableViewCell.m; sourceTree = "<group>"; };
 		EFB6CA531C1110690065BAF8 /* ZSWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWeatherModel.h; sourceTree = "<group>"; };
 		EFB6CA541C1110690065BAF8 /* ZSWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWeatherModel.m; sourceTree = "<group>"; };
-		EFB6CA561C11109C0065BAF8 /* ZSWeatherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWeatherCell.h; sourceTree = "<group>"; };
-		EFB6CA571C11109C0065BAF8 /* ZSWeatherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWeatherCell.m; sourceTree = "<group>"; };
-		EFB6CA581C11109C0065BAF8 /* ZSWeatherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSWeatherCell.xib; sourceTree = "<group>"; };
 		EFB6CA5E1C1111230065BAF8 /* ZSTimeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTimeTableCell.h; sourceTree = "<group>"; };
 		EFB6CA5F1C1111230065BAF8 /* ZSTimeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTimeTableCell.m; sourceTree = "<group>"; };
 		EFB6CA661C1111D20065BAF8 /* ZSInquireCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSInquireCell.h; sourceTree = "<group>"; };
@@ -402,6 +420,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5248C2681C85D08C003D9668 /* ZSDetailWeatherModel */ = {
+			isa = PBXGroup;
+			children = (
+				5248C2691C85D0B2003D9668 /* ZSDetailWeatherModel.h */,
+				5248C26A1C85D0B2003D9668 /* ZSDetailWeatherModel.m */,
+				525763FE1C85DAC7004CFABA /* ZSDetailWeatherFrameModel.h */,
+				525763FF1C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m */,
+			);
+			path = ZSDetailWeatherModel;
+			sourceTree = "<group>";
+		};
 		525F32B81C852A4000014A64 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +441,22 @@
 				525F32BD1C852A4000014A64 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		529D094C1C8669AB00DE8C7F /* ZSWeatherView */ = {
+			isa = PBXGroup;
+			children = (
+				529D094F1C8669AB00DE8C7F /* ZSWeatherView.h */,
+				529D09501C8669AB00DE8C7F /* ZSWeatherView.m */,
+				529D09511C8669AB00DE8C7F /* ZSWeatherView.xib */,
+				529D094D1C8669AB00DE8C7F /* ZSDetailWeatherCell.h */,
+				529D094E1C8669AB00DE8C7F /* ZSDetailWeatherCell.m */,
+				529D09551C8669FC00DE8C7F /* ZSDetailWeatherView.h */,
+				529D09561C8669FC00DE8C7F /* ZSDetailWeatherView.m */,
+				529D095A1C867E3600DE8C7F /* ZSDetailWeatherItem.h */,
+				529D095B1C867E3600DE8C7F /* ZSDetailWeatherItem.m */,
+			);
+			path = ZSWeatherView;
 			sourceTree = "<group>";
 		};
 		52ACBCFF1C84242700BAE1A4 /* Const */ = {
@@ -656,6 +701,8 @@
 				EF56D6951C09E15600A3B314 /* ZSHomeViewController.m */,
 				EFD44CFB1C167CA60016A602 /* ZSInquireWebViewController.h */,
 				EFD44CFC1C167CA60016A602 /* ZSInquireWebViewController.m */,
+				525F32C61C8556A000014A64 /* ZSDetailWeatherViewController.h */,
+				525F32C71C8556A000014A64 /* ZSDetailWeatherViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -663,6 +710,7 @@
 		EF56D6761C09DA8B00A3B314 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5248C2681C85D08C003D9668 /* ZSDetailWeatherModel */,
 				EFB6CA531C1110690065BAF8 /* ZSWeatherModel.h */,
 				EFB6CA541C1110690065BAF8 /* ZSWeatherModel.m */,
 				EFE5382E1C1574E200A2B6EF /* ZSTimeTabelModel.h */,
@@ -678,9 +726,7 @@
 		EF56D6771C09DA8B00A3B314 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EFB6CA561C11109C0065BAF8 /* ZSWeatherCell.h */,
-				EFB6CA571C11109C0065BAF8 /* ZSWeatherCell.m */,
-				EFB6CA581C11109C0065BAF8 /* ZSWeatherCell.xib */,
+				529D094C1C8669AB00DE8C7F /* ZSWeatherView */,
 				EFB6CA5E1C1111230065BAF8 /* ZSTimeTableCell.h */,
 				EFB6CA5F1C1111230065BAF8 /* ZSTimeTableCell.m */,
 				EFB6CA661C1111D20065BAF8 /* ZSInquireCell.h */,
@@ -1263,10 +1309,10 @@
 				525F32BF1C852A4000014A64 /* MBProgressHUD.bundle in Resources */,
 				EF2AB59A1C0F015F00DB93FC /* ZSLoginViewController.xib in Resources */,
 				EFE9D8921C0D94AE0072A4F7 /* ZSProfileImageCell.xib in Resources */,
+				529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */,
 				EFE9D89B1C0DABAE0072A4F7 /* ZSMyInfoHeader.xib in Resources */,
 				EF4B1B8A1C3E3284000A48F2 /* ZSRegisterViewController.xib in Resources */,
 				EF2AB6111C0F17A500DB93FC /* MJRefresh.bundle in Resources */,
-				EFB6CA5A1C11109C0065BAF8 /* ZSWeatherCell.xib in Resources */,
 				EF4B1B991C3EA7AD000A48F2 /* ZSStudentNumBindViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1295,9 +1341,12 @@
 				EF2AB6141C0F17A500DB93FC /* MJRefreshFooterView.m in Sources */,
 				EFD44D451C182B210016A602 /* ZSNewsController.m in Sources */,
 				EF2AB6201C0F17A500DB93FC /* SDWebImageManager.m in Sources */,
+				529D095C1C867E3600DE8C7F /* ZSDetailWeatherItem.m in Sources */,
+				525F32C81C8556A000014A64 /* ZSDetailWeatherViewController.m in Sources */,
 				EF2AB6021C0F17A500DB93FC /* AFSecurityPolicy.m in Sources */,
 				EF2AB6211C0F17A500DB93FC /* SDWebImagePrefetcher.m in Sources */,
 				EFE538391C15850F00A2B6EF /* NSDate+Utilities.m in Sources */,
+				5248C26B1C85D0B2003D9668 /* ZSDetailWeatherModel.m in Sources */,
 				EF2AB62B1C0F17DB00DB93FC /* ZSAccount.m in Sources */,
 				EFE9D8911C0D94AE0072A4F7 /* ZSProfileImageCell.m in Sources */,
 				EF2AB6251C0F17A500DB93FC /* UIImage+WebP.m in Sources */,
@@ -1313,6 +1362,7 @@
 				EF2AB6101C0F17A500DB93FC /* NSObject+MJKeyValue.m in Sources */,
 				EF2AB6151C0F17A500DB93FC /* MJRefreshHeaderView.m in Sources */,
 				EF2AB6181C0F17A500DB93FC /* UIView+MJExtension.m in Sources */,
+				529D09571C8669FC00DE8C7F /* ZSDetailWeatherView.m in Sources */,
 				525F32BE1C852A4000014A64 /* MBProgressHUD+MJ.m in Sources */,
 				EF5FE04B1C6C11C700A2CEB1 /* ZSBindTool.m in Sources */,
 				EF99E8711C0C6F3D002ACD9D /* ZSMyInfoViewController.m in Sources */,
@@ -1324,6 +1374,8 @@
 				EF56D6E61C0A9C8800A3B314 /* ZSTabBar.m in Sources */,
 				EFE538331C157EA700A2B6EF /* NSDate+Convert.m in Sources */,
 				EF2AB6031C0F17A500DB93FC /* AFURLConnectionOperation.m in Sources */,
+				529D09531C8669AB00DE8C7F /* ZSWeatherView.m in Sources */,
+				525764001C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m in Sources */,
 				EFE538211C15229E00A2B6EF /* ZSLoginParam.m in Sources */,
 				EF56D6931C09E14100A3B314 /* ZSDiscoverViewController.m in Sources */,
 				EF2AB60F1C0F17A500DB93FC /* NSObject+MJIvar.m in Sources */,
@@ -1333,6 +1385,7 @@
 				EF2AB61C1C0F17A500DB93FC /* SDWebImageCompat.m in Sources */,
 				EFE9D8A81C0E4DB80072A4F7 /* ZSNewFeatureController.m in Sources */,
 				EF2AB60C1C0F17A500DB93FC /* MJIvar.m in Sources */,
+				529D09521C8669AB00DE8C7F /* ZSDetailWeatherCell.m in Sources */,
 				EFE538271C15242C00A2B6EF /* ZSLoginTool.m in Sources */,
 				EF2AB6061C0F17A500DB93FC /* AFURLSessionManager.m in Sources */,
 				EF2AB61A1C0F17A500DB93FC /* NSData+ImageContentType.m in Sources */,
@@ -1368,7 +1421,6 @@
 				52ACBCFE1C84158100BAE1A4 /* UIView+Extension.m in Sources */,
 				EFD44D5B1C18674D0016A602 /* ZSNewsWebViewController.m in Sources */,
 				EF2AB6321C0F4B1600DB93FC /* ZSAccountTool.m in Sources */,
-				EFB6CA591C11109C0065BAF8 /* ZSWeatherCell.m in Sources */,
 				EF4B1B981C3EA7AD000A48F2 /* ZSStudentNumBindViewController.m in Sources */,
 				EFD44D151C16E1640016A602 /* ZSNoveltyViewController.m in Sources */,
 				EF99E8821C0D06EE002ACD9D /* ZSModel.m in Sources */,

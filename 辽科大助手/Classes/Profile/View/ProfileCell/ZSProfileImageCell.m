@@ -28,7 +28,6 @@
     CGFloat imageH = 134;
     self.frame = CGRectMake(0, 64, imageW, imageH);
     
-
     //添加头像
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     //    btn.imageView.image = [UIImage circleImageWithImageName:@"tab04_bgon" borderColor:nil borderWidth:1];
