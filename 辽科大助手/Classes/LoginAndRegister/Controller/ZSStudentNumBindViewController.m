@@ -93,8 +93,7 @@
         [MBProgressHUD showError:@"网络错误"];
         
     }];
-    
-    
+
 }
 
 - (IBAction)enterHomeButtonClicked:(id)sender {
