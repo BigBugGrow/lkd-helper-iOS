@@ -64,6 +64,15 @@
             self.activityIndicator.hidden = YES;
             [MBProgressHUD showError:@"学号已被绑定"];
             
+        } else if (code == 701){
+            
+
+            [MBProgressHUD showMessage:@"后台系统验证码有一定的错误率，请重新点击绑定学号按钮..."];
+            
+            [NSThread sleepForTimeInterval:1.0];
+            
+            [MBProgressHUD hideHUD];
+            return ;
         } else {
             
             dispatch_async(dispatch_get_main_queue(), ^{

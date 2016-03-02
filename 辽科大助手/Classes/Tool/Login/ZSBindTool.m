@@ -27,7 +27,6 @@
     params.zjh = zjh;
     params.mm = mm;
     
-    
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/Bind" parameters:params.keyValues success:^(id responseObject) {
         
 //warning 新接口课表不再是以字符串返回，而是字典数组，下面这个方法用不上了

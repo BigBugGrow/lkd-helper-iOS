@@ -85,17 +85,9 @@
     self.tableView.rowHeight = 66;
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
-    //添加天气信息
-    ZSWeatherView *weatherView = [[[NSBundle mainBundle] loadNibNamed:@"ZSWeatherView" owner:nil options:nil] lastObject];
-    weatherView.delegate = self;
+    //设置显示天气信息
+    [self exhibitWeatherInfo];
     
-    [weatherView addTarget:self action:@selector(weatherDetailController) forControlEvents:UIControlEventTouchUpInside];
-    
-    ZSWeatherModel *weatherModel = [ZSWeatherModel objectWithKeyValues:self.weatherData];
-    
-    weatherView.weatherModel = weatherModel;
-    self.weathrView = weatherView;
-    self.tableView.tableHeaderView = self.weathrView;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
@@ -110,6 +102,22 @@
 }
 
 #pragma mark -配置表格数据'
+
+- (void)exhibitWeatherInfo
+{
+    //添加天气信息
+    ZSWeatherView *weatherView = [[[NSBundle mainBundle] loadNibNamed:@"ZSWeatherView" owner:nil options:nil] lastObject];
+    weatherView.delegate = self;
+    
+    [weatherView addTarget:self action:@selector(weatherDetailController) forControlEvents:UIControlEventTouchUpInside];
+    
+    ZSWeatherModel *weatherModel = [ZSWeatherModel objectWithKeyValues:self.weatherData];
+    
+    weatherView.weatherModel = weatherModel;
+    self.weathrView = weatherView;
+    self.tableView.tableHeaderView = self.weathrView;
+
+}
 
 
 - (void)initWeatherData
@@ -153,7 +161,9 @@
     //得到账户信息
     ZSAccount *account = [ZSAccountTool account];
     
-//    ZSLog(@"%@", account);
+    if ([account.zjh isEqualToString:@"null"]) {
+        return;
+    }
     
     
     //初始化课表数据

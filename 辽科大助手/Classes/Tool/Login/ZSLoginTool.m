@@ -43,37 +43,46 @@
         
         NSLog(@"%@",accountDict);
         
-        //初始化一个 课表 的可变数组
-        NSMutableArray *timetableArrayM = [NSMutableArray arrayWithArray:accountDict[@"timetable"]];
-        int i = 0;
-        for (NSMutableDictionary *d in accountDict[@"timetable"]) {
+        ZSLog(@"%@", accountDict[@"timetable"]);
+        
+        if ([accountDict[@"timetable"] isEqualToString:@"null"]) {
             
-            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:d];
+            ZSLog(@"课程表没有值");
+        } else {
             
-            //取出头和尾 []
-            NSString *weekValueSubPre = [dict[@"week"] substringFromIndex:1];
-            NSString *weekValueSubPreAndSuf = [weekValueSubPre substringToIndex:weekValueSubPre.length];
-            
-            NSArray *weekStrNumArr = [weekValueSubPreAndSuf componentsSeparatedByString:@","];
-            NSMutableArray *weekNumArr = [NSMutableArray array];
-            for (NSString *str in weekStrNumArr) {
-                [weekNumArr addObject:[NSNumber numberWithInteger:[str integerValue]]];
+            //初始化一个 课表 的可变数组
+            NSMutableArray *timetableArrayM = [NSMutableArray arrayWithArray:accountDict[@"timetable"]];
+            int i = 0;
+            for (NSMutableDictionary *d in accountDict[@"timetable"]) {
+                
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:d];
+                
+                //取出头和尾 []
+                NSString *weekValueSubPre = [dict[@"week"] substringFromIndex:1];
+                NSString *weekValueSubPreAndSuf = [weekValueSubPre substringToIndex:weekValueSubPre.length];
+                
+                NSArray *weekStrNumArr = [weekValueSubPreAndSuf componentsSeparatedByString:@","];
+                NSMutableArray *weekNumArr = [NSMutableArray array];
+                for (NSString *str in weekStrNumArr) {
+                    [weekNumArr addObject:[NSNumber numberWithInteger:[str integerValue]]];
+                }
+                
+                [dict setObject:weekNumArr forKey:@"week"];
+                NSLog(@"%@",dict);
+                
+                [timetableArrayM setObject:dict atIndexedSubscript:i];
+                i++;
             }
             
-            [dict setObject:weekNumArr forKey:@"week"];
-            NSLog(@"%@",dict);
+            [accountDict setObject:timetableArrayM forKey:@"timetable"];
             
-            [timetableArrayM setObject:dict atIndexedSubscript:i];
-            i++;
+            //字典数组转存放天课表，周课表的二维数组
+            NSArray *planarArr = [self timetableDictArrConvertToPlanarArr:accountDict[@"timetable"]];
+            
+            accountDict[@"timetable"] = planarArr;
             
         }
         
-        [accountDict setObject:timetableArrayM forKey:@"timetable"];
-        
-        //字典数组转存放天课表，周课表的二维数组
-        NSArray *planarArr = [self timetableDictArrConvertToPlanarArr:accountDict[@"timetable"]];
-        
-        accountDict[@"timetable"] = planarArr;
         //字典转模型
         ZSAccount *account = [ZSAccount objectWithKeyValues:accountDict];
         

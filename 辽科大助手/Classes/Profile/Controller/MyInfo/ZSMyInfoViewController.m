@@ -67,7 +67,7 @@
     
 
     ZSModel *item1 = [ZSModel itemWithIcon:nil title:@"学号" detailTitle:account.zjh];
-    ZSModel *item2 = [ZSModel itemWithIcon:nil title:@"学院" detailTitle:@"电信学院"];
+    ZSModel *item2 = [ZSModel itemWithIcon:nil title:@"学院" detailTitle:@"软件学院"];
     ZSModel *item3 = [ZSModel itemWithIcon:nil title:@"专业" detailTitle:@"计算机"];
 
     ZSModel *item4 = [ZSModel itemWithIcon:nil title:@"家乡" detailTitle:@"四川南充"];
