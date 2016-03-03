@@ -66,12 +66,18 @@
             
         } else if (code == 701){
             
+            //圆圈停止转动
+            [self.activityIndicator stopAnimating];
+            self.activityIndicator.hidden = YES;
 
-            [MBProgressHUD showMessage:@"后台系统验证码有一定的错误率，请重新点击绑定学号按钮..."];
+            [MBProgressHUD showMessage:@"请重新点击绑定学号按钮..."];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                //消失控制器
+                [MBProgressHUD hideHUD];
+            });
+
             
-            [NSThread sleepForTimeInterval:1.0];
-            
-            [MBProgressHUD hideHUD];
             return ;
         } else {
             

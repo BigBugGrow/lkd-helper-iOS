@@ -57,7 +57,7 @@
 
     detailWeatherView.detailWeatherModel = self.detailWeatherModel;
     self.detailWeatherView = detailWeatherView;
-    
+        
     self.tableView.tableHeaderView = detailWeatherView;
 }
 
