@@ -1,9 +1,9 @@
 //
-//  SwitchView.m
-//  NewsDemo
+//  ZSSwitchView.m
+//  辽科大助手
 //
-//  Created by apple on 15/2/10.
-//  Copyright (c) 2015年 coderyi. All rights reserved.
+//  Created by MacBook Pro on 16/3/2.
+//  Copyright © 2016年 USTL. All rights reserved.
 //
 
 #import "ZSSwitchView.h"

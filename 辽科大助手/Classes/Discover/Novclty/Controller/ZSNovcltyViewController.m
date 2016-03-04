@@ -2,7 +2,7 @@
 //  ZSNovcltyViewController.m
 //  辽科大助手
 //
-//  Created by MacBook Pro on 16/3/4.
+//  Created by MacBook Pro on 16/3/2.
 //  Copyright © 2016年 USTL. All rights reserved.
 //
 
@@ -194,9 +194,9 @@
     
     
     __unsafe_unretained UIScrollView *scrollViewA = scrollView;
-    __unsafe_unretained UITableView *tableViewB = tableView2;
-    __unsafe_unretained UITableView *tableViewC = tableView3;
-    __unsafe_unretained UITableView *tableViewD = tableView4;
+//    __unsafe_unretained UITableView *tableView2 = tableView2;
+//    __unsafe_unretained UITableView *tableView3 = tableView3;
+//    __unsafe_unretained UITableView *tableView4 = tableView4;
 
 
     CGFloat bgViewHeightA = bgViewHeight;
@@ -216,13 +216,13 @@
         }else if (currentIndex==2){
             if (tableView2==nil) {
                 tableView2=[[UITableView alloc] initWithFrame:CGRectMake(ScreenWidth, 0, ScreenWidth, bgViewHeight) style:UITableViewStylePlain];
-                [scrollViewA addSubview:tableViewB];
-                tableViewB.showsVerticalScrollIndicator = NO;
+                [scrollViewA addSubview:tableView2];
+                tableView2.showsVerticalScrollIndicator = NO;
 
-                tableViewB.tag=12;
-                tableViewB.dataSource=ZSNovcltyC;
-                tableViewB.delegate=ZSNovcltyC;
-                tableViewB.separatorStyle=UITableViewCellSeparatorStyleNone;
+                tableView2.tag=12;
+                tableView2.dataSource=ZSNovcltyC;
+                tableView2.delegate=ZSNovcltyC;
+                tableView2.separatorStyle=UITableViewCellSeparatorStyleNone;
                 
             }
 
@@ -230,14 +230,14 @@
             if (tableView3==nil) {
                 tableView3=[[UITableView alloc] initWithFrame:CGRectMake(ScreenWidth*2, 0, ScreenWidth, bgViewHeight) style:UITableViewStylePlain];
 
-                [scrollViewA addSubview:tableViewC];
-                tableViewC.showsVerticalScrollIndicator = NO;
+                [scrollViewA addSubview:tableView3];
+                tableView3.showsVerticalScrollIndicator = NO;
 
-                tableViewC.tag=13;
+                tableView3.tag=13;
                 
-                tableViewC.dataSource=ZSNovcltyC;
-                tableViewC.delegate=ZSNovcltyC;
-                tableViewC.separatorStyle=UITableViewCellSeparatorStyleNone;
+                tableView3.dataSource=ZSNovcltyC;
+                tableView3.delegate=ZSNovcltyC;
+                tableView3.separatorStyle=UITableViewCellSeparatorStyleNone;
                 
                 
             }
@@ -245,13 +245,13 @@
         }else if (currentIndex==4){
             if (tableView4==nil) {
                 tableView4=[[UITableView alloc] initWithFrame:CGRectMake(ScreenWidth*3, 0, ScreenWidth, bgViewHeight) style:UITableViewStylePlain];
-                [scrollViewA addSubview:tableViewD];
-                tableViewD.showsVerticalScrollIndicator = NO;
-                tableViewD.tag=14;
+                [scrollViewA addSubview:tableView4];
+                tableView4.showsVerticalScrollIndicator = NO;
+                tableView4.tag=14;
                 
-                tableViewD.dataSource=ZSNovcltyC;
-                tableViewD.delegate=ZSNovcltyC;
-                tableViewD.separatorStyle=UITableViewCellSeparatorStyleNone;
+                tableView4.dataSource=ZSNovcltyC;
+                tableView4.delegate=ZSNovcltyC;
+                tableView4.separatorStyle=UITableViewCellSeparatorStyleNone;
                 
             }
 
@@ -298,14 +298,17 @@
         
         return self.allDynamicFrames.count;
     }else if (tableView.tag==12){
-    return 31;
-    
+
+        
+        return self.allDynamicFrames.count;
+
     }else if (tableView.tag==13){
-        return 41;
+
+        return self.allDynamicFrames.count;
         
     }else if (tableView.tag==14){
         
-        return 21;
+        return self.allDynamicFrames.count;
     }
     return 11;
 }
@@ -322,50 +325,32 @@
      
      }else if (tableView.tag==12){
         
-             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id2"];
-             if (cell == nil) {
-                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"id2"];
-                 cell.contentView.backgroundColor=[UIColor colorWithRed:0.96f green:0.96f blue:0.96f alpha:1.00f];
-                 cell.selectionStyle=UITableViewCellSelectionStyleNone;
-                 UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 8)];
-                 [cell.contentView addSubview:lineView];
-                 lineView.backgroundColor=[UIColor colorWithRed:0.91f green:0.91f blue:0.91f alpha:1.00f];
-             }
-
-            cell.textLabel.numberOfLines=0;
-             return cell;
+         ZSAllDynamicCell *cell = [ZSAllDynamicCell cellWithTableView:tableView];
+         
+         //*模型赋值数据*/
+         cell.allDynamicFrame = self.allDynamicFrames[indexPath.row];
+         
+        return cell;
              
          
      
      }else if (tableView.tag==13){
          
-         ZSNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id1"];
+         ZSAllDynamicCell *cell = [ZSAllDynamicCell cellWithTableView:tableView];
          
+         //*模型赋值数据*/
+         cell.allDynamicFrame = self.allDynamicFrames[indexPath.row];
          
-         if (cell == nil) {
-             cell = [[ZSNewsTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"id1"];
-             cell.selectionStyle=UITableViewCellSelectionStyleNone;
-             
-             
-         }
-         // Configure the cell...
          return cell;
-         
-         
          
      }else if (tableView.tag==14){
          
          
-         ZSNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id1"];
+         ZSAllDynamicCell *cell = [ZSAllDynamicCell cellWithTableView:tableView];
          
+         //*模型赋值数据*/
+         cell.allDynamicFrame = self.allDynamicFrames[indexPath.row];
          
-         if (cell == nil) {
-             cell = [[ZSNewsTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"id1"];
-             cell.selectionStyle=UITableViewCellSelectionStyleNone;
-             
-             
-         }
-         // Configure the cell...
          return cell;
          
      }
@@ -378,14 +363,19 @@
         return [self.allDynamicFrames[indexPath.row] cellHeight];
         
     }else if (tableView.tag==12){
-        return 170;
+
         
+        return [self.allDynamicFrames[indexPath.row] cellHeight];
+
     }else if (tableView.tag==13){
-        return 100;
+
         
+        return [self.allDynamicFrames[indexPath.row] cellHeight];
+
     }else if (tableView.tag==14){
         
-        return 100;
+        return [self.allDynamicFrames[indexPath.row] cellHeight];
+
     }
     return 11;
 }
