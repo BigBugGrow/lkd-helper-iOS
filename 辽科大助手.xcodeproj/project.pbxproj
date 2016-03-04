@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522BDB551C88979A0014DEEC /* ZSNovcltyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522BDB4E1C88979A0014DEEC /* ZSNovcltyViewController.m */; settings = {ASSET_TAGS = (); }; };
+		522BDB5A1C88981A0014DEEC /* ZSAllDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 522BDB591C88981A0014DEEC /* ZSAllDynamic.m */; settings = {ASSET_TAGS = (); }; };
+		522BDB5F1C8898380014DEEC /* ZSNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 522BDB5C1C8898380014DEEC /* ZSNewsTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		522BDB601C8898380014DEEC /* ZSSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522BDB5E1C8898380014DEEC /* ZSSwitchView.m */; settings = {ASSET_TAGS = (); }; };
+		52461D0A1C893B68004B6483 /* ZSAllDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52461D091C893B68004B6483 /* ZSAllDynamicCell.m */; settings = {ASSET_TAGS = (); }; };
 		5248C26B1C85D0B2003D9668 /* ZSDetailWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5248C26A1C85D0B2003D9668 /* ZSDetailWeatherModel.m */; settings = {ASSET_TAGS = (); }; };
 		525764001C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 525763FF1C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m */; settings = {ASSET_TAGS = (); }; };
 		525F32BE1C852A4000014A64 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F32BA1C852A4000014A64 /* MBProgressHUD+MJ.m */; settings = {ASSET_TAGS = (); }; };
 		525F32BF1C852A4000014A64 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 525F32BB1C852A4000014A64 /* MBProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
 		525F32C01C852A4000014A64 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F32BD1C852A4000014A64 /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		525F32C81C8556A000014A64 /* ZSDetailWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F32C71C8556A000014A64 /* ZSDetailWeatherViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5282DDB61C8942D00079B931 /* ZSAllDynamicFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5282DDB51C8942D00079B931 /* ZSAllDynamicFrame.m */; settings = {ASSET_TAGS = (); }; };
 		529D09521C8669AB00DE8C7F /* ZSDetailWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D094E1C8669AB00DE8C7F /* ZSDetailWeatherCell.m */; settings = {ASSET_TAGS = (); }; };
 		529D09531C8669AB00DE8C7F /* ZSWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D09501C8669AB00DE8C7F /* ZSWeatherView.m */; settings = {ASSET_TAGS = (); }; };
 		529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529D09511C8669AB00DE8C7F /* ZSWeatherView.xib */; settings = {ASSET_TAGS = (); }; };
@@ -20,6 +26,8 @@
 		529D095C1C867E3600DE8C7F /* ZSDetailWeatherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D095B1C867E3600DE8C7F /* ZSDetailWeatherItem.m */; settings = {ASSET_TAGS = (); }; };
 		52ACBCFE1C84158100BAE1A4 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */; settings = {ASSET_TAGS = (); }; };
 		52ACBD041C84247700BAE1A4 /* ZSConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBD031C84247700BAE1A4 /* ZSConst.m */; settings = {ASSET_TAGS = (); }; };
+		52EC7B291C8963BD00EC7F7C /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EC7B281C8963BD00EC7F7C /* NSString+Extension.m */; settings = {ASSET_TAGS = (); }; };
+		52EC7B2C1C89729700EC7F7C /* ZSEssayTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EC7B2B1C89729700EC7F7C /* ZSEssayTextView.m */; settings = {ASSET_TAGS = (); }; };
 		EF2AB5991C0F015F00DB93FC /* ZSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB5971C0F015F00DB93FC /* ZSLoginViewController.m */; };
 		EF2AB59A1C0F015F00DB93FC /* ZSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2AB5981C0F015F00DB93FC /* ZSLoginViewController.xib */; };
 		EF2AB59F1C0F145D00DB93FC /* ZSRootTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB59E1C0F145D00DB93FC /* ZSRootTool.m */; };
@@ -102,7 +110,6 @@
 		EFD44D0C1C16E0D20016A602 /* ZSDiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D0B1C16E0D20016A602 /* ZSDiscoverModel.m */; };
 		EFD44D0F1C16E1090016A602 /* ZSDiscoverGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D0E1C16E1090016A602 /* ZSDiscoverGroupModel.m */; };
 		EFD44D121C16E1230016A602 /* ZSDiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D111C16E1230016A602 /* ZSDiscoverCell.m */; };
-		EFD44D151C16E1640016A602 /* ZSNoveltyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D141C16E1640016A602 /* ZSNoveltyViewController.m */; };
 		EFD44D3E1C17B1200016A602 /* ZSNewsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D3D1C17B1200016A602 /* ZSNewsTool.m */; };
 		EFD44D451C182B210016A602 /* ZSNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D441C182B210016A602 /* ZSNewsController.m */; };
 		EFD44D491C182BDE0016A602 /* ZSNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD44D481C182BDE0016A602 /* ZSNewsCell.m */; };
@@ -150,6 +157,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		522BDB4D1C88979A0014DEEC /* ZSNovcltyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNovcltyViewController.h; sourceTree = "<group>"; };
+		522BDB4E1C88979A0014DEEC /* ZSNovcltyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNovcltyViewController.m; sourceTree = "<group>"; };
+		522BDB581C88981A0014DEEC /* ZSAllDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAllDynamic.h; sourceTree = "<group>"; };
+		522BDB591C88981A0014DEEC /* ZSAllDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAllDynamic.m; sourceTree = "<group>"; };
+		522BDB5B1C8898380014DEEC /* ZSNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsTableViewCell.h; sourceTree = "<group>"; };
+		522BDB5C1C8898380014DEEC /* ZSNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsTableViewCell.m; sourceTree = "<group>"; };
+		522BDB5D1C8898380014DEEC /* ZSSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSwitchView.h; sourceTree = "<group>"; };
+		522BDB5E1C8898380014DEEC /* ZSSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSwitchView.m; sourceTree = "<group>"; };
+		52461D081C893B68004B6483 /* ZSAllDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAllDynamicCell.h; sourceTree = "<group>"; };
+		52461D091C893B68004B6483 /* ZSAllDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAllDynamicCell.m; sourceTree = "<group>"; };
 		5248C2691C85D0B2003D9668 /* ZSDetailWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherModel.h; sourceTree = "<group>"; };
 		5248C26A1C85D0B2003D9668 /* ZSDetailWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherModel.m; sourceTree = "<group>"; };
 		525763FE1C85DAC7004CFABA /* ZSDetailWeatherFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherFrameModel.h; sourceTree = "<group>"; };
@@ -161,6 +178,8 @@
 		525F32BD1C852A4000014A64 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		525F32C61C8556A000014A64 /* ZSDetailWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherViewController.h; sourceTree = "<group>"; };
 		525F32C71C8556A000014A64 /* ZSDetailWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherViewController.m; sourceTree = "<group>"; };
+		5282DDB41C8942D00079B931 /* ZSAllDynamicFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAllDynamicFrame.h; sourceTree = "<group>"; };
+		5282DDB51C8942D00079B931 /* ZSAllDynamicFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAllDynamicFrame.m; sourceTree = "<group>"; };
 		529D094D1C8669AB00DE8C7F /* ZSDetailWeatherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherCell.h; sourceTree = "<group>"; };
 		529D094E1C8669AB00DE8C7F /* ZSDetailWeatherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherCell.m; sourceTree = "<group>"; };
 		529D094F1C8669AB00DE8C7F /* ZSWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWeatherView.h; sourceTree = "<group>"; };
@@ -174,6 +193,10 @@
 		52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		52ACBD021C84247700BAE1A4 /* ZSConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSConst.h; sourceTree = "<group>"; };
 		52ACBD031C84247700BAE1A4 /* ZSConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSConst.m; sourceTree = "<group>"; };
+		52EC7B271C8963BD00EC7F7C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		52EC7B281C8963BD00EC7F7C /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		52EC7B2A1C89729700EC7F7C /* ZSEssayTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSEssayTextView.h; sourceTree = "<group>"; };
+		52EC7B2B1C89729700EC7F7C /* ZSEssayTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSEssayTextView.m; sourceTree = "<group>"; };
 		EF2AB5961C0F015F00DB93FC /* ZSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLoginViewController.h; sourceTree = "<group>"; };
 		EF2AB5971C0F015F00DB93FC /* ZSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLoginViewController.m; sourceTree = "<group>"; };
 		EF2AB5981C0F015F00DB93FC /* ZSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSLoginViewController.xib; sourceTree = "<group>"; };
@@ -338,8 +361,6 @@
 		EFD44D0E1C16E1090016A602 /* ZSDiscoverGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDiscoverGroupModel.m; sourceTree = "<group>"; };
 		EFD44D101C16E1230016A602 /* ZSDiscoverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDiscoverCell.h; sourceTree = "<group>"; };
 		EFD44D111C16E1230016A602 /* ZSDiscoverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDiscoverCell.m; sourceTree = "<group>"; };
-		EFD44D131C16E1640016A602 /* ZSNoveltyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNoveltyViewController.h; sourceTree = "<group>"; };
-		EFD44D141C16E1640016A602 /* ZSNoveltyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNoveltyViewController.m; sourceTree = "<group>"; };
 		EFD44D3C1C17B1200016A602 /* ZSNewsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsTool.h; sourceTree = "<group>"; };
 		EFD44D3D1C17B1200016A602 /* ZSNewsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewsTool.m; sourceTree = "<group>"; };
 		EFD44D431C182B210016A602 /* ZSNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewsController.h; sourceTree = "<group>"; };
@@ -420,6 +441,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		522BDB351C887ED80014DEEC /* Novclty */ = {
+			isa = PBXGroup;
+			children = (
+				522BDB4C1C88979A0014DEEC /* Controller */,
+				522BDB4F1C88979A0014DEEC /* Model */,
+				522BDB541C88979A0014DEEC /* View */,
+			);
+			path = Novclty;
+			sourceTree = "<group>";
+		};
+		522BDB4C1C88979A0014DEEC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				522BDB4D1C88979A0014DEEC /* ZSNovcltyViewController.h */,
+				522BDB4E1C88979A0014DEEC /* ZSNovcltyViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		522BDB4F1C88979A0014DEEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				522BDB581C88981A0014DEEC /* ZSAllDynamic.h */,
+				522BDB591C88981A0014DEEC /* ZSAllDynamic.m */,
+				5282DDB41C8942D00079B931 /* ZSAllDynamicFrame.h */,
+				5282DDB51C8942D00079B931 /* ZSAllDynamicFrame.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		522BDB541C88979A0014DEEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				522BDB5B1C8898380014DEEC /* ZSNewsTableViewCell.h */,
+				522BDB5C1C8898380014DEEC /* ZSNewsTableViewCell.m */,
+				522BDB5D1C8898380014DEEC /* ZSSwitchView.h */,
+				522BDB5E1C8898380014DEEC /* ZSSwitchView.m */,
+				52461D081C893B68004B6483 /* ZSAllDynamicCell.h */,
+				52461D091C893B68004B6483 /* ZSAllDynamicCell.m */,
+				52EC7B2A1C89729700EC7F7C /* ZSEssayTextView.h */,
+				52EC7B2B1C89729700EC7F7C /* ZSEssayTextView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5248C2681C85D08C003D9668 /* ZSDetailWeatherModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +712,7 @@
 		EF56D6701C09DA8B00A3B314 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				522BDB351C887ED80014DEEC /* Novclty */,
 				EF56D6711C09DA8B00A3B314 /* Controller */,
 				EF56D6721C09DA8B00A3B314 /* Model */,
 				EF56D6731C09DA8B00A3B314 /* View */,
@@ -658,8 +725,6 @@
 			children = (
 				EF56D6911C09E14100A3B314 /* ZSDiscoverViewController.h */,
 				EF56D6921C09E14100A3B314 /* ZSDiscoverViewController.m */,
-				EFD44D131C16E1640016A602 /* ZSNoveltyViewController.h */,
-				EFD44D141C16E1640016A602 /* ZSNoveltyViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -867,6 +932,8 @@
 		EF56D6E01C0A933800A3B314 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				52EC7B271C8963BD00EC7F7C /* NSString+Extension.h */,
+				52EC7B281C8963BD00EC7F7C /* NSString+Extension.m */,
 				EF2AB67C1C1045D600DB93FC /* Log */,
 				EF56D6E11C0A934D00A3B314 /* UIImage+Image.h */,
 				EF56D6E21C0A934D00A3B314 /* UIImage+Image.m */,
@@ -1377,6 +1444,7 @@
 				529D09531C8669AB00DE8C7F /* ZSWeatherView.m in Sources */,
 				525764001C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m in Sources */,
 				EFE538211C15229E00A2B6EF /* ZSLoginParam.m in Sources */,
+				52EC7B291C8963BD00EC7F7C /* NSString+Extension.m in Sources */,
 				EF56D6931C09E14100A3B314 /* ZSDiscoverViewController.m in Sources */,
 				EF2AB60F1C0F17A500DB93FC /* NSObject+MJIvar.m in Sources */,
 				EFE9D89F1C0DB55F0072A4F7 /* ZSMyInfoCell.m in Sources */,
@@ -1387,6 +1455,7 @@
 				EF2AB60C1C0F17A500DB93FC /* MJIvar.m in Sources */,
 				529D09521C8669AB00DE8C7F /* ZSDetailWeatherCell.m in Sources */,
 				EFE538271C15242C00A2B6EF /* ZSLoginTool.m in Sources */,
+				5282DDB61C8942D00079B931 /* ZSAllDynamicFrame.m in Sources */,
 				EF2AB6061C0F17A500DB93FC /* AFURLSessionManager.m in Sources */,
 				EF2AB61A1C0F17A500DB93FC /* NSData+ImageContentType.m in Sources */,
 				EF2AB6261C0F17A500DB93FC /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1401,6 +1470,7 @@
 				EF56D6E91C0A9FEF00A3B314 /* ZSNavigationController.m in Sources */,
 				EF56D68B1C09DA8B00A3B314 /* AppDelegate.m in Sources */,
 				EFD44D551C182CBC0016A602 /* ZSNewsDataTool.m in Sources */,
+				522BDB551C88979A0014DEEC /* ZSNovcltyViewController.m in Sources */,
 				EFD44D581C1857E20016A602 /* ZSNewsInfo.m in Sources */,
 				EF2AB60E1C0F17A500DB93FC /* NSObject+MJCoding.m in Sources */,
 				EFD44D491C182BDE0016A602 /* ZSNewsCell.m in Sources */,
@@ -1416,21 +1486,23 @@
 				EFB6CA551C1110690065BAF8 /* ZSWeatherModel.m in Sources */,
 				EFB6CA691C1111D20065BAF8 /* ZSInquireCell.m in Sources */,
 				EFD44D541C182CBC0016A602 /* ZSNewsResult.m in Sources */,
+				522BDB5A1C88981A0014DEEC /* ZSAllDynamic.m in Sources */,
 				EF56D6EC1C0ABE4F00A3B314 /* UIBarButtonItem+Item.m in Sources */,
 				EFD44D531C182CBC0016A602 /* ZSNewsParams.m in Sources */,
 				52ACBCFE1C84158100BAE1A4 /* UIView+Extension.m in Sources */,
 				EFD44D5B1C18674D0016A602 /* ZSNewsWebViewController.m in Sources */,
 				EF2AB6321C0F4B1600DB93FC /* ZSAccountTool.m in Sources */,
 				EF4B1B981C3EA7AD000A48F2 /* ZSStudentNumBindViewController.m in Sources */,
-				EFD44D151C16E1640016A602 /* ZSNoveltyViewController.m in Sources */,
 				EF99E8821C0D06EE002ACD9D /* ZSModel.m in Sources */,
 				EF2AB59F1C0F145D00DB93FC /* ZSRootTool.m in Sources */,
 				EFE9D8AB1C0E52DB0072A4F7 /* ZSNewFeatureCell.m in Sources */,
 				EF2AB6011C0F17A500DB93FC /* AFNetworkReachabilityManager.m in Sources */,
 				EF56D6E31C0A934D00A3B314 /* UIImage+Image.m in Sources */,
 				EF2AB5991C0F015F00DB93FC /* ZSLoginViewController.m in Sources */,
+				52EC7B2C1C89729700EC7F7C /* ZSEssayTextView.m in Sources */,
 				EF99E87F1C0D06CF002ACD9D /* ZSGroupTableViewController.m in Sources */,
 				EFD44D0C1C16E0D20016A602 /* ZSDiscoverModel.m in Sources */,
+				522BDB5F1C8898380014DEEC /* ZSNewsTableViewCell.m in Sources */,
 				525F32C01C852A4000014A64 /* MBProgressHUD.m in Sources */,
 				EFD44D3E1C17B1200016A602 /* ZSNewsTool.m in Sources */,
 				EF2AB61D1C0F17A500DB93FC /* SDWebImageDecoder.m in Sources */,
@@ -1439,6 +1511,8 @@
 				EF2AB6241C0F17A500DB93FC /* UIImage+MultiFormat.m in Sources */,
 				EF56D68C1C09DA8B00A3B314 /* main.m in Sources */,
 				EF56D69C1C09E19D00A3B314 /* ZSProfileViewController.m in Sources */,
+				522BDB601C8898380014DEEC /* ZSSwitchView.m in Sources */,
+				52461D0A1C893B68004B6483 /* ZSAllDynamicCell.m in Sources */,
 				EF2AB61B1C0F17A500DB93FC /* SDImageCache.m in Sources */,
 				52ACBD041C84247700BAE1A4 /* ZSConst.m in Sources */,
 				EF2AB6131C0F17A500DB93FC /* MJRefreshConst.m in Sources */,

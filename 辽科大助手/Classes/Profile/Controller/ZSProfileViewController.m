@@ -44,16 +44,17 @@
     ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置" detailTitle:@""];
     ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"消息提醒模式" detailTitle:@""];
     
-#warning 循环引用问题
+    // 解决循环引用， 内存泄露问题
+    __unsafe_unretained ZSModel *item55 = item5;
     
     item5.operation = ^(){
-        if ([item5.title isEqualToString:@"消息提醒模式"]) {
-            item5.title = @"静音模式";
-            item5.icon = @"quiet";
+        if ([item55.title isEqualToString:@"消息提醒模式"]) {
+            item55.title = @"静音模式";
+            item55.icon = @"quiet";
             [self.tableView reloadData];
         } else {
-            item5.title = @"消息提醒模式";
-            item5.icon = @"ring";
+            item55.title = @"消息提醒模式";
+            item55.icon = @"ring";
             [self.tableView reloadData];
 
         }

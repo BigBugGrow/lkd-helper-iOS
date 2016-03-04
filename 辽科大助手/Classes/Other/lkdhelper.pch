@@ -25,6 +25,9 @@
 #define ZSSourceFont WBTimeFont
 #define ZSTextFont [UIFont systemFontOfSize:12]
 #define ZSScreenW [UIScreen mainScreen].bounds.size.width
+#define ZSScreenH [UIScreen mainScreen].bounds.size.height
+
+
 
 #define cellHeigt self.frame.size.height
 #define cellWidth self.frame.size.width

@@ -11,7 +11,7 @@
 #import "ZSDiscoverModel.h"
 #import "ZSDiscoverGroupModel.h"
 
-#import "ZSNoveltyViewController.h"
+#import "ZSNovcltyViewController.h"
 
 @interface ZSDiscoverViewController ()
 
@@ -56,7 +56,7 @@
 //初始化模型数据
 - (void)initModelData
 {
-    ZSDiscoverModel *item1 = [ZSDiscoverModel itemWithIcon:@"tab03_novelty" title:@"糯米粒"detailTitle:@"新鲜事，随笔，表白，吐槽，全在这里啦！"  vcClass:[ZSNoveltyViewController class]];
+    ZSDiscoverModel *item1 = [ZSDiscoverModel itemWithIcon:@"tab03_novelty" title:@"糯米粒"detailTitle:@"新鲜事，随笔，表白，吐槽，全在这里啦！"  vcClass:[ZSNovcltyViewController class]];
     ZSDiscoverGroupModel *group1 = [[ZSDiscoverGroupModel alloc] init];
     group1.items = @[item1];
     [self.cellData addObject:group1];
