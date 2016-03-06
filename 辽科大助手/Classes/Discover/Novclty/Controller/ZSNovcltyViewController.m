@@ -12,6 +12,8 @@
 #import "ZSHttpTool.h"
 
 #import "MBProgressHUD+MJ.h"
+#import "MJRefresh.h"
+
 
 #import "ZSAllDynamic.h"
 #import "ZSAllDynamicCell.h"
@@ -24,6 +26,7 @@
     UITableView *tableView2;
     UITableView *tableView3;
     UITableView *tableView4;
+    
     float titleHeight;
     float bgViewHeight;
     ZSSwitchView *switchView;
@@ -82,7 +85,6 @@
     [self initScroll];
     [self initTable];
     
-    
 }
 
 //获取模型信息
@@ -94,33 +96,35 @@
     params[@"class"] = @"all";
     
     //获取数据
-    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/noveltyRead" parameters:params success:^(id responseObject) {
-       
-
-        
-//        NSInteger state = [responseObject[@"state"] integerValue];
-        
-//        
-//        if (state == 100) {
-//            
-//            [MBProgressHUD showMessage:@"刷新成功"];
-//        }
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/noveltyRead" parameters:params success:^(NSDictionary *responseObject) {
         
         NSArray *dynamics = responseObject[@"data"];
-        
-        ZSLog(@"%@", dynamics);
-        
+
         NSMutableArray *arrayM = [NSMutableArray array];
         
         for (NSDictionary *dict in dynamics) {
             
+            //模型数据
             ZSAllDynamic *dynamic = [ZSAllDynamic objectWithKeyValues:dict];
+            
+            NSString *picPreSubStr = [dict[@"pic"] substringFromIndex:1];
+            NSString *picSufSubStr = [picPreSubStr substringToIndex:picPreSubStr.length - 1];
+        
+            if (![picSufSubStr isEqualToString:@""]) {
+                
+                NSArray *pics = [picSufSubStr componentsSeparatedByString:@","];
+                dynamic.pic = pics;
+            } else {
+                dynamic.pic = nil;
+            }
+        
             dynamic.ID = dict[@"id"];
             dynamic.Class = dict[@"class"];
             ZSAllDynamicFrame *allDynamicFrame = [[ZSAllDynamicFrame alloc] init];
             allDynamicFrame.allDynamic = dynamic;
             
             [arrayM addObject:allDynamicFrame];
+            
         }
         self.allDynamicFrames = arrayM;
         
@@ -132,12 +136,6 @@
         
         ZSLog(@"获取信息失败");
     }];
-    
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        [MBProgressHUD hideHUD];
-//    });
     
 }
 
@@ -176,16 +174,16 @@
 
 -(void)initTable{
     
-
-    
     tableView1=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bgViewHeight) style:UITableViewStylePlain];
     [scrollView addSubview:tableView1];
     tableView1.showsVerticalScrollIndicator = NO;
     
+    [tableView1 addHeaderWithTarget:self action:@selector(refreshNewData)];
+    
     tableView1.dataSource=self;
     tableView1.delegate=self;
     tableView1.tag=11;
-    tableView1.separatorStyle=UITableViewCellSeparatorStyleNone;
+    tableView1.separatorStyle=UITableViewCellSeparatorStyleSingleLine;
     
 //    UIImageView *title1=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 185)];
 //    title1.image=[UIImage imageNamed:@"t1"];
@@ -222,7 +220,7 @@
                 tableView2.tag=12;
                 tableView2.dataSource=ZSNovcltyC;
                 tableView2.delegate=ZSNovcltyC;
-                tableView2.separatorStyle=UITableViewCellSeparatorStyleNone;
+                tableView2.separatorStyle=UITableViewCellSeparatorStyleSingleLine;
                 
             }
 
@@ -266,6 +264,19 @@
 }
 
 
+//刷新数据
+- (void)refreshNewData
+{
+    
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [tableView1 headerEndRefreshing];
+    });
+}
+
+
 #pragma mark scrollView
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView1
@@ -276,19 +287,21 @@
     if (currentPage==0)
     {
  
-        [scrollView scrollRectToVisible:CGRectMake(0,0,ScreenWidth,bgViewHeight) animated:NO];
+        [scrollView scrollRectToVisible:CGRectMake(0,0,ScreenWidth,bgViewHeight) animated:YES];
         [scrollView setContentOffset:CGPointMake(0,0)];
     }
-    else if (currentPage==(3))
+    else if (currentPage==3)
     {
     
-        [scrollView scrollRectToVisible:CGRectMake(ScreenWidth * 3,0,ScreenWidth,bgViewHeight) animated:NO];
+        [scrollView scrollRectToVisible:CGRectMake(ScreenWidth * 3,0,ScreenWidth,bgViewHeight) animated:YES];
         [scrollView setContentOffset:CGPointMake(ScreenWidth* 3,0)];
     }
    
     currentIndex=currentPage+1;
   
+        
     [switchView swipeAction:(100+currentPage+1)];
+    
     
 }
 

@@ -18,9 +18,7 @@
     
     attr[NSFontAttributeName] = font;
     CGSize size = CGSizeMake(maxWidth, MAXFLOAT);
-   
- 
-    
+
     //ios6 ios7 适配
     if (iOS7) {
         return [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;

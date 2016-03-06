@@ -24,7 +24,6 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    
 //    //判断当前是否有新的版本，如果有，进入新特性界面
 //    ZSNewFeatureController *newFeatureVC = [[ZSNewFeatureController alloc] init];
 //    
@@ -47,7 +46,6 @@
     
     
 //    [NSThread sleepForTimeInterval:2.0];//设置启动页面时间
-    
     
     return YES;
 }

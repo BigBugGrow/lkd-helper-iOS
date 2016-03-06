@@ -9,6 +9,8 @@
 #import "ZSAllDynamicFrame.h"
 #import "ZSAllDynamic.h"
 #import "NSString+Extension.h"
+#import "ZSDynamicPicturesView.h"
+
 
 @implementation ZSAllDynamicFrame
 
@@ -37,27 +39,55 @@
     CGFloat essayTextViewX = nameLabelX;
     CGFloat essayTextViewY = CGRectGetMaxY(self.nameLabelF) + marginW;
     
-    CGSize essaySize = [allDynamic.essay sizeWithFont:[UIFont systemFontOfSize:15] maxW:ScreenWidth - iconImageViewWH - 2 * marginW];
+//    CGSize essaySize = [allDynamic.essay sizeWithFont:essayTextFont maxW:ScreenWidth];
 
+    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
+    attr[NSFontAttributeName] = essayTextFont;
+    
+    CGSize essaySize = [allDynamic.essay boundingRectWithSize:CGSizeMake(ScreenWidth - 2 * marginW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
+    
+    
     CGFloat essayTextViewW = essaySize.width;
     CGFloat essayTextViewH = essaySize.height;
+    
+    ZSLog(@"essayTextViewW: %lf------ essayTextViewH %lf", essayTextViewW, essayTextViewH);
+    
     self.essayTextViewF = CGRectMake(essayTextViewX, essayTextViewY, essayTextViewW, essayTextViewH);
+
+    /** 配图*/
+
+    ZSLog(@"图片个数： %@", allDynamic.pic);
+    
+    if (allDynamic.pic.count) {
+        
+            CGFloat picturesViewX = nameLabelX;
+            CGFloat picturesViewY = CGRectGetMaxY(self.essayTextViewF) + marginW;
+        
+            CGSize pictureSize = [ZSDynamicPicturesView sizeWithPicturesCount:allDynamic.pic.count];
+        
+            self.picturesViewF = CGRectMake(picturesViewX, picturesViewY, pictureSize.width, pictureSize.height);
+        
+    }
     
     /** 时间*/
     CGFloat timeLabelX = nameLabelX;
-    CGFloat timeLabelY = CGRectGetMaxY(self.essayTextViewF) + marginW;
-    CGFloat timeLabelW = 50;
-    CGFloat timeLabelH = 30;
+    
+    CGFloat timeLabelY;
+    
+    if (allDynamic.pic.count) {
+
+        timeLabelY = CGRectGetMaxY(self.picturesViewF) + marginW;
+    } else {
+    
+        timeLabelY = CGRectGetMaxY(self.essayTextViewF) + marginW;
+    }
+    
+    CGSize timeLabelSize = [allDynamic.date sizeWithFont:[UIFont systemFontOfSize:12] maxW:ScreenWidth - marginW - 50];
+    
+    CGFloat timeLabelW = timeLabelSize.width;
+    CGFloat timeLabelH = timeLabelSize.height;
     self.timeLabelF = CGRectMake(timeLabelX, timeLabelY, timeLabelW, timeLabelH);
     
-    /** 配图*/
-//    CGFloat picturesViewX = nameLabelX;
-//    CGFloat picturesViewY = CGRectGetMaxY(self.essayTextViewF) + 2 * marginW;
-//    CGFloat picturesViewW = 50;
-//    CGFloat picturesViewH = 30;
-//    self.timeLabelF = CGRectMake(timeLabelX, timeLabelY, timeLabelW, timeLabelH);
-    
-//    @property (nonatomic, assign) CGRect picturesViewF;
     
     /** 评论数量*/
     CGFloat commentButtonW = 50;

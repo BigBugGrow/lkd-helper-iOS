@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define essayTextFont [UIFont systemFontOfSize:20]
+
 @class ZSAllDynamic;
 
 @interface ZSAllDynamicFrame : NSObject

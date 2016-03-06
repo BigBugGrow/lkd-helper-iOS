@@ -170,7 +170,8 @@
     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
     //星期几
-    long weekday = (currentDay.weekday - 1) ? (currentDay.weekday - 1) : 7;
+//    long weekday = (currentDay.weekday - 1) ? (currentDay.weekday - 1) : 7;
+    long weekday = currentDay.weekday;
     
 #warning 这里周数计算有问题
     //第几周
@@ -182,7 +183,7 @@
 //    NSLog(@"ccc%@",currentDay);
     
     
-    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
+//    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
     
     //1.得到当天的课表字典
     NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];

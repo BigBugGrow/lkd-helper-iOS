@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSString *essay;
 
 /** 图片URL*/
-@property (nonatomic, strong) NSString *pic;
+@property (nonatomic, strong) NSArray *pic;
 
 /** 评论数量*/
 @property (nonatomic, strong) NSString *commentNum;

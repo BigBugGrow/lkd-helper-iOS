@@ -9,6 +9,8 @@
 #import "ZSAllDynamicCell.h"
 #import "ZSAllDynamicFrame.h"
 #import "ZSAllDynamic.h"
+#import "ZSDynamicPicturesView.h"
+
 
 @interface ZSAllDynamicCell ()
 
@@ -28,7 +30,7 @@
 @property (nonatomic, weak) UILabel *timeLabel;
 
 /** 配图*/
-@property (nonatomic, weak) UIView *picturesView;
+@property (nonatomic, weak) ZSDynamicPicturesView *picturesView;
 
 /** 评论数量*/
 @property (nonatomic, weak) UIButton *commentButton;
@@ -44,7 +46,6 @@
      
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         
         /** 容器*/
         UIView *containerView = [[UIView alloc] init];
@@ -66,10 +67,10 @@
         /** 正文*/
         UITextView *essayTextView = [[UITextView alloc] init];
         essayTextView.textContainerInset = UIEdgeInsetsMake(-2, 0, 0, 0);
-        essayTextView.backgroundColor = randomColor;
         essayTextView.userInteractionEnabled = NO;
 
-        essayTextView.font = [UIFont systemFontOfSize:15];
+        essayTextView.backgroundColor = [UIColor redColor];
+        essayTextView.font = essayTextFont;
         self.essayTextView = essayTextView;
         [self.containerView addSubview:essayTextView];
 
@@ -82,7 +83,8 @@
         [self.containerView addSubview:timeLabel];
         
         /** 配图*/
-        UIView *picturesView = [[UIView alloc] init];
+        ZSDynamicPicturesView *picturesView = [[ZSDynamicPicturesView alloc] init];
+        picturesView.backgroundColor = [UIColor greenColor];
         self.picturesView = picturesView;
         [self.containerView addSubview:picturesView];
         
@@ -158,15 +160,19 @@
     self.timeLabel.text = allDynamic.date;
     
     /** 配图*/
-//    self.picturesView;
     
-    ZSLog(@"%@", allDynamic.commentNum);
+    
+    self.picturesView.pictrueArr = allDynamic.pic;
+    
     
     /** 评论数量*/
     
     if ([allDynamic.commentNum integerValue]) {
 
         [self.commentButton setTitle:allDynamic.commentNum forState:UIControlStateNormal];
+    } else {
+        
+        [self.commentButton setTitle:@"" forState:UIControlStateNormal];
     }
     
     [self.commentButton setImage:[UIImage imageNamed:@"commentNum"] forState:UIControlStateNormal];

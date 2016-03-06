@@ -53,7 +53,10 @@
             //初始化一个 课表 的可变数组
             NSMutableArray *timetableArrayM = [NSMutableArray arrayWithArray:accountDict[@"timetable"]];
             int i = 0;
+            
             for (NSMutableDictionary *d in accountDict[@"timetable"]) {
+                
+                ZSLog(@"%@", d);
                 
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:d];
                 
@@ -61,14 +64,20 @@
                 NSString *weekValueSubPre = [dict[@"week"] substringFromIndex:1];
                 NSString *weekValueSubPreAndSuf = [weekValueSubPre substringToIndex:weekValueSubPre.length];
                 
+//                ZSLog(@"weekValueSubPre :%@", weekValueSubPre);
+//                ZSLog(@"weekValueSubPreAndSuf :%@", weekValueSubPreAndSuf);
+                
                 NSArray *weekStrNumArr = [weekValueSubPreAndSuf componentsSeparatedByString:@","];
+                
                 NSMutableArray *weekNumArr = [NSMutableArray array];
+                
                 for (NSString *str in weekStrNumArr) {
+                    
+                    
                     [weekNumArr addObject:[NSNumber numberWithInteger:[str integerValue]]];
                 }
                 
                 [dict setObject:weekNumArr forKey:@"week"];
-                NSLog(@"%@",dict);
                 
                 [timetableArrayM setObject:dict atIndexedSubscript:i];
                 i++;
