@@ -56,8 +56,6 @@
             
             for (NSMutableDictionary *d in accountDict[@"timetable"]) {
                 
-                ZSLog(@"%@", d);
-                
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:d];
                 
                 //取出头和尾 []

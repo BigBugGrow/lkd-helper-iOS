@@ -37,7 +37,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = RGBColor(219, 241, 248);
+        self.backgroundColor = RGBColor(219, 241, 248, 1);
         
         UILabel *day = [[UILabel alloc] init];
         day.font = [UIFont systemFontOfSize:25];
@@ -82,8 +82,6 @@
     NSString *weather = nil;
     
     if ([self.title isEqualToString:@"今天"]) {
-        
-        ZSLog(@"%@", detailWeatherModel.title);
         
         tempreture = detailWeatherModel.dayOnTemperature;
         wind = detailWeatherModel.dayOnWind;

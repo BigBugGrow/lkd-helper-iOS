@@ -50,7 +50,7 @@
     if (cell == nil) {
         cell = [[ZSDetailWeatherCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    cell.backgroundColor = RGBColor(207, 236, 245);
+    cell.backgroundColor = RGBColor(207, 236, 245, 1);
     //设置cell不能够点击
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -62,7 +62,7 @@
         
         //0. 容器
         UIView *containView = [[UIView alloc] init];
-        containView.backgroundColor = RGBColor(219, 241, 248);
+        containView.backgroundColor = RGBColor(219, 241, 248, 1);
         [self.contentView addSubview:containView];
         self.containView = containView;
         

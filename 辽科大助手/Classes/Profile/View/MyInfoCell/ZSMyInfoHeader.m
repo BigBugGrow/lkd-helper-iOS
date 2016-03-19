@@ -85,7 +85,6 @@
 
 - (void)backButtonClick:(UIButton *)btn
 {
-    ZSLog(@"退出当前控制器");
     
     //添加通知
     [[NSNotificationCenter defaultCenter] postNotificationName:ZSDidClickBackBtn object:self];

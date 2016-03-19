@@ -83,6 +83,8 @@
     
     for (NSString *urlStr in self.pictrueArr) {
 
+        
+        
         NSString *urlS = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNovelty/%@.jpg", urlStr];
         
         MJPhoto *p = [[MJPhoto alloc] init];

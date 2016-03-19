@@ -20,7 +20,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = RGBColor(207, 236, 245);
+        self.backgroundColor = RGBColor(207, 236, 245, 1);
         
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
         
@@ -76,8 +76,6 @@
     
     
     CGFloat marginW = 10;
-    
-    ZSLog(@"%ld", self.subviews.count);
     
     NSInteger itemNum = self.subviews.count;
     

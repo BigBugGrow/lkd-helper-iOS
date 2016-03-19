@@ -26,8 +26,6 @@
 {
     _weatherModel = weatherModel;
     
-    ZSLog(@"%@", weatherModel);
-    
     self.dayon_dateLabel.text = weatherModel.date;
     self.dayon_weatherLabel.text = weatherModel.weather;
     self.pm25Label.text = [NSString stringWithFormat:@"PM2.5: %@",weatherModel.pm25];

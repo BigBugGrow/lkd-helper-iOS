@@ -24,7 +24,9 @@
         //设置文字不能够滚动
         self.scrollEnabled = NO;
         
-        //        self.userInteractionEnabled = NO;
+        self.userInteractionEnabled = NO;
+        
+        self.font = [UIFont systemFontOfSize:18];
     }
     return self;
 }

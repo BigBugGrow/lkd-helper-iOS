@@ -104,8 +104,6 @@
 - (void)didClickBackBtn
 {
     
-    ZSLog(@"退出");
-    
     [self.navigationController popViewControllerAnimated:YES];
     
 }

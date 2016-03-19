@@ -25,7 +25,7 @@
     
     /** 头像imageView*/
     CGFloat iconImageViewXY = marginW;
-    CGFloat iconImageViewWH = 50;
+    CGFloat iconImageViewWH = 30;
     self.iconImageViewF = CGRectMake(iconImageViewXY, iconImageViewXY, iconImageViewWH, iconImageViewWH);
     
     /** 昵称*/
@@ -44,20 +44,16 @@
     NSMutableDictionary *attr = [NSMutableDictionary dictionary];
     attr[NSFontAttributeName] = essayTextFont;
     
-    CGSize essaySize = [allDynamic.essay boundingRectWithSize:CGSizeMake(ScreenWidth - 2 * marginW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
+    CGSize essaySize = [allDynamic.essay boundingRectWithSize:CGSizeMake(ScreenWidth- iconImageViewWH - 3 * marginW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
     
     
     CGFloat essayTextViewW = essaySize.width;
     CGFloat essayTextViewH = essaySize.height;
     
-    ZSLog(@"essayTextViewW: %lf------ essayTextViewH %lf", essayTextViewW, essayTextViewH);
     
     self.essayTextViewF = CGRectMake(essayTextViewX, essayTextViewY, essayTextViewW, essayTextViewH);
 
-    /** 配图*/
-
-    ZSLog(@"图片个数： %@", allDynamic.pic);
-    
+    /** 配图*/    
     if (allDynamic.pic.count) {
         
             CGFloat picturesViewX = nameLabelX;

@@ -1,5 +1,5 @@
 //
-//  BSNovcltyViewController.h
+//  ZSdebunkViewController.h
 //  辽科大助手
 //
 //  Created by MacBook Pro on 16/3/17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZSNovcltyViewController : UIViewController
+@interface ZSDebunkViewController : UITableViewController
 
 @end

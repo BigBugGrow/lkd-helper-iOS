@@ -10,8 +10,6 @@
 #import "ZSPicture.h"
 #import "UIImageView+WebCache.h"
 
-
-
 @interface ZSDynamicPictureView ()
 
 //@property (nonatomic, strong) UIImageView *gifView;
@@ -67,8 +65,6 @@
 {
     
     _picture = picture;
-    
-    ZSLog(@"%@", picture.thumbnail_pic);
     
     //    http://lkdhelper.b0.upaiyun.com/picNovelty/ui20162262356250
     //设置图片

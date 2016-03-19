@@ -136,13 +136,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             
-            ZSLog(@"%@", responseObject);
-            
             NSMutableDictionary *weatherDictWithCurrentWeek = [NSMutableDictionary dictionaryWithDictionary:responseObject];
             weatherDictWithCurrentWeek[@"currentWeek"] = [NSNumber numberWithLong: self.currentWeek];
             self.weatherData = [NSDictionary dictionaryWithDictionary:weatherDictWithCurrentWeek];
-            
-            ZSLog(@"%@", self.weatherData);
             
             //配置表格数据
             [self initWeatherData];
@@ -171,7 +167,7 @@
     NSDate *currentDay = [NSDate date];
     //星期几
 //    long weekday = (currentDay.weekday - 1) ? (currentDay.weekday - 1) : 7;
-    long weekday = currentDay.weekday;
+    long weekday = currentDay.weekday - 1;
     
 #warning 这里周数计算有问题
     //第几周

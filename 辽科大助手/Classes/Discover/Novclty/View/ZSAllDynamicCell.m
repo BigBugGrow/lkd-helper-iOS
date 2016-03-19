@@ -9,8 +9,10 @@
 #import "ZSAllDynamicCell.h"
 #import "ZSAllDynamicFrame.h"
 #import "ZSAllDynamic.h"
+#import "UIImageView+WebCache.h"
 #import "ZSDynamicPicturesView.h"
 
+#import "ZSEssayTextView.h"
 
 @interface ZSAllDynamicCell ()
 
@@ -24,7 +26,7 @@
 @property (nonatomic, weak) UILabel *nameLabel;
 
 /** 正文*/
-@property (nonatomic, weak) UITextView *essayTextView;
+@property (nonatomic, weak) ZSEssayTextView *essayTextView;
 
 /** 时间*/
 @property (nonatomic, weak) UILabel *timeLabel;
@@ -52,6 +54,7 @@
         self.containerView = containerView;
         [self.contentView addSubview:containerView];
         
+        
         /** 头像imageView*/
         UIImageView *iconImageView = [[UIImageView alloc] init];
         self.iconImageView = iconImageView;
@@ -65,12 +68,7 @@
         
         
         /** 正文*/
-        UITextView *essayTextView = [[UITextView alloc] init];
-        essayTextView.textContainerInset = UIEdgeInsetsMake(-2, 0, 0, 0);
-        essayTextView.userInteractionEnabled = NO;
-
-        essayTextView.backgroundColor = [UIColor redColor];
-        essayTextView.font = essayTextFont;
+        ZSEssayTextView *essayTextView = [[ZSEssayTextView alloc] init];
         self.essayTextView = essayTextView;
         [self.containerView addSubview:essayTextView];
 
@@ -84,7 +82,6 @@
         
         /** 配图*/
         ZSDynamicPicturesView *picturesView = [[ZSDynamicPicturesView alloc] init];
-        picturesView.backgroundColor = [UIColor greenColor];
         self.picturesView = picturesView;
         [self.containerView addSubview:picturesView];
         
@@ -143,12 +140,16 @@
     /** 评论数量*/
     self.commentButton.frame = allDynamicFrame.commentButtonF;
     
-
     //2.设置数据
     ZSAllDynamic *allDynamic = allDynamicFrame.allDynamic;
     
+    
     /** 头像imageView*/
-    self.iconImageView.image = [UIImage imageNamed:@"chaoren"];
+    NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg", allDynamic.nickname];
+    
+    NSURL *url = [NSURL URLWithString:str];
+    
+    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"adress"]];
     
     /** 昵称*/
     self.nameLabel.text = allDynamic.nickname;
@@ -160,8 +161,7 @@
     self.timeLabel.text = allDynamic.date;
     
     /** 配图*/
-    
-    
+
     self.picturesView.pictrueArr = allDynamic.pic;
     
     
