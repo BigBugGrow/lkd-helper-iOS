@@ -66,7 +66,7 @@
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"NewEmotionRecommendDownload"] forState:UIControlStateNormal];
-//    btn.backgroundColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:0.5];
+
     [btn addTarget:self action:@selector(savePicture) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }

@@ -139,7 +139,7 @@
     
     /** 评论数量*/
     self.commentButton.frame = allDynamicFrame.commentButtonF;
-    
+
     //2.设置数据
     ZSAllDynamic *allDynamic = allDynamicFrame.allDynamic;
     
@@ -149,7 +149,7 @@
     
     NSURL *url = [NSURL URLWithString:str];
     
-    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"adress"]];
+    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"icon"]];
     
     /** 昵称*/
     self.nameLabel.text = allDynamic.nickname;
@@ -161,7 +161,7 @@
     self.timeLabel.text = allDynamic.date;
     
     /** 配图*/
-
+    
     self.picturesView.pictrueArr = allDynamic.pic;
     
     /** 评论数量*/

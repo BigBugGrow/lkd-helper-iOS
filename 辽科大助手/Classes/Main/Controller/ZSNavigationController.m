@@ -41,12 +41,26 @@
 
     if (self.viewControllers.count > 0) {
         
-        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-        attrs[NSFontAttributeName] = [UIFont systemFontOfSize:10];
+        UIButton *backBtn = [[UIButton alloc] init];
+        backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+        [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         
-        [viewController.navigationItem.leftBarButtonItem setTitleTextAttributes:attrs forState:UIControlStateNormal];
+        [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
+        backBtn.size = CGSizeMake(70, 30);
+        //设置按钮的内容靠左边
+        backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        //设置按钮的切割
+        backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         
-        [viewController.navigationItem.leftBarButtonItem setTitleTextAttributes:attrs forState:UIControlStateHighlighted];
+        backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+        
+        //按钮内容有多少 size就有多大
+        //    [backBtn sizeToFit];
+        [backBtn addTarget:self action:@selector(exitViewController) forControlEvents:UIControlEventTouchUpInside];
+        
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
         
         //当push后 隐藏tarbar
         viewController.hidesBottomBarWhenPushed = YES;

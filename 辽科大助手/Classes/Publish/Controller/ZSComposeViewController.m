@@ -19,6 +19,11 @@
 #import "ZSEmotionButton.h"
 #import "ZSEmotion.h"
 #import "UpYun.h"
+#import "ZSHttpTool.h"
+
+#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
+#define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
+
 
 @interface ZSComposeViewController ()<UIScrollViewDelegate, UITextViewDelegate, ZSComposeToolBarDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -39,6 +44,9 @@
  *  键盘工具条判断frame变不变
  */
 @property (nonatomic, assign) BOOL isSystemKeyboard;
+
+/** 图片名字数组*/
+@property (nonatomic, strong) NSArray *imageArray;
 
 @end
 
@@ -318,13 +326,10 @@
 
 }
 
-/**
- *  发送有图片的
- */
-- (void)sendWithImage
+
+/** 获得图片名字*/
+- (NSString *)getImageName
 {
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     //生成图片存储路径
     NSMutableArray *pathArray = [NSMutableArray array];
@@ -340,17 +345,24 @@
         [pathArray addObject:picturePath];
         
         if (i != count - 1) {
-        
-           [path appendFormat:@"%@,", picturePath];
+            
+            [path appendFormat:@"%@,", picturePath];
             
         } else {
-        
+            
             [path appendFormat:@"%@", picturePath];
         }
     }
     
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    NSString *nickName = [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser];
+    self.imageArray = pathArray;
+    
+    return path;
+}
+
+/** 获得时间的字符串*/
+
+- (NSString *)getTimeStr
+{
     NSDate *date = [NSDate date];
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     
@@ -360,43 +372,66 @@
     fmt.dateFormat = @"yyyy MMM dd HH:mm:ss EEE";
     //创建时间的日期
     NSString *createDate = [fmt stringFromDate:date];
-    
+    return createDate;
+}
 
-    params[@"date"] = createDate;
-    params[@"nickname"] = nickName;
-    params[@"key"] = @"IP3NUqHqEM";
-    params[@"pic"] = [NSString stringWithFormat:@"[%@]", path];
-    
+/**
+ * 得到发送请求参数字典
+ */
+-(NSMutableDictionary *)getParamsDict
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     //传递属性参数
-    params[@"essay"] = [self.textView fullText] ? [self.textView fullText] : @"haha";
+    params[@"date"] = [self getTimeStr];
     params[@"class"] = self.type;
+    params[@"nickname"] = nickName;
+    params[@"key"] = key;
+    params[@"essay"] = [self.textView fullText] ? [self.textView fullText] : @"haha";
+    return params;
+
+}
+
+/**
+ *  发送有图片的
+ */
+- (void)sendWithImage
+{
+    //图片名字
+    NSString *path = [self getImageName];
     
+    //传递属性参数
+    NSMutableDictionary *params = [self getParamsDict];
+    params[@"pic"] = [NSString stringWithFormat:@"[%@]", path];
+
     //发送带有图片的糯米
-    [mgr POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params success:^(id responseObject) {
         
+        
+        NSInteger count = [[self.pictureView addPictrues] count];
         for (int i = 0; i < count; i ++) {
             
             UIImage *picture = [self.pictureView addPictrues][i];
-            NSString *picturePath = pathArray[i];
+            NSString *picturePath = self.imageArray[i];
             [self sendImageWithImage:picture imagePath:picturePath];
             
         }
         
-    } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
         [MBProgressHUD showSuccess:@"发送成功"];
         
         ZSLog(@"%@", responseObject);
+
         
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+    } failure:^(NSError *error) {
+       
         [MBProgressHUD showError:@"发送失败"];
         
         ZSLog(@"%@", error);
+
     }];
-   
+    
+    
 }
 
 
@@ -405,47 +440,21 @@
  */
 - (void)sendWithoutImage
 {
-    
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    NSString *nickName = [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser];
-    NSString *key = [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey];
-    
-    
-    NSDate *date = [NSDate date];
-    
-    params[@"nickname"] = nickName;
-//    params[@"key"] = key;
-    //传递属性参数
-    params[@"essay"] = [self.textView fullText] ? [self.textView fullText] : @"haha";
-    
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    //设置日期格式
-    
-    //如果是真机调试 转换这种欧美时间 需要设置locale
-    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"cn"];
-    
-    fmt.dateFormat = @"yyyy MMM dd HH:mm:ss EEE";
-    
-    //创建时间的日期
-    NSString *createDate = [fmt stringFromDate:date];
 
-    params[@"date"] = createDate;
-    params[@"class"] = self.type;
-    params[@"pic"] = @"[cdd]";
+    //发送不带图片的参数
+    NSMutableDictionary *params = [self getParamsDict];
+    params[@"pic"] = @"[]";
     
-    
-    [mgr POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params success:^(id responseObject) {
         
         [MBProgressHUD showSuccess:@"发送成功"];
         
         ZSLog(@"%@", responseObject);
         
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+    } failure:^(NSError *error) {
+       
         [MBProgressHUD showError:@"发送失败"];
+ 
     }];
 }
 
