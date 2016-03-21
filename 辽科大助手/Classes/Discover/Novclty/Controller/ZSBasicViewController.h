@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZSAllViewController : UITableViewController
+@interface ZSBasicViewController : UITableViewController
+
+/** 额外加的属性 判别话题的类型*/
+@property (nonatomic, copy) NSString *type;
 
 @end

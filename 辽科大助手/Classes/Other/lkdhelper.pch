@@ -46,10 +46,17 @@
 //获取随机颜色
 #define randomColor RGBColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 
+
+#define LBNotificationCenter [NSNotificationCenter defaultCenter]
+
+
 //分类
 #import "UIView+Extension.h"
 #import "ZSConst.h"
 #import "MJExtension.h"
+#import "NSString+Emoji.h"
+#import "UITextView+Extensiton.h"
+
 
 // ...表示宏定义的可变参数
 // __VA_ARGS__:表示函数里面的可变参数

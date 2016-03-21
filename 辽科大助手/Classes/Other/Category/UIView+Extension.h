@@ -1,6 +1,6 @@
 //
 //  UIView+Extension.h
-//  新浪微博
+//  新浪助手
 //
 //  Created by yangyue on 16/1/1.
 //  Copyright © 2016年 USTL. All rights reserved.

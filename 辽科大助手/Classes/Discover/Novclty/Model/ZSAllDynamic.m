@@ -7,8 +7,18 @@
 //
 
 #import "ZSAllDynamic.h"
+#import "MJExtension.h"
 
 @implementation ZSAllDynamic
+
+
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    return @{
+             @"ID" : @"id",
+             @"Class" : @"class"
+             };
+}
 
 
 - (NSString *)description

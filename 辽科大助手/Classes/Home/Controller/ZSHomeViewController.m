@@ -161,7 +161,6 @@
         return;
     }
     
-    
     //初始化课表数据
     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
@@ -253,9 +252,6 @@
 
 - (void)weatherDetailController
 {
-    
-    
-    
     
     ZSDetailWeatherViewController *detailWeatherViewController = [[ZSDetailWeatherViewController alloc] init];
     

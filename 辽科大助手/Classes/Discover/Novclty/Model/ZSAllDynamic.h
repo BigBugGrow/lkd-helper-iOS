@@ -11,24 +11,24 @@
 @interface ZSAllDynamic : NSObject
 
 /** 动态的ID*/
-@property (nonatomic, strong) NSString *ID;
+@property (nonatomic, copy) NSString *ID;
 
 /** 昵称*/
-@property (nonatomic, strong) NSString *nickname;
+@property (nonatomic, copy) NSString *nickname;
 
 /** 动态正文*/
-@property (nonatomic, strong) NSString *essay;
+@property (nonatomic, copy) NSString *essay;
 
 /** 图片URL*/
-@property (nonatomic, strong) NSArray *pic;
+@property (nonatomic, copy) NSArray *pic;
 
 /** 评论数量*/
-@property (nonatomic, strong) NSString *commentNum;
+@property (nonatomic, copy) NSString *commentNum;
 
 /** 发表日期*/
-@property (nonatomic, strong) NSString *date;
+@property (nonatomic, copy) NSString *date;
 
 /** 类型*/
-@property (nonatomic, strong) NSString *Class;
+@property (nonatomic, copy) NSString *Class;
 
 @end

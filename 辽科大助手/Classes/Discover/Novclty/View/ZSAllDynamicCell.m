@@ -145,7 +145,7 @@
     
     
     /** 头像imageView*/
-    NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg", allDynamic.nickname];
+    NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small", allDynamic.nickname];
     
     NSURL *url = [NSURL URLWithString:str];
     
@@ -164,9 +164,7 @@
 
     self.picturesView.pictrueArr = allDynamic.pic;
     
-    
     /** 评论数量*/
-    
     if ([allDynamic.commentNum integerValue]) {
 
         [self.commentButton setTitle:allDynamic.commentNum forState:UIControlStateNormal];

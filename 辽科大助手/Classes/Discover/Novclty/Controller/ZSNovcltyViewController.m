@@ -7,10 +7,8 @@
 //
 
 #import "ZSNovcltyViewController.h"
-#import "ZSAllViewController.h"
-#import "ZSProfessViewController.h"
-#import "ZSDebunkViewController.h"
-#import "ZSTopicViewController.h"
+#import "ZSBasicViewController.h"
+#import "ZSPublishView.h"
 
 @interface ZSNovcltyViewController () <UIScrollViewDelegate>
 
@@ -48,20 +46,24 @@
 /** 添加子控制器*/
 - (void)settingUpChildController
 {
-    ZSAllViewController *allVC = [[ZSAllViewController alloc] init];
-    allVC.title = @"全部";
+    //全部动态
+    ZSBasicViewController *allVC = [[ZSBasicViewController alloc] init];
+    allVC.type = @"all";
     [self addChildViewController:allVC];
     
-    ZSProfessViewController *professVC = [[ZSProfessViewController alloc] init];
-    professVC.title = @"表白强";
+    //吐槽
+    ZSBasicViewController *debunkVC = [[ZSBasicViewController alloc] init];
+    debunkVC.type = @"discloseBoard";
+    [self addChildViewController:debunkVC];
+
+    //表白
+    ZSBasicViewController *professVC = [[ZSBasicViewController alloc] init];
+    professVC.type = @"confessionWall";
     [self addChildViewController:professVC];
     
-    ZSDebunkViewController *debunkVC = [[ZSDebunkViewController alloc] init];
-    debunkVC.title = @"吐槽榜";
-    [self addChildViewController:debunkVC];
-    
-    ZSTopicViewController *topicVC = [[ZSTopicViewController alloc] init];
-    topicVC.title = @"话题";
+    //话题
+    ZSBasicViewController *topicVC = [[ZSBasicViewController alloc] init];
+    topicVC.type = @"topics";
     [self addChildViewController:topicVC];
     
 }
@@ -91,6 +93,7 @@
 /** 设置导航条*/
 - (void)settingUpTitle
 {
+
     //控制器的标题
     self.navigationItem.title = @"糯米粒";
     self.view.backgroundColor=[UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
@@ -98,7 +101,8 @@
     self.navigationController.navigationBar.shadowImage = [UIImage imageNamed:@"blueShdow"];
     
     //添加右边发送按钮
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"send"] style:UIBarButtonItemStylePlain target:self action:@selector(clickSendBtn)];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"location_write_penicon"] style:UIBarButtonItemStylePlain target:self action:@selector(clickSendBtn)];
+    
     self.navigationItem.rightBarButtonItem = rightBtn;
     
     //添加titiles
@@ -108,7 +112,7 @@
     [self.view addSubview:titlesView];
     self.titlesView = titlesView;
     
-    NSArray *titles = @[@"全部动态", @"表白墙", @"吐槽榜", @"今日话题"];
+    NSArray *titles = @[@"全部动态", @"吐槽榜", @"表白墙", @"今日话题"];
     
     CGFloat titleBtnWidth = ZSScreenW / 4.0;
     CGFloat titleBtnHeight = 35;
@@ -163,8 +167,12 @@
 /** 点击发送消息按钮*/
 - (void)clickSendBtn
 {
-    ZSLog(@"clickrightBtn");
-}
+    
+    ZSPublishView *publish = [ZSPublishView publishView];
+    
+    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    
+    [window addSubview:publish];}
 
 
 /** 点击按钮*/

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 USTL. All rights reserved.
 //
 
-#import "ZSAllViewController.h"
+#import "ZSBasicViewController.h"
 #import "ZSHttpTool.h"
 #import "ZSAllDynamic.h"
 #import "ZSAllDynamicFrame.h"
@@ -15,7 +15,7 @@
 
 #import "MJRefresh.h"
 
-@interface ZSAllViewController ()
+@interface ZSBasicViewController ()
 
 /**
  *  动态模型数组
@@ -30,10 +30,13 @@
 /** item*/
 @property (nonatomic, assign) NSInteger endId;
 
+/** 上一个动态的ID*/
+@property (nonatomic, assign) NSInteger lastDynamicId;
+
 
 @end
 
-@implementation ZSAllViewController
+@implementation ZSBasicViewController
 
 /** 懒加载*/
 - (NSMutableArray *)allDynamicFrames
@@ -48,7 +51,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     //设置nav
     [self initTableView];
@@ -78,7 +80,7 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"item"] = @(self.endId);
-    params[@"class"] = @"all";
+    params[@"class"] = self.type;
     
     //结束下拉刷新
     [self.tableView headerEndRefreshing];
@@ -86,12 +88,16 @@
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/noveltyRead" parameters:params success:^(NSDictionary *responseObject) {
         
+        
+        
+        ZSLog(@"%@", responseObject);
         //保存上一次访问的一条数据的最后一个
         self.endId = [responseObject[@"endId"] integerValue];
         
         NSArray *dynamics = responseObject[@"data"];
         
         NSMutableArray *arrayM = [NSMutableArray array];
+        
         
         for (NSDictionary *dict in dynamics) {
             
@@ -108,9 +114,7 @@
             } else {
                 dynamic.pic = nil;
             }
-            
-            dynamic.ID = dict[@"id"];
-            dynamic.Class = dict[@"class"];
+        
             ZSAllDynamicFrame *allDynamicFrame = [[ZSAllDynamicFrame alloc] init];
             allDynamicFrame.allDynamic = dynamic;
             
@@ -155,13 +159,16 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"item"] = @"00";
-    params[@"class"] = @"all";
+    params[@"class"] = self.type;
     
     //结束上拉刷新
     [self.tableView footerEndRefreshing];
     
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/noveltyRead" parameters:params success:^(NSDictionary *responseObject) {
+        
+        
+        ZSLog(@"%@", responseObject);
         
         //保存上一次访问的一条数据的最后一个
         self.endId = [responseObject[@"endId"] integerValue];
@@ -186,20 +193,33 @@
                 dynamic.pic = nil;
             }
             
-            dynamic.ID = dict[@"id"];
-            dynamic.Class = dict[@"class"];
+//            dynamic.ID = dict[@"id"];
+//            dynamic.Class = dict[@"class"];
             ZSAllDynamicFrame *allDynamicFrame = [[ZSAllDynamicFrame alloc] init];
             allDynamicFrame.allDynamic = dynamic;
             
-            [arrayM addObject:allDynamicFrame];
+            if ([dynamic.ID integerValue] > self.lastDynamicId ) {
+                
+                [arrayM addObject:allDynamicFrame];
+            } else {
+                break;
+            }
+            
             
             //结束下拉刷新
             [self.tableView headerEndRefreshing];
             
-//            [MBProgressHUD showMessage:@"刷新成功"];
-            
         }
-        self.allDynamicFrames = arrayM;
+        
+        
+        NSRange range = NSMakeRange(0, arrayM.count);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        //将新的数据添加到大数组的最前面
+        [self.allDynamicFrames insertObjects:arrayM atIndexes:indexSet];
+    
+
+        //记录第一次来的ID
+        self.lastDynamicId = [dynamics[0][@"id"] integerValue];
         
         //刷新表格
         [self.tableView reloadData];

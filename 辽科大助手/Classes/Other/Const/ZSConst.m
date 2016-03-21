@@ -10,3 +10,8 @@
 
 
 NSString * const ZSDidClickBackBtn = @"ZSDidClickBackBtn";
+NSString * const LBDidClickEmotionButton = @"LBDidClickEmotionButton";
+NSString * const LBDidClickDeleteButton = @"LBDidClickDeleteButton";
+NSString * const DEFAULT_BUCKET = @"lkdhelper";
+
+NSString * const DEFAULT_PASSCODE = @"dMztxow8vvIIJngzZq+S3q+6Az8=";

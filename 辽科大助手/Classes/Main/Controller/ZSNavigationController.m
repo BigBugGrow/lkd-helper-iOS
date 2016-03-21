@@ -20,13 +20,13 @@
 
 + (void)initialize
 {
-    
 
     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];
     
     [bar setBackgroundImage:[UIImage imageNamed:@"blue"] forBarMetrics:UIBarMetricsDefault];
     NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
     titleAttr[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    titleAttr[NSFontAttributeName] = [UIFont systemFontOfSize:20];
     bar.titleTextAttributes = titleAttr;
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -37,12 +37,30 @@
 
 //#pragma mark 导航控制器的子控制器被push 的时候会调用
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-   // NSLog(@"%@",viewController);
-//    //设置 push 新控制器的时候 隐藏Tabbar
-    if (![viewController isKindOfClass:[ZSHomeViewController class]] && ![viewController isKindOfClass:[ZSMessageViewController  class]] && ![viewController isKindOfClass:[ZSDiscoverViewController class]] && ![viewController isKindOfClass:[ZSProfileViewController class]]) {
+
+
+    if (self.viewControllers.count > 0) {
+        
+        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+        attrs[NSFontAttributeName] = [UIFont systemFontOfSize:10];
+        
+        [viewController.navigationItem.leftBarButtonItem setTitleTextAttributes:attrs forState:UIControlStateNormal];
+        
+        [viewController.navigationItem.leftBarButtonItem setTitleTextAttributes:attrs forState:UIControlStateHighlighted];
+        
+        //当push后 隐藏tarbar
         viewController.hidesBottomBarWhenPushed = YES;
+        
     }
-    [super pushViewController:viewController animated:YES];
+    [super pushViewController:viewController animated:animated];
+
 }
+
+// 退出
+- (void)exitViewController
+{
+    [self popToRootViewControllerAnimated:YES];
+}
+
 
 @end
