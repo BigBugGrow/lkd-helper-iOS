@@ -48,6 +48,9 @@
 /** 图片名字数组*/
 @property (nonatomic, strong) NSArray *imageArray;
 
+/** 是否密名开关*/
+@property (nonatomic, weak) UISwitch *switchView;
+
 @end
 
 
@@ -89,11 +92,44 @@
     ZSComposePictrueView *pictureView = [[ZSComposePictrueView alloc] init];
     pictureView.width = self.view.width;
     pictureView.height = self.view.height;
-    pictureView.y = 100;
+    pictureView.y = 110;
     [self.textView addSubview:pictureView];
     self.pictureView = pictureView;
+    
+    
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.textColor = [UIColor grayColor];
+    label.text = @"密名发表";
+    label.font = [UIFont systemFontOfSize:14];
+    label.width = 80;
+    label.height = 30;
+    label.x = ZSScreenW - label.width;
+    label.y = 120;
+    [self.view addSubview:label];
+    
+    UISwitch *switchView = [[UISwitch alloc] init];
+    switchView.x = label.x;
+    switchView.y = CGRectGetMaxY(label.frame);
+    
+//    [switchView addTarget:self action:@selector(openSecret) forControlEvents:UIControlEventValueChanged];
+    
+    [self.view addSubview:switchView];
+    self.switchView = switchView;
 
 }
+
+//- (void)openSecret
+//{
+//    ZSLog(@"change");
+//    
+//    if (self.switchView.isOn) {
+//        [self.switchView setOn:YES];
+//    } else {
+//        [self.switchView setOn:NO];
+//    }
+//
+//}
 
 // 设置键盘工具条
 - (void)setKeyboardTool
@@ -215,7 +251,7 @@
         //添加字体属性位字符
         [attrStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:NSMakeRange(0, title.length)];
         [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(title.length + 1, name.length)];
-        [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(title.length + 1, name.length)];
+        [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(title.length + 1, name.length)];
 
         titleView.attributedText = attrStr;
         self.navigationItem.titleView = titleView;
@@ -262,13 +298,19 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
+        
+        ZSLog(@"11111");
+        
         //消失控制器
-        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     });
 }
 
 - (void)send
 {
+    
+    ZSLog(@"11111");
     //判断是否有图片要发送
     if (self.pictureView.subviews.count) {
         [self sendWithImage];
@@ -276,7 +318,8 @@
         [self sendWithoutImage];
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -289,21 +332,16 @@
     
     __block UpYun *uy = [[UpYun alloc] init];
     uy.successBlocker = ^(NSURLResponse *response, id responseData) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
-        NSLog(@"response body %@", responseData);
+        ZSLog(@"response body %@", responseData);
     };
     
     uy.failBlocker = ^(NSError * error) {
         NSString *message = [error.userInfo objectForKey:@"message"];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
-        NSLog(@"error %@", message);
-    };
-    
-    uy.progressBlocker = ^(CGFloat percent, int64_t requestDidSendBytes) {
-        ////        [_pv setProgress:percent];
-        ZSLog(@"%lf", percent);
+        ZSLog(@"error %@", message);
     };
     
     /**
@@ -370,12 +408,11 @@
     //设置日期格式
     //如果是真机调试 转换这种欧美时间 需要设置locale
     fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"cn"];
-    fmt.dateFormat = @" MMM月dd日 HH:mm:ss ";
+    fmt.dateFormat = @"M月dd日 HH:mm";
     //创建时间的日期
     NSString *createDate = [fmt stringFromDate:date];
     return createDate;
 }
-
 
 /**
  * 得到发送请求参数字典
@@ -387,8 +424,8 @@
     //传递属性参数
     params[@"date"] = [self getTimeStr];
     params[@"class"] = self.type;
-    params[@"nickname"] = nickName;
-    params[@"key"] = key;
+    params[@"nickname"] = self.switchView.isOn ? @"匿名" : nickName;
+    params[@"key"] = self.switchView.isOn ? @"ABCDEFGHIJ" : key;
     params[@"essay"] = [self.textView fullText] ? [self.textView fullText] : @"haha";
     return params;
 
@@ -420,7 +457,7 @@
             
         }
         
-        [MBProgressHUD showSuccess:@"发送成功"];
+//        [MBProgressHUD showSuccess:@"发送成功"];
         
         ZSLog(@"%@", responseObject);
 

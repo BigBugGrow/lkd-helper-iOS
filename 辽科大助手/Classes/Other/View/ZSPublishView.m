@@ -33,7 +33,6 @@
 {
     [super awakeFromNib];
     
-    
     //0.
     self.width = ZSScreenW;
     self.height = ZSScreenH;
@@ -81,7 +80,7 @@
         
         POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
         
-        anim.fromValue = [NSValue valueWithCGRect:CGRectMake(buttonX, buttonY - ZSScreenH, buttonWidth, buttonHeight)];
+        anim.fromValue = [NSValue valueWithCGRect:CGRectMake(buttonX + ZSScreenW, buttonY, buttonWidth, buttonHeight)];
         anim.toValue = [NSValue valueWithCGRect:CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight)];
         
         anim.springBounciness = 10;
@@ -155,12 +154,12 @@
 
             composeVc.type = @"topics";
         }
+        
+        if ([self.delegate respondsToSelector:@selector(pushToPublishViewController:ComposeViewController:)]) {
+            
+            [self.delegate pushToPublishViewController:self ComposeViewController:composeVc];
+        }
        
-        //添加导航栏控制器
-        ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:composeVc];
-        
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:nil];
-        
     }];
 }
 
@@ -187,7 +186,7 @@
         POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPViewFrame];
         
         anim.fromValue = [NSValue valueWithCGRect:CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight)];
-        anim.toValue = [NSValue valueWithCGRect:CGRectMake(buttonX, buttonY + ZSScreenH, buttonWidth, buttonHeight)];
+        anim.toValue = [NSValue valueWithCGRect:CGRectMake(buttonX + ZSScreenW, buttonY, buttonWidth, buttonHeight)];
         
         anim.beginTime = CACurrentMediaTime() + 0.1 * (i - 1);
         
@@ -206,11 +205,6 @@
         
         [button pop_addAnimation:anim forKey:nil];
     }
-
-    
-//    if (completionBlock) {
-//        completionBlock();
-//    }
 
 }
 

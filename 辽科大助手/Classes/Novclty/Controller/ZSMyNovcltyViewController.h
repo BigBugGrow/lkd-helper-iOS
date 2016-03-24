@@ -7,7 +7,12 @@
 //
 
 #import "ZSBasicViewController.h"
+#import "ZSAllDynamic.h"
 
 @interface ZSMyNovcltyViewController : UITableViewController
+
+/** nickname*/
+@property (nonatomic, copy) NSString *whoNickName;
+
 
 @end

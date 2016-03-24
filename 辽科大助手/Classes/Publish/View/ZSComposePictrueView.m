@@ -60,10 +60,10 @@
         pictureView.width = pictureWH;
         pictureView.height = pictureWH;
         
-        NSUInteger col = i % 4;
+        NSUInteger col = i % 3;
         pictureView.x = col * (pictureWH + pictureMargin)+ pictureMargin;
         
-        NSUInteger row = i / 4;
+        NSUInteger row = i / 3;
         pictureView.y = row * (pictureWH + pictureMargin) + pictureMargin;
     }
 }

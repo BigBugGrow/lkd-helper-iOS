@@ -14,6 +14,7 @@
 #import "ZSHttpTool.h"
 #import "ZSAllDynamic.h"
 
+#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSMyNovcltyViewController ()<commenViewControllerDelegate>
 
@@ -57,7 +58,7 @@
     [super viewDidLoad];
     
     //设置nav
-//    [self initTableView];h
+    [self initNav];
     
     //添加刷新下拉刷新
     [self settingRefresh];
@@ -84,7 +85,7 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"item"] = @"00";
-    params[@"nickname"] = @"yyuee";
+    params[@"nickname"] = self.whoNickName;
     
     //结束下拉刷新
     [self.tableView headerEndRefreshing];
@@ -104,6 +105,9 @@
             
             //模型数据
             ZSAllDynamic *dynamic = [ZSAllDynamic objectWithKeyValues:dict];
+            
+            //赋值自己的nickname
+            dynamic.nickname = nickName;
             
             NSString *picPreSubStr = [dict[@"pic"] substringFromIndex:1];
             NSString *picSufSubStr = [picPreSubStr substringToIndex:picPreSubStr.length - 1];
@@ -160,14 +164,13 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"item"] = @"00";
-    params[@"nickname"] = @"yyuee";
+    params[@"nickname"] = self.whoNickName;
     
     //结束上拉刷新
     [self.tableView footerEndRefreshing];
     
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/myNoveltyRead" parameters:params success:^(NSDictionary *responseObject) {
-        
         
         ZSLog(@"%@", responseObject);
         
@@ -182,6 +185,9 @@
             
             //模型数据
             ZSAllDynamic *dynamic = [ZSAllDynamic objectWithKeyValues:dict];
+            
+            //赋值自己的nickname
+            dynamic.nickname = self.whoNickName;
             
             NSString *picPreSubStr = [dict[@"pic"] substringFromIndex:1];
             NSString *picSufSubStr = [picPreSubStr substringToIndex:picPreSubStr.length - 1];
@@ -230,19 +236,9 @@
 
 
 /** 初始化*/
-- (void)initTableView
+- (void)initNav
 {
-    //设置内边距
-    CGFloat top = 30;
-    CGFloat bottom = self.tabBarController.tabBar.height + 20;
-    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, bottom, 0);
-    
-    //设置tableView的滚动范围
-    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-    
-    
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.title = [NSString stringWithFormat:@"%@的糯米粒", self.whoNickName];
     
 }
 

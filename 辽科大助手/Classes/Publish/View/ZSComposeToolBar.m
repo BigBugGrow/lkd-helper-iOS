@@ -29,9 +29,9 @@
         
         [self addToolBtnWithImage:[UIImage imageNamed:@"compose_toolbar_picture"] highlightImage:[UIImage imageNamed:@"compose_toolbar_picture_highlighted"] btnType:ZSComposeToolBarButtonTypePicture];
         
-        [self addToolBtnWithImage:[UIImage imageNamed:@"compose_mentionbutton_background"] highlightImage:[UIImage imageNamed:@"compose_mentionbutton_background_highlighted"] btnType:ZSComposeToolBarButtonTypeMention];
+//        [self addToolBtnWithImage:[UIImage imageNamed:@"compose_mentionbutton_background"] highlightImage:[UIImage imageNamed:@"compose_mentionbutton_background_highlighted"] btnType:ZSComposeToolBarButtonTypeMention];
         
-        [self addToolBtnWithImage:[UIImage imageNamed:@"compose_trendbutton_background"] highlightImage:[UIImage imageNamed:@"compose_trendbutton_background_highlighted"] btnType:ZSComposeToolBarButtonTypeTrend];
+//        [self addToolBtnWithImage:[UIImage imageNamed:@"compose_trendbutton_background"] highlightImage:[UIImage imageNamed:@"compose_trendbutton_background_highlighted"] btnType:ZSComposeToolBarButtonTypeTrend];
         
         self.emotionBtn = [self addToolBtnWithImage:[UIImage imageNamed:@"compose_emoticonbutton_background"] highlightImage:[UIImage imageNamed:@"compose_emoticonbutton_background_highlighted"] btnType:ZSComposeToolBarButtonTypeEmotion];
         

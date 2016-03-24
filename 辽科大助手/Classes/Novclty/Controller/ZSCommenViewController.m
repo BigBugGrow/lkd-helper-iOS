@@ -35,13 +35,11 @@
 /**cell的高度*/
 @property (nonatomic, assign) CGFloat cellHeight;
 
-
-
-/** 评论倒叙*/
-@property (nonatomic, strong) NSMutableArray *contectComments;
-
 /** 模型数组*/
 @property (nonatomic, strong) NSArray *comments;
+
+/**判断是否为第一次进来*/
+@property (nonatomic, assign) BOOL isFirstCome;
 
 @end
 
@@ -50,14 +48,14 @@ static NSString * const commentID = @"commentCell";
 
 @implementation ZSCommenViewController
 
-/** 懒加载*/
-- (NSMutableArray *)contectComments
-{
-    if (_contectComments == nil) {
-        _contectComments = [NSMutableArray array];
-    }
-    return _contectComments;
-}
+///** 懒加载*/
+//- (NSMutableArray *)contectComments
+//{
+//    if (_contectComments == nil) {
+//        _contectComments = [NSMutableArray array];
+//    }
+//    return _contectComments;
+//}
 
 
 /** 懒加载*/
@@ -110,17 +108,21 @@ static NSString * const commentID = @"commentCell";
         
         self.comments = [ZSComment objectArrayWithKeyValuesArray:comments];
         
-        
-        NSMutableArray *arrayM = [NSMutableArray array];
-        
-        for (ZSComment *comment in self.comments) {
-            
-            [arrayM insertObject:comment atIndex:0];
-        }
-        self.contectComments = arrayM;
-        
         //刷新表格
         [self.tableView reloadData];
+        
+        
+        //重新计算评论数量
+        int countNum = [self.allDynamicFrame.allDynamic.commentNum intValue];
+        
+        ZSLog(@"%d", self.isFirstCome);
+        
+        if (countNum != 0 && self.isFirstCome) {
+        
+            self.isFirstCome = YES;
+            //设置tableview默认选中行
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:(countNum-1) inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        }
         
         [self.tableView headerEndRefreshing];
         
@@ -201,6 +203,9 @@ static NSString * const commentID = @"commentCell";
 
 - (IBAction)send {
     
+    
+    self.isFirstCome = YES;
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     ZSAllDynamic *dynamic = self.allDynamicFrame.allDynamic;
@@ -238,6 +243,7 @@ static NSString * const commentID = @"commentCell";
         int countNum = [self.allDynamicFrame.allDynamic.commentNum intValue];
         countNum ++;
         self.allDynamicFrame.allDynamic.commentNum = [NSString stringWithFormat:@"%d", countNum];
+        
         [self initHeaderView];
         
     } failure:^(NSError *error) {
@@ -259,7 +265,7 @@ static NSString * const commentID = @"commentCell";
     //设置日期格式
     //如果是真机调试 转换这种欧美时间 需要设置locale
     fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"cn"];
-    fmt.dateFormat = @" MMM月dd日 HH:mm:ss ";
+    fmt.dateFormat = @" M月dd日 HH:mm";
     //创建时间的日期
     NSString *createDate = [fmt stringFromDate:date];
     return createDate;
@@ -286,14 +292,14 @@ static NSString * const commentID = @"commentCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.contectComments.count;
+    return self.comments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZSCommentViewCell *cell = [ZSCommentViewCell tableViewCell];
     
-    cell.comment = self.contectComments[indexPath.row];
+    cell.comment = self.comments[indexPath.row];
     
     return cell;
 }
