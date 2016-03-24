@@ -112,24 +112,10 @@
     switchView.x = label.x;
     switchView.y = CGRectGetMaxY(label.frame);
     
-//    [switchView addTarget:self action:@selector(openSecret) forControlEvents:UIControlEventValueChanged];
-    
     [self.view addSubview:switchView];
     self.switchView = switchView;
 
 }
-
-//- (void)openSecret
-//{
-//    ZSLog(@"change");
-//    
-//    if (self.switchView.isOn) {
-//        [self.switchView setOn:YES];
-//    } else {
-//        [self.switchView setOn:NO];
-//    }
-//
-//}
 
 // 设置键盘工具条
 - (void)setKeyboardTool
@@ -331,19 +317,19 @@
     [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 10;
     
     __block UpYun *uy = [[UpYun alloc] init];
-    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        ZSLog(@"response body %@", responseData);
-    };
-    
-    uy.failBlocker = ^(NSError * error) {
-        NSString *message = [error.userInfo objectForKey:@"message"];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        ZSLog(@"error %@", message);
-    };
-    
+//    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+//        ZSLog(@"response body %@", responseData);
+//    };
+//    
+//    uy.failBlocker = ^(NSError * error) {
+//        NSString *message = [error.userInfo objectForKey:@"message"];
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+//        ZSLog(@"error %@", message);
+//    };
+//    
     /**
      *	@brief	根据 UIImage 上传
      */
@@ -443,21 +429,22 @@
     NSMutableDictionary *params = [self getParamsDict];
     params[@"pic"] = [NSString stringWithFormat:@"[%@]", path];
 
+    
+    NSInteger count = [[self.pictureView addPictrues] count];
+    for (int i = 0; i < count; i ++) {
+        
+        UIImage *picture = [self.pictureView addPictrues][i];
+        NSString *picturePath = self.imageArray[i];
+        [self sendImageWithImage:picture imagePath:picturePath];
+        
+    }
+    
     //发送带有图片的糯米
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params success:^(id responseObject) {
         
         
-        NSInteger count = [[self.pictureView addPictrues] count];
-        for (int i = 0; i < count; i ++) {
-            
-            UIImage *picture = [self.pictureView addPictrues][i];
-            NSString *picturePath = self.imageArray[i];
-            [self sendImageWithImage:picture imagePath:picturePath];
-            
-        }
-        
-//        [MBProgressHUD showSuccess:@"发送成功"];
+        [MBProgressHUD showSuccess:@"发送成功"];
         
         ZSLog(@"%@", responseObject);
 
