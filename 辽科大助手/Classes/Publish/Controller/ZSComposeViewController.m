@@ -361,6 +361,7 @@
 
 /** 获得时间的字符串*/
 
+
 - (NSString *)getTimeStr
 {
     NSDate *date = [NSDate date];
@@ -369,11 +370,12 @@
     //设置日期格式
     //如果是真机调试 转换这种欧美时间 需要设置locale
     fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"cn"];
-    fmt.dateFormat = @"yyyy MMM dd HH:mm:ss EEE";
+    fmt.dateFormat = @" MMM月dd日 HH:mm:ss ";
     //创建时间的日期
     NSString *createDate = [fmt stringFromDate:date];
     return createDate;
 }
+
 
 /**
  * 得到发送请求参数字典

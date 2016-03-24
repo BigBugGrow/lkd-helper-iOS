@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EFFC6AEB1C04852500469F99"
-               BuildableName = "lkdhelper.app"
+               BuildableName = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;.app"
                BlueprintName = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;"
                ReferencedContainer = "container:&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EFFC6AEB1C04852500469F99"
-            BuildableName = "lkdhelper.app"
+            BuildableName = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;.app"
             BlueprintName = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;"
             ReferencedContainer = "container:&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EFFC6AEB1C04852500469F99"
-            BuildableName = "lkdhelper.app"
+            BuildableName = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;.app"
             BlueprintName = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;"
             ReferencedContainer = "container:&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EFFC6AEB1C04852500469F99"
-            BuildableName = "lkdhelper.app"
+            BuildableName = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;.app"
             BlueprintName = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;"
             ReferencedContainer = "container:&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;.xcodeproj">
          </BuildableReference>

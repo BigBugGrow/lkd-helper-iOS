@@ -69,7 +69,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     //设置导航栏按钮
     [self setUpNavigtionItem];
     

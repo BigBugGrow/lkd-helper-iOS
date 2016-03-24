@@ -73,7 +73,7 @@
 // 退出
 - (void)exitViewController
 {
-    [self popToRootViewControllerAnimated:YES];
+    [self popViewControllerAnimated:YES];
 }
 
 

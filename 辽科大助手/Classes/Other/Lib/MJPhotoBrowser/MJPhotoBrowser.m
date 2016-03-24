@@ -87,7 +87,7 @@
     if (error) {
         [SVProgressHUD showErrorWithStatus:@"保存失败!"];
     } else {
-        [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
+        [SVProgressHUD showSuccessWithStatus:@"保存到相册!"];
     }
 }
 

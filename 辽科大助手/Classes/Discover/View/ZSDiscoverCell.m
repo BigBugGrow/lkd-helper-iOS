@@ -9,6 +9,14 @@
 #import "ZSDiscoverCell.h"
 #import "ZSDiscoverModel.h"
 
+@interface ZSDiscoverCell ()
+
+
+
+
+@end
+
+
 @implementation ZSDiscoverCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView
