@@ -80,7 +80,7 @@
         
         POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
         
-        anim.fromValue = [NSValue valueWithCGRect:CGRectMake(buttonX + ZSScreenW, buttonY, buttonWidth, buttonHeight)];
+        anim.fromValue = [NSValue valueWithCGRect:CGRectMake(buttonX + ZSScreenW * pow(-1, i), buttonY, buttonWidth, buttonHeight)];
         anim.toValue = [NSValue valueWithCGRect:CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight)];
         
         anim.springBounciness = 10;
@@ -186,7 +186,7 @@
         POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPViewFrame];
         
         anim.fromValue = [NSValue valueWithCGRect:CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight)];
-        anim.toValue = [NSValue valueWithCGRect:CGRectMake(buttonX + ZSScreenW, buttonY, buttonWidth, buttonHeight)];
+        anim.toValue = [NSValue valueWithCGRect:CGRectMake(buttonX + ZSScreenW * pow(-1, i), buttonY, buttonWidth, buttonHeight)];
         
         anim.beginTime = CACurrentMediaTime() + 0.1 * (i - 1);
         

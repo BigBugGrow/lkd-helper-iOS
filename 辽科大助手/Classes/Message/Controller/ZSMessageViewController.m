@@ -104,7 +104,7 @@
         if (indexPath.section == 0) {
             
             ZSNewsController *vc = [[item.vcClass alloc] init];
-            vc.newsType = @"newslkdhelperread";
+//            vc.newsType = @"newslkdhelperread";
             vc.newsPictureType = @"pic_news_lkdhelper";
             [self.navigationController pushViewController:vc animated:YES];
         }

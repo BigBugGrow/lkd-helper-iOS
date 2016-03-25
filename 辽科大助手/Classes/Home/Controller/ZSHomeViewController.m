@@ -135,7 +135,6 @@
     [ZSHttpTool GET:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/simpleWeather" parameters:nil success:^(id responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            
             NSMutableDictionary *weatherDictWithCurrentWeek = [NSMutableDictionary dictionaryWithDictionary:responseObject];
             weatherDictWithCurrentWeek[@"currentWeek"] = [NSNumber numberWithLong: self.currentWeek];
             self.weatherData = [NSDictionary dictionaryWithDictionary:weatherDictWithCurrentWeek];
@@ -164,25 +163,31 @@
     //初始化课表数据
     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
+    
+    ZSLog(@"%@", currentDay);
+    
     //星期几
-//    long weekday = (currentDay.weekday - 1) ? (currentDay.weekday - 1) : 7;
     long weekday = currentDay.weekday - 1;
+    if (weekday == 0) weekday = 7;
+    
+    ZSLog(@"一周中第几天%ld", weekday);
     
 #warning 这里周数计算有问题
     //第几周
     
-#warning //self.currentWeek = currentDay.week + 51 - [account.startweek intValue] + 1;
+//    self.currentWeek = currentDay.week + 51 - [account.startweek intValue] + 1;
     
-    self.currentWeek = 1;
+    self.currentWeek = 3;
     
 //    NSLog(@"ccc%@",currentDay);
     
     
-//    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
+    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
+    
     
     //1.得到当天的课表字典
     NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
-    
+
     ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];
     ZSTimeTabelModel *timetable1 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@1]];
     ZSTimeTabelModel *timetable2 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@2]];

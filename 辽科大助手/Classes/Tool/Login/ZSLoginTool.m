@@ -45,9 +45,10 @@
 //        
 //        ZSLog(@"%@", accountDict[@"timetable"]);
 //        
-        if (accountDict.count == 0) {
+        if ([accountDict[@"timetable"] isEqualToString:@"null"]) {
             
             ZSLog(@"课程表没有值");
+            return ;
         } else {
             
             //初始化一个 课表 的可变数组

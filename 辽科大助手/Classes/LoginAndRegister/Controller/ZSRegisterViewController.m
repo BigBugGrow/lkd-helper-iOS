@@ -46,6 +46,7 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/Register" parameters:parameters success:^(id responseObject) {
         
+        ZSLog(@"%@", responseObject);
         
         if ([responseObject[@"state"] isEqualToString:@"500"] || [responseObject[@"state"] isEqualToString:@"101"] || [responseObject[@"state"] isEqualToString:@"000"]) {
             
@@ -97,6 +98,9 @@
     } failure:^(NSError *error) {
         [self.activityIndicator stopAnimating];
         self.activityIndicator.hidden = YES;
+        
+        
+        ZSLog(@"%@", error);
         
         [MBProgressHUD showError:@"网络错误"];
     }];
