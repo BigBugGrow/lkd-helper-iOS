@@ -25,7 +25,7 @@
     
     /** 头像imageView*/
     CGFloat iconImageViewXY = marginW;
-    CGFloat iconImageViewWH = 50;
+    CGFloat iconImageViewWH = 40;
     self.iconImageViewF = CGRectMake(iconImageViewXY, iconImageViewXY, iconImageViewWH, iconImageViewWH);
     
     /** 昵称*/

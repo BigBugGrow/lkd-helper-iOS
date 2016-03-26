@@ -17,6 +17,7 @@
 #import "ZSLoginResult.h"
 
 #import "MJExtension.h"
+#import "MBProgressHUD+MJ.h"
 
 #import "NSString+StringOfTimeTableConvertToDictArray.h"
 
@@ -45,10 +46,17 @@
 //        
 //        ZSLog(@"%@", accountDict[@"timetable"]);
 //        
-        if ([accountDict[@"timetable"] isEqualToString:@"null"]) {
+        if ([accountDict[@"timetable"] count] == 0) {
             
             ZSLog(@"课程表没有值");
-            return ;
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [MBProgressHUD showMessage:@"请邦定学号再登录"];
+            });
+            
+            [MBProgressHUD hideHUD];
+            
         } else {
             
             //初始化一个 课表 的可变数组
@@ -129,7 +137,6 @@
     //    NSArray *allCourseInfoWithDictArr = [ZSTimeTable keyValuesArrayWithObjectArray:timetableModel];
     // NSLog(@"%@",allCourseInfoWithDictArr);
     //2>分割字典数组，把信息按周次，星期几，生成课表
-    
     
     
     //初始化20*7个字典，每个字典存每天的课表

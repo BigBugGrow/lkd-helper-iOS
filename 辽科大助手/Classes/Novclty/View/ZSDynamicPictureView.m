@@ -65,8 +65,8 @@
 {
     
     _picture = picture;
-    
-    //    http://lkdhelper.b0.upaiyun.com/picNovelty/ui20162262356250
+
+    //    http://lkdhelper.b0.upaiyun.com/picNovelty/icon201603261006490.jpg
     //设置图片
     
     NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNovelty/%@.jpg!small", picture.thumbnail_pic];

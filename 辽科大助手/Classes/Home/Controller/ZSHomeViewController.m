@@ -303,6 +303,8 @@
     }
     ZSTimeTableCell *cell = [ZSTimeTableCell timeTabelCellWithTableView:tableView];
     ZSHomeGroupModel *group = self.cellData[indexPath.section];
+    
+
     ZSTimeTabelModel *item = group.items[indexPath.row];
     cell.model = item;
     return cell;

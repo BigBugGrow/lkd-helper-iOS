@@ -46,8 +46,27 @@
     self.commentLabel.text = comment.comment;
 
     NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg", comment.nickname];
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"o_weiguan"]];
     
+    /** 头像imageView*/
+
+    NSURL *url = [NSURL URLWithString:urlStr];
+    
+    [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"icon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        UIImage *newImage = self.iconView.image;
+        
+        UIImage *placeHolderImage = [UIImage imageNamed:@"icon"];
+        
+        [self.iconView.layer setCornerRadius:CGRectGetHeight([self.iconView bounds]) / 2];
+        
+        self.iconView.layer.masksToBounds = YES;
+        //        然后再给图层添加一个有色的边框，类似qq空间头像那样
+        self.iconView.layer.borderWidth = 0;
+        self.iconView.layer.borderColor = [[UIColor whiteColor] CGColor];
+        
+        self.iconView.image = newImage ? newImage : placeHolderImage;
+        
+    }];
 }
 
 

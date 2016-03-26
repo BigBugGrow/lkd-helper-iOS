@@ -65,6 +65,14 @@
         self.iconImageView = iconImageView;
         [self.containerView addSubview:iconImageView];
         
+        self.iconImageView.layer.masksToBounds = YES;
+        
+        self.iconImageView.layer.cornerRadius = self.iconImageView.width * 0.5;
+        
+        self.iconImageView.layer.borderWidth = 0;
+        
+        self.iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        
         iconImageView.userInteractionEnabled = YES;
         [iconImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cliclImageView)]];
         
@@ -119,6 +127,104 @@
         [self.delegate pushToMyNovcltyViewController:self nickName:nickname];
     }
 }
+//
+//- (UIImage *)circleImageWithImage:(UIImage *)oldImage borderWith:(CGFloat)borderWidth bordColor:(UIColor *)borderColor
+//{
+//    
+//    //1.加载原图
+//    
+//    //2.开启上下文
+//    CGFloat imageW = oldImage.size.width;
+//    CGFloat imageH = oldImage.size.height;
+//    CGSize imageSize = CGSizeMake(imageW, imageH);
+//    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
+//    
+//    //3.获取当前的上下文 这里得到的就是上面刚创建的那个图片上下文
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    
+//    //4.画边框
+//    [borderColor set];
+//    CGFloat bigRadius = imageW * 0.5; // 大圆半径
+//    CGFloat centerX = bigRadius; // 圆心
+//    CGFloat centerY = bigRadius;
+//    
+//    CGContextAddArc(ctx, centerX, centerY, bigRadius, 0, M_PI * 2, 0);
+//    CGContextFillPath(ctx); // 画圆
+//    
+//    //5.小圆
+//    CGFloat smallRadius = bigRadius;
+//    CGContextAddArc(ctx, centerX, centerY, smallRadius, 0, M_PI * 2, 0);
+//    
+//    //裁剪 （后面画的东西才会瘦裁剪的影响）
+//    
+//    CGContextClip(ctx);
+//    
+//    //6.画图
+//    [oldImage drawInRect:CGRectMake(bigRadius, bigRadius, oldImage.size.width, oldImage.size.height)];
+//    
+//    //7 截图
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    
+//    //8. 结束上下文
+//    UIGraphicsEndImageContext();
+//    
+//    return newImage;
+//}
+
+
+- (UIImage *)imageWithImage:(UIImage *)image border:(CGFloat)border withColor:(UIColor *)color {
+    
+    //设置边距
+    CGFloat borderW = border;
+    
+    //加载久的图片
+    UIImage *oldImage = image;
+    
+    //设置图片的大小
+    CGFloat imageW = oldImage.size.width + borderW;
+    CGFloat imageH = oldImage.size.height + borderW;
+    
+    CGFloat circleW = imageW > imageH ? imageH : imageW;
+    
+    //创建上下文
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(circleW, circleW), NO, 0.0);
+    
+    //获取当前上下文
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    //画大圆
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, circleW, circleW)];
+    
+    
+    //将大圆提交到上下文
+    CGContextAddPath(ctx, path.CGPath);
+    
+    [color set];
+    
+    //渲染
+    CGContextFillPath(ctx);
+    
+    CGRect rect = CGRectMake(borderW / 2, borderW / 2, oldImage.size.width, oldImage.size.height);
+    
+    //画小圆
+    UIBezierPath *clipPath = [UIBezierPath bezierPathWithOvalInRect:rect];
+    
+    //设置裁剪区域
+    [clipPath addClip];
+    
+    //花图片
+    [oldImage drawAtPoint:CGPointZero];
+    
+    //获取新的图片
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //关闭上下文
+    UIGraphicsEndPDFContext();
+    
+    return newImage;
+}
+
+
 
 
 + (instancetype)cellWithTableView:(UITableView *)tableView
@@ -171,7 +277,30 @@
     
     NSURL *url = [NSURL URLWithString:str];
     
-    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"icon"]];
+    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"icon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+       
+//        
+//        UIImage *newImage = [self imageWithImage:self.iconImageView.image border:10 withColor:[UIColor whiteColor]];
+//        
+//        UIImage *placeHoldImage = [self imageWithImage:[UIImage imageNamed:@"icon"] border:10 withColor:[UIColor whiteColor]];
+
+        
+        UIImage *newImage = self.iconImageView.image;
+        
+        UIImage *placeHolderImage = [UIImage imageNamed:@"icon"];
+        
+        [self.iconImageView.layer setCornerRadius:CGRectGetHeight([self.iconImageView bounds]) / 2];
+        
+        self.iconImageView.layer.masksToBounds = YES;
+//        然后再给图层添加一个有色的边框，类似qq空间头像那样
+        self.iconImageView.layer.borderWidth = 0;
+        self.iconImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    
+        self.iconImageView.image = newImage ? newImage : placeHolderImage;
+        
+    }];
+    
+//    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"icon"]];
     
     /** 昵称*/
     self.nameLabel.text = allDynamic.nickname;

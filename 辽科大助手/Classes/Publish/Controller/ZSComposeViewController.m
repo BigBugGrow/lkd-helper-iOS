@@ -340,11 +340,12 @@
     
 }
 
-- (NSString * )getSaveKey{
+- (NSString * )getSaveKeywithSerialNum:(int)serialNum{
     /**
      *	@brief	方式1 由开发者生成saveKey
      */
-     NSString *fileName = [NSString stringWithFormat:@"test%08X", arc4random()];
+    
+     NSString *fileName = [NSString stringWithFormat:@"icon%@%d", [self getTimeImageStr], serialNum];
     
     return [NSString stringWithFormat:@"%@", fileName];
 
@@ -364,7 +365,7 @@
     
     for (int i = 0; i < count; i++) {
         
-        NSString *picturePath = [self getSaveKey];
+        NSString *picturePath = [self getSaveKeywithSerialNum:i];
         
         [pathArray addObject:picturePath];
         
@@ -384,6 +385,20 @@
 }
 
 /** 获得时间的字符串*/
+
+- (NSString *)getTimeImageStr
+{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    
+    //设置日期格式
+    //如果是真机调试 转换这种欧美时间 需要设置locale
+    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"cn"];
+    fmt.dateFormat = @"YYYYMMddhhmmss";
+    //创建时间的日期
+    NSString *createDate = [fmt stringFromDate:date];
+    return createDate;
+}
 
 
 - (NSString *)getTimeStr

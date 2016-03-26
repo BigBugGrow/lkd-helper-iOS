@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		521A9E7D1C9E844F00BD3024 /* ZSPublishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A9E7A1C9E844F00BD3024 /* ZSPublishView.m */; settings = {ASSET_TAGS = (); }; };
 		521A9E7E1C9E844F00BD3024 /* ZSPublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521A9E7B1C9E844F00BD3024 /* ZSPublishView.xib */; settings = {ASSET_TAGS = (); }; };
+		5229251D1CA61B0500F7EE7A /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229251C1CA61B0500F7EE7A /* UIImage+Tool.m */; settings = {ASSET_TAGS = (); }; };
 		5229E5FA1CA264230088F047 /* ZSCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5229E5F91CA264230088F047 /* ZSCommentViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		522D3BCA1C9D814C00A6927F /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D3BC31C9D814C00A6927F /* SVIndefiniteAnimatedView.m */; settings = {ASSET_TAGS = (); }; };
 		522D3BCB1C9D814C00A6927F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 522D3BC51C9D814C00A6927F /* SVProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
@@ -231,6 +232,8 @@
 		521A9E7A1C9E844F00BD3024 /* ZSPublishView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPublishView.m; sourceTree = "<group>"; };
 		521A9E7B1C9E844F00BD3024 /* ZSPublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSPublishView.xib; sourceTree = "<group>"; };
 		521A9E7C1C9E844F00BD3024 /* ZSPublishView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPublishView.h; sourceTree = "<group>"; };
+		5229251B1CA61B0500F7EE7A /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
+		5229251C1CA61B0500F7EE7A /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
 		5229E5F91CA264230088F047 /* ZSCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCommentViewCell.xib; sourceTree = "<group>"; };
 		522D3BC21C9D814C00A6927F /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		522D3BC31C9D814C00A6927F /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
@@ -1424,6 +1427,8 @@
 		EF56D6E01C0A933800A3B314 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				5229251B1CA61B0500F7EE7A /* UIImage+Tool.h */,
+				5229251C1CA61B0500F7EE7A /* UIImage+Tool.m */,
 				52FE8C461CA2B2660042A92C /* NSDate+Extension.h */,
 				52FE8C471CA2B2660042A92C /* NSDate+Extension.m */,
 				523445B41C9E3D7C005630B7 /* UITextView+Extensiton.h */,
@@ -2000,6 +2005,7 @@
 				EFE538271C15242C00A2B6EF /* ZSLoginTool.m in Sources */,
 				52857AAE1C9D7F2200F44C27 /* POPAnimationExtras.mm in Sources */,
 				522D3BE11C9D81A700A6927F /* MJPhotoLoadingView.m in Sources */,
+				5229251D1CA61B0500F7EE7A /* UIImage+Tool.m in Sources */,
 				5244DC7C1CA1050000147B72 /* ZSCommenViewController.m in Sources */,
 				EF2AB6061C0F17A500DB93FC /* AFURLSessionManager.m in Sources */,
 				EF2AB61A1C0F17A500DB93FC /* NSData+ImageContentType.m in Sources */,
