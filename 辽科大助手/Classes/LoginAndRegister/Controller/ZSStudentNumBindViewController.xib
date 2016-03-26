@@ -125,7 +125,7 @@
             <color key="backgroundColor" red="0.65490196078431373" green="0.89411764705882346" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="jfh-Vn-om0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="71" id="Ri6-MQ-oLh"/>
-                <constraint firstItem="jfh-Vn-om0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="37" id="mbT-5G-8Q0"/>
+                <constraint firstItem="jfh-Vn-om0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="m51-r3-eAH"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>

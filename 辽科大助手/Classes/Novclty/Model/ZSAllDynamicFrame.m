@@ -96,13 +96,13 @@
     CGFloat containerX = 0;
     CGFloat containerY = 0;
     CGFloat containerW = ScreenWidth;
-    CGFloat containerH = CGRectGetMaxY(self.timeLabelF);
+    CGFloat containerH = CGRectGetMaxY(self.timeLabelF) + 2 * marginW;
     self.containerViewF = CGRectMake(containerX, containerY, containerW, containerH);
     
     /**
      *  cell的高度
      */
-    self.cellHeight = CGRectGetMaxY(self.containerViewF) + 2 * marginW;
+    self.cellHeight = CGRectGetMaxY(self.containerViewF) + 3;
 }
 
 

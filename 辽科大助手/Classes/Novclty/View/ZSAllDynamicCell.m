@@ -57,6 +57,7 @@
         /** 容器*/
         UIView *containerView = [[UIView alloc] init];
         self.containerView = containerView;
+        containerView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:containerView];
         
         
@@ -127,49 +128,6 @@
         [self.delegate pushToMyNovcltyViewController:self nickName:nickname];
     }
 }
-//
-//- (UIImage *)circleImageWithImage:(UIImage *)oldImage borderWith:(CGFloat)borderWidth bordColor:(UIColor *)borderColor
-//{
-//    
-//    //1.加载原图
-//    
-//    //2.开启上下文
-//    CGFloat imageW = oldImage.size.width;
-//    CGFloat imageH = oldImage.size.height;
-//    CGSize imageSize = CGSizeMake(imageW, imageH);
-//    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
-//    
-//    //3.获取当前的上下文 这里得到的就是上面刚创建的那个图片上下文
-//    CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    
-//    //4.画边框
-//    [borderColor set];
-//    CGFloat bigRadius = imageW * 0.5; // 大圆半径
-//    CGFloat centerX = bigRadius; // 圆心
-//    CGFloat centerY = bigRadius;
-//    
-//    CGContextAddArc(ctx, centerX, centerY, bigRadius, 0, M_PI * 2, 0);
-//    CGContextFillPath(ctx); // 画圆
-//    
-//    //5.小圆
-//    CGFloat smallRadius = bigRadius;
-//    CGContextAddArc(ctx, centerX, centerY, smallRadius, 0, M_PI * 2, 0);
-//    
-//    //裁剪 （后面画的东西才会瘦裁剪的影响）
-//    
-//    CGContextClip(ctx);
-//    
-//    //6.画图
-//    [oldImage drawInRect:CGRectMake(bigRadius, bigRadius, oldImage.size.width, oldImage.size.height)];
-//    
-//    //7 截图
-//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    
-//    //8. 结束上下文
-//    UIGraphicsEndImageContext();
-//    
-//    return newImage;
-//}
 
 
 - (UIImage *)imageWithImage:(UIImage *)image border:(CGFloat)border withColor:(UIColor *)color {
@@ -232,11 +190,13 @@
     static NSString *ID = @"allDynamicCell";
     
     ZSAllDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];;
-
+    
     if (cell == nil) {
         
         cell = [[ZSAllDynamicCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
+    
+    cell.backgroundColor = RGBColor(243, 243, 243, 1);
     
     return cell;
 }
@@ -278,19 +238,15 @@
     NSURL *url = [NSURL URLWithString:str];
     
     [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"icon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-       
-//        
-//        UIImage *newImage = [self imageWithImage:self.iconImageView.image border:10 withColor:[UIColor whiteColor]];
-//        
-//        UIImage *placeHoldImage = [self imageWithImage:[UIImage imageNamed:@"icon"] border:10 withColor:[UIColor whiteColor]];
 
-        
+        //获取的新头像
         UIImage *newImage = self.iconImageView.image;
         
+        //占位图片
         UIImage *placeHolderImage = [UIImage imageNamed:@"icon"];
         
+        //制作头像的圆形形状
         [self.iconImageView.layer setCornerRadius:CGRectGetHeight([self.iconImageView bounds]) / 2];
-        
         self.iconImageView.layer.masksToBounds = YES;
 //        然后再给图层添加一个有色的边框，类似qq空间头像那样
         self.iconImageView.layer.borderWidth = 0;
@@ -299,8 +255,6 @@
         self.iconImageView.image = newImage ? newImage : placeHolderImage;
         
     }];
-    
-//    [self.iconImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"icon"]];
     
     /** 昵称*/
     self.nameLabel.text = allDynamic.nickname;

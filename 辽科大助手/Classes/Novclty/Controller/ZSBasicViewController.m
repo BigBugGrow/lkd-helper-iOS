@@ -202,10 +202,6 @@
             } else {
                 break;
             }
-            
-            //结束下拉刷新
-            [self.tableView headerEndRefreshing];
-            
         }
         
         
@@ -216,6 +212,11 @@
         
         //刷新表格
         [self.tableView reloadData];
+        
+        
+        //结束下拉刷新
+        [self.tableView headerEndRefreshing];
+        
         
     } failure:^(NSError *error) {
         
@@ -310,6 +311,7 @@
 
 #pragma mark - ZSAllDynamicCellDelegate的代理方法
 
+/** 跳转到我的糯米粒信息*/
 - (void)pushToMyNovcltyViewController:(ZSAllDynamicCell *)allDynamicCell nickName:(NSString *)nickName
 {
     ZSMyNovcltyViewController *myNovcltyViewController = [[ZSMyNovcltyViewController alloc] init];

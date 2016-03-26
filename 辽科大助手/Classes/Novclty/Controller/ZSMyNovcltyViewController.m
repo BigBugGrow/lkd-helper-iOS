@@ -12,7 +12,9 @@
 #import "ZSAllDynamicCell.h"
 #import "MJRefresh.h"
 #import "ZSHttpTool.h"
+#import "UIImageView+WebCache.h"
 #import "ZSAllDynamic.h"
+#import "ZSInfoViewController.h"
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
@@ -66,6 +68,84 @@
     //获取数据
     [self getNewData];
     
+    //初始化headerView
+    [self initHeaderView];
+    
+}
+
+/** 初始化headerView*/
+- (void)initHeaderView
+{
+    
+    //headerView的大背景
+    UIView *headerView = [[UIView alloc] init];
+    headerView.width = ZSScreenW;
+    headerView.height = 330;
+    headerView.x = 0;
+    headerView.y = 0;
+    
+    //大图片
+    UIImageView *myImage = [[UIImageView alloc] init];
+    myImage.width = ZSScreenW;
+    myImage.height = 300;
+    myImage.x = 0;
+    myImage.y = 0;
+    
+    //网址
+    NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg", self.whoNickName];
+    
+    [myImage sd_setImageWithURL:[NSURL URLWithString:urlStr]];
+    myImage.backgroundColor = [UIColor blackColor];
+    [headerView addSubview:myImage];
+    self.tableView.tableHeaderView = headerView;
+    
+    
+    //边界宽度
+    CGFloat marginWidth = 20;
+
+    //小头像
+    UIImageView *smallImageView = [[UIImageView alloc] init];
+    
+    smallImageView.width = 60;
+    smallImageView.height = 60;
+    smallImageView.x = ZSScreenW - marginWidth - smallImageView.width;
+    smallImageView.y = myImage.height * 0.85;
+    
+    //激活图片点击事件
+    smallImageView.userInteractionEnabled = YES;
+    [smallImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRightBtn)]];
+    
+    [smallImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"icon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        UIImage *picture = smallImageView.image;
+        
+        //制作头像的圆形形状
+        [smallImageView.layer setCornerRadius:CGRectGetHeight([smallImageView bounds]) / 2];
+        smallImageView.layer.masksToBounds = YES;
+        //        然后再给图层添加一个有色的边框，类似qq空间头像那样
+        smallImageView.layer.borderWidth = 2;
+        smallImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
+        
+        smallImageView.image = picture;
+        
+    }];
+    
+    myImage.userInteractionEnabled = YES;
+    
+    [myImage addSubview:smallImageView];
+    
+    //昵称
+    UILabel *nameLabel = [[UILabel alloc] init];
+    nameLabel.width = 200;
+    nameLabel.height = 30;
+    nameLabel.x = smallImageView.x - marginWidth + 3 - nameLabel.width;
+    nameLabel.y = CGRectGetMaxY(smallImageView.frame) - marginWidth - nameLabel.height;
+    nameLabel.backgroundColor = [UIColor clearColor];
+    nameLabel.textAlignment = NSTextAlignmentRight;
+    nameLabel.text = self.whoNickName;
+    nameLabel.font = [UIFont systemFontOfSize:20 weight:5];
+    nameLabel.textColor = [UIColor whiteColor];
+    [myImage addSubview:nameLabel];
     
 }
 
@@ -171,13 +251,12 @@
     
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/myNoveltyRead" parameters:params success:^(NSDictionary *responseObject) {
-        
-        ZSLog(@"%@", responseObject);
-        
-        //保存上一次访问的一条数据的最后一个
-        self.endId = [responseObject[@"endId"] integerValue];
+
         
         NSArray *dynamics = responseObject[@"data"];
+        
+        
+        
         
         NSMutableArray *arrayM = [NSMutableArray array];
         
@@ -203,23 +282,25 @@
             ZSAllDynamicFrame *allDynamicFrame = [[ZSAllDynamicFrame alloc] init];
             allDynamicFrame.allDynamic = dynamic;
             
-            if ([dynamic.ID integerValue] > self.lastDynamicId ) {
+            if ([dynamic.ID integerValue] > self.lastDynamicId) {
                 
                 [arrayM addObject:allDynamicFrame];
             } else {
                 break;
             }
             
-            //结束下拉刷新
-            [self.tableView headerEndRefreshing];
             
         }
-        
+    
+        //保存上一次访问的一条数据的最后一个
+        self.lastDynamicId = [responseObject[@"endId"] integerValue];
         
         NSRange range = NSMakeRange(0, arrayM.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         //将新的数据添加到大数组的最前面
         [self.allDynamicFrames insertObjects:arrayM atIndexes:indexSet];
+        //结束下拉刷新
+        [self.tableView headerEndRefreshing];
         
         //刷新表格
         [self.tableView reloadData];
@@ -239,6 +320,25 @@
 - (void)initNav
 {
     self.title = [NSString stringWithFormat:@"%@的糯米粒", self.whoNickName];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backIndicatorImage = nil;
+    
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
+    
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
+}
+/** */
+- (void)clickRightBtn
+{
+    
+    ZSLog(@"cdsh");
+    ZSInfoViewController *info = [[ZSInfoViewController alloc] init];
+    
+    info.whoNickName = self.whoNickName;
+    
+    [self.navigationController pushViewController:info animated:YES];
     
 }
 
@@ -279,17 +379,7 @@
     
     
     commenView.delegate = self;
-    
-    //    __weak typeof(self) weakSelf = self;
-    //
-    //    commenView.loadNewData = ^(){
-    //
-    //        ZSLog(@"输出");
-    //        //刷新数据
-    //        [weakSelf getNewData];
-    //    };
-    //
-    
+
 }
 
 

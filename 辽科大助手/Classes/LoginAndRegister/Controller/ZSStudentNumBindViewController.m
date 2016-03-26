@@ -69,16 +69,10 @@
             //圆圈停止转动
             [self.activityIndicator stopAnimating];
             self.activityIndicator.hidden = YES;
-
-            [MBProgressHUD showMessage:@"请重新点击绑定学号按钮..."];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                //消失控制器
-                [MBProgressHUD hideHUD];
-            });
+            
+            //再次点击按钮 识别验证码
 
             
-            return ;
         } else {
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -106,6 +100,9 @@
     
     ZSTabBarController *tabBarVC = [[ZSTabBarController alloc] init];
     ZSKeyWindow.rootViewController = tabBarVC;
+    
+    //结束键盘
+    [self.view endEditing:YES];
 }
 
 /*
@@ -117,5 +114,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    
+    [self.view endEditing:YES];
+}
+
 
 @end

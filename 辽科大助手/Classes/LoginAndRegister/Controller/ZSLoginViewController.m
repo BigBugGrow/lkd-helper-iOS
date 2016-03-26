@@ -10,7 +10,7 @@
 #import "ZSTabBarController.h"
 #import "ZSHttpTool.h"
 #import "ZSAccount.h"
-
+#import "UpYun.h"
 #import "ZSAccountTool.h"
 
 #import "MJExtension.h"
@@ -22,8 +22,11 @@
 
 
 @interface ZSLoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
+/** 头像*/
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
 @property  (nonatomic,strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -43,7 +46,10 @@
     UIBarButtonItem *returnButtonItem = [[UIBarButtonItem alloc] init];
     returnButtonItem.title = @"返回";
     self.navigationItem.backBarButtonItem = returnButtonItem;
+    
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -101,15 +107,14 @@
 }
 
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    
+    [self.view endEditing:YES];
 }
-*/
+
+
+
 
 @end

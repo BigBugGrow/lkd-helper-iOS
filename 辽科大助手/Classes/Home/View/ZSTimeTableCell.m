@@ -134,6 +134,7 @@
     
     //2.第几节课label
 
+
     self.orderLabel.text = model.orderLesson ? [NSString stringWithFormat:@"%d",[model.orderLesson intValue] + 1]: @"--" ;
        //3.课程名label
     self.courseNameLabel.text = (model.course) ?  model.course : @"没课啦~";

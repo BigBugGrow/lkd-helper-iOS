@@ -25,6 +25,9 @@
 		522D3BE51C9D81A700A6927F /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D3BDD1C9D81A700A6927F /* SDWebImageManager+MJ.m */; settings = {ASSET_TAGS = (); }; };
 		523445B31C9E3CBC005630B7 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 523445B21C9E3CBC005630B7 /* NSString+Emoji.m */; settings = {ASSET_TAGS = (); }; };
 		523445B61C9E3D7C005630B7 /* UITextView+Extensiton.m in Sources */ = {isa = PBXBuildFile; fileRef = 523445B51C9E3D7C005630B7 /* UITextView+Extensiton.m */; settings = {ASSET_TAGS = (); }; };
+		5241578E1CA6C80F004A543E /* ZSCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241578C1CA6C80F004A543E /* ZSCourseViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		524157921CA6CC4B004A543E /* ZSInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524157911CA6CC4B004A543E /* ZSInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5244DC701CA1039500147B72 /* ZSBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5244DC5D1CA1039500147B72 /* ZSBasicViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5244DC711CA1039500147B72 /* ZSNovcltyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5244DC5F1CA1039500147B72 /* ZSNovcltyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5244DC721CA1039500147B72 /* ZSAllDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 5244DC621CA1039500147B72 /* ZSAllDynamic.m */; settings = {ASSET_TAGS = (); }; };
@@ -262,6 +265,11 @@
 		523445B21C9E3CBC005630B7 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		523445B41C9E3D7C005630B7 /* UITextView+Extensiton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extensiton.h"; sourceTree = "<group>"; };
 		523445B51C9E3D7C005630B7 /* UITextView+Extensiton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extensiton.m"; sourceTree = "<group>"; };
+		5241578B1CA6C80F004A543E /* ZSCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourseViewController.h; sourceTree = "<group>"; };
+		5241578C1CA6C80F004A543E /* ZSCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourseViewController.m; sourceTree = "<group>"; };
+		5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCourseViewController.xib; sourceTree = "<group>"; };
+		524157901CA6CC4B004A543E /* ZSInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSInfoViewController.h; sourceTree = "<group>"; };
+		524157911CA6CC4B004A543E /* ZSInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSInfoViewController.m; sourceTree = "<group>"; };
 		5244DC5C1CA1039500147B72 /* ZSBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSBasicViewController.h; sourceTree = "<group>"; };
 		5244DC5D1CA1039500147B72 /* ZSBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSBasicViewController.m; sourceTree = "<group>"; };
 		5244DC5E1CA1039500147B72 /* ZSNovcltyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNovcltyViewController.h; sourceTree = "<group>"; };
@@ -724,6 +732,8 @@
 				5244DC7B1CA1050000147B72 /* ZSCommenViewController.xib */,
 				52FE8C491CA2B8E60042A92C /* ZSMyNovcltyViewController.h */,
 				52FE8C4A1CA2B8E60042A92C /* ZSMyNovcltyViewController.m */,
+				524157901CA6CC4B004A543E /* ZSInfoViewController.h */,
+				524157911CA6CC4B004A543E /* ZSInfoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1261,6 +1271,9 @@
 				EFD44CFC1C167CA60016A602 /* ZSInquireWebViewController.m */,
 				525F32C61C8556A000014A64 /* ZSDetailWeatherViewController.h */,
 				525F32C71C8556A000014A64 /* ZSDetailWeatherViewController.m */,
+				5241578B1CA6C80F004A543E /* ZSCourseViewController.h */,
+				5241578C1CA6C80F004A543E /* ZSCourseViewController.m */,
+				5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1889,6 +1902,7 @@
 				529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */,
 				521A9E7E1C9E844F00BD3024 /* ZSPublishView.xib in Resources */,
 				EFE9D89B1C0DABAE0072A4F7 /* ZSMyInfoHeader.xib in Resources */,
+				5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */,
 				5267759E1C9FF73500C55191 /* ZSEmotionPopView.xib in Resources */,
 				EF4B1B8A1C3E3284000A48F2 /* ZSRegisterViewController.xib in Resources */,
 				525D3EF41C9E5449007AF860 /* EmotionIcons in Resources */,
@@ -2002,6 +2016,7 @@
 				EFE9D8A81C0E4DB80072A4F7 /* ZSNewFeatureController.m in Sources */,
 				EF2AB60C1C0F17A500DB93FC /* MJIvar.m in Sources */,
 				529D09521C8669AB00DE8C7F /* ZSDetailWeatherCell.m in Sources */,
+				5241578E1CA6C80F004A543E /* ZSCourseViewController.m in Sources */,
 				EFE538271C15242C00A2B6EF /* ZSLoginTool.m in Sources */,
 				52857AAE1C9D7F2200F44C27 /* POPAnimationExtras.mm in Sources */,
 				522D3BE11C9D81A700A6927F /* MJPhotoLoadingView.m in Sources */,
@@ -2058,6 +2073,7 @@
 				EFD44D5B1C18674D0016A602 /* ZSNewsWebViewController.m in Sources */,
 				EF2AB6321C0F4B1600DB93FC /* ZSAccountTool.m in Sources */,
 				EF4B1B981C3EA7AD000A48F2 /* ZSStudentNumBindViewController.m in Sources */,
+				524157921CA6CC4B004A543E /* ZSInfoViewController.m in Sources */,
 				EF99E8821C0D06EE002ACD9D /* ZSModel.m in Sources */,
 				526775991C9FF73500C55191 /* ZSEmotionButton.m in Sources */,
 				525021D11C9ECA2C008F2526 /* UPHTTPBodyPart.m in Sources */,

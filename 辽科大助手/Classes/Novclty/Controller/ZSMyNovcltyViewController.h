@@ -6,7 +6,7 @@
 //  Copyright © 2016年 USTL. All rights reserved.
 //
 
-#import "ZSBasicViewController.h"
+#import "ZSMyNovcltyViewController.h"
 #import "ZSAllDynamic.h"
 
 @interface ZSMyNovcltyViewController : UITableViewController

@@ -100,7 +100,7 @@
     
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor grayColor];
-    label.text = @"密名发表";
+    label.text = @"匿名发表";
     label.font = [UIFont systemFontOfSize:14];
     label.width = 80;
     label.height = 30;

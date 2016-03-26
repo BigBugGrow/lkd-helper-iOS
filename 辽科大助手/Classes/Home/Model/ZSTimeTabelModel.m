@@ -10,4 +10,10 @@
 
 @implementation ZSTimeTabelModel
 
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@, %@, %@, %@, %@",self.classroom, self.mark, self.course, self.orderLesson, self.timeOfLesson];
+}
+
 @end

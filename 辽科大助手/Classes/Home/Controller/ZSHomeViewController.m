@@ -156,10 +156,10 @@
     //得到账户信息
     ZSAccount *account = [ZSAccountTool account];
     
-    if ([account.zjh isEqualToString:@"null"]) {
-        return;
-    }
-    
+//    if ([account.hasTimetable isEqualToString:@"no"]) {
+//        return;
+//    }
+//    
     //初始化课表数据
     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
@@ -168,7 +168,7 @@
     
     //星期几
     long weekday = currentDay.weekday - 1;
-    if (weekday == 0) weekday = 7;
+
     
     ZSLog(@"一周中第几天%ld", weekday);
     
@@ -182,23 +182,41 @@
 //    NSLog(@"ccc%@",currentDay);
     
     
-    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
+//    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
+    
+    ZSLog(@"%@", account.timetable);
     
     
-    //1.得到当天的课表字典
-    NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
+    if (![account.hasTimetable isEqualToString:@"no"]) {
+        
+        //1.得到当天的课表字典
+        NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
+        
+        ZSLog(@"%@", dayDict);
+        
+        ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];
+        ZSTimeTabelModel *timetable1 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@1]];
+        ZSTimeTabelModel *timetable2 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@2]];
+        ZSTimeTabelModel *timetable3 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@3]];
+        ZSTimeTabelModel *timetable4 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@4]];
+        
+        
+        ZSHomeGroupModel *group1 = [[ZSHomeGroupModel alloc] init];
+        group1.items = @[timetable0,timetable1,timetable2,timetable3,timetable4];
+        
+        self.cellData[0] = group1;
+        
+    } else {
+        
+        ZSTimeTabelModel *timetable = [[ZSTimeTabelModel alloc] init];
+        ZSHomeGroupModel *group1 = [[ZSHomeGroupModel alloc] init];
+        group1.items = @[timetable,timetable,timetable,timetable,timetable];
+        
+        self.cellData[0] = group1;
+    
+    }
+    
 
-    ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];
-    ZSTimeTabelModel *timetable1 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@1]];
-    ZSTimeTabelModel *timetable2 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@2]];
-    ZSTimeTabelModel *timetable3 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@3]];
-    ZSTimeTabelModel *timetable4 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@4]];
-    
-    ZSHomeGroupModel *group1 = [[ZSHomeGroupModel alloc] init];
-    group1.items = @[timetable0,timetable1,timetable2,timetable3,timetable4];
-    
-    self.cellData[0] = group1;
-    
     [self.tableView reloadData];
     
     //结束下拉刷新
@@ -257,10 +275,8 @@
 
 - (void)weatherDetailController
 {
-    
+    //详细天气界面
     ZSDetailWeatherViewController *detailWeatherViewController = [[ZSDetailWeatherViewController alloc] init];
-    
-//    [self.navigationController presentViewController:detailWeatherViewController animated:YES completion:nil];
     
     detailWeatherViewController.title = @"详细天气";
     

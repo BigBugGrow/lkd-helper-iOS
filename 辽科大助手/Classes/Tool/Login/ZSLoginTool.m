@@ -39,30 +39,22 @@
         //        //字符串转字典数组
         //        NSArray *dictArr = [NSString stringTimeTableConvertToDictArray:responseObject[@"timetable"]];
         
+        
+        
         NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
         //warning 新接口返回的课表中的周，还是以字符串形式返回的，还是得重新处理，烦人
         
-//        NSLog(@"%@",accountDict);
-//        
-//        ZSLog(@"%@", accountDict[@"timetable"]);
-//        
-        if ([accountDict[@"timetable"] count] == 0) {
+        if ([accountDict[@"hasTimetable"] isEqualToString:@"no"]) {
             
             ZSLog(@"课程表没有值");
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [MBProgressHUD showMessage:@"请邦定学号再登录"];
-            });
-            
-            [MBProgressHUD hideHUD];
+//            return ;
             
         } else {
             
             //初始化一个 课表 的可变数组
             NSMutableArray *timetableArrayM = [NSMutableArray arrayWithArray:accountDict[@"timetable"]];
             int i = 0;
-            
+
             for (NSMutableDictionary *d in accountDict[@"timetable"]) {
                 
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:d];
@@ -102,7 +94,10 @@
         //字典转模型
         ZSAccount *account = [ZSAccount objectWithKeyValues:accountDict];
         
-        if (success) { 
+        ZSLog(@"%@", account.hasTimetable);
+        
+        if (success) {
+            
             success(account.state);
             
             if (account.state == 100) {
