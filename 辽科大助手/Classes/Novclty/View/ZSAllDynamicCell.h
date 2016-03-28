@@ -14,7 +14,6 @@
 
 /** 通知控制器push到myNovcltyController*/
 - (void)pushToMyNovcltyViewController:(ZSAllDynamicCell *)allDynamicCell nickName:(NSString *)nickName;
-
 @end
 
 @interface ZSAllDynamicCell : UITableViewCell

@@ -23,6 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
     
 //    //判断当前是否有新的版本，如果有，进入新特性界面
 //    ZSNewFeatureController *newFeatureVC = [[ZSNewFeatureController alloc] init];

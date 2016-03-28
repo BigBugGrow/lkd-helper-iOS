@@ -281,6 +281,13 @@ static NSString * const commentID = @"commentCell";
     // Dispose of any resources that can be recreated.
 }
 
+//设置导航栏为白色
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
 #pragma mark - UITableViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView

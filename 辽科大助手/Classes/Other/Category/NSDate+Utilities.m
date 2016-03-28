@@ -478,13 +478,23 @@ static const unsigned componentFlags = (NSYearCalendarUnit| NSMonthCalendarUnit 
 - (NSInteger) week
 {
 	NSDateComponents *components = [[NSDate currentCalendar] components:componentFlags fromDate:self];
+    
+    
+    
 	return components.week;
 }
 
 - (NSInteger) weekday
 {
 	NSDateComponents *components = [[NSDate currentCalendar] components:componentFlags fromDate:self];
-	return components.weekday;
+    
+    
+    NSInteger weekDay = components.weekday - 1;
+    
+    if (weekDay == 0) weekDay = 7;
+    
+    return weekDay;
+    
 }
 
 - (NSInteger) nthWeekday // e.g. 2nd Tuesday of the month is 2

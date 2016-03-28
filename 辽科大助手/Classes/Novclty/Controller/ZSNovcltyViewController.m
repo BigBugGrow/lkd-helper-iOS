@@ -29,6 +29,13 @@
 
 @implementation ZSNovcltyViewController
 
+//设置导航栏为白色
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

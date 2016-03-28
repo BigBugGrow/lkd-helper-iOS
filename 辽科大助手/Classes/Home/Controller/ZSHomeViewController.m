@@ -31,6 +31,7 @@
 
 #import "ZSInquireWebViewController.h"
 #import "ZSDetailWeatherViewController.h"
+#import "ZSCourseViewController.h"
 
 
 @interface ZSHomeViewController ()<ZSWeatherViewDelegate>
@@ -44,6 +45,9 @@
 @property (nonatomic,strong)ZSTimeTableCell *timeTable;
 
 @property (nonatomic,assign)long currentWeek;
+
+/**account*/
+@property (nonatomic, strong) ZSAccount *account;
 
 @end
 
@@ -65,10 +69,17 @@
     return  _weatherData;
 }
 
+//设置导航栏为白色
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     //设置导航栏按钮
     [self setUpNavigtionItem];
@@ -155,6 +166,7 @@
 {
     //得到账户信息
     ZSAccount *account = [ZSAccountTool account];
+    self.account = account;
     
 //    if ([account.hasTimetable isEqualToString:@"no"]) {
 //        return;
@@ -164,13 +176,12 @@
     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
     
-    ZSLog(@"%@", currentDay);
     
     //星期几
     long weekday = currentDay.weekday - 1;
 
     
-    ZSLog(@"一周中第几天%ld", weekday);
+//    ZSLog(@"一周中第几天%ld", weekday);
     
 #warning 这里周数计算有问题
     //第几周
@@ -184,15 +195,11 @@
     
 //    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
     
-    ZSLog(@"%@", account.timetable);
-    
-    
     if (![account.hasTimetable isEqualToString:@"no"]) {
         
         //1.得到当天的课表字典
         NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
         
-        ZSLog(@"%@", dayDict);
         
         ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];
         ZSTimeTabelModel *timetable1 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@1]];
@@ -334,6 +341,8 @@
     ZSHomeGroupModel *group = self.cellData[indexPath.section];
     ZSInquireModel *item = group.items[indexPath.row];
     
+    ZSCourseViewController *courseViewController = [[ZSCourseViewController alloc] init];
+    
     if (indexPath.section == 1) {
         
         if(item.class) {
@@ -343,35 +352,49 @@
 //            ZSAccount *account = [ZSAccountTool account];
             switch (indexPath.row + 1) {
                 case 1:
-                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/timetable"];
+//                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/timetable"];
+                    
+                    [self.navigationController pushViewController:courseViewController animated:YES];
+                    
                     break;
                 case 2:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/teachingEvaluation"];
+                    
+                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
 
                 case 3:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/selectclass"];
+                    
+                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
 
                 case 4:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/ExamApply"];
+                    
+                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
                 case 5:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/score"];
+                    
+                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
                     
                 case 6:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/EmptyClassroom"];
+                    
+                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
     
                 case 7:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/TrainingPlan"];
+                    
+                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
                 default:
                     break;
             }
         
-            [self.navigationController pushViewController:inquireVC animated:YES];
         }
     }
     

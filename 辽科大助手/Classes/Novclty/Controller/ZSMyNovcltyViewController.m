@@ -16,6 +16,8 @@
 #import "ZSAllDynamic.h"
 #import "ZSInfoViewController.h"
 
+#define HMTopViewH 300
+
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSMyNovcltyViewController ()<commenViewControllerDelegate>
@@ -40,10 +42,19 @@
 /**cell*/
 @property (nonatomic, strong) ZSAllDynamicCell *cell;
 
+/** topView*/
+@property (nonatomic, weak) UIImageView *topView;
 
 @end
 
 @implementation ZSMyNovcltyViewController
+
+//设置导航栏为白色
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 /** 懒加载*/
 - (NSMutableArray *)allDynamicFrames
@@ -70,7 +81,7 @@
     
     //初始化headerView
     [self initHeaderView];
-    
+
 }
 
 /** 初始化headerView*/
@@ -80,25 +91,69 @@
     //headerView的大背景
     UIView *headerView = [[UIView alloc] init];
     headerView.width = ZSScreenW;
-    headerView.height = 330;
+    headerView.height = 90;
     headerView.x = 0;
     headerView.y = 0;
+    
+    
+    //添加文字说明
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @" 全部动态";
+    label.font = [UIFont systemFontOfSize:15];
+    label.textColor = [UIColor grayColor];
+    label.width = ZSScreenW;
+    label.height = 30;
+    label.x = 0;
+    label.y = headerView.height - 1 - label.height - 5;
+    
+    //添加分割线
+    UIView *topLine = [[UIView alloc] init];
+    topLine.backgroundColor = [UIColor lightGrayColor];
+    topLine.width = 65;
+    topLine.height = 1;
+    topLine.x = 0;
+    topLine.y = headerView.height - topLine.height - label.height - 5;
+    
+
+    UIView *buttomLine = [[UIView alloc] init];
+    buttomLine.backgroundColor = topLine.backgroundColor;
+    buttomLine.width = 65;
+    buttomLine.height = 1;
+    buttomLine.x = 0;
+    buttomLine.y = headerView.height - 1 - 5;
+
+    [headerView addSubview:topLine];
+    [headerView addSubview:buttomLine];
+    [headerView addSubview:label];
+    
+    UILabel *middleLabel = [[UILabel alloc] init];
+    middleLabel.text = @"下拉会放大图片哦";
+    middleLabel.frame = CGRectMake(0, headerView.height - 75, ZSScreenW, 30);
+    middleLabel.textAlignment = NSTextAlignmentCenter;
+    middleLabel.textColor = [UIColor lightGrayColor];
+    middleLabel.font = label.font;
+    [headerView addSubview:middleLabel];
+    
     
     //大图片
     UIImageView *myImage = [[UIImageView alloc] init];
     myImage.width = ZSScreenW;
     myImage.height = 300;
     myImage.x = 0;
-    myImage.y = 0;
+    myImage.y = -HMTopViewH;
+    
+    // 设置内边距(让cell往下移动一段距离)
+    self.tableView.contentInset = UIEdgeInsetsMake(HMTopViewH * 0.5, 0, 0, 0);
+    self.topView = myImage;
     
     //网址
     NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg", self.whoNickName];
     
     [myImage sd_setImageWithURL:[NSURL URLWithString:urlStr]];
-    myImage.backgroundColor = [UIColor blackColor];
-    [headerView addSubview:myImage];
-    self.tableView.tableHeaderView = headerView;
     
+    [headerView addSubview:myImage];
+    
+    self.tableView.tableHeaderView = headerView;
     
     //边界宽度
     CGFloat marginWidth = 20;
@@ -109,9 +164,12 @@
     smallImageView.width = 60;
     smallImageView.height = 60;
     smallImageView.x = ZSScreenW - marginWidth - smallImageView.width;
-    smallImageView.y = myImage.height * 0.85;
+    smallImageView.centerY = myImage.height * 0.9 + 15;
+    
     
     //激活图片点击事件
+    headerView.userInteractionEnabled = YES;
+    myImage.userInteractionEnabled = YES;
     smallImageView.userInteractionEnabled = YES;
     [smallImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRightBtn)]];
     
@@ -129,8 +187,6 @@
         smallImageView.image = picture;
         
     }];
-    
-    myImage.userInteractionEnabled = YES;
     
     [myImage addSubview:smallImageView];
     
@@ -323,10 +379,13 @@
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backIndicatorImage = nil;
     
-    
+    //添加导航栏右边按钮
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
-    
     self.navigationItem.rightBarButtonItem = rightButton;
+    
+    //去掉分界线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     
 }
 /** */
@@ -391,6 +450,24 @@
     //刷新数据
     [self getNewData];
 }
+
+#pragma mark - UISCrollView的代理方法
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 向下拽了多少距离
+    CGFloat down = -(HMTopViewH * 0.5) - scrollView.contentOffset.y;
+    if (down < 0) return;
+    
+    CGRect frame = self.topView.frame;
+    // 5决定图片变大的速度,值越大,速度越快
+    frame.size.width = ZSScreenW + down * 0.2;
+    frame.size.height = HMTopViewH + down * 0.8;
+    self.topView.frame = frame;
+    
+    
+}
+
 
 
 @end

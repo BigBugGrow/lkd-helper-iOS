@@ -44,6 +44,13 @@
 
 @implementation ZSBasicViewController
 
+//设置导航栏为白色
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
 /** 懒加载*/
 - (NSMutableArray *)allDynamicFrames
 {

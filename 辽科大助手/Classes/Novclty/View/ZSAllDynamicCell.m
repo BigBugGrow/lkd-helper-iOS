@@ -54,6 +54,8 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        
+        
         /** 容器*/
         UIView *containerView = [[UIView alloc] init];
         self.containerView = containerView;

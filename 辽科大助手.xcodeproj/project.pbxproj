@@ -28,6 +28,7 @@
 		5241578E1CA6C80F004A543E /* ZSCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241578C1CA6C80F004A543E /* ZSCourseViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		524157921CA6CC4B004A543E /* ZSInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524157911CA6CC4B004A543E /* ZSInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		524471B41CA7D0E000B8D2E6 /* ZSCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524471B31CA7D0E000B8D2E6 /* ZSCourseView.m */; settings = {ASSET_TAGS = (); }; };
 		5244DC701CA1039500147B72 /* ZSBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5244DC5D1CA1039500147B72 /* ZSBasicViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5244DC711CA1039500147B72 /* ZSNovcltyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5244DC5F1CA1039500147B72 /* ZSNovcltyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5244DC721CA1039500147B72 /* ZSAllDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 5244DC621CA1039500147B72 /* ZSAllDynamic.m */; settings = {ASSET_TAGS = (); }; };
@@ -270,6 +271,8 @@
 		5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCourseViewController.xib; sourceTree = "<group>"; };
 		524157901CA6CC4B004A543E /* ZSInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSInfoViewController.h; sourceTree = "<group>"; };
 		524157911CA6CC4B004A543E /* ZSInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSInfoViewController.m; sourceTree = "<group>"; };
+		524471B21CA7D0E000B8D2E6 /* ZSCourseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourseView.h; sourceTree = "<group>"; };
+		524471B31CA7D0E000B8D2E6 /* ZSCourseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourseView.m; sourceTree = "<group>"; };
 		5244DC5C1CA1039500147B72 /* ZSBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSBasicViewController.h; sourceTree = "<group>"; };
 		5244DC5D1CA1039500147B72 /* ZSBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSBasicViewController.m; sourceTree = "<group>"; };
 		5244DC5E1CA1039500147B72 /* ZSNovcltyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNovcltyViewController.h; sourceTree = "<group>"; };
@@ -1302,6 +1305,8 @@
 				EFB6CA5F1C1111230065BAF8 /* ZSTimeTableCell.m */,
 				EFB6CA661C1111D20065BAF8 /* ZSInquireCell.h */,
 				EFB6CA671C1111D20065BAF8 /* ZSInquireCell.m */,
+				524471B21CA7D0E000B8D2E6 /* ZSCourseView.h */,
+				524471B31CA7D0E000B8D2E6 /* ZSCourseView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2047,6 +2052,7 @@
 				EF2AB6051C0F17A500DB93FC /* AFURLResponseSerialization.m in Sources */,
 				EF2AB6121C0F17A500DB93FC /* MJRefreshBaseView.m in Sources */,
 				EF2AB5FF1C0F17A500DB93FC /* AFHTTPRequestOperationManager.m in Sources */,
+				524471B41CA7D0E000B8D2E6 /* ZSCourseView.m in Sources */,
 				525021D31C9ECA2C008F2526 /* UPMultipartBody.m in Sources */,
 				5244DC701CA1039500147B72 /* ZSBasicViewController.m in Sources */,
 				EF2AB5FE1C0F17A500DB93FC /* AFHTTPRequestOperation.m in Sources */,

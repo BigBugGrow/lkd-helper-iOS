@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSCourseViewController">
             <connections>
+                <outlet property="backGroudImageView" destination="vbf-AX-dtI" id="vtf-Tj-ksg"/>
+                <outlet property="plusBtn" destination="5qV-Gf-Lv0" id="UYQ-cN-x4v"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,18 +17,61 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vbf-AX-dtI">
-                    <rect key="frame" x="0.0" y="99" width="320" height="424"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="vbf-AX-dtI">
+                    <rect key="frame" x="0.0" y="40" width="320" height="483"/>
+                    <color key="backgroundColor" red="0.86902592320000005" green="1" blue="0.61608212259999995" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qV-Gf-Lv0">
+                    <rect key="frame" x="137.5" y="523" width="45" height="45"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="hsZ-qT-pWE"/>
+                    </constraints>
+                    <state key="normal" image="eye">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clcikPlusBtn" destination="-1" eventType="touchUpInside" id="xvd-xs-Ks8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xm-5O-RwQ">
+                    <rect key="frame" x="0.0" y="523" width="137.5" height="45"/>
+                    <state key="normal" title="上周课表"/>
+                    <connections>
+                        <action selector="clickLastCourseBtn" destination="-1" eventType="touchUpInside" id="En3-d7-q1j"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qy5-yH-EFO">
+                    <rect key="frame" x="182.5" y="523" width="137.5" height="45"/>
+                    <state key="normal" title="下周课表"/>
+                    <connections>
+                        <action selector="clickNextCourseBtn" destination="-1" eventType="touchUpInside" id="OTf-aB-rHf"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Qy5-yH-EFO" secondAttribute="bottom" id="0ZW-jS-wB9"/>
+                <constraint firstItem="7xm-5O-RwQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Dt-yy-uYI"/>
                 <constraint firstItem="vbf-AX-dtI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3Ef-aa-k57"/>
-                <constraint firstItem="vbf-AX-dtI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="99" id="Gfj-NK-zqf"/>
+                <constraint firstItem="vbf-AX-dtI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="Gfj-NK-zqf"/>
+                <constraint firstItem="Qy5-yH-EFO" firstAttribute="leading" secondItem="5qV-Gf-Lv0" secondAttribute="trailing" id="HTG-BY-Eb8"/>
                 <constraint firstAttribute="bottom" secondItem="vbf-AX-dtI" secondAttribute="bottom" constant="45" id="Q4V-pz-F3E"/>
+                <constraint firstItem="Qy5-yH-EFO" firstAttribute="top" secondItem="vbf-AX-dtI" secondAttribute="bottom" id="Xyn-O6-hHg"/>
+                <constraint firstItem="7xm-5O-RwQ" firstAttribute="top" secondItem="vbf-AX-dtI" secondAttribute="bottom" id="Y6N-LG-uiQ"/>
+                <constraint firstItem="5qV-Gf-Lv0" firstAttribute="top" secondItem="vbf-AX-dtI" secondAttribute="bottom" id="apR-QG-Cc2"/>
+                <constraint firstAttribute="bottom" secondItem="5qV-Gf-Lv0" secondAttribute="bottom" id="e1w-Kf-WHv"/>
+                <constraint firstItem="5qV-Gf-Lv0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hJU-kD-j6g"/>
+                <constraint firstAttribute="trailing" secondItem="Qy5-yH-EFO" secondAttribute="trailing" id="kXg-KY-ybQ"/>
+                <constraint firstItem="5qV-Gf-Lv0" firstAttribute="leading" secondItem="7xm-5O-RwQ" secondAttribute="trailing" id="kua-AU-k3b"/>
                 <constraint firstAttribute="trailing" secondItem="vbf-AX-dtI" secondAttribute="trailing" id="syz-aj-tFU"/>
+                <constraint firstAttribute="bottom" secondItem="7xm-5O-RwQ" secondAttribute="bottom" id="wpA-7O-EBt"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="back" width="320" height="568"/>
+        <image name="eye" width="50" height="50"/>
+    </resources>
 </document>

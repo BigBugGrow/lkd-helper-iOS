@@ -18,20 +18,42 @@
 
 @implementation ZSNavigationController
 
-+ (void)initialize
+//+ (void)initialize
+//{
+//
+////    UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];
+//    
+//    
+//    UINavigationBar *bar = [[UINavigationBar alloc] init];
+//    
+//    [bar setBackgroundImage:[UIImage imageNamed:@"blue"] forBarMetrics:UIBarMetricsDefault];
+//    NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
+//    titleAttr[NSForegroundColorAttributeName] = [UIColor whiteColor];
+//    titleAttr[NSFontAttributeName] = [UIFont systemFontOfSize:20];
+//    bar.titleTextAttributes = titleAttr;
+//    
+//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+//    
+//
+//}
+
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
+    if (self = [super initWithRootViewController:rootViewController]) {
+        
+//        UINavigationBar *bar = [[UINavigationBar alloc] init];
+        
+        [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"blue"] forBarMetrics:UIBarMetricsDefault];
+        NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
+        titleAttr[NSForegroundColorAttributeName] = [UIColor whiteColor];
+        titleAttr[NSFontAttributeName] = [UIFont systemFontOfSize:20];
+        self.navigationBar.titleTextAttributes = titleAttr;
+        
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        
 
-    UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];
-    
-    [bar setBackgroundImage:[UIImage imageNamed:@"blue"] forBarMetrics:UIBarMetricsDefault];
-    NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
-    titleAttr[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    titleAttr[NSFontAttributeName] = [UIFont systemFontOfSize:20];
-    bar.titleTextAttributes = titleAttr;
-    
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    
-
+    }
+    return self;
 }
 
 
