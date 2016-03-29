@@ -25,12 +25,15 @@
 
 @interface ZSNewsInfo : NSObject
 
-@property (nonatomic,strong)NSNumber *id;
+@property (nonatomic,strong)NSNumber *ID;
 @property (nonatomic,copy)NSString *title;
-@property (nonatomic,copy)NSString *time;
+@property (nonatomic,copy)NSString *date;
 @property (nonatomic,copy)NSString *pic;
 @property (nonatomic,copy)NSString *text;
+/** 文章*/
+@property (nonatomic, copy) NSString *summary;
+
 @property (nonatomic,copy)NSString *url;
-@property (nonatomic,strong)NSNumber *commentnum;
+@property (nonatomic,strong)NSNumber *commentNum;
 
 @end

@@ -26,6 +26,8 @@
 //6.评论按钮
 @property (nonatomic,weak)UIButton *commentButton;
 
+/** 总的view容器*/
+@property (nonatomic, weak) UIView *containerView;
 @end
 
 @implementation ZSNewsCell
@@ -44,44 +46,78 @@
 
 - (void)setUpAllChildView
 {
+    
+    //0. 容器
+    UIView *containerView = [[UIView alloc] init];
+    containerView.backgroundColor = [UIColor whiteColor];
+    self.containerView = containerView;
+    
+    //圆角设置
+    
+    containerView.layer.cornerRadius = 8;
+    
+    containerView.layer.masksToBounds = YES;
+    
+    //边框宽度及颜色设置
+    [containerView.layer setBorderWidth:10];
+    
+    [containerView.layer setBorderColor:(__bridge CGColorRef _Nullable)([UIColor whiteColor])];  //设置边框为蓝色
+    [self addSubview:containerView];
+    
     //1.标题label
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.font = ZSCourseNameFont;
-    [self addSubview:titleLabel];
+    [containerView addSubview:titleLabel];
     _titleLabel = titleLabel;
     
     //2.日期label
     UILabel *dateLabel = [[UILabel alloc] init];
     dateLabel.textColor = [UIColor grayColor];
     dateLabel.font = ZSTextFont;
-    [self addSubview:dateLabel];
+    [containerView addSubview:dateLabel];
     _dateLabel = dateLabel;
     
     //3.图片imageView
-    UIImageView *image = [[UIImageView alloc] init];
-    [self addSubview:image];
-    _image = image;
+    UIImageView *imageView = [[UIImageView alloc] init];
+    //圆角设置
+    
+    imageView.layer.cornerRadius = 8;
+    
+    imageView.layer.masksToBounds = YES;
+    
+    //边框宽度及颜色设置
+    [imageView.layer setBorderWidth:10];
+    
+    [imageView.layer setBorderColor:(__bridge CGColorRef _Nullable)([UIColor whiteColor])];  //设置边框为蓝色
+
+    //自动适应,保持图片宽高比
+//    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [containerView addSubview:imageView];
+    _image = imageView;
     
     //4.正文第一句label
     UILabel *text = [[UILabel alloc] init];
     text.textColor = [UIColor grayColor];
     text.font = ZSTextFont;
-    [self addSubview:text];
+    text.numberOfLines = 0;
+    [containerView addSubview:text];
     _text = text;
     
     //5.点击查看原文label
     UILabel *tipLabel = [[UILabel alloc] init];
     tipLabel.textColor = [UIColor blackColor];
     tipLabel.font = ZSTextFont;
-    [self addSubview:tipLabel];
+    [containerView addSubview:tipLabel];
     _tipLabel = tipLabel;
     
     //6.评论按钮
-    UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self addSubview:commentButton];
-    _commentButton = commentButton;
+//    UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [self addSubview:commentButton];
+//    _commentButton = commentButton;
+    
+    
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView
@@ -112,46 +148,54 @@
 
 - (void)setUpFrame
 {
+    
+    CGFloat containerViewX = marginOfCell;
+    CGFloat containerViewY = marginOfCell;
+    CGFloat containerViewW = ScreenWidth - 2 * marginOfCell;
+    CGFloat containerViewH = 290;
+    self.containerView.frame = CGRectMake(containerViewX, containerViewY, containerViewW, containerViewH);
+    
     //1.标题label
-    CGFloat titleLabelX = ZSSCellMargin;
+    CGFloat titleLabelX = 10;
     CGFloat titleLabelY = ZSSCellMargin;
-    CGFloat titleLabelW = ScreenWidth - 2 * marginOfCell;
+    CGFloat titleLabelW = containerViewW;
     CGFloat titleLabelH = 25;
     self.titleLabel.frame = CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
 
     //2.日期label
-    CGFloat dateLabelX = ZSSCellMargin;
+    CGFloat dateLabelX = marginOfCell * 2;
     CGFloat dateLabelY = CGRectGetMaxY(self.titleLabel.frame) + marginOfCell;
-    CGFloat dateLabelW = 60;
+    CGFloat dateLabelW = containerViewW;
     CGFloat dateLabelH = cellTextHeigt;
     self.dateLabel.frame = CGRectMake(dateLabelX, dateLabelY, dateLabelW, dateLabelH);
     
     //3.图片imageView
-    CGFloat imageX = ZSSCellMargin;
+    CGFloat imageX = 0;
     CGFloat imageY = CGRectGetMaxY(self.dateLabel.frame) + marginOfCell;
-    CGFloat imageW = ScreenWidth - 2 * ZSSCellMargin;
-    CGFloat imageH = 120;
+    CGFloat imageW = containerViewW;
+    CGFloat imageH = 150;
     self.image.frame = CGRectMake(imageX, imageY, imageW, imageH);
     
     //4.正文第一句label
-    CGFloat textX = ZSSCellMargin;
+    CGFloat textX = marginOfCell;
     CGFloat textY = CGRectGetMaxY(self.image.frame) + marginOfCell;
-    CGFloat textW = ScreenWidth - 2 * marginOfCell;
+    CGFloat textW = containerViewW;
     CGFloat textH = cellTextHeigt;
     self.text.frame = CGRectMake(textX, textY, textW, textH);
     //5.点击查看原文label
-    CGFloat tipLabelX = ZSSCellMargin;
+    CGFloat tipLabelX = 10;
     CGFloat tipLabelY = CGRectGetMaxY(self.text.frame) + marginOfCell;
-    CGFloat tipLabelW = 80;
-    CGFloat tipLabelH = cellTextHeigt;
+    CGFloat tipLabelW = containerViewW;
+    CGFloat tipLabelH = 20;
+
     self.tipLabel.frame = CGRectMake(tipLabelX,tipLabelY,tipLabelW, tipLabelH);
     
-    //6.评论按钮
-    CGFloat commentButtonX = ScreenWidth - 40;
-    CGFloat commentButtonY = CGRectGetMaxY(self.text.frame);
-    CGFloat commentButtonW = 35;
-    CGFloat commentButtonH = 30;
-    self.commentButton.frame = CGRectMake(commentButtonX,commentButtonY,commentButtonW, commentButtonH);
+//    //6.评论按钮
+//    CGFloat commentButtonX = ScreenWidth - 40;
+//    CGFloat commentButtonY = CGRectGetMaxY(self.text.frame);
+//    CGFloat commentButtonW = 35;
+//    CGFloat commentButtonH = 30;
+//    self.commentButton.frame = CGRectMake(commentButtonX,commentButtonY,commentButtonW, commentButtonH);
 }
 
 - (void)setUpDataWithModel:(ZSNewsInfo *)model
@@ -160,7 +204,7 @@
     _titleLabel.text = model.title;
     
     //2.日期label
-    _dateLabel.text = model.time;
+    _dateLabel.text = model.date;
     
 //    //3.图片imageView
 //    NSString *url = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/%@/%@.jpg",self.newsPictureType,model.pic];
@@ -178,17 +222,17 @@
 //    }];
     
     //4.正文第一句label
-    _text.text = model.text;
+    _text.text = [NSString stringWithFormat:@"   %@", model.summary];
     
     //5.点击查看原文label
-    _tipLabel.text = @"点击查看原文";
+    _tipLabel.text = @"点击查看全文";
     
     //6.评论按钮
 
 
-    [_commentButton setTitle:[NSString stringWithFormat:@"%@",model.commentnum] forState:UIControlStateNormal];
-    [_commentButton setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
-    [_commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [_commentButton setTitle:[NSString stringWithFormat:@"%@",model.commentNum] forState:UIControlStateNormal];
+//    [_commentButton setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
+//    [_commentButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
 

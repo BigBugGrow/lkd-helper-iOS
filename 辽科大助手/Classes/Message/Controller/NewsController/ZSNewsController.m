@@ -11,7 +11,6 @@
 #import "ZSNewsResult.h"
 #import "ZSNewsDataTool.h"
 
-#import "ZSNewsDataTool.h"
 #import "ZSNewsTool.h"
 #import "ZSNewsInfo.h"
 
@@ -39,15 +38,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.navigationItem.title = @"新鲜事儿";
+    
+    //开始加载数据
    [self latestNewsDataSaved];
     
+    
+    //添加下拉刷新
     [self.tableView addHeaderWithTarget:self action:@selector(requestLatestNewsData)];
     
-    self.tableView.rowHeight = 250;
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
-
+    //cell的高度
+    self.tableView.rowHeight = 300;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-  //  DALog(@"%@",[ZSNewsTool newsHelperResult].latestNews);
+    //背景颜色
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
 }
 
@@ -111,7 +117,7 @@
     
     
     //3.图片imageView
-    NSString *url = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/%@/%@.jpg",self.newsPictureType,item.pic];
+    NSString *url = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNewsUstl/%@.jpg", item.pic];
     
     NSURL *URL = [NSURL URLWithString:url];
     
@@ -133,6 +139,8 @@
     ZSNewsInfo *item = self.newsArr[indexPath.row];
     
     ZSNewsWebViewController *webVC = [[ZSNewsWebViewController alloc] init];
+    
+    webVC.title = @"详情";
     
     webVC.url = item.url;
     

@@ -10,4 +10,12 @@
 
 @implementation ZSNewsParams
 
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    return @{
+             @"Class" : @"class",
+             @"item_start" : @"item"
+             };
+}
+
 @end

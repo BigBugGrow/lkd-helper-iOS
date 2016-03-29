@@ -19,7 +19,7 @@
 
 
 //cell
-#define ZSSCellMargin 20
+#define ZSSCellMargin 15
 #define ZSCourseNameFont [UIFont systemFontOfSize:15]
 #define ZSTimeFont [UIFont systemFontOfSize:12]
 #define ZSSourceFont WBTimeFont
@@ -32,6 +32,7 @@
 #define cellHeigt self.frame.size.height
 #define cellWidth self.frame.size.width
 #define cellTextHeigt 12
+#define cellDetailHeight = 50
 #define marginOfCell 10
 
 //用户名和密码和key

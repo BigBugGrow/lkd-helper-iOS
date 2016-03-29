@@ -22,30 +22,20 @@
     ZSNewsParams *params = [[ZSNewsParams alloc] init];
     params.item_start = item_start;
     params.item_end = item_end;
+    params.Class = @"ustl";
 
-    [ZSHttpTool POST:[NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=site/%@",newsType] parameters:params.keyValues success:^(id responseObject) {
+
+    [ZSHttpTool POST:[NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=news/NewsRead"] parameters:params.keyValues success:^(id responseObject) {
         
         //把网络请求到的 可变字典 转化成 字典，字典中把所有新闻存到一个数组中
 
-        int num = [responseObject[@"info_num"] intValue];
         
-        NSMutableArray *news = [NSMutableArray arrayWithCapacity:num+1];
+        ZSLog(@"%@", responseObject);
         
-        for (int i = 0; i <= num; i++) {
-            [news addObject:@"5"];
-        }
+        NSArray *news = responseObject[@"data"];
         
-        for (id key in responseObject) {
-            
-            if ([responseObject[key] isKindOfClass:[NSDictionary class]]) {
-                
-                [news replaceObjectAtIndex:[key integerValue] withObject:responseObject[key]];
-            }
-        }
-        [news removeObjectAtIndex:0];
-
+        NSMutableDictionary *newsDict =[NSMutableDictionary dictionary];
         
-        NSMutableDictionary *newsDict =[NSMutableDictionary dictionaryWithDictionary:responseObject];
         newsDict[@"latestNews"] = news;
         
         //字典转模型

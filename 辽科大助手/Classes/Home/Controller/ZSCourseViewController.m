@@ -83,10 +83,10 @@
         
         if (mouth == 4 || mouth == 6 || mouth == 9 || mouth == 11) {
             
-            criticalDay = 30;
+            return 30;
         } else {
             
-            criticalDay = 31;
+            return 31;
         }
     }
     return criticalDay;
@@ -318,7 +318,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    self.plusBtn.userInteractionEnabled = NO;
     
     
     NSDate *date = [NSDate date];

@@ -10,6 +10,9 @@
 
 @interface ZSNewsParams : NSObject
 
+
+/**class*/
+@property (nonatomic, strong) NSString *Class;
 /**
  *  请求的第一条数据
  */
