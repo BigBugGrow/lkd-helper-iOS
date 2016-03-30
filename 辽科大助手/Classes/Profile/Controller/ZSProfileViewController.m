@@ -12,7 +12,10 @@
 #import "ZSModel.h"
 #import "ZSGroupModel.h"
 
-#import "ZSMyInfoViewController.h"
+#import "ZSMyNovcltyViewController.h"
+
+
+#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSProfileViewController ()
 
@@ -24,6 +27,8 @@
 {
     [super viewDidLoad];
     [self setUpTableHeaderView:@"ZSProfileImageCell"];
+    
+    
     [self initModelData];
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -33,12 +38,12 @@
 //初始化模型数据
 - (void)initModelData
 {
-    ZSModel *item1 = [ZSModel itemWithIcon:@"me" title:@"我"detailTitle:@""  vcClass:[ZSMyInfoViewController class]];
-    ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"我的糯米粒" detailTitle:@""];
+
+    ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"我的糯米粒" detailTitle:@"" vcClass:[ZSMyNovcltyViewController class]];
     ZSModel *item3 = [ZSModel itemWithIcon:@"mylost_found" title:@"我的寻物公告" detailTitle:@""];
     
     ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
-    group1.items = @[item1,item2,item3];
+    group1.items = @[item2,item3];
     [self.cellData addObject:group1];
     
     ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置" detailTitle:@""];

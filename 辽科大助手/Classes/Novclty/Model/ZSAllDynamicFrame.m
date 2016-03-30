@@ -11,8 +11,12 @@
 #import "NSString+Extension.h"
 #import "ZSDynamicPicturesView.h"
 
+@interface ZSAllDynamicFrame ()
+
+@end
 
 @implementation ZSAllDynamicFrame
+
 
 - (void)setAllDynamic:(ZSAllDynamic *)allDynamic
 {

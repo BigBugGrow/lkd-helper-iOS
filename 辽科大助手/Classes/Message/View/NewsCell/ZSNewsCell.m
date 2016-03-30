@@ -180,7 +180,7 @@
     CGFloat textX = marginOfCell;
     CGFloat textY = CGRectGetMaxY(self.image.frame) + marginOfCell;
     CGFloat textW = containerViewW;
-    CGFloat textH = cellTextHeigt;
+    CGFloat textH = 20;
     self.text.frame = CGRectMake(textX, textY, textW, textH);
     //5.点击查看原文label
     CGFloat tipLabelX = 10;

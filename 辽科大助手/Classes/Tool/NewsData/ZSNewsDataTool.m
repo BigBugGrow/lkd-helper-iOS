@@ -30,8 +30,6 @@
         //把网络请求到的 可变字典 转化成 字典，字典中把所有新闻存到一个数组中
 
         
-        ZSLog(@"%@", responseObject);
-        
         NSArray *news = responseObject[@"data"];
         
         NSMutableDictionary *newsDict =[NSMutableDictionary dictionary];

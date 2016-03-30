@@ -16,12 +16,13 @@
 #import "ZSAllDynamic.h"
 #import "ZSInfoViewController.h"
 
+#import "ZSNovcltyTool.h"
+
 #define HMTopViewH 300
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSMyNovcltyViewController ()<commenViewControllerDelegate>
-
 
 /**
  *  动态模型数组
@@ -108,7 +109,7 @@
     
     //添加分割线
     UIView *topLine = [[UIView alloc] init];
-    topLine.backgroundColor = [UIColor lightGrayColor];
+    topLine.backgroundColor = RGBColor(242, 242, 242, 0.9);
     topLine.width = 65;
     topLine.height = 1;
     topLine.x = 0;
@@ -146,8 +147,10 @@
     self.tableView.contentInset = UIEdgeInsetsMake(HMTopViewH * 0.5, 0, 0, 0);
     self.topView = myImage;
     
+    NSString *nickNameStr = self.whoNickName ? self.whoNickName : nickName;
+    
     //网址
-    NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg", self.whoNickName];
+    NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small", nickNameStr];
     
     [myImage sd_setImageWithURL:[NSURL URLWithString:urlStr]];
     
@@ -261,13 +264,14 @@
             
             [arrayM addObject:allDynamicFrame];
             
-            //结束下拉刷新
-            [self.tableView headerEndRefreshing];
             
             //            [MBProgressHUD showMessage:@"刷新成功"];
             
         }
         [self.allDynamicFrames addObjectsFromArray:arrayM];
+        
+        //结束下拉刷新
+        [self.tableView headerEndRefreshing];
         
         //刷新表格
         [self.tableView reloadData];
@@ -289,7 +293,7 @@
 
 - (void)refreshDown
 {
-    [self.tableView headerEndRefreshing];
+    [self.tableView footerEndRefreshing];
     [self getNewData];
     
 }
@@ -300,7 +304,7 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"item"] = @"00";
-    params[@"nickname"] = self.whoNickName;
+    params[@"nickname"] = self.whoNickName ? self.whoNickName : nickName;
     
     //结束上拉刷新
     [self.tableView footerEndRefreshing];
@@ -312,8 +316,6 @@
         NSArray *dynamics = responseObject[@"data"];
         
         
-        
-        
         NSMutableArray *arrayM = [NSMutableArray array];
         
         for (NSDictionary *dict in dynamics) {
@@ -322,7 +324,7 @@
             ZSAllDynamic *dynamic = [ZSAllDynamic objectWithKeyValues:dict];
             
             //赋值自己的nickname
-            dynamic.nickname = self.whoNickName;
+            dynamic.nickname = self.whoNickName ? self.whoNickName : nickName;
             
             NSString *picPreSubStr = [dict[@"pic"] substringFromIndex:1];
             NSString *picSufSubStr = [picPreSubStr substringToIndex:picPreSubStr.length - 1];
@@ -361,6 +363,9 @@
         //刷新表格
         [self.tableView reloadData];
         
+        
+        
+        
     } failure:^(NSError *error) {
         
         ZSLog(@"获取信息失败");
@@ -375,7 +380,8 @@
 /** 初始化*/
 - (void)initNav
 {
-    self.title = [NSString stringWithFormat:@"%@的糯米粒", self.whoNickName];
+    NSString *nickNameStr = self.whoNickName ? self.whoNickName : nickName;
+    self.title = [NSString stringWithFormat:@"%@的糯米粒", nickNameStr];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backIndicatorImage = nil;
     

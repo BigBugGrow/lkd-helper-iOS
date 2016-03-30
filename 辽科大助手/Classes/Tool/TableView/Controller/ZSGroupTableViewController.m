@@ -39,7 +39,11 @@
 //配置headerView
 - (void)setUpTableHeaderView:(NSString *)headViewName
 {
-    self.tableView.tableHeaderView = [[[NSBundle mainBundle] loadNibNamed:headViewName owner:nil options:nil] lastObject];
+    UIView *headerView = [[[NSBundle mainBundle] loadNibNamed:headViewName owner:nil options:nil] lastObject];
+    
+    headerView.height = 130;
+    
+    self.tableView.tableHeaderView = headerView;
 }
 #pragma mark - Table view data source
 

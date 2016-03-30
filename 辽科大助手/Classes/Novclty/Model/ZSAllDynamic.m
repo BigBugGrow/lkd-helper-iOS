@@ -9,8 +9,13 @@
 #import "ZSAllDynamic.h"
 #import "MJExtension.h"
 
+@interface ZSAllDynamic () <NSCoding>
+
+@end
+
 @implementation ZSAllDynamic
 
+MJCodingImplementation
 
 + (NSDictionary *)replacedKeyFromPropertyName
 {

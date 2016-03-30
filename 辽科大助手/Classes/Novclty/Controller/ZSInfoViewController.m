@@ -50,7 +50,7 @@
     myImage.y = 0;
     
     //网址
-    NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg", self.whoNickName];
+    NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small", self.whoNickName];
     
     myImage.image = [UIImage imageNamed:@"about_lkdhelper"];
     myImage.backgroundColor = [UIColor blackColor];

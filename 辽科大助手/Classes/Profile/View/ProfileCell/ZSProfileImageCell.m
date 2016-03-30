@@ -8,14 +8,18 @@
 
 #import "ZSProfileImageCell.h"
 #import<QuartzCore/QuartzCore.h>
+#import "UIImageView+WebCache.h"
+
+#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSProfileImageCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *sayingLabel;
 @property (nonatomic,weak)UIButton *iconButton;
 
-@property (nonatomic,weak)UILabel *nickNameLabel;
 
 @end
 
@@ -24,39 +28,31 @@
 
 - (void)awakeFromNib {
     
-    CGFloat imageW = ScreenWidth;
-    CGFloat imageH = 134;
-    self.frame = CGRectMake(0, 64, imageW, imageH);
+    self.imgView.layer.masksToBounds = YES;
     
-    //添加头像
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //    btn.imageView.image = [UIImage circleImageWithImageName:@"tab04_bgon" borderColor:nil borderWidth:1];
-    [btn setImage:[UIImage circleImageWithImageName:@"chaoren" borderColor:nil borderWidth:1] forState:UIControlStateNormal];
-
-    self.iconButton = btn;
+    self.imgView.layer.cornerRadius = self.imgView.width * 0.5;
     
-    [self.imgView addSubview:btn];
+    self.imgView.layer.borderWidth = 0;
+    
+    self.imgView.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    /** 头像imageView*/
+    NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small",nickName];
+    
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"icon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+       
+        self.imgView.image = image;
+        
+    }];
     
     
-    //添加昵称label
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"DongAn";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor colorWithRed:109/255.0 green:128/225.0 blue:160/255.0 alpha:0.5];
-   // [label sizeToFit];
-    self.nickNameLabel = label;
-    [self.imgView addSubview:label];
+    // 昵称
+    self.nameLabel.text = nickName;
+    
+    //名言
+    self.sayingLabel.text = @"聚没有品的代言词很牛逼";
 }
 
-- (void)layoutSubviews
-{
-    self.iconButton.frame = CGRectMake(10, 60, 54, 54);
-    self.nickNameLabel.frame = CGRectMake(70, 80, 10, 15);
-    [self.nickNameLabel sizeToFit];
-    self.nickNameLabel.layer.cornerRadius = 10.0;
-    
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

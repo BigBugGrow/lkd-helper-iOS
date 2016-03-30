@@ -16,6 +16,7 @@
 #import "ZSNavigationController.h"
 #import "MJRefresh.h"
 #import "ZSMyNovcltyViewController.h"
+#import "ZSNovcltyTool.h"
 
 @interface ZSBasicViewController () <commenViewControllerDelegate, ZSAllDynamicCellDelegate>
 
@@ -33,7 +34,7 @@
 @property (nonatomic, assign) NSInteger endId;
 
 /** 上一个动态的ID*/
-@property (nonatomic, assign) NSInteger lastDynamicId;
+@property (nonatomic, assign) NSInteger lastFirstDynamicId;
 
 /**cell*/
 @property (nonatomic, strong) ZSAllDynamicCell *cell;
@@ -71,21 +72,72 @@
     //添加刷新下拉刷新
     [self settingRefresh];
     
-    //获取数据
-    [self getNewData];
-    
-    
 }
 
 /** 添加下拉刷新*/
 - (void)settingRefresh
 {
+    
     // 添加下拉刷新
     [self.tableView addHeaderWithTarget:self action:@selector(refreshDown)];
-    [self.tableView headerBeginRefreshing];
     
     //添加上拉刷新
     [self.tableView addFooterWithTarget:self action:@selector(refreshMoreData)];
+    
+    //保存过的模型数组
+    
+    NSArray *savedDynamics = [NSArray array];
+    
+    if ([self.type isEqualToString:@"all"]) {
+        
+        savedDynamics = (NSMutableArray *)[ZSNovcltyTool resentAllNovcltys];
+    
+    } else if ([self.type isEqualToString:@"discloseBoard"]) {
+        
+        
+        savedDynamics = (NSMutableArray *)[ZSNovcltyTool resentDiscloseBoardNovcltys];
+        
+    } else if ([self.type isEqualToString:@"confessionWall"]) {
+        
+        savedDynamics = (NSMutableArray *)[ZSNovcltyTool resentConfessionWallNovcltys];
+        
+    } else {
+        
+        savedDynamics = (NSMutableArray *)[ZSNovcltyTool resentTopicsNovcltys];
+    }
+    
+    if (savedDynamics.count) {
+        
+        //模型转换
+        self.allDynamicFrames = [self dynamicsTodynamicFrameArray:savedDynamics];
+        //保存上一次访问的一条数据的最后一个
+        //self.endId = [[[savedAllDynamics lastObject] ID] integerValue];
+        
+    }
+
+    [self.tableView reloadData];
+    
+    [self.tableView headerBeginRefreshing];
+    
+    
+}
+
+
+/** 转换为frame模型*/
+- (NSMutableArray *)dynamicsTodynamicFrameArray:(NSArray *)dynamics
+{
+    
+    NSMutableArray *arrayM = [NSMutableArray array];
+    
+    for (ZSAllDynamic *dynamic in dynamics) {
+        
+        ZSAllDynamicFrame *allDynamicFrame = [[ZSAllDynamicFrame alloc] init];
+        allDynamicFrame.allDynamic = dynamic;
+        
+        [arrayM addObject:allDynamicFrame];
+        
+    }
+    return arrayM;
 }
 
 - (void)refreshMoreData
@@ -130,12 +182,14 @@
             
             [arrayM addObject:allDynamicFrame];
             
-            //结束下拉刷新
-            [self.tableView headerEndRefreshing];
-            
-//            [MBProgressHUD showMessage:@"刷新成功"];
             
         }
+        
+        
+        //结束下拉刷新
+        [self.tableView headerEndRefreshing];
+        
+        
         [self.allDynamicFrames addObjectsFromArray:arrayM];
         
         //刷新表格
@@ -158,9 +212,37 @@
 
 - (void)refreshDown
 {
-    [self.tableView headerEndRefreshing];
+    [self.tableView footerEndRefreshing];
     [self getNewData];
     
+}
+
+// 添加额外数组
+- (NSArray *)getNewDynamicWithSavedArray:(NSArray *)savedDynamics newDynamicArray:(NSMutableArray *)arrayM
+{
+    //将要保存的最新的数组
+    NSMutableArray *nowDynamics = [NSMutableArray array];
+    
+    if (savedDynamics.count) {
+        
+        //第一个数据的id
+        NSInteger dynamicFirstID = [[[savedDynamics firstObject] ID] integerValue];
+        
+        for (ZSAllDynamic *allDynamic in arrayM) {
+            
+            if ([[allDynamic ID] integerValue] > dynamicFirstID) {
+                
+                //最新的加在最前面
+                [nowDynamics addObject:allDynamic];
+            }
+        }
+    } else {
+        
+        //如果保存的没有数据
+        nowDynamics = arrayM;
+    }
+
+    return nowDynamics;
 }
 
 //获取模型信息
@@ -180,8 +262,11 @@
         //保存上一次访问的一条数据的最后一个
         self.endId = [responseObject[@"endId"] integerValue];
         
+        //最新的加载的数据
         NSArray *dynamics = responseObject[@"data"];
         
+        ZSLog(@"%@", dynamics);
+        //存储dynamic的模型
         NSMutableArray *arrayM = [NSMutableArray array];
         
         for (NSDictionary *dict in dynamics) {
@@ -199,27 +284,65 @@
             } else {
                 dynamic.pic = nil;
             }
-            
-            ZSAllDynamicFrame *allDynamicFrame = [[ZSAllDynamicFrame alloc] init];
-            allDynamicFrame.allDynamic = dynamic;
-            
-            if ([dynamic.ID integerValue] > self.lastDynamicId ) {
-                
-                [arrayM addObject:allDynamicFrame];
-            } else {
-                break;
-            }
+        
+            [arrayM addObject:dynamic];
         }
         
         
-        NSRange range = NSMakeRange(0, arrayM.count);
+        //保存起来的数组
+        NSArray *savedDynamics = [NSArray array];
+        
+        //新来的最新数据
+        NSArray *nowDynamics = [NSArray array];
+        
+        if ([self.type isEqualToString:@"all"]) {
+            
+            //缓存数据
+            savedDynamics = [ZSNovcltyTool resentAllNovcltys];
+            
+            nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
+            //保存最新的数据
+            [ZSNovcltyTool saveAllNovcltys:nowDynamics];
+            
+        } else if ([self.type isEqualToString:@"discloseBoard"]) {
+            
+            savedDynamics = [ZSNovcltyTool resentDiscloseBoardNovcltys];
+            
+              nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
+            
+            //保存最新的数据
+            [ZSNovcltyTool saveDiscloseBoardNovcltys:nowDynamics];
+        } else if ([self.type isEqualToString:@"confessionWall"]) {
+            
+            savedDynamics = [ZSNovcltyTool resentConfessionWallNovcltys];
+            
+             nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
+            //保存最新的数据
+            
+            [ZSNovcltyTool saveConfessionWallNovcltys:nowDynamics];
+        } else {
+            
+            savedDynamics = [ZSNovcltyTool resentTopicsNovcltys];
+            
+            nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
+            
+            ZSLog(@"%@", nowDynamics);
+            
+            //保存最新的数据
+            [ZSNovcltyTool saveTopicsNovcltys:nowDynamics];
+        }
+        
+
+        NSArray *arrayFrames = [self dynamicsTodynamicFrameArray:nowDynamics];
+        
+        NSRange range = NSMakeRange(0, arrayFrames.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         //将新的数据添加到大数组的最前面
-        [self.allDynamicFrames insertObjects:arrayM atIndexes:indexSet];
+        [self.allDynamicFrames insertObjects:arrayFrames atIndexes:indexSet];
+        
         
         //刷新表格
         [self.tableView reloadData];
-        
         
         //结束下拉刷新
         [self.tableView headerEndRefreshing];

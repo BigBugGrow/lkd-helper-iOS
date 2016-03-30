@@ -41,6 +41,7 @@
 		5244DC7C1CA1050000147B72 /* ZSCommenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5244DC7A1CA1050000147B72 /* ZSCommenViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5244DC7D1CA1050000147B72 /* ZSCommenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5244DC7B1CA1050000147B72 /* ZSCommenViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		5248C26B1C85D0B2003D9668 /* ZSDetailWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5248C26A1C85D0B2003D9668 /* ZSDetailWeatherModel.m */; settings = {ASSET_TAGS = (); }; };
+		524DA9DA1CAB78FE00196FFB /* ZSNovcltyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 524DA9D91CAB78FE00196FFB /* ZSNovcltyTool.m */; settings = {ASSET_TAGS = (); }; };
 		525021CD1C9ECA2C008F2526 /* UpYun.m in Sources */ = {isa = PBXBuildFile; fileRef = 525021BB1C9ECA2C008F2526 /* UpYun.m */; settings = {ASSET_TAGS = (); }; };
 		525021CE1C9ECA2C008F2526 /* UPYUNConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 525021BD1C9ECA2C008F2526 /* UPYUNConfig.m */; settings = {ASSET_TAGS = (); }; };
 		525021CF1C9ECA2C008F2526 /* NSData+MD5Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = 525021C11C9ECA2C008F2526 /* NSData+MD5Digest.m */; settings = {ASSET_TAGS = (); }; };
@@ -296,6 +297,8 @@
 		5244DC7B1CA1050000147B72 /* ZSCommenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCommenViewController.xib; sourceTree = "<group>"; };
 		5248C2691C85D0B2003D9668 /* ZSDetailWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherModel.h; sourceTree = "<group>"; };
 		5248C26A1C85D0B2003D9668 /* ZSDetailWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherModel.m; sourceTree = "<group>"; };
+		524DA9D81CAB78FE00196FFB /* ZSNovcltyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNovcltyTool.h; sourceTree = "<group>"; };
+		524DA9D91CAB78FE00196FFB /* ZSNovcltyTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNovcltyTool.m; sourceTree = "<group>"; };
 		525021BA1C9ECA2C008F2526 /* UpYun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpYun.h; sourceTree = "<group>"; };
 		525021BB1C9ECA2C008F2526 /* UpYun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpYun.m; sourceTree = "<group>"; };
 		525021BC1C9ECA2C008F2526 /* UPYUNConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPYUNConfig.h; sourceTree = "<group>"; };
@@ -716,6 +719,7 @@
 		5244DC5A1CA1039500147B72 /* Novclty */ = {
 			isa = PBXGroup;
 			children = (
+				524DA9D71CAB78E400196FFB /* NovcltyTool */,
 				5244DC5B1CA1039500147B72 /* Controller */,
 				5244DC601CA1039500147B72 /* Model */,
 				5244DC671CA1039500147B72 /* View */,
@@ -783,6 +787,15 @@
 				525763FF1C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m */,
 			);
 			path = ZSDetailWeatherModel;
+			sourceTree = "<group>";
+		};
+		524DA9D71CAB78E400196FFB /* NovcltyTool */ = {
+			isa = PBXGroup;
+			children = (
+				524DA9D81CAB78FE00196FFB /* ZSNovcltyTool.h */,
+				524DA9D91CAB78FE00196FFB /* ZSNovcltyTool.m */,
+			);
+			path = NovcltyTool;
 			sourceTree = "<group>";
 		};
 		525021B91C9ECA2C008F2526 /* UpYunSDK */ = {
@@ -2005,6 +2018,7 @@
 				52857AB81C9D7F2200F44C27 /* POPMath.mm in Sources */,
 				529D09531C8669AB00DE8C7F /* ZSWeatherView.m in Sources */,
 				525764001C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m in Sources */,
+				524DA9DA1CAB78FE00196FFB /* ZSNovcltyTool.m in Sources */,
 				5267759A1C9FF73500C55191 /* ZSEmotionKeyboard.m in Sources */,
 				EFE538211C15229E00A2B6EF /* ZSLoginParam.m in Sources */,
 				52EC7B291C8963BD00EC7F7C /* NSString+Extension.m in Sources */,
