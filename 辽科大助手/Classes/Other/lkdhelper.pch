@@ -27,8 +27,6 @@
 #define ZSScreenW [UIScreen mainScreen].bounds.size.width
 #define ZSScreenH [UIScreen mainScreen].bounds.size.height
 
-
-
 #define cellHeigt self.frame.size.height
 #define cellWidth self.frame.size.width
 #define cellTextHeigt 12
@@ -41,6 +39,7 @@
 #define ZSKey @"key"
 #define ZSZjh @"zjh"
 #define ZSMm @"mm"
+
 
 #define RGBColor(r, g, b, a) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:a]
 

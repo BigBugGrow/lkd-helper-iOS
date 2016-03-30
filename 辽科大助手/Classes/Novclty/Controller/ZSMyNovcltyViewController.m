@@ -22,6 +22,7 @@
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
+
 @interface ZSMyNovcltyViewController ()<commenViewControllerDelegate>
 
 /**
@@ -75,9 +76,6 @@
     [self initNav];
     
     //添加刷新下拉刷新
-    [self settingRefresh];
-    
-    //获取数据
     [self getNewData];
     
     //初始化headerView
@@ -212,8 +210,8 @@
 - (void)settingRefresh
 {
     // 添加下拉刷新
-    [self.tableView addHeaderWithTarget:self action:@selector(refreshDown)];
-    [self.tableView headerBeginRefreshing];
+//    [self.tableView addHeaderWithTarget:self action:@selector(refreshDown)];
+//    [self.tableView headerBeginRefreshing];
     
     //添加上拉刷新
     [self.tableView addFooterWithTarget:self action:@selector(refreshMoreData)];
@@ -223,7 +221,7 @@
 {
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"item"] = @"00";
+    params[@"item"] = @(self.endId);
     params[@"nickname"] = self.whoNickName;
     
     //结束下拉刷新
@@ -293,6 +291,8 @@
 
 - (void)refreshDown
 {
+    
+    //结束上拉刷新
     [self.tableView footerEndRefreshing];
     [self getNewData];
     
@@ -305,16 +305,15 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"item"] = @"00";
     params[@"nickname"] = self.whoNickName ? self.whoNickName : nickName;
-    
-    //结束上拉刷新
-    [self.tableView footerEndRefreshing];
+
     
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/myNoveltyRead" parameters:params success:^(NSDictionary *responseObject) {
 
         
         NSArray *dynamics = responseObject[@"data"];
-        
+        //保存上一次访问的一条数据的最后一个
+        self.lastDynamicId = [responseObject[@"endId"] integerValue];
         
         NSMutableArray *arrayM = [NSMutableArray array];
         
@@ -350,8 +349,7 @@
             
         }
     
-        //保存上一次访问的一条数据的最后一个
-        self.lastDynamicId = [responseObject[@"endId"] integerValue];
+      
         
         NSRange range = NSMakeRange(0, arrayM.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -467,7 +465,7 @@
     
     CGRect frame = self.topView.frame;
     // 5决定图片变大的速度,值越大,速度越快
-    frame.size.width = ZSScreenW + down * 0.2;
+//    frame.size.width = ZSScreenW + down * 0.2;
     frame.size.height = HMTopViewH + down * 0.8;
     self.topView.frame = frame;
     

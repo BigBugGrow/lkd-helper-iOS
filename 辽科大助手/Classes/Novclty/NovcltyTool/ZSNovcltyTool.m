@@ -143,7 +143,7 @@ NSMutableArray *_recentTopicNovcltys;
     
 
     
-    [NSKeyedArchiver archiveRootObject:_recentConfessionWallNovcltys toFile:ZSRecentAllNovcltyPath];
+    [NSKeyedArchiver archiveRootObject:_recentConfessionWallNovcltys toFile:ZSRecentConfessionWallNovcltyPath];
 
 }
 

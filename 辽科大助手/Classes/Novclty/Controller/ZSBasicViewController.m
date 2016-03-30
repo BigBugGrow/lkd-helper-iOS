@@ -18,6 +18,7 @@
 #import "ZSMyNovcltyViewController.h"
 #import "ZSNovcltyTool.h"
 
+
 @interface ZSBasicViewController () <commenViewControllerDelegate, ZSAllDynamicCellDelegate>
 
 /**
@@ -265,7 +266,6 @@
         //最新的加载的数据
         NSArray *dynamics = responseObject[@"data"];
         
-        ZSLog(@"%@", dynamics);
         //存储dynamic的模型
         NSMutableArray *arrayM = [NSMutableArray array];
         
@@ -326,7 +326,6 @@
             
             nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
             
-            ZSLog(@"%@", nowDynamics);
             
             //保存最新的数据
             [ZSNovcltyTool saveTopicsNovcltys:nowDynamics];

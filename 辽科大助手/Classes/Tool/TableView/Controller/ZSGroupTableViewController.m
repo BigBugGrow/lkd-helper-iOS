@@ -10,6 +10,9 @@
 #import "ZSModel.h"
 #import "ZSGroupModel.h"
 #import "ZSTableViewCell.h"
+#import "ZSInfoViewController.h"
+
+#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSGroupTableViewController ()
 
@@ -43,8 +46,27 @@
     
     headerView.height = 130;
     
+    //添加点击事件
+    headerView.userInteractionEnabled = YES;
+    [headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickHeaderView)]];
+    
     self.tableView.tableHeaderView = headerView;
 }
+
+/** 点击headerView*/
+- (void)clickHeaderView
+{
+    
+    ZSInfoViewController *infoViewCV = [[ZSInfoViewController alloc] init];
+    
+    infoViewCV.whoNickName = nickName;
+    
+    [self.navigationController pushViewController:infoViewCV animated:YES];
+    
+}
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

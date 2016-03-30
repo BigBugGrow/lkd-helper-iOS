@@ -14,9 +14,6 @@
 
 #import "ZSMyNovcltyViewController.h"
 
-
-#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
-
 @interface ZSProfileViewController ()
 
 @end

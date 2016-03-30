@@ -17,8 +17,8 @@
 #import "MJRefresh.h"
 #import "SVProgressHUD.h"
 
-#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
+#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 
 @interface ZSCommenViewController () <UITableViewDelegate, UITableViewDataSource>
