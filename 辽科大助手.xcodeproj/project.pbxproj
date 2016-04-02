@@ -72,6 +72,7 @@
 		526775A01C9FF73500C55191 /* ZSEmotionTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5267758E1C9FF73500C55191 /* ZSEmotionTabBarButton.m */; settings = {ASSET_TAGS = (); }; };
 		526775A11C9FF73500C55191 /* ZSEmotionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 526775901C9FF73500C55191 /* ZSEmotionTextView.m */; settings = {ASSET_TAGS = (); }; };
 		526775A21C9FF73500C55191 /* ZSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 526775921C9FF73500C55191 /* ZSTextView.m */; settings = {ASSET_TAGS = (); }; };
+		528206531CAC2DE80066C634 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */; settings = {ASSET_TAGS = (); }; };
 		52857AA91C9D7F2200F44C27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52857A711C9D7F2200F44C27 /* InfoPlist.strings */; settings = {ASSET_TAGS = (); }; };
 		52857AAA1C9D7F2200F44C27 /* pop-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52857A731C9D7F2200F44C27 /* pop-Info.plist */; settings = {ASSET_TAGS = (); }; };
 		52857AAB1C9D7F2200F44C27 /* POPAnimatableProperty.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52857A781C9D7F2200F44C27 /* POPAnimatableProperty.mm */; settings = {ASSET_TAGS = (); }; };
@@ -102,6 +103,12 @@
 		52ACBD041C84247700BAE1A4 /* ZSConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBD031C84247700BAE1A4 /* ZSConst.m */; settings = {ASSET_TAGS = (); }; };
 		52C426A61CA12FDE005F2325 /* ZSComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C426A51CA12FDE005F2325 /* ZSComment.m */; settings = {ASSET_TAGS = (); }; };
 		52C426AA1CA13970005F2325 /* ZSCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C426A81CA13970005F2325 /* ZSCommentViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		52C89B3D1CAE9ECE00295180 /* ZSNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C89B3B1CAE9ECE00295180 /* ZSNoteViewController.m */; settings = {ASSET_TAGS = (); }; };
+		52C89B3E1CAE9ECE00295180 /* ZSWriteNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C89B3C1CAE9ECE00295180 /* ZSWriteNoteViewController.m */; settings = {ASSET_TAGS = (); }; };
+		52C89B411CAE9EFA00295180 /* ZSNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C89B401CAE9EFA00295180 /* ZSNoteModel.m */; settings = {ASSET_TAGS = (); }; };
+		52C89B451CAE9F1200295180 /* ZSNoteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C89B431CAE9F1200295180 /* ZSNoteViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		52C89B461CAE9F1200295180 /* ZSNoteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C89B441CAE9F1200295180 /* ZSNoteViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		52C89B491CAE9F6C00295180 /* ZSSaveNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C89B481CAE9F6C00295180 /* ZSSaveNotes.m */; settings = {ASSET_TAGS = (); }; };
 		52EC7B291C8963BD00EC7F7C /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EC7B281C8963BD00EC7F7C /* NSString+Extension.m */; settings = {ASSET_TAGS = (); }; };
 		52FE8C481CA2B2660042A92C /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FE8C471CA2B2660042A92C /* NSDate+Extension.m */; settings = {ASSET_TAGS = (); }; };
 		52FE8C4B1CA2B8E60042A92C /* ZSMyNovcltyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FE8C4A1CA2B8E60042A92C /* ZSMyNovcltyViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -170,7 +177,6 @@
 		EF56D6EC1C0ABE4F00A3B314 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56D6EB1C0ABE4F00A3B314 /* UIBarButtonItem+Item.m */; };
 		EF5FE0451C6C114100A2CEB1 /* ZSBindParam.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5FE0441C6C114100A2CEB1 /* ZSBindParam.m */; };
 		EF5FE04B1C6C11C700A2CEB1 /* ZSBindTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5FE04A1C6C11C700A2CEB1 /* ZSBindTool.m */; };
-		EF99E8711C0C6F3D002ACD9D /* ZSMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E86F1C0C6F3D002ACD9D /* ZSMyInfoViewController.m */; };
 		EF99E87F1C0D06CF002ACD9D /* ZSGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E87E1C0D06CF002ACD9D /* ZSGroupTableViewController.m */; };
 		EF99E8821C0D06EE002ACD9D /* ZSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E8811C0D06EE002ACD9D /* ZSModel.m */; };
 		EF99E8851C0D06FC002ACD9D /* ZSGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF99E8841C0D06FC002ACD9D /* ZSGroupModel.m */; };
@@ -356,6 +362,8 @@
 		526775901C9FF73500C55191 /* ZSEmotionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSEmotionTextView.m; sourceTree = "<group>"; };
 		526775911C9FF73500C55191 /* ZSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextView.h; sourceTree = "<group>"; };
 		526775921C9FF73500C55191 /* ZSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextView.m; sourceTree = "<group>"; };
+		528206511CAC2DE80066C634 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
+		528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		52857A721C9D7F2200F44C27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		52857A731C9D7F2200F44C27 /* pop-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pop-Info.plist"; sourceTree = "<group>"; };
 		52857A741C9D7F2200F44C27 /* pop-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pop-Prefix.pch"; sourceTree = "<group>"; };
@@ -429,6 +437,17 @@
 		52C426A51CA12FDE005F2325 /* ZSComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSComment.m; sourceTree = "<group>"; };
 		52C426A71CA13970005F2325 /* ZSCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCommentViewCell.h; sourceTree = "<group>"; };
 		52C426A81CA13970005F2325 /* ZSCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCommentViewCell.m; sourceTree = "<group>"; };
+		52C89B391CAE9ECE00295180 /* ZSNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNoteViewController.h; sourceTree = "<group>"; };
+		52C89B3A1CAE9ECE00295180 /* ZSWriteNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWriteNoteViewController.h; sourceTree = "<group>"; };
+		52C89B3B1CAE9ECE00295180 /* ZSNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNoteViewController.m; sourceTree = "<group>"; };
+		52C89B3C1CAE9ECE00295180 /* ZSWriteNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWriteNoteViewController.m; sourceTree = "<group>"; };
+		52C89B3F1CAE9EFA00295180 /* ZSNoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNoteModel.h; sourceTree = "<group>"; };
+		52C89B401CAE9EFA00295180 /* ZSNoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNoteModel.m; sourceTree = "<group>"; };
+		52C89B421CAE9F1200295180 /* ZSNoteViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNoteViewCell.h; sourceTree = "<group>"; };
+		52C89B431CAE9F1200295180 /* ZSNoteViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNoteViewCell.m; sourceTree = "<group>"; };
+		52C89B441CAE9F1200295180 /* ZSNoteViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSNoteViewCell.xib; sourceTree = "<group>"; };
+		52C89B471CAE9F6C00295180 /* ZSSaveNotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSaveNotes.h; sourceTree = "<group>"; };
+		52C89B481CAE9F6C00295180 /* ZSSaveNotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSaveNotes.m; sourceTree = "<group>"; };
 		52EC7B271C8963BD00EC7F7C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		52EC7B281C8963BD00EC7F7C /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		52FE8C461CA2B2660042A92C /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
@@ -565,8 +584,6 @@
 		EF5FE0441C6C114100A2CEB1 /* ZSBindParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSBindParam.m; sourceTree = "<group>"; };
 		EF5FE0491C6C11C700A2CEB1 /* ZSBindTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSBindTool.h; sourceTree = "<group>"; };
 		EF5FE04A1C6C11C700A2CEB1 /* ZSBindTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSBindTool.m; sourceTree = "<group>"; };
-		EF99E86E1C0C6F3D002ACD9D /* ZSMyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyInfoViewController.h; sourceTree = "<group>"; };
-		EF99E86F1C0C6F3D002ACD9D /* ZSMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyInfoViewController.m; sourceTree = "<group>"; };
 		EF99E87D1C0D06CF002ACD9D /* ZSGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSGroupTableViewController.h; sourceTree = "<group>"; };
 		EF99E87E1C0D06CF002ACD9D /* ZSGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSGroupTableViewController.m; sourceTree = "<group>"; };
 		EF99E8801C0D06EE002ACD9D /* ZSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSModel.h; sourceTree = "<group>"; };
@@ -1048,6 +1065,56 @@
 			path = Const;
 			sourceTree = "<group>";
 		};
+		52C89B341CAE9E8700295180 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				52C89B381CAE9EA300295180 /* NoteTool */,
+				52C89B351CAE9E8700295180 /* Controller */,
+				52C89B361CAE9E8700295180 /* Model */,
+				52C89B371CAE9E8700295180 /* View */,
+			);
+			path = Note;
+			sourceTree = "<group>";
+		};
+		52C89B351CAE9E8700295180 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				52C89B391CAE9ECE00295180 /* ZSNoteViewController.h */,
+				52C89B3B1CAE9ECE00295180 /* ZSNoteViewController.m */,
+				52C89B3A1CAE9ECE00295180 /* ZSWriteNoteViewController.h */,
+				52C89B3C1CAE9ECE00295180 /* ZSWriteNoteViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		52C89B361CAE9E8700295180 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52C89B3F1CAE9EFA00295180 /* ZSNoteModel.h */,
+				52C89B401CAE9EFA00295180 /* ZSNoteModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		52C89B371CAE9E8700295180 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52C89B421CAE9F1200295180 /* ZSNoteViewCell.h */,
+				52C89B431CAE9F1200295180 /* ZSNoteViewCell.m */,
+				52C89B441CAE9F1200295180 /* ZSNoteViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52C89B381CAE9EA300295180 /* NoteTool */ = {
+			isa = PBXGroup;
+			children = (
+				52C89B471CAE9F6C00295180 /* ZSSaveNotes.h */,
+				52C89B481CAE9F6C00295180 /* ZSSaveNotes.m */,
+			);
+			path = NoteTool;
+			sourceTree = "<group>";
+		};
 		EF2AB59B1C0F13D300DB93FC /* Http */ = {
 			isa = PBXGroup;
 			children = (
@@ -1232,6 +1299,7 @@
 		EF56D6701C09DA8B00A3B314 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				52C89B341CAE9E8700295180 /* Note */,
 				EF56D6711C09DA8B00A3B314 /* Controller */,
 				EF56D6721C09DA8B00A3B314 /* Model */,
 				EF56D6731C09DA8B00A3B314 /* View */,
@@ -1432,7 +1500,6 @@
 		EF56D6881C09DA8B00A3B314 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EF99E86D1C0C6F3D002ACD9D /* MyInfo */,
 				EF56D69A1C09E19D00A3B314 /* ZSProfileViewController.h */,
 				EF56D69B1C09E19D00A3B314 /* ZSProfileViewController.m */,
 			);
@@ -1458,6 +1525,8 @@
 		EF56D6E01C0A933800A3B314 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				528206511CAC2DE80066C634 /* UIBarButtonItem+Extension.h */,
+				528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */,
 				5229251B1CA61B0500F7EE7A /* UIImage+Tool.h */,
 				5229251C1CA61B0500F7EE7A /* UIImage+Tool.m */,
 				52FE8C461CA2B2660042A92C /* NSDate+Extension.h */,
@@ -1485,15 +1554,6 @@
 				52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */,
 			);
 			path = Category;
-			sourceTree = "<group>";
-		};
-		EF99E86D1C0C6F3D002ACD9D /* MyInfo */ = {
-			isa = PBXGroup;
-			children = (
-				EF99E86E1C0C6F3D002ACD9D /* ZSMyInfoViewController.h */,
-				EF99E86F1C0C6F3D002ACD9D /* ZSMyInfoViewController.m */,
-			);
-			path = MyInfo;
 			sourceTree = "<group>";
 		};
 		EF99E8751C0D0529002ACD9D /* Tool */ = {
@@ -1923,6 +1983,7 @@
 				5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */,
 				5267759E1C9FF73500C55191 /* ZSEmotionPopView.xib in Resources */,
 				EF4B1B8A1C3E3284000A48F2 /* ZSRegisterViewController.xib in Resources */,
+				52C89B461CAE9F1200295180 /* ZSNoteViewCell.xib in Resources */,
 				525D3EF41C9E5449007AF860 /* EmotionIcons in Resources */,
 				EF2AB6111C0F17A500DB93FC /* MJRefresh.bundle in Resources */,
 				EF4B1B991C3EA7AD000A48F2 /* ZSStudentNumBindViewController.xib in Resources */,
@@ -1999,7 +2060,7 @@
 				52857AAB1C9D7F2200F44C27 /* POPAnimatableProperty.mm in Sources */,
 				EF5FE04B1C6C11C700A2CEB1 /* ZSBindTool.m in Sources */,
 				5244DC751CA1039500147B72 /* ZSAllDynamicCell.m in Sources */,
-				EF99E8711C0C6F3D002ACD9D /* ZSMyInfoViewController.m in Sources */,
+				52C89B411CAE9EFA00295180 /* ZSNoteModel.m in Sources */,
 				525021CF1C9ECA2C008F2526 /* NSData+MD5Digest.m in Sources */,
 				5244DC711CA1039500147B72 /* ZSNovcltyViewController.m in Sources */,
 				EF2AB67F1C1045D600DB93FC /* NSArray+Log.m in Sources */,
@@ -2007,6 +2068,7 @@
 				EF2AB61E1C0F17A500DB93FC /* SDWebImageDownloader.m in Sources */,
 				EF2AB61F1C0F17A500DB93FC /* SDWebImageDownloaderOperation.m in Sources */,
 				5244DC771CA1039500147B72 /* ZSDynamicPictureView.m in Sources */,
+				52C89B451CAE9F1200295180 /* ZSNoteViewCell.m in Sources */,
 				EF2AB6231C0F17A500DB93FC /* UIImage+GIF.m in Sources */,
 				EFD44D121C16E1230016A602 /* ZSDiscoverCell.m in Sources */,
 				EF56D6E61C0A9C8800A3B314 /* ZSTabBar.m in Sources */,
@@ -2020,8 +2082,10 @@
 				525764001C85DAC7004CFABA /* ZSDetailWeatherFrameModel.m in Sources */,
 				524DA9DA1CAB78FE00196FFB /* ZSNovcltyTool.m in Sources */,
 				5267759A1C9FF73500C55191 /* ZSEmotionKeyboard.m in Sources */,
+				52C89B3E1CAE9ECE00295180 /* ZSWriteNoteViewController.m in Sources */,
 				EFE538211C15229E00A2B6EF /* ZSLoginParam.m in Sources */,
 				52EC7B291C8963BD00EC7F7C /* NSString+Extension.m in Sources */,
+				52C89B491CAE9F6C00295180 /* ZSSaveNotes.m in Sources */,
 				5244DC781CA1039500147B72 /* ZSEssayTextView.m in Sources */,
 				52FE8C4B1CA2B8E60042A92C /* ZSMyNovcltyViewController.m in Sources */,
 				525021D41C9ECA2C008F2526 /* UPMutUploaderManager.m in Sources */,
@@ -2039,6 +2103,7 @@
 				EFE538271C15242C00A2B6EF /* ZSLoginTool.m in Sources */,
 				52857AAE1C9D7F2200F44C27 /* POPAnimationExtras.mm in Sources */,
 				522D3BE11C9D81A700A6927F /* MJPhotoLoadingView.m in Sources */,
+				528206531CAC2DE80066C634 /* UIBarButtonItem+Extension.m in Sources */,
 				5229251D1CA61B0500F7EE7A /* UIImage+Tool.m in Sources */,
 				5244DC7C1CA1050000147B72 /* ZSCommenViewController.m in Sources */,
 				EF2AB6061C0F17A500DB93FC /* AFURLSessionManager.m in Sources */,
@@ -2121,6 +2186,7 @@
 				EF2AB6241C0F17A500DB93FC /* UIImage+MultiFormat.m in Sources */,
 				526775941C9FF73500C55191 /* ZSEmotionTool.m in Sources */,
 				EF56D68C1C09DA8B00A3B314 /* main.m in Sources */,
+				52C89B3D1CAE9ECE00295180 /* ZSNoteViewController.m in Sources */,
 				EF56D69C1C09E19D00A3B314 /* ZSProfileViewController.m in Sources */,
 				EF2AB61B1C0F17A500DB93FC /* SDImageCache.m in Sources */,
 				52857AB21C9D7F2200F44C27 /* POPBasicAnimation.mm in Sources */,

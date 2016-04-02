@@ -87,6 +87,7 @@
         } else {
             
             return 31;
+            
         }
     }
     return criticalDay;

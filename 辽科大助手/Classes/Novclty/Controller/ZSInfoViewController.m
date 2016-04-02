@@ -12,7 +12,6 @@
 #import "ZSGroupModel.h"
 #import "UIImageView+WebCache.h"
 
-#import "ZSMyInfoViewController.h"
 
 @interface ZSInfoViewController ()
 
@@ -122,7 +121,7 @@
     self.title = [NSString stringWithFormat:@"%@的信息", self.whoNickName];
     
     
-    ZSModel *item1 = [ZSModel itemWithIcon:@"me" title:@"学校"detailTitle:@"辽宁科技大学"  vcClass:[ZSMyInfoViewController class]];
+    ZSModel *item1 = [ZSModel itemWithIcon:@"me" title:@"学校"detailTitle:@"辽宁科技大学"];
     ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"专业" detailTitle:@"软件工程"];
     ZSModel *item3 = [ZSModel itemWithIcon:@"mylost_found" title:@"故乡" detailTitle:@"辽宁葫芦岛"];
     

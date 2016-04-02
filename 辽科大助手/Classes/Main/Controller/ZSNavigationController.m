@@ -9,7 +9,6 @@
 #import "ZSNavigationController.h"
 #import "UIBarButtonItem+Item.h"
 #import "UIImage+Image.h"
-#import "ZSMyInfoViewController.h"
 
 #import "ZSHomeViewController.h"
 #import "ZSMessageViewController.h"

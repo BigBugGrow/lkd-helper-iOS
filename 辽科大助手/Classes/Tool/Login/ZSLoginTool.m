@@ -40,6 +40,8 @@
         //        NSArray *dictArr = [NSString stringTimeTableConvertToDictArray:responseObject[@"timetable"]];
         
         
+        ZSLog(@"%@", responseObject);
+        
         
         NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
         //warning 新接口返回的课表中的周，还是以字符串形式返回的，还是得重新处理，烦人

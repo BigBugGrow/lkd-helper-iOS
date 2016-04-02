@@ -61,6 +61,9 @@
     NSString *userName = self.userNameText.text;
     NSString *pwd = self.passwordText.text;
     
+    [self.view endEditing:YES];
+    
+    
     self.activityIndicator.hidden = NO;
     [_activityIndicator startAnimating];
 
@@ -87,6 +90,9 @@
             
             ZSTabBarController *tabBarVC = [[ZSTabBarController alloc] init];
             
+//            ZSAccount *account = [[ZSAccount alloc] init];
+//            account.
+            
             ZSKeyWindow.rootViewController = tabBarVC;
         }
         
@@ -101,6 +107,8 @@
 }
 - (IBAction)registerButtonClicked:(id)sender
 {
+    ZSLog(@"wwww");
+    
     ZSRegisterViewController *registerVC = [[ZSRegisterViewController alloc] init];
     [self.navigationController pushViewController:registerVC animated:YES];
 

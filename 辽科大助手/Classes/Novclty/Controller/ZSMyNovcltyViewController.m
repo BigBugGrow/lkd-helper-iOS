@@ -310,13 +310,17 @@
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/myNoveltyRead" parameters:params success:^(NSDictionary *responseObject) {
 
+        NSArray *dynamics = [NSArray array];
         
-        NSArray *dynamics = responseObject[@"data"];
+        dynamics = responseObject[@"data"];
         //保存上一次访问的一条数据的最后一个
         self.lastDynamicId = [responseObject[@"endId"] integerValue];
         
         NSMutableArray *arrayM = [NSMutableArray array];
+
+        if (self.lastDynamicId == 0)  return ;
         
+       
         for (NSDictionary *dict in dynamics) {
             
             //模型数据
@@ -395,8 +399,7 @@
 /** */
 - (void)clickRightBtn
 {
-    
-    ZSLog(@"cdsh");
+
     ZSInfoViewController *info = [[ZSInfoViewController alloc] init];
     
     info.whoNickName = self.whoNickName;

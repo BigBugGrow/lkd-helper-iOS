@@ -11,10 +11,13 @@
 #import "ZSTableViewCell.h"
 #import "ZSModel.h"
 #import "ZSGroupModel.h"
+#import "UIBarButtonItem+Extension.h"
 
 #import "ZSMyNovcltyViewController.h"
+#import "ZSLoginViewController.h"
+#import "ZSNavigationController.h"
 
-@interface ZSProfileViewController ()
+@interface ZSProfileViewController ()<UIAlertViewDelegate>
 
 @end
 
@@ -23,11 +26,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    //设置导航按钮
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
+    
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
     [self setUpTableHeaderView:@"ZSProfileImageCell"];
     
     
     [self initModelData];
 }
+
+- (void)clickRightBtn
+{
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"退出当前账号" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+    
+    [alertView setTag:1];
+    
+    [alertView show];
+    
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
@@ -68,6 +91,31 @@
     [self.cellData addObject:group2];
 
 }
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if ([alertView tag] == 1) {
+
+        if (buttonIndex == 0) {
+            
+            ZSLoginViewController *loginViewVC = [[ZSLoginViewController alloc] init];
+            
+            ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:loginViewVC];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            
+            window.rootViewController = nil;
+            
+        } else {
+            
+            ZSLog(@"取消");
+        }
+        
+    }
+}
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -12,6 +12,7 @@
 #import "ZSDiscoverGroupModel.h"
 
 #import "ZSNovcltyViewController.h"
+#import "ZSNoteViewController.h"
 
 @interface ZSDiscoverViewController ()
 
@@ -75,7 +76,7 @@
     group3.items = @[item3,item4];
     [self.cellData addObject:group3];
     
-    ZSDiscoverModel *item5 = [ZSDiscoverModel itemWithIcon:@"note" title:@"笔记本" detailTitle:@""];
+    ZSDiscoverModel *item5 = [ZSDiscoverModel itemWithIcon:@"note" title:@"笔记本" detailTitle:nil vcClass:[ZSNoteViewController class]];
     
     ZSDiscoverGroupModel *group4 = [[ZSDiscoverGroupModel alloc] init];
     group4.items = @[item5];
