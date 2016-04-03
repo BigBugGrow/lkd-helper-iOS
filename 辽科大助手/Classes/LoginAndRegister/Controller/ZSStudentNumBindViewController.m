@@ -71,6 +71,7 @@
             self.activityIndicator.hidden = YES;
             
             //再次点击按钮 识别验证码
+            [self xHBindButtonClicked:nil];
 
             
         } else {

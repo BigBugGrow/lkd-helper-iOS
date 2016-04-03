@@ -30,9 +30,9 @@
            //进入 登录界面
                 ZSLoginViewController *loginVC = [[ZSLoginViewController alloc] init];
             
-//                ZSNavigationController *loginNavigationVC = [[ZSNavigationController alloc] initWithRootViewController:loginVC];
+                ZSNavigationController *loginNavigationVC = [[ZSNavigationController alloc] initWithRootViewController:loginVC];
             
-                window.rootViewController = loginVC;
+                window.rootViewController = loginNavigationVC;
         }
     } else {
         //进入新特性界面

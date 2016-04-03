@@ -137,7 +137,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="注册">
                                 <attributes>
-                                    <font key="NSFont" metaFont="cellTitle"/>
+                                    <font key="NSFont" size="12" name="STKaiti-SC-Regular"/>
                                     <font key="NSOriginalFont" size="12" name="HelveticaNeue"/>
                                 </attributes>
                             </fragment>
@@ -147,13 +147,24 @@
                         <action selector="registerButtonClicked:" destination="-1" eventType="touchUpInside" id="KSl-JM-gEc"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ya7-e8-vAN">
+                    <rect key="frame" x="285" y="329" width="56" height="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="学号绑定"/>
+                    <connections>
+                        <action selector="goBindX" destination="-1" eventType="touchUpInside" id="Ewq-wY-dPY"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.65490196078431373" green="0.89411764705882346" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="Tvd-Ih-ZZW" firstAttribute="height" secondItem="ya7-e8-vAN" secondAttribute="height" id="4iZ-QV-AKC"/>
                 <constraint firstItem="D9I-qI-18k" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7Ch-DN-yzP"/>
                 <constraint firstItem="gdM-OE-eBt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-50" id="Bat-5Y-eVZ"/>
                 <constraint firstItem="RDG-JJ-JfJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="19" id="GsW-fI-cit"/>
+                <constraint firstItem="ya7-e8-vAN" firstAttribute="leading" secondItem="Tvd-Ih-ZZW" secondAttribute="trailing" constant="14" id="JV7-Nk-2BO"/>
                 <constraint firstItem="RDG-JJ-JfJ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-274" id="PAt-EF-YBG"/>
+                <constraint firstItem="Tvd-Ih-ZZW" firstAttribute="top" secondItem="ya7-e8-vAN" secondAttribute="top" id="WR3-dX-Q8m"/>
                 <constraint firstItem="D9I-qI-18k" firstAttribute="top" secondItem="RDG-JJ-JfJ" secondAttribute="bottom" constant="16" id="fPn-ez-ALn"/>
                 <constraint firstItem="RDG-JJ-JfJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="146" id="hGf-gk-fGt"/>
                 <constraint firstItem="Tvd-Ih-ZZW" firstAttribute="top" secondItem="D9I-qI-18k" secondAttribute="bottom" constant="14" id="iKy-Vu-Zk6"/>

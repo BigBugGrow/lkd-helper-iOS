@@ -57,8 +57,6 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/Register" parameters:parameters success:^(id responseObject) {
         
-        ZSLog(@"%@", responseObject);
-        
         if ([responseObject[@"state"] isEqualToString:@"500"] || [responseObject[@"state"] isEqualToString:@"101"] || [responseObject[@"state"] isEqualToString:@"000"]) {
             
 //            DALog(@"%@",responseObject[@"state"]);
@@ -94,15 +92,15 @@
                 self.activityIndicator.hidden = YES;
                 
                 [self sendImageWithImage:self.iconImageView.image imageName:self.userNameText.text];
-                
-                ZSLog(@"%@", self.userNameText.text);
+            
                 
                 [MBProgressHUD showSuccess:@"注册成功"];
             });
             
-            //保存账号和密码,key
+            //保存账号和密码,key sex
             [[NSUserDefaults standardUserDefaults] setObject:userName forKey:ZSUser];
             [[NSUserDefaults standardUserDefaults] setObject:pwd forKey:ZSPassword];
+            [[NSUserDefaults standardUserDefaults] setObject:sex forKey:ZSSex];
             [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"key"] forKey:ZSKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
@@ -210,8 +208,6 @@
     [root dismissViewControllerAnimated:YES completion:nil];
     
     
-    
-
 }
 
 @end

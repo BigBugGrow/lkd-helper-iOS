@@ -11,6 +11,10 @@
 #import "ZSGroupModel.h"
 #import "ZSTableViewCell.h"
 #import "ZSInfoViewController.h"
+#import "ZSAccountTool.h"
+#import "ZSPersonalUser.h"
+#import "ZSAccount.h"
+
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
@@ -59,8 +63,22 @@
     
     ZSInfoViewController *infoViewCV = [[ZSInfoViewController alloc] init];
     
-    infoViewCV.whoNickName = nickName;
     
+    ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
+    
+    ZSAccount *account = [ZSAccountTool account];
+    
+    user.college = account.college;
+    user.major = account.major;
+    user.home = account.home;
+    user.birthday = account.birthday;
+    user.phone = account.phone;
+    user.qq = account.qq;
+    user.wechat = account.wechat;
+    infoViewCV.user = user;
+    
+    infoViewCV.whoNickName = nickName;
+
     [self.navigationController pushViewController:infoViewCV animated:YES];
     
 }
@@ -79,6 +97,7 @@
     group = self.cellData[section];
     return group.items.count;
 }
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

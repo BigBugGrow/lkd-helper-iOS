@@ -11,7 +11,12 @@
 #import "ZSModel.h"
 #import "ZSGroupModel.h"
 #import "UIImageView+WebCache.h"
+#import "ZSAccountTool.h"
+#import "ZSAccount.h"
+#import "ZSHttpTool.h"
+#import "ZSPersonalUser.h"
 
+#define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSInfoViewController ()
 
@@ -23,11 +28,64 @@
 {
     [super viewDidLoad];
 
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
     //初始化tableView
 //    [self initHeaderView];
     
     //设置数据
     [self initModelData];
+}
+
+//设置导航栏为白色
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = NO;
+}
+//初始化模型数据
+- (void)initModelData
+{
+    //去掉分界线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //标题
+    self.title = [NSString stringWithFormat:@"%@的信息", self.whoNickName];
+    
+    ZSModel *item1 = [ZSModel itemWithIcon:@"me" title:@"学院" detailTitle:self.user.college];
+    ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"专业" detailTitle:self.user.major];
+    ZSModel *item3 = [ZSModel itemWithIcon:@"class" title:@"班级" detailTitle:self.user.class];
+    ZSModel *item4 = [ZSModel itemWithIcon:@"home" title:@"故乡" detailTitle:self.user.home];
+    
+    ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
+    group1.items = @[item1,item2,item3, item4];
+    [self.cellData addObject:group1];
+    
+    ZSModel *item5 = [ZSModel itemWithIcon:@"setting" title:@"联系我" detailTitle:self.user.phone];
+    ZSModel *item6 = [ZSModel itemWithIcon:@"ring" title:@"QQ" detailTitle:self.user.qq];
+    
+    ZSModel *item7 = [ZSModel itemWithIcon:@"setting" title:@"微信号" detailTitle:self.user.wechat];
+    
+    ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
+    
+    group2.items = @[item5,item6, item7];
+    [self.cellData addObject:group2];
+
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"跟人信息";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
 }
 
 /** 初始化headerView*/
@@ -100,91 +158,6 @@
     
 }
 
-//设置导航栏为白色
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.navigationBar.hidden = NO;
-}
-//初始化模型数据
-- (void)initModelData
-{
-    
-    //去掉分界线
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //标题
-    self.title = [NSString stringWithFormat:@"%@的信息", self.whoNickName];
-    
-    
-    ZSModel *item1 = [ZSModel itemWithIcon:@"me" title:@"学校"detailTitle:@"辽宁科技大学"];
-    ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"专业" detailTitle:@"软件工程"];
-    ZSModel *item3 = [ZSModel itemWithIcon:@"mylost_found" title:@"故乡" detailTitle:@"辽宁葫芦岛"];
-    
-    ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
-    group1.items = @[item1,item2,item3];
-    [self.cellData addObject:group1];
-    
-    ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"联系我" detailTitle:@"18341269171"];
-    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"QQ" detailTitle:@"1621635881"];
-    
-    ZSModel *item6 = [ZSModel itemWithIcon:@"setting" title:@"微信号" detailTitle:@"wfnaskcs"];
-    ZSModel *item7 = [ZSModel itemWithIcon:@"ring" title:@"微博" detailTitle:@"yyue等你来访问"];
-    
-    
-    ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
-   
-    group2.items = @[item4,item5,item6, item7];
-    [self.cellData addObject:group2];
-
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

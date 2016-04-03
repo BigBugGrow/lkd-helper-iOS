@@ -32,6 +32,7 @@
 #import "ZSInquireWebViewController.h"
 #import "ZSDetailWeatherViewController.h"
 #import "ZSCourseViewController.h"
+#import "SVProgressHUD.h"
 
 
 @interface ZSHomeViewController ()<ZSWeatherViewDelegate>
@@ -162,38 +163,46 @@
     }];
 }
 
+
+
+-(NSInteger)getUTCFormateDate:(NSString *)newsDate
+{
+    //    newsDate = @"2013-08-09 17:01";
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *newsDateFormatted = [dateFormatter dateFromString:newsDate];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone];
+    
+    NSDate* current_date = [[NSDate alloc] init];
+    
+    NSTimeInterval time=[current_date timeIntervalSinceDate:newsDateFormatted];//间隔的秒数
+    
+    int days=((int)time)/(3600*24);
+    
+    return days;
+}
+
+
 - (void)initTimeTabelData
 {
     //得到账户信息
     ZSAccount *account = [ZSAccountTool account];
     self.account = account;
     
-//    if ([account.hasTimetable isEqualToString:@"no"]) {
-//        return;
-//    }
-//    
-    //初始化课表数据
-    //1.计算当前是第几周，星期几
+     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
-    
-    
-    //星期几
-    long weekday = currentDay.weekday - 1;
+    NSInteger count = [self getUTCFormateDate:account.termBeginTime];
 
-    
-//    ZSLog(@"一周中第几天%ld", weekday);
-    
-#warning 这里周数计算有问题
     //第几周
+    self.currentWeek = count / 7 + 1;
     
-//    self.currentWeek = currentDay.week + 51 - [account.startweek intValue] + 1;
+    NSInteger weekday = currentDay.weekday;
     
-    self.currentWeek = 3;
-    
-//    NSLog(@"ccc%@",currentDay);
-    
-    
-//    NSLog(@"------%@",account.timetable[self.currentWeek][weekday]);
+    if (weekday == 7) {
+        weekday = 0;
+    }
     
     if (![account.hasTimetable isEqualToString:@"no"]) {
         
@@ -349,13 +358,19 @@
             
            // id vc = [[item.vcClass alloc] init];
             ZSInquireWebViewController *inquireVC = [[ZSInquireWebViewController alloc] init];
-//            ZSAccount *account = [ZSAccountTool account];
+            ZSAccount *account = [ZSAccountTool account];
             switch (indexPath.row + 1) {
                 case 1:
-//                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/timetable"];
+                    if (![account.hasTimetable isEqualToString:@"no"]) {
                     
-                    [self.navigationController pushViewController:courseViewController animated:YES];
-                    
+                        [self.navigationController pushViewController:courseViewController animated:YES];
+                        
+                        
+                        
+                    }else {
+                        
+                        [SVProgressHUD showErrorWithStatus:@"亲， 你还没绑定学号哦！"];
+                    }
                     break;
                 case 2:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/teachingEvaluation"];

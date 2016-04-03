@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ZSGroupTableViewController.h"
 
-@interface ZSInfoViewController :ZSGroupTableViewController
+@class ZSPersonalUser;
+
+@interface ZSInfoViewController : ZSGroupTableViewController
 
 /** name*/
 @property (nonatomic, copy) NSString *whoNickName;
 
+/** 用户模型*/
+@property (nonatomic, strong) ZSPersonalUser *user;
 
 @end

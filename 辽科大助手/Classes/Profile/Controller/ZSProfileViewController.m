@@ -103,7 +103,10 @@
             
             ZSLoginViewController *loginViewVC = [[ZSLoginViewController alloc] init];
         
-            [self.navigationController presentViewController:loginViewVC animated:YES completion:^{
+            
+            ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:loginViewVC];
+            
+            [self.navigationController presentViewController:nav animated:YES completion:^{
                 
             [ZSAccountTool saveAccount:nil];
                 

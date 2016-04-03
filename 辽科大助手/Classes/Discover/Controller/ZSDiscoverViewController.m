@@ -12,6 +12,7 @@
 #import "ZSDiscoverGroupModel.h"
 
 #import "ZSNovcltyViewController.h"
+#import "ZSLostAndFoundViewController.h"
 #import "ZSNoteViewController.h"
 
 @interface ZSDiscoverViewController ()
@@ -70,7 +71,7 @@
     
     
     ZSDiscoverModel *item3 = [ZSDiscoverModel itemWithIcon:@"express" title:@"找快递" detailTitle:@""];
-    ZSDiscoverModel *item4 = [ZSDiscoverModel itemWithIcon:@"lost_found" title:@"寻物公告" detailTitle:@""];
+    ZSDiscoverModel *item4 = [ZSDiscoverModel itemWithIcon:@"lost_found" title:@"寻物公告" detailTitle:nil vcClass:[ZSLostAndFoundViewController class]];
     
     ZSDiscoverGroupModel *group3 = [[ZSDiscoverGroupModel alloc] init];
     group3.items = @[item3,item4];

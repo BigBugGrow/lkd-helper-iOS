@@ -57,6 +57,8 @@
 #define ZSStartWeek @"startweek"
 #define ZSTimetable @"timetable"
 
+#define Sex [[NSUserDefaults standardUserDefaults] objectForKey:ZSSex]
+
 @implementation ZSAccount
 
 MJCodingImplementation   //NSArchive  将模型存档  不用自己去手动敲
@@ -65,4 +67,20 @@ MJCodingImplementation   //NSArchive  将模型存档  不用自己去手动敲
 {
     return [NSString stringWithFormat:@"state:%ld\nnickname:%@\nkey:%@\npassword:%@\nzjh:%@\nmm:%@\nsex:%@\nhasTimetable:%@\ncollege:%@\nmajor:%@\nhome:%@\nwechate:%@\nweibo:%@\nqq:%@\nphone:%@\ntimetable:%@\n",_state,_nickname,_key,_password,_zjh,_mm,_sex,_hasTimetable,_college,_major,_home,_wechat,_weibo,_qq,_phone,_timetable];
 }
+
+
+//+ (NSDictionary *)replacedKeyFromPropertyName
+//{
+//    return @{
+//             @"major" : @"专业"
+//             
+//             };
+//}
+
+
+- (NSString *)sex
+{
+    return Sex;
+}
+
 @end

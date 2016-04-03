@@ -36,6 +36,7 @@
 //用户名和密码和key
 #define ZSUser @"user"
 #define ZSPassword @"password"
+#define ZSSex @"sex"
 #define ZSKey @"key"
 #define ZSZjh @"zjh"
 #define ZSMm @"mm"

@@ -18,6 +18,7 @@
 
 #import "ZSLoginTool.h"
 
+#import "ZSStudentNumBindViewController.h"
 #import "ZSRegisterViewController.h"
 #import "ZSNavigationController.h"
 
@@ -113,16 +114,14 @@
 {
     ZSLog(@"wwww");
     
-    [self exitLogin];
-    
     ZSRegisterViewController *registerVC = [[ZSRegisterViewController alloc] init];
     
 //    ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:registerVC];
     
-    UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-    [root presentViewController:registerVC animated:YES completion:nil];
+//    UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+//    [root presentViewController:registerVC animated:YES completion:nil];
     
-    
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
 
 
@@ -132,6 +131,15 @@
     
     [self.view endEditing:YES];
 }
+
+
+- (IBAction)goBindX {
+    
+    ZSStudentNumBindViewController *bindVc = [[ZSStudentNumBindViewController alloc] init];
+    
+    [self.navigationController pushViewController:bindVc animated:YES];
+}
+
 
 
 - (IBAction)exitLogin {

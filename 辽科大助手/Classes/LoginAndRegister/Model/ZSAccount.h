@@ -26,6 +26,8 @@
 
 @property (nonatomic,copy)NSString *sex;
 
+@property (nonatomic,copy)NSString *birthday;
+
 @property (nonatomic,copy)NSString *hasTimetable;
 
 @property (nonatomic,strong)NSArray *timetable;
@@ -43,6 +45,10 @@
 @property (nonatomic,copy)NSString *wechat;
 
 @property (nonatomic,copy)NSString *weibo;
+
+/** 学期开始*/
+@property (nonatomic, copy) NSString *termBeginTime;
+
 
 //@property (nonatomic,copy)NSString *startweek;
 //@property (nonatomic,copy)NSString *date;

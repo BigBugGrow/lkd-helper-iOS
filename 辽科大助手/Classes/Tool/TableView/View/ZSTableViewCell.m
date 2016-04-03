@@ -32,8 +32,11 @@
     self.textLabel.font = [UIFont systemFontOfSize:12];
     self.textLabel.text = item.title;
     self.imageView.image = [UIImage imageNamed:item.icon];
+    
+    self.detailTextLabel.x = -80;
+    
     self.detailTextLabel.text = item.detailTitle;
-    self.detailTextLabel.textAlignment = NSTextAlignmentRight;
+    self.detailTextLabel.textAlignment = NSTextAlignmentLeft;
     
 }
 

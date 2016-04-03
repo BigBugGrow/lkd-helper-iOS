@@ -15,6 +15,10 @@
 #import "UIImageView+WebCache.h"
 #import "ZSAllDynamic.h"
 #import "ZSInfoViewController.h"
+#import "ZSPersonalUser.h"
+#import "ZSAccount.h"
+#import "ZSAccountTool.h"
+
 
 #import "ZSNovcltyTool.h"
 
@@ -399,14 +403,38 @@
 /** */
 - (void)clickRightBtn
 {
-
+    
     ZSInfoViewController *info = [[ZSInfoViewController alloc] init];
     
-    info.whoNickName = self.whoNickName;
+    ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
+
+        
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    [self.navigationController pushViewController:info animated:YES];
+    params[@"nickname"] = self.whoNickName;
+    
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoRead" parameters:params success:^(NSDictionary *responseObject) {
+        
+        user.college = responseObject[@"college"];
+        user.major = responseObject[@"major"];
+        user.class = responseObject[@"class"];
+        user.home = responseObject[@"home"];
+        user.birthday = responseObject[@"birthday"];
+        user.phone = responseObject[@"phone"];
+        user.qq = responseObject[@"qq"];
+        user.wechat = responseObject[@"wechat"];
+        info.user = user;
+        info.whoNickName = self.whoNickName;
+        [self.navigationController pushViewController:info animated:YES];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
+
     
 }
+
 
 #pragma mark - Table view data source
 

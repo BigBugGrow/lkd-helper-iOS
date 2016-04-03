@@ -52,6 +52,10 @@
 /** 日期时间背景*/
 @property (nonatomic, weak) UIView *dateBackView;
 
+/**account*/
+@property (nonatomic, strong) ZSAccount *account;
+
+
 @end
 
 @implementation ZSCourseViewController
@@ -317,19 +321,41 @@
     
 }
 
+
+-(NSInteger)getUTCFormateDate:(NSString *)newsDate
+{
+    //    newsDate = @"2013-08-09 17:01";
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *newsDateFormatted = [dateFormatter dateFromString:newsDate];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone];
+    
+    NSDate* current_date = [[NSDate alloc] init];
+    
+    NSTimeInterval time=[current_date timeIntervalSinceDate:newsDateFormatted];//间隔的秒数
+
+    int days=((int)time)/(3600*24);
+
+    return days;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.plusBtn.userInteractionEnabled = NO;
     
-    
     NSDate *date = [NSDate date];
     
-    self.currentWeek = 4;
+    ZSAccount *account = [ZSAccountTool account];
+    self.account = account;
+    
+    NSInteger count = [self getUTCFormateDate:account.termBeginTime];
+    
+    self.currentWeek = count / 7 + 1;
     self.month = date.month;
     self.currentDay = date.day;
-    
-//    self.date = date;
     
     //设置标题
     [self initNav];
@@ -406,14 +432,14 @@
         [label removeFromSuperview];
     }
     
-    ZSAccount *account = [ZSAccountTool account];
+    
     
     for (int i = 0; i < 7; i ++) {
         
         for (int j = 0; j < 5; j ++) {
             
             
-            NSArray *dayCourseArray = account.timetable[currentWeek][i];
+            NSArray *dayCourseArray = self.account.timetable[currentWeek][i];
             if (dayCourseArray.count) {
                 
                 NSDictionary *dayCourseDict = (NSDictionary *)dayCourseArray;
@@ -529,8 +555,6 @@
     }
     
     [self initLabelWithDay:self.currentDay month:self.month];
-    
-    
     
     [self settingTitleWithWeek:self.currentWeek];
     [self initCourseWithCurrentWeek:self.currentWeek];
