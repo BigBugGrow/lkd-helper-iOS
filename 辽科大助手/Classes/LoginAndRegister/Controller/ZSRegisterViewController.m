@@ -12,6 +12,8 @@
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
 #import "UpYun.h"
+#import "ZSLoginViewController.h"
+#import "ZSNavigationController.h"
 
 #import "ZSStudentNumBindViewController.h"
 
@@ -39,7 +41,6 @@
     //添加头像点击事件
     self.iconImageView.userInteractionEnabled = YES;
     [self.iconImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openAlbum)]];
-    
     
 }
 
@@ -201,5 +202,16 @@
 }
 
 
+- (IBAction)exitRegister {
+    
+    
+    UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+
+    [root dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    
+
+}
 
 @end

@@ -19,6 +19,8 @@
 #import "ZSLoginTool.h"
 
 #import "ZSRegisterViewController.h"
+#import "ZSNavigationController.h"
+
 
 
 @interface ZSLoginViewController ()
@@ -29,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
 @property  (nonatomic,strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+- (IBAction)exitLogin;
 
 @end
 
@@ -109,9 +113,16 @@
 {
     ZSLog(@"wwww");
     
+    [self exitLogin];
+    
     ZSRegisterViewController *registerVC = [[ZSRegisterViewController alloc] init];
-    [self.navigationController pushViewController:registerVC animated:YES];
-
+    
+//    ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:registerVC];
+    
+    UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [root presentViewController:registerVC animated:YES completion:nil];
+    
+    
 }
 
 
@@ -123,6 +134,13 @@
 }
 
 
-
-
+- (IBAction)exitLogin {
+    
+    UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    [root dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    ZSLog(@"ddd");
+}
 @end

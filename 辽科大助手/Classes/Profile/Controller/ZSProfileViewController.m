@@ -16,6 +16,7 @@
 #import "ZSMyNovcltyViewController.h"
 #import "ZSLoginViewController.h"
 #import "ZSNavigationController.h"
+#import "ZSAccountTool.h"
 
 @interface ZSProfileViewController ()<UIAlertViewDelegate>
 
@@ -29,7 +30,7 @@
     
     
     //设置导航按钮
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
     
     self.navigationItem.rightBarButtonItem = rightButton;
     
@@ -101,12 +102,13 @@
         if (buttonIndex == 0) {
             
             ZSLoginViewController *loginViewVC = [[ZSLoginViewController alloc] init];
+        
+            [self.navigationController presentViewController:loginViewVC animated:YES completion:^{
+                
+            [ZSAccountTool saveAccount:nil];
+                
+            }];
             
-            ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:loginViewVC];
-            
-            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            
-            window.rootViewController = nil;
             
         } else {
             

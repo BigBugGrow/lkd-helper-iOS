@@ -126,17 +126,30 @@
                     </variation>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_portrait" translatesAutoresizingMaskIntoConstraints="NO" id="2LN-OI-uh7">
-                    <rect key="frame" x="137.5" y="50" width="100" height="100"/>
+                    <rect key="frame" x="137" y="50" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="yD6-8x-OUn"/>
                         <constraint firstAttribute="width" constant="100" id="yxy-ia-9Hy"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlH-2B-5Ec">
+                    <rect key="frame" x="30" y="30" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="Ljm-MY-Ktf"/>
+                        <constraint firstAttribute="height" constant="16" id="mer-x5-hmM"/>
+                    </constraints>
+                    <state key="normal" image="login_close_icon"/>
+                    <connections>
+                        <action selector="exitRegister" destination="-1" eventType="touchUpInside" id="ute-jr-M4S"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.65490196078431373" green="0.89411764705882357" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="ely-iw-Krf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="89I-0Q-6QB"/>
+                <constraint firstItem="mlH-2B-5Ec" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="JK7-yy-BvK"/>
                 <constraint firstItem="ely-iw-Krf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="150" id="Vu7-aH-wjy"/>
+                <constraint firstItem="mlH-2B-5Ec" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="YAk-vv-HTH"/>
                 <constraint firstItem="ely-iw-Krf" firstAttribute="top" secondItem="2LN-OI-uh7" secondAttribute="bottom" id="kcQ-Ux-BnL"/>
                 <constraint firstItem="2LN-OI-uh7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yOM-QI-oFT"/>
             </constraints>
@@ -146,6 +159,7 @@
     </objects>
     <resources>
         <image name="head_portrait" width="500" height="500"/>
+        <image name="login_close_icon" width="16" height="16"/>
         <image name="password" width="160" height="161"/>
         <image name="username" width="160" height="161"/>
     </resources>
