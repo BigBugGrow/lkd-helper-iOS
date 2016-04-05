@@ -17,6 +17,7 @@
 #import "ZSLoginViewController.h"
 #import "ZSNavigationController.h"
 #import "ZSAccountTool.h"
+#import "ZSAboutViewController.h"
 
 @interface ZSProfileViewController ()<UIAlertViewDelegate>
 
@@ -85,7 +86,7 @@
 
         }
     };
-    ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@""];
+    ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@"" vcClass:[ZSAboutViewController class]];
     
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
     group2.items = @[item4,item5,item6];

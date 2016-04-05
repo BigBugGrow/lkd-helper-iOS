@@ -98,6 +98,8 @@
 		52857ABB1C9D7F2200F44C27 /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52857AA31C9D7F2200F44C27 /* POPVector.mm */; settings = {ASSET_TAGS = (); }; };
 		52857ABC1C9D7F2200F44C27 /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52857AA61C9D7F2200F44C27 /* TransformationMatrix.cpp */; settings = {ASSET_TAGS = (); }; };
 		52857AC91C9D7FA500F44C27 /* ZSVerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 52857AC61C9D7FA500F44C27 /* ZSVerticalButton.m */; settings = {ASSET_TAGS = (); }; };
+		529229601CB3FCAB0042F101 /* ZSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5292295E1CB3FCAB0042F101 /* ZSAboutViewController.m */; settings = {ASSET_TAGS = (); }; };
+		529229611CB3FCAB0042F101 /* ZSAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5292295F1CB3FCAB0042F101 /* ZSAboutViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		529D09521C8669AB00DE8C7F /* ZSDetailWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D094E1C8669AB00DE8C7F /* ZSDetailWeatherCell.m */; settings = {ASSET_TAGS = (); }; };
 		529D09531C8669AB00DE8C7F /* ZSWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D09501C8669AB00DE8C7F /* ZSWeatherView.m */; settings = {ASSET_TAGS = (); }; };
 		529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529D09511C8669AB00DE8C7F /* ZSWeatherView.xib */; settings = {ASSET_TAGS = (); }; };
@@ -433,6 +435,9 @@
 		52857AA81C9D7F2200F44C27 /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
 		52857AC51C9D7FA500F44C27 /* ZSVerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSVerticalButton.h; sourceTree = "<group>"; };
 		52857AC61C9D7FA500F44C27 /* ZSVerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSVerticalButton.m; sourceTree = "<group>"; };
+		5292295D1CB3FCAB0042F101 /* ZSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAboutViewController.h; sourceTree = "<group>"; };
+		5292295E1CB3FCAB0042F101 /* ZSAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAboutViewController.m; sourceTree = "<group>"; };
+		5292295F1CB3FCAB0042F101 /* ZSAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSAboutViewController.xib; sourceTree = "<group>"; };
 		529D094D1C8669AB00DE8C7F /* ZSDetailWeatherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDetailWeatherCell.h; sourceTree = "<group>"; };
 		529D094E1C8669AB00DE8C7F /* ZSDetailWeatherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDetailWeatherCell.m; sourceTree = "<group>"; };
 		529D094F1C8669AB00DE8C7F /* ZSWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWeatherView.h; sourceTree = "<group>"; };
@@ -1565,6 +1570,9 @@
 			children = (
 				EF56D69A1C09E19D00A3B314 /* ZSProfileViewController.h */,
 				EF56D69B1C09E19D00A3B314 /* ZSProfileViewController.m */,
+				5292295D1CB3FCAB0042F101 /* ZSAboutViewController.h */,
+				5292295E1CB3FCAB0042F101 /* ZSAboutViewController.m */,
+				5292295F1CB3FCAB0042F101 /* ZSAboutViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2038,6 +2046,7 @@
 				EFFC6AFC1C04852500469F99 /* Assets.xcassets in Resources */,
 				52857AA91C9D7F2200F44C27 /* InfoPlist.strings in Resources */,
 				525F32BF1C852A4000014A64 /* MBProgressHUD.bundle in Resources */,
+				529229611CB3FCAB0042F101 /* ZSAboutViewController.xib in Resources */,
 				5229E5FA1CA264230088F047 /* ZSCommentViewCell.xib in Resources */,
 				EF2AB59A1C0F015F00DB93FC /* ZSLoginViewController.xib in Resources */,
 				EFE9D8921C0D94AE0072A4F7 /* ZSProfileImageCell.xib in Resources */,
@@ -2193,6 +2202,7 @@
 				EF56D68B1C09DA8B00A3B314 /* AppDelegate.m in Sources */,
 				52C426A61CA12FDE005F2325 /* ZSComment.m in Sources */,
 				EFD44D551C182CBC0016A602 /* ZSNewsDataTool.m in Sources */,
+				529229601CB3FCAB0042F101 /* ZSAboutViewController.m in Sources */,
 				EFD44D581C1857E20016A602 /* ZSNewsInfo.m in Sources */,
 				EF2AB60E1C0F17A500DB93FC /* NSObject+MJCoding.m in Sources */,
 				EFD44D491C182BDE0016A602 /* ZSNewsCell.m in Sources */,

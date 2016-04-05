@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSAboutViewController">
+            <connections>
+                <outlet property="abloutLabel" destination="gWf-oU-6Qk" id="El2-eL-9wA"/>
+                <outlet property="chargeBtn" destination="wCx-Qu-RgC" id="aD6-da-1Ri"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_lkdhelper" translatesAutoresizingMaskIntoConstraints="NO" id="jOz-HY-tU7">
+                    <rect key="frame" x="15" y="30" width="290" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="0cB-RO-qse"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWf-oU-6Qk">
+                    <rect key="frame" x="10" y="245" width="300" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright @2016 yyue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzC-Ex-OYX">
+                    <rect key="frame" x="10" y="531" width="300" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.77022174870000004" green="0.77022174870000004" blue="0.77022174870000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Rights Reserved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRE-GT-23K">
+                    <rect key="frame" x="10" y="516" width="300" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.77022174870000004" green="0.77022174870000004" blue="0.77022174870000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCx-Qu-RgC">
+                    <rect key="frame" x="120" y="466" width="80" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="UUv-QN-son"/>
+                        <constraint firstAttribute="height" constant="30" id="fco-Ju-SXI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="免责声明">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="KRE-GT-23K" secondAttribute="trailing" constant="10" id="6fr-x3-3JX"/>
+                <constraint firstItem="KRE-GT-23K" firstAttribute="top" secondItem="wCx-Qu-RgC" secondAttribute="bottom" constant="20" id="BKG-JZ-yHS"/>
+                <constraint firstItem="jOz-HY-tU7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="HAC-Nb-AvY"/>
+                <constraint firstItem="vzC-Ex-OYX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="MuM-3d-48t"/>
+                <constraint firstItem="gWf-oU-6Qk" firstAttribute="top" secondItem="jOz-HY-tU7" secondAttribute="bottom" constant="15" id="PeZ-2L-egw"/>
+                <constraint firstAttribute="trailing" secondItem="vzC-Ex-OYX" secondAttribute="trailing" constant="10" id="RSP-Kr-aLP"/>
+                <constraint firstAttribute="bottom" secondItem="vzC-Ex-OYX" secondAttribute="bottom" constant="20" id="TjL-UV-LCK"/>
+                <constraint firstItem="KRE-GT-23K" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="YII-Aa-bTb"/>
+                <constraint firstItem="wCx-Qu-RgC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="alF-1D-9Uj"/>
+                <constraint firstAttribute="trailing" secondItem="jOz-HY-tU7" secondAttribute="trailing" constant="15" id="feq-cG-irx"/>
+                <constraint firstAttribute="trailing" secondItem="gWf-oU-6Qk" secondAttribute="trailing" constant="10" id="kLt-1k-5gl"/>
+                <constraint firstItem="gWf-oU-6Qk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="r12-tC-MvU"/>
+                <constraint firstItem="vzC-Ex-OYX" firstAttribute="top" secondItem="KRE-GT-23K" secondAttribute="bottom" id="xCm-FO-Jj7"/>
+                <constraint firstItem="jOz-HY-tU7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="zJS-3N-Gjh"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="about_lkdhelper" width="1080" height="565"/>
+    </resources>
+</document>

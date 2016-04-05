@@ -85,8 +85,8 @@ static NSString *ID = @"noteCell";
     plusBtn.height = 60;
     plusBtn.x = ZSScreenW - plusBtn.width - 15;
     plusBtn.y = ZSScreenH - plusBtn.height - 20;
-    [plusBtn setImage:[UIImage imageNamed:@"pic_treehole_sent_img"] forState:UIControlStateNormal];
-    [plusBtn setImage:[UIImage imageNamed:@"pic_treehole_sent_img_pressed"] forState:UIControlStateHighlighted];
+    [plusBtn setImage:[UIImage imageNamed:@"lv_upload_edit_btn_bkg"] forState:UIControlStateNormal];
+    [plusBtn setImage:[UIImage imageNamed:@"lv_upload_edit_btn_bkg_pressed"] forState:UIControlStateHighlighted];
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     
