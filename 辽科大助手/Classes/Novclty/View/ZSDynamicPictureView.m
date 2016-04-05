@@ -65,13 +65,19 @@
 {
     
     _picture = picture;
-
-    //    http://lkdhelper.b0.upaiyun.com/picNovelty/icon201603261006490.jpg
     //设置图片
     
-    NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNovelty/%@.jpg!small", picture.thumbnail_pic];
+    NSString *str = nil;
     
-//    NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNovelty/%@.jpg!small", @"ui20162262356253"];
+    //失物认领
+    if (self.lol == 1) {
+        
+        str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picLostAndFound/%@.jpg!small", picture.thumbnail_pic];
+        
+    } else { //糯米粒
+        
+        str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNovelty/%@.jpg!small", picture.thumbnail_pic];
+    }
     
     [self sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"about"]];
     

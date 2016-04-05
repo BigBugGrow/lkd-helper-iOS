@@ -106,33 +106,39 @@ static NSString * const commentID = @"commentCell";
         
         NSArray *comments = responseObject[@"data"];
         
+        
+        
+        ZSLog(@"%@", responseObject[@"data"]);
         self.comments = [ZSComment objectArrayWithKeyValuesArray:comments];
+        
+        
+        ZSLog(@"%@", comments);
         
         //刷新表格
         [self.tableView reloadData];
-        
         
         //重新计算评论数量
         int countNum = [self.allDynamicFrame.allDynamic.commentNum intValue];
         
         ZSLog(@"%d", self.isFirstCome);
         
+        //先刷新， 在跳到
+        [self.tableView headerEndRefreshing];
+        
         if (countNum != 0 && self.isFirstCome) {
         
             self.isFirstCome = YES;
             //设置tableview默认选中行
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:(countNum-1) inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:(countNum - 1) inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         }
-        
-        [self.tableView headerEndRefreshing];
-        
+            
     } failure:^(NSError *error) {
         
         
         [self.tableView headerEndRefreshing];
         
     }];
-    
     
 }
 

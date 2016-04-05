@@ -13,6 +13,8 @@
 /**装有图片模型的数组*/
 @property (nonatomic, strong) NSArray *pictrueArr;
 
+/** 辨别谁调用的*/
+@property (nonatomic, assign) NSInteger lol;
 
 /**
  *  根据图片的个数计算view的大小

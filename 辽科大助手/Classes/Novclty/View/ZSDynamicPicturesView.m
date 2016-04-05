@@ -34,7 +34,7 @@
     while (self.subviews.count < self.pictrueArr.count) {
         
         ZSDynamicPictureView * imageView = [[ZSDynamicPictureView alloc] init];
-        
+        imageView.lol = self.lol;
         imageView.tag = i ++;
         //添加手势点按
         UITapGestureRecognizer *tab = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tab:)];
@@ -60,7 +60,9 @@
             
             self.subviews[i].hidden = NO;
             
-            ZSDynamicPictureView *pictureView = self.subviews[i];
+            ZSDynamicPictureView *pictureView = [[ZSDynamicPictureView alloc] init];
+            pictureView.lol = self.lol;
+            pictureView = self.subviews[i];
             
             pictureView.picture = picture;
             
@@ -83,7 +85,17 @@
     
     for (NSString *urlStr in self.pictrueArr) {
 
-        NSString *urlS = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNovelty/%@.jpg", urlStr];
+        NSString *urlS = nil;
+        if (self.lol == 1) {
+            
+            //失物认领
+            urlS = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picLostAndFound/%@.jpg", urlStr];
+        } else {
+            
+            //糯米粒
+            urlS = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNovelty/%@.jpg", urlStr];
+        }
+
         
         MJPhoto *p = [[MJPhoto alloc] init];
         p.url = [NSURL URLWithString:urlS];

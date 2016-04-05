@@ -24,8 +24,6 @@
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
-
-
 @interface ZSComposeViewController ()<UIScrollViewDelegate, UITextViewDelegate, ZSComposeToolBarDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 /**
@@ -204,14 +202,15 @@
     [LBNotificationCenter removeObserver:self];
 }
 
+
 //导航栏按钮
 - (void)setNav
 {
     //添加导航栏左边按钮
     self.navigationItem.leftBarButtonItem= [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftBtn)];
     
-    //添加导航栏右边按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(send)];
+//    //添加导航栏右边按钮
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(send)];
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
     

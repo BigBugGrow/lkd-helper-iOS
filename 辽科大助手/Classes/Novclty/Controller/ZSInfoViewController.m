@@ -15,6 +15,7 @@
 #import "ZSAccount.h"
 #import "ZSHttpTool.h"
 #import "ZSPersonalUser.h"
+#import "ZSSendInfoViewController.h"
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
@@ -32,7 +33,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     //初始化tableView
-//    [self initHeaderView];
+    [self initHeaderView];
     
     //设置数据
     [self initModelData];
@@ -57,30 +58,71 @@
     //标题
     self.title = [NSString stringWithFormat:@"%@的信息", self.whoNickName];
     
-    ZSModel *item1 = [ZSModel itemWithIcon:@"me" title:@"学院" detailTitle:self.user.college];
-    ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"专业" detailTitle:self.user.major];
-    ZSModel *item3 = [ZSModel itemWithIcon:@"class" title:@"班级" detailTitle:self.user.class];
-    ZSModel *item4 = [ZSModel itemWithIcon:@"home" title:@"故乡" detailTitle:self.user.home];
+    ZSModel *item0 = [ZSModel itemWithIcon:@"name" title:@"姓名" detailTitle:self.user.name];
+    
+    ZSModel *item1 = [ZSModel itemWithIcon:@"age" title:@"性别" detailTitle:self.user.sex];
+    ZSModel *item2 = [ZSModel itemWithIcon:@"class" title:@"班级" detailTitle:self.user.class];
+    
+    ZSModel *item3 = [ZSModel itemWithIcon:@"major" title:@"专业" detailTitle:self.user.major];
+    ZSModel *item4 = [ZSModel itemWithIcon:@"college" title:@"学院" detailTitle:self.user.college];
+    ZSModel *item5 = [ZSModel itemWithIcon:@"home" title:@"故乡" detailTitle:self.user.home];
     
     ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
-    group1.items = @[item1,item2,item3, item4];
+    group1.items = @[item0,item1,item2,item3, item4, item5];
     [self.cellData addObject:group1];
     
-    ZSModel *item5 = [ZSModel itemWithIcon:@"setting" title:@"联系我" detailTitle:self.user.phone];
-    ZSModel *item6 = [ZSModel itemWithIcon:@"ring" title:@"QQ" detailTitle:self.user.qq];
     
-    ZSModel *item7 = [ZSModel itemWithIcon:@"setting" title:@"微信号" detailTitle:self.user.wechat];
+    NSString *phone = self.user.phone;
+    NSString *qq = self.user.qq;
+    NSString *wechat = self.user.wechat;
+    if ([phone isEqualToString:@"暂无"] && [self.whoNickName isEqualToString:nickName]) {
+      
+        phone = @"添加";
+    }
+    if ([qq isEqualToString:@"暂无"] && [self.whoNickName isEqualToString:nickName]) {
+        
+        qq = @"添加";
+    }
+    if ([wechat isEqualToString:@"暂无"] && [self.whoNickName isEqualToString:nickName]) {
+        
+        wechat = @"添加";
+    }
+    
+    ZSModel *item6 = [[ZSModel alloc] init];
+    
+    ZSModel *item7 = [[ZSModel alloc] init];
+    
+    ZSModel *item8 = [[ZSModel alloc] init];
+    
+    if ([self.whoNickName isEqualToString:nickName]) {
+        
+        item6 = [ZSModel itemWithIcon:@"phone" title:@"电话" detailTitle:phone vcClass:[ZSSendInfoViewController class]];
+        item7 = [ZSModel itemWithIcon:@"qq" title:@"QQ" detailTitle:qq vcClass:[ZSSendInfoViewController class]];
+        
+        item8 = [ZSModel itemWithIcon:@"weichat" title:@"微信号" detailTitle:wechat vcClass:[ZSSendInfoViewController class]];
+    } else {
+        item6 = [ZSModel itemWithIcon:@"phone" title:@"电话" detailTitle:phone];
+        item7 = [ZSModel itemWithIcon:@"qq" title:@"QQ" detailTitle:qq];
+        
+        item8 = [ZSModel itemWithIcon:@"weichat" title:@"微信号" detailTitle:wechat ];
+
+    }
     
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
     
-    group2.items = @[item5,item6, item7];
+    group2.items = @[item6, item7, item8];
     [self.cellData addObject:group2];
 
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"跟人信息";
+    if (section == 0) {
+        
+        return @"在校信息";
+    } else {
+        return @"联系方式";
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,21 +137,21 @@
     //headerView的大背景
     UIView *headerView = [[UIView alloc] init];
     headerView.width = ZSScreenW;
-    headerView.height = 330;
+    headerView.height = 300;
     headerView.x = 0;
     headerView.y = 0;
     
     //大图片
     UIImageView *myImage = [[UIImageView alloc] init];
     myImage.width = ZSScreenW;
-    myImage.height = 300;
+    myImage.height = 270;
     myImage.x = 0;
     myImage.y = 0;
     
     //网址
     NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small", self.whoNickName];
     
-    myImage.image = [UIImage imageNamed:@"about_lkdhelper"];
+    myImage.image = [UIImage imageNamed:@"lkdzs"];
     myImage.backgroundColor = [UIColor blackColor];
     [headerView addSubview:myImage];
     self.tableView.tableHeaderView = headerView;

@@ -25,6 +25,9 @@
 		522D3BE51C9D81A700A6927F /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D3BDD1C9D81A700A6927F /* SDWebImageManager+MJ.m */; settings = {ASSET_TAGS = (); }; };
 		523445B31C9E3CBC005630B7 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 523445B21C9E3CBC005630B7 /* NSString+Emoji.m */; settings = {ASSET_TAGS = (); }; };
 		523445B61C9E3D7C005630B7 /* UITextView+Extensiton.m in Sources */ = {isa = PBXBuildFile; fileRef = 523445B51C9E3D7C005630B7 /* UITextView+Extensiton.m */; settings = {ASSET_TAGS = (); }; };
+		523E21B41CB38600003BC391 /* ZSLostThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E21B31CB38600003BC391 /* ZSLostThing.m */; settings = {ASSET_TAGS = (); }; };
+		523E21B81CB388C5003BC391 /* ZSLostThingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E21B61CB388C5003BC391 /* ZSLostThingViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		523E21B91CB388C5003BC391 /* ZSLostThingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523E21B71CB388C5003BC391 /* ZSLostThingViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		5241578E1CA6C80F004A543E /* ZSCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241578C1CA6C80F004A543E /* ZSCourseViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		524471B41CA7D0E000B8D2E6 /* ZSCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524471B31CA7D0E000B8D2E6 /* ZSCourseView.m */; settings = {ASSET_TAGS = (); }; };
@@ -71,6 +74,8 @@
 		526775A01C9FF73500C55191 /* ZSEmotionTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5267758E1C9FF73500C55191 /* ZSEmotionTabBarButton.m */; settings = {ASSET_TAGS = (); }; };
 		526775A11C9FF73500C55191 /* ZSEmotionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 526775901C9FF73500C55191 /* ZSEmotionTextView.m */; settings = {ASSET_TAGS = (); }; };
 		526775A21C9FF73500C55191 /* ZSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 526775921C9FF73500C55191 /* ZSTextView.m */; settings = {ASSET_TAGS = (); }; };
+		5272E31A1CB2A76D00A078A3 /* ZSSendInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272E3181CB2A76D00A078A3 /* ZSSendInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5272E31B1CB2A76D00A078A3 /* ZSSendInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5272E3191CB2A76D00A078A3 /* ZSSendInfoViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		528206531CAC2DE80066C634 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */; settings = {ASSET_TAGS = (); }; };
 		52857AA91C9D7F2200F44C27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52857A711C9D7F2200F44C27 /* InfoPlist.strings */; settings = {ASSET_TAGS = (); }; };
 		52857AAA1C9D7F2200F44C27 /* pop-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52857A731C9D7F2200F44C27 /* pop-Info.plist */; settings = {ASSET_TAGS = (); }; };
@@ -275,6 +280,11 @@
 		523445B21C9E3CBC005630B7 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		523445B41C9E3D7C005630B7 /* UITextView+Extensiton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extensiton.h"; sourceTree = "<group>"; };
 		523445B51C9E3D7C005630B7 /* UITextView+Extensiton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extensiton.m"; sourceTree = "<group>"; };
+		523E21B21CB38600003BC391 /* ZSLostThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLostThing.h; sourceTree = "<group>"; };
+		523E21B31CB38600003BC391 /* ZSLostThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLostThing.m; sourceTree = "<group>"; };
+		523E21B51CB388C5003BC391 /* ZSLostThingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLostThingViewCell.h; sourceTree = "<group>"; };
+		523E21B61CB388C5003BC391 /* ZSLostThingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLostThingViewCell.m; sourceTree = "<group>"; };
+		523E21B71CB388C5003BC391 /* ZSLostThingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSLostThingViewCell.xib; sourceTree = "<group>"; };
 		5241578B1CA6C80F004A543E /* ZSCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourseViewController.h; sourceTree = "<group>"; };
 		5241578C1CA6C80F004A543E /* ZSCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourseViewController.m; sourceTree = "<group>"; };
 		5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCourseViewController.xib; sourceTree = "<group>"; };
@@ -362,6 +372,9 @@
 		526775901C9FF73500C55191 /* ZSEmotionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSEmotionTextView.m; sourceTree = "<group>"; };
 		526775911C9FF73500C55191 /* ZSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSTextView.h; sourceTree = "<group>"; };
 		526775921C9FF73500C55191 /* ZSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSTextView.m; sourceTree = "<group>"; };
+		5272E3171CB2A76D00A078A3 /* ZSSendInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSendInfoViewController.h; sourceTree = "<group>"; };
+		5272E3181CB2A76D00A078A3 /* ZSSendInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSendInfoViewController.m; sourceTree = "<group>"; };
+		5272E3191CB2A76D00A078A3 /* ZSSendInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSSendInfoViewController.xib; sourceTree = "<group>"; };
 		528206511CAC2DE80066C634 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		52857A721C9D7F2200F44C27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -764,6 +777,9 @@
 				52FE8C4A1CA2B8E60042A92C /* ZSMyNovcltyViewController.m */,
 				52F3AF811CB15F6C00E799D7 /* ZSInfoViewController.h */,
 				52F3AF821CB15F7600E799D7 /* ZSInfoViewController.m */,
+				5272E3171CB2A76D00A078A3 /* ZSSendInfoViewController.h */,
+				5272E3181CB2A76D00A078A3 /* ZSSendInfoViewController.m */,
+				5272E3191CB2A76D00A078A3 /* ZSSendInfoViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1145,6 +1161,8 @@
 		52D90B741CB0BB52002B74A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				523E21B21CB38600003BC391 /* ZSLostThing.h */,
+				523E21B31CB38600003BC391 /* ZSLostThing.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1152,6 +1170,9 @@
 		52D90B751CB0BB52002B74A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				523E21B51CB388C5003BC391 /* ZSLostThingViewCell.h */,
+				523E21B61CB388C5003BC391 /* ZSLostThingViewCell.m */,
+				523E21B71CB388C5003BC391 /* ZSLostThingViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2011,6 +2032,7 @@
 				5244DC7D1CA1050000147B72 /* ZSCommenViewController.xib in Resources */,
 				EFE9D8A01C0DB55F0072A4F7 /* ZSMyInfoCell.xib in Resources */,
 				522D3BDF1C9D81A700A6927F /* MJPhotoBrowser.bundle in Resources */,
+				523E21B91CB388C5003BC391 /* ZSLostThingViewCell.xib in Resources */,
 				522D3BCB1C9D814C00A6927F /* SVProgressHUD.bundle in Resources */,
 				EFFC6AFF1C04852500469F99 /* LaunchScreen.storyboard in Resources */,
 				EFFC6AFC1C04852500469F99 /* Assets.xcassets in Resources */,
@@ -2022,6 +2044,7 @@
 				529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */,
 				521A9E7E1C9E844F00BD3024 /* ZSPublishView.xib in Resources */,
 				EFE9D89B1C0DABAE0072A4F7 /* ZSMyInfoHeader.xib in Resources */,
+				5272E31B1CB2A76D00A078A3 /* ZSSendInfoViewController.xib in Resources */,
 				5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */,
 				5267759E1C9FF73500C55191 /* ZSEmotionPopView.xib in Resources */,
 				EF4B1B8A1C3E3284000A48F2 /* ZSRegisterViewController.xib in Resources */,
@@ -2101,6 +2124,7 @@
 				529D09571C8669FC00DE8C7F /* ZSDetailWeatherView.m in Sources */,
 				525F32BE1C852A4000014A64 /* MBProgressHUD+MJ.m in Sources */,
 				52857AAB1C9D7F2200F44C27 /* POPAnimatableProperty.mm in Sources */,
+				523E21B81CB388C5003BC391 /* ZSLostThingViewCell.m in Sources */,
 				EF5FE04B1C6C11C700A2CEB1 /* ZSBindTool.m in Sources */,
 				5244DC751CA1039500147B72 /* ZSAllDynamicCell.m in Sources */,
 				52C89B411CAE9EFA00295180 /* ZSNoteModel.m in Sources */,
@@ -2127,6 +2151,7 @@
 				5267759A1C9FF73500C55191 /* ZSEmotionKeyboard.m in Sources */,
 				52C89B3E1CAE9ECE00295180 /* ZSWriteNoteViewController.m in Sources */,
 				EFE538211C15229E00A2B6EF /* ZSLoginParam.m in Sources */,
+				5272E31A1CB2A76D00A078A3 /* ZSSendInfoViewController.m in Sources */,
 				52EC7B291C8963BD00EC7F7C /* NSString+Extension.m in Sources */,
 				52C89B491CAE9F6C00295180 /* ZSSaveNotes.m in Sources */,
 				5244DC781CA1039500147B72 /* ZSEssayTextView.m in Sources */,
@@ -2152,6 +2177,7 @@
 				EF2AB6061C0F17A500DB93FC /* AFURLSessionManager.m in Sources */,
 				EF2AB61A1C0F17A500DB93FC /* NSData+ImageContentType.m in Sources */,
 				522D3BCA1C9D814C00A6927F /* SVIndefiniteAnimatedView.m in Sources */,
+				523E21B41CB38600003BC391 /* ZSLostThing.m in Sources */,
 				EF2AB6261C0F17A500DB93FC /* UIImageView+HighlightedWebCache.m in Sources */,
 				EF2AB60D1C0F17A500DB93FC /* MJType.m in Sources */,
 				EFD44CFA1C164B460016A602 /* ZSInquireModel.m in Sources */,

@@ -9,7 +9,7 @@
 #import "ZSCourseViewController.h"
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
-
+#import <AudioToolbox/AudioToolbox.h>
 #import "NSDate+Utilities.h"
 
 
@@ -510,6 +510,9 @@
 
 - (IBAction)clickNextCourseBtn {
     
+    
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    
     self.currentWeek ++;
     if (self.currentWeek > 20) {
         
@@ -535,6 +538,8 @@
 
 - (IBAction)clickLastCourseBtn {
     
+    
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     
     self.currentWeek --;
     if (self.currentWeek <= 0) {

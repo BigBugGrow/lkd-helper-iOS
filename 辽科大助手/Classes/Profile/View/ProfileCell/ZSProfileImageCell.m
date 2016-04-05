@@ -12,7 +12,10 @@
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
+#define sex [[NSUserDefaults standardUserDefaults] objectForKey:ZSSex]
+
 @interface ZSProfileImageCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *sexImageView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -45,6 +48,11 @@
         
     }];
     
+    UIImage *imageBoy = [UIImage imageNamed:@"boy"];
+    UIImage *imageGril = [UIImage imageNamed:@"girl"];
+    self.sexImageView.image = [sex isEqualToString:@"boy"] ? imageBoy : imageGril;
+    
+    ZSLog(@"%@", sex);
     
     // 昵称
     self.nameLabel.text = nickName;

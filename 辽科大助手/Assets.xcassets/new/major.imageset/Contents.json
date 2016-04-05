@@ -6,19 +6,16 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "commonNum.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "major.jpg",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

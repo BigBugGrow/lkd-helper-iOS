@@ -13,6 +13,7 @@
 #import "ZSInfoViewController.h"
 #import "ZSAccountTool.h"
 #import "ZSPersonalUser.h"
+#import "ZSHttpTool.h"
 #import "ZSAccount.h"
 
 
@@ -66,20 +67,29 @@
     
     ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
     
-    ZSAccount *account = [ZSAccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    user.college = account.college;
-    user.major = account.major;
-    user.home = account.home;
-    user.birthday = account.birthday;
-    user.phone = account.phone;
-    user.qq = account.qq;
-    user.wechat = account.wechat;
-    infoViewCV.user = user;
+    params[@"nickname"] = nickName;
     
-    infoViewCV.whoNickName = nickName;
-
-    [self.navigationController pushViewController:infoViewCV animated:YES];
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoRead" parameters:params success:^(NSDictionary *responseObject) {
+        
+        user.sex = [responseObject[@"sex"] isEqualToString:@"boy"] ? @"男" : @"女";
+        user.name = responseObject[@"name"];
+        user.college = responseObject[@"college"];
+        user.major = responseObject[@"major"];
+        user.class = responseObject[@"class"];
+        user.home = responseObject[@"home"];
+        user.birthday = responseObject[@"birthday"];
+        user.phone = responseObject[@"phone"];
+        user.qq = responseObject[@"qq"];
+        user.wechat = responseObject[@"wechat"];
+        infoViewCV.user = user;
+        infoViewCV.whoNickName = nickName;
+        [self.navigationController pushViewController:infoViewCV animated:YES];
+        
+    } failure:^(NSError *error) {
+        
+    }];
     
 }
 
@@ -120,6 +130,11 @@
     } else if(item.class) {
         
         id vc = [[item.vcClass alloc] init];
+        
+        if (vc == nil) {
+            return;
+        }
+        
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

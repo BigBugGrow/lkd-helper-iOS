@@ -25,6 +25,9 @@
 /** titlesView*/
 @property (nonatomic, weak) UIView *titlesView;
 
+/** 发送消息按钮*/
+@property (nonatomic, weak) UIButton *plusBtn;
+
 @end
 
 @implementation ZSNovcltyViewController
@@ -38,7 +41,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     //添加子控制器
     [self settingUpChildController];
@@ -98,6 +100,36 @@
     
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    UIButton *plusBtn = [[UIButton alloc] init];
+    plusBtn.width = 60;
+    plusBtn.height = 60;
+    plusBtn.x = ZSScreenW - plusBtn.width - 15;
+    plusBtn.y = ZSScreenH - plusBtn.height - 20;
+    [plusBtn setImage:[UIImage imageNamed:@"pic_treehole_sent_img"] forState:UIControlStateNormal];
+    [plusBtn setImage:[UIImage imageNamed:@"pic_treehole_sent_img_pressed"] forState:UIControlStateHighlighted];
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    [window addSubview:plusBtn];
+    self.plusBtn = plusBtn;
+    
+    //添加监听方法
+    [plusBtn addTarget:self action:@selector(clickSendBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self.plusBtn removeFromSuperview];
+}
+
 /** 设置导航条*/
 - (void)settingUpTitle
 {
@@ -109,9 +141,9 @@
     self.navigationController.navigationBar.shadowImage = [UIImage imageNamed:@"blueShdow"];
     
     //添加右边发送按钮
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"location_write_penicon"] style:UIBarButtonItemStylePlain target:self action:@selector(clickSendBtn)];
+//    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"location_write_penicon"] style:UIBarButtonItemStylePlain target:self action:@selector(clickSendBtn)];
     
-    self.navigationItem.rightBarButtonItem = rightBtn;
+//    self.navigationItem.rightBarButtonItem = rightBtn;
     
     //添加titiles
     UIView *titlesView = [[UIView alloc] init];

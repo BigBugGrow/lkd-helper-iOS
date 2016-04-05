@@ -7,18 +7,144 @@
 //
 
 #import "ZSLostAndFoundViewController.h"
+#import "ZSLostThing.h"
+#import "MJExtension.h"
+#import "ZSLostThingViewCell.h"
+#import "ZSHttpTool.h"
+#import "ZSDynamicPicturesView.h"
+#import "MJRefresh.h"
+
+#define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 
 @interface ZSLostAndFoundViewController ()
 
+/** plusBtn*/
+@property (nonatomic, weak) UIButton *plusBtn;
+
+/** 模型数组*/
+@property (nonatomic, strong) NSMutableArray *lostThings;
+
 @end
+
+static NSString *ID = @"lostAndFoundCell";
+
 
 @implementation ZSLostAndFoundViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //初始化tableView
+    [self initTableView];
+    
+    //添加刷新
+    [self initRefresh];
+}
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
+    UIButton *plusBtn = [[UIButton alloc] init];
+    plusBtn.width = 60;
+    plusBtn.height = 60;
+    plusBtn.x = ZSScreenW - plusBtn.width - 15;
+    plusBtn.y = ZSScreenH - plusBtn.height - 20;
+    [plusBtn setImage:[UIImage imageNamed:@"pic_treehole_sent_img"] forState:UIControlStateNormal];
+    [plusBtn setImage:[UIImage imageNamed:@"pic_treehole_sent_img_pressed"] forState:UIControlStateHighlighted];
     
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    [window addSubview:plusBtn];
+    self.plusBtn = plusBtn;
+    
+    //添加监听方法
+    [plusBtn addTarget:self action:@selector(clickSendBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self.plusBtn removeFromSuperview];
+}
+
+- (void)clickSendBtn
+{
+    ZSLog(@"wruteBtn");
+}
+
+
+
+
+- (void)initRefresh
+{
+    
+    [self.tableView addHeaderWithTarget:self action:@selector(loadNewData)];
+    
+    [self.tableView headerBeginRefreshing];
+    
+}
+
+/** 加载新的数据*/
+- (void)loadNewData
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    params[@"item"] = @"00";
+    
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/LostAndFoundRead" parameters:params success:^(id responseObject) {
+        
+        
+        NSArray *datas = responseObject[@"data"];
+        
+        NSMutableArray *lostThings = [NSMutableArray array];
+        
+        for (NSDictionary *dict in datas) {
+            
+            ZSLostThing *lostThing = [ZSLostThing objectWithKeyValues:dict];
+            
+            NSString *picPreSubStr = [dict[@"pic"] substringFromIndex:1];
+            NSString *picSufSubStr = [picPreSubStr substringToIndex:picPreSubStr.length - 1];
+            
+            if (![picSufSubStr isEqualToString:@""]) {
+                
+                NSArray *pics = [picSufSubStr componentsSeparatedByString:@","];
+                lostThing.pics = pics;
+            } else {
+                lostThing.pics = nil;
+            }
+            
+            [lostThings addObject:lostThing];
+        }
+        
+        self.lostThings = lostThings;
+        
+        [self.tableView reloadData];
+        
+        //结束刷新
+        [self.tableView headerEndRefreshing];
+        
+        
+    } failure:^(NSError *error) {
+        
+        [self.tableView headerEndRefreshing];
+        
+    }];
+
+}
+
+/** 初始化tableView*/
+- (void)initTableView
+{
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"ZSLostThingCell" bundle:nil] forCellReuseIdentifier:ID];
+    
+    self.title = @"失物招领";
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,31 +154,31 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 10;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 10;
+
+    return self.lostThings.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *ID = @"lostAndFound";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    ZSLostThingViewCell *cell = [ZSLostThingViewCell cellWithTableView:tableView];
     
-    if (cell == nil) {
-     
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
+    ZSLostThing *lostThing = self.lostThings[indexPath.row];
     
-    cell.textLabel.text = @"sddschsdhc";
+    cell.lostThing = lostThing;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *pics = [self.lostThings[indexPath.row] pics];
+    
+    CGSize size = [ZSDynamicPicturesView sizeWithPicturesCount:pics.count];
+    
+    return 230 + size.height + 20;
 }
 
 

@@ -9,8 +9,11 @@
 #import "ZSWriteNoteViewController.h"
 #import "UIBarButtonItem+Extension.h"
 #import "ZSNoteModel.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 
-@interface ZSWriteNoteViewController ()<UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@interface ZSWriteNoteViewController ()<UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 /** scroView*/
 @property (nonatomic, weak) UIScrollView *scroView;
@@ -26,6 +29,11 @@
 
 /**退出键盘按钮*/
 @property (nonatomic, weak) UIButton *exitKeyBoardBtn;
+
+@property (nonatomic, weak) UITapGestureRecognizer *tab;
+
+/**imageCount*/
+@property (nonatomic, assign) NSInteger imageCount;
 
 @end
 
@@ -44,6 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.imageCount = 0;
 
     //设置导航栏内容
     [self settingNav];
@@ -53,8 +62,8 @@
     
     //设置数据
     [self settingData];
-    
-    
+
+
     //根据键盘的y值来设定工具条的位置
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
@@ -112,6 +121,40 @@
 
 }
 
+- (void)clickImageView
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除照片" otherButtonTitles:@"查看照片", nil];
+    
+    [sheet showInView:self.view];
+}
+
+
+- (void)tab:(UIImageView *)tabView
+{
+    // ZSPhoto --> MJPhone
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    
+    for (int i = 0; i < self.imagePathArray.count; i ++) {
+        
+        MJPhoto *p = [[MJPhoto alloc] init];
+        p.image = [self GetImageFromLocal:self.imagePathArray[i]];
+        p.srcImageView = tabView;
+        p.index = i;
+        [arrM addObject:p];
+        
+    }
+    
+    //弹出图片浏览器
+    //创建浏览器对象
+    MJPhotoBrowser *brower = [[MJPhotoBrowser alloc] init];
+    //MJPhone
+    brower.photos = arrM;
+    brower.currentPhotoIndex = tabView.tag;
+    [brower show];
+
+}
+
 /** 添加内容*/
 - (void)settingContent
 {
@@ -123,8 +166,13 @@
     scroView.delegate = self;
     scroView.bounces = NO;
     scroView.backgroundColor = [UIColor whiteColor];
-    scroView.showsHorizontalScrollIndicator = NO;
     scroView.showsVerticalScrollIndicator = NO;
+    
+    UITapGestureRecognizer *tab = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImageView)];
+    self.tab = tab;
+    scroView.userInteractionEnabled = YES;
+    
+    [scroView addGestureRecognizer:tab];
     
     self.scroView = scroView;
     
@@ -163,7 +211,11 @@
     
     //添加退出键盘按钮
     UIButton *exitKeyBoardBtn = [[UIButton alloc] init];
-    exitKeyBoardBtn.frame = CGRectMake(300, 700, 48, 48);
+    exitKeyBoardBtn.width = 48;
+    exitKeyBoardBtn.height = 48;
+    exitKeyBoardBtn.x = ZSScreenW - exitKeyBoardBtn.width - 15;
+    exitKeyBoardBtn.y = 700;
+    
     [exitKeyBoardBtn addTarget:self action:@selector(exitKeyBoard) forControlEvents:UIControlEventTouchUpInside];
     [exitKeyBoardBtn setImage:[UIImage imageNamed:@"bar_down_keyboard_icon"] forState:UIControlStateNormal];
     self.exitKeyBoardBtn = exitKeyBoardBtn;
@@ -387,6 +439,43 @@
         ZSLog(@"未从本地获得图片");
     }
     return image;
+}
+
+
+/** 查看照片*/
+- (void)seePhoto
+{
+    
+    UIImageView *imageView = self.scroView.subviews[0];
+    [self tab:imageView];
+}
+
+#pragma mark - UIActionSheetdelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    
+    ZSLog(@"%@", self.scroView.subviews);
+    
+    if (buttonIndex == 0) {
+        
+        if (self.imageCount == 0) {
+            
+            UIImageView *imageView = [self.scroView.subviews lastObject];
+            [imageView removeFromSuperview];
+            self.imageCount ++;
+        }
+
+        //现只能够删除最后一张
+        
+        UIImageView *imageView = [self.scroView.subviews lastObject];
+        [imageView removeFromSuperview];
+        [self.imagePathArray removeLastObject];
+        
+    } else if (buttonIndex == 1) {
+        
+        [self seePhoto];
+    }
 }
 
 /*

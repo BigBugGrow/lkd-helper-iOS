@@ -154,13 +154,14 @@
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/noveltyRead" parameters:params success:^(NSDictionary *responseObject) {
         
+        ZSLog(@"%@", responseObject);
+        
         //保存上一次访问的一条数据的最后一个
         self.endId = [responseObject[@"endId"] integerValue];
         
         NSArray *dynamics = responseObject[@"data"];
         
         NSMutableArray *arrayM = [NSMutableArray array];
-        
         
         for (NSDictionary *dict in dynamics) {
             
