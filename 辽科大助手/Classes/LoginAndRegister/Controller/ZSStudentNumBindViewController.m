@@ -16,6 +16,7 @@
 #import "ZSTabBarController.h"
 
 #import "MBProgressHUD+MJ.h"
+#import "SVProgressHUD.h"
 
 
 @interface ZSStudentNumBindViewController ()
@@ -31,6 +32,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
      self.activityIndicator.hidden = YES;
+     self.navigationItem.title = @"学号绑定";
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    ZSAccount *account = [ZSAccountTool account];
+    if (account.zjh) {
+        
+        [SVProgressHUD showErrorWithStatus:@"该账号以绑定学号！"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+
+    
 }
 
 - (void)didReceiveMemoryWarning {

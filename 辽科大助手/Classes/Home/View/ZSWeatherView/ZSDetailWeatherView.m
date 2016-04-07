@@ -24,7 +24,7 @@
         
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
         
-        self.frame = CGRectMake(0, 0, width, 190);
+        self.frame = CGRectMake(0, 0, width, 210);
         
         for (int i = 0; i < 3; i ++) {
             
@@ -80,7 +80,7 @@
     NSInteger itemNum = self.subviews.count;
     
     CGFloat detailWeatherW = ([UIScreen mainScreen].bounds.size.width - (itemNum + 1) * marginW) / itemNum;
-    CGFloat detailWeatherH = 166;
+    CGFloat detailWeatherH = 200;
     
     for (int i = 0; i < itemNum; i ++) {
         

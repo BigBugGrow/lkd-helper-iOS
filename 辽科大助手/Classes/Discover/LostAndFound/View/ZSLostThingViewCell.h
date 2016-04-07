@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class ZSLostThing;
+@class ZSLostThing, ZSLostThingViewCell;
+
+@protocol ZSLostThingViewCellDelegate <NSObject>
+
+- (void)clickCall:(ZSLostThingViewCell *)lostThingViewCell PhoneNum:(NSString *)phoneNum;
+
+@end
+
 
 @interface ZSLostThingViewCell : UITableViewCell
 
+
+@property (nonatomic, weak) id<ZSLostThingViewCellDelegate> delegate;
 
 /**模型*/
 @property (nonatomic, strong) ZSLostThing *lostThing;

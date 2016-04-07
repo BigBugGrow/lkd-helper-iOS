@@ -16,6 +16,10 @@
  *  哪天
  */
 @property (nonatomic, weak) UILabel *day;
+
+/** 天气图标*/
+@property (nonatomic, weak) UIImageView *iconView;
+
 /**
  * 温度
  */
@@ -45,6 +49,11 @@
         day.backgroundColor = [UIColor clearColor];
         self.day = day;
         [self addSubview:day];
+        
+        UIImageView *iconView = [[UIImageView alloc] init];
+        self.iconView.backgroundColor = [UIColor redColor];
+        self.iconView = iconView;
+        [self addSubview:iconView];
         
         UILabel *tempreture = [[UILabel alloc] init];
         tempreture.font = [UIFont systemFontOfSize:14];
@@ -101,6 +110,26 @@
     self.tempreture.text = tempreture;
     self.wind.text = wind;
     self.weather.text = weather;
+    
+    if ([weather isEqualToString:@"晴"]) {
+        
+        self.iconView.image = [UIImage imageNamed:@"sunny"];
+    } else if([weather isEqualToString:@"雨"]) {
+        self.iconView.image = [UIImage imageNamed:@"rain"];
+    } else if([weather isEqualToString:@"雪"]) {
+        self.iconView.image = [UIImage imageNamed:@"snow"];
+    } else if([weather isEqualToString:@"雾"]) {
+        self.iconView.image = [UIImage imageNamed:@"fog"];
+    } else if([weather isEqualToString:@"霾"]) {
+        self.iconView.image = [UIImage imageNamed:@"haze"];
+    } else if([weather isEqualToString:@"云"]) {
+        self.iconView.image = [UIImage imageNamed:@"cloudy"];
+    } else if([weather isEqualToString:@"阴"]) {
+        self.iconView.image = [UIImage imageNamed:@"overcast"];
+    } else if([weather isEqualToString:@"雷"]) {
+        self.iconView.image = [UIImage imageNamed:@"thunder"];
+    }
+
 }
 
 
@@ -116,12 +145,17 @@
     self.day.x = 0;
     self.day.y = marginW;
     
+    self.iconView.width = 30;
+    self.iconView.height = 30;
+    self.iconView.centerX = self.day.centerX;
+    self.iconView.y = CGRectGetMaxY(self.day.frame) + marginW;
+    
     
     //温度
     self.tempreture.width = self.width;
     self.tempreture.height = 25;
     self.tempreture.x = 0;
-    self.tempreture.y = CGRectGetMaxY(self.day.frame) + marginW;
+    self.tempreture.y = CGRectGetMaxY(self.iconView.frame) + marginW;
     
     
     //风

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageVIew;
 /** 电话*/
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UIButton *callBtn;
 
 /** 描述*/
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
@@ -138,7 +139,9 @@
     
     [self.commentBtn setImage:[UIImage imageNamed:@"commentNum"] forState:UIControlStateNormal];
     
-    
+    [self.callBtn setTitle:lostThing.phone forState:UIControlStateNormal];
+    [self.callBtn setImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+    [self.callBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
 }
 
@@ -148,27 +151,30 @@
     [self.contentView addSubview:dynamicPictureView];
     self.pictureView = dynamicPictureView;
     
-    self.phoneLabel.userInteractionEnabled = YES;
     
-    /** 添加点击事件*/
-    [self.phoneLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPhone)]];
     
-    self.phoneImageView.userInteractionEnabled = YES;
     
-    /** 添加点击事件*/
-    [self.phoneImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPhone)]];
-    
+//    self.phoneLabel.userInteractionEnabled = YES;
+//    self.phoneImageView.userInteractionEnabled = YES;
+//    
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPhone)];
+//    
+//    /** 添加点击事件*/
+//    [self.phoneLabel addGestureRecognizer:tap];
+//    /** 添加点击事件*/
+//    [self.phoneImageView addGestureRecognizer:tap];
 }
 
-- (void)clickPhone
+- (IBAction)clickPhone
 {
-    ZSLog(@"%@", self.phoneLabel.text);
     
-    NSString *telUrl = [NSString stringWithFormat:@"tel://%@", self.phoneLabel.text];
+    ZSLog(@"ssss");
+    if ([self.delegate respondsToSelector:@selector(clickCall:PhoneNum:)]) {
+        
+        [self.delegate clickCall:self PhoneNum:self.phoneLabel.text];
+    }
     
-    telUrl = [telUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telUrl]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

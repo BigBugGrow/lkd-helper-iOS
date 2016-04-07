@@ -23,6 +23,8 @@
 		522D3BE51C9D81A700A6927F /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D3BDD1C9D81A700A6927F /* SDWebImageManager+MJ.m */; settings = {ASSET_TAGS = (); }; };
 		523445B31C9E3CBC005630B7 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 523445B21C9E3CBC005630B7 /* NSString+Emoji.m */; settings = {ASSET_TAGS = (); }; };
 		523445B61C9E3D7C005630B7 /* UITextView+Extensiton.m in Sources */ = {isa = PBXBuildFile; fileRef = 523445B51C9E3D7C005630B7 /* UITextView+Extensiton.m */; settings = {ASSET_TAGS = (); }; };
+		523B6E001CB64C210031FC23 /* ZSLostCommenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523B6DFD1CB64C210031FC23 /* ZSLostCommenViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		523B6E011CB64C210031FC23 /* ZSLostCommenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523B6DFE1CB64C210031FC23 /* ZSLostCommenViewController.m */; settings = {ASSET_TAGS = (); }; };
 		523E21B41CB38600003BC391 /* ZSLostThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E21B31CB38600003BC391 /* ZSLostThing.m */; settings = {ASSET_TAGS = (); }; };
 		523E21B81CB388C5003BC391 /* ZSLostThingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E21B61CB388C5003BC391 /* ZSLostThingViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		523E21B91CB388C5003BC391 /* ZSLostThingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523E21B71CB388C5003BC391 /* ZSLostThingViewCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -284,6 +286,9 @@
 		523445B21C9E3CBC005630B7 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		523445B41C9E3D7C005630B7 /* UITextView+Extensiton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extensiton.h"; sourceTree = "<group>"; };
 		523445B51C9E3D7C005630B7 /* UITextView+Extensiton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extensiton.m"; sourceTree = "<group>"; };
+		523B6DFD1CB64C210031FC23 /* ZSLostCommenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSLostCommenViewController.xib; sourceTree = "<group>"; };
+		523B6DFE1CB64C210031FC23 /* ZSLostCommenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLostCommenViewController.m; sourceTree = "<group>"; };
+		523B6DFF1CB64C210031FC23 /* ZSLostCommenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLostCommenViewController.h; sourceTree = "<group>"; };
 		523E21B21CB38600003BC391 /* ZSLostThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLostThing.h; sourceTree = "<group>"; };
 		523E21B31CB38600003BC391 /* ZSLostThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLostThing.m; sourceTree = "<group>"; };
 		523E21B51CB388C5003BC391 /* ZSLostThingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLostThingViewCell.h; sourceTree = "<group>"; };
@@ -1244,6 +1249,9 @@
 				52408F0E1CB4DB1600F0EFC9 /* ZSWriteLostViewController.h */,
 				52408F0F1CB4DB1600F0EFC9 /* ZSWriteLostViewController.m */,
 				52408F101CB4DB1600F0EFC9 /* ZSWriteLostViewController.xib */,
+				523B6DFF1CB64C210031FC23 /* ZSLostCommenViewController.h */,
+				523B6DFE1CB64C210031FC23 /* ZSLostCommenViewController.m */,
+				523B6DFD1CB64C210031FC23 /* ZSLostCommenViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2144,6 +2152,7 @@
 				5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */,
 				5267759E1C9FF73500C55191 /* ZSEmotionPopView.xib in Resources */,
 				EF4B1B8A1C3E3284000A48F2 /* ZSRegisterViewController.xib in Resources */,
+				523B6E001CB64C210031FC23 /* ZSLostCommenViewController.xib in Resources */,
 				52C89B461CAE9F1200295180 /* ZSNoteViewCell.xib in Resources */,
 				525D3EF41C9E5449007AF860 /* EmotionIcons in Resources */,
 				526136401CB5E2CF00458C87 /* ZSPublishView.xib in Resources */,
@@ -2297,6 +2306,7 @@
 				EFD44D581C1857E20016A602 /* ZSNewsInfo.m in Sources */,
 				EF2AB60E1C0F17A500DB93FC /* NSObject+MJCoding.m in Sources */,
 				EFD44D491C182BDE0016A602 /* ZSNewsCell.m in Sources */,
+				523B6E011CB64C210031FC23 /* ZSLostCommenViewController.m in Sources */,
 				EF2AB6051C0F17A500DB93FC /* AFURLResponseSerialization.m in Sources */,
 				EF2AB6121C0F17A500DB93FC /* MJRefreshBaseView.m in Sources */,
 				EF2AB5FF1C0F17A500DB93FC /* AFHTTPRequestOperationManager.m in Sources */,
@@ -2519,7 +2529,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/macbookpro/Documents/workspace/LKD/lkd-helper-iOS/辽科大助手/Classes/Other/lkdhelper.pch";
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.ustl.lkdhelper;
 				PRODUCT_NAME = "辽科大助手";
@@ -2535,7 +2545,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/macbookpro/Documents/workspace/LKD/lkd-helper-iOS/辽科大助手/Classes/Other/lkdhelper.pch";
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.ustl.lkdhelper;
 				PRODUCT_NAME = "辽科大助手";

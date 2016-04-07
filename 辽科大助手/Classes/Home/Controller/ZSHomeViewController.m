@@ -134,7 +134,6 @@
 
 }
 
-
 - (void)initWeatherData
 {
     //初始化天气数据
@@ -372,8 +371,6 @@
                     if (![account.hasTimetable isEqualToString:@"no"]) {
                     
                         [self.navigationController pushViewController:courseViewController animated:YES];
-                        
-                        
                     }else {
                         
                         [SVProgressHUD showErrorWithStatus:@"亲， 你还没绑定学号哦！"];

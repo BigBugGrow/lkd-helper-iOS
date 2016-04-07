@@ -51,6 +51,8 @@
 /** topView*/
 @property (nonatomic, weak) UIImageView *topView;
 
+@property (nonatomic, weak) UIButton *backBtn;
+
 @end
 
 @implementation ZSMyNovcltyViewController
@@ -76,6 +78,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.navigationController.navigationBar.hidden = YES;
     //设置nav
     [self initNav];
     
@@ -85,6 +88,18 @@
     //初始化headerView
     [self initHeaderView];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.backBtn removeFromSuperview];
 }
 
 /** 初始化headerView*/
@@ -197,14 +212,14 @@
     
     //昵称
     UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.width = 200;
+    nameLabel.width = 100;
     nameLabel.height = 30;
     nameLabel.x = smallImageView.x - marginWidth + 3 - nameLabel.width;
     nameLabel.y = CGRectGetMaxY(smallImageView.frame) - marginWidth - nameLabel.height;
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.textAlignment = NSTextAlignmentRight;
-    nameLabel.text = self.whoNickName;
-    nameLabel.font = [UIFont systemFontOfSize:20 weight:5];
+    nameLabel.text = self.whoNickName ? self.whoNickName : nickName;
+    nameLabel.font = [UIFont systemFontOfSize:20 weight:20];
     nameLabel.textColor = [UIColor whiteColor];
     [myImage addSubview:nameLabel];
     
@@ -399,7 +414,42 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    
+//    //返回按钮
+//    UIButton *backBtn = [[UIButton alloc] init];
+//    backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+//    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+//    
+//    [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
+//    backBtn.size = CGSizeMake(70, 30);
+//    //设置按钮的内容靠左边
+//    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    //设置按钮的切割
+//    backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+//    
+//    backBtn.x = 20;
+//    backBtn.y = 15;
+//    
+//    backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+//    
+//    [backBtn addTarget:self action:@selector(exitViewController) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    self.backBtn = backBtn;
+//    
+//    [window addSubview:backBtn];
+    
 }
+
+
+- (void)exitViewController
+{
+//    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 /** */
 - (void)clickRightBtn
 {
@@ -407,8 +457,7 @@
     ZSInfoViewController *info = [[ZSInfoViewController alloc] init];
     
     ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
-
-        
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     params[@"nickname"] = self.whoNickName ? self.whoNickName : nickName;
@@ -427,8 +476,9 @@
         user.wechat = responseObject[@"wechat"];
         info.user = user;
         info.whoNickName = self.whoNickName ? self.whoNickName : nickName;
-        [self.navigationController pushViewController:info animated:YES];
         
+        [self.navigationController pushViewController:info animated:YES];
+    
     } failure:^(NSError *error) {
         
     }];
@@ -490,20 +540,43 @@
 
 #pragma mark - UISCrollView的代理方法
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+// scroView的代理
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+//    ZSLog(@"%lf", scrollView.contentOffset.y);
+//    
+//    if (scrollView.contentOffset.y >= -45) {
+//        
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.navigationController.navigationBar.hidden = NO;
+//            self.backBtn.hidden = YES;
+//            
+//        }];
+//        
+//    } else {
+//        
+//        [UIView animateWithDuration:0.5 animations:^{
+//            
+//            self.navigationController.navigationBar.hidden = YES;
+//            self.backBtn.hidden = NO;
+//        }];
+//    }
+//    
+    
+    
     // 向下拽了多少距离
     CGFloat down = -(HMTopViewH * 0.5) - scrollView.contentOffset.y;
     if (down < 0) return;
     
     CGRect frame = self.topView.frame;
     // 5决定图片变大的速度,值越大,速度越快
-//    frame.size.width = ZSScreenW + down * 0.2;
+    //    frame.size.width = ZSScreenW + down * 0.2;
     frame.size.height = HMTopViewH + down * 0.8;
     self.topView.frame = frame;
     
-    
 }
+
 
 
 

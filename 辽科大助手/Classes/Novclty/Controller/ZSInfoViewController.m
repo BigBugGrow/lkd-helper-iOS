@@ -21,14 +21,24 @@
 
 @interface ZSInfoViewController ()
 
+@property (nonatomic, weak) UIButton *backBtn;
+
 @end
 
 @implementation ZSInfoViewController
+
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    self.navigationController.navigationBar.hidden = YES;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
@@ -39,17 +49,7 @@
     [self initModelData];
 }
 
-//设置导航栏为白色
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.navigationBar.hidden = NO;
-}
 //初始化模型数据
 - (void)initModelData
 {
@@ -133,7 +133,6 @@
 /** 初始化headerView*/
 - (void)initHeaderView
 {
-    
     //headerView的大背景
     UIView *headerView = [[UIView alloc] init];
     headerView.width = ZSScreenW;
@@ -141,17 +140,23 @@
     headerView.x = 0;
     headerView.y = 0;
     
+    
     //大图片
     UIImageView *myImage = [[UIImageView alloc] init];
     myImage.width = ZSScreenW;
     myImage.height = 270;
     myImage.x = 0;
-    myImage.y = 0;
+    myImage.y = -20;
+    
+    
+    myImage.backgroundColor = RGBColor(234, 234, 234, 0.5);
     
     //网址
     NSString *urlStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small", self.whoNickName];
     
-    myImage.image = [UIImage imageNamed:@"lkdzs"];
+    NSString *urlBigStr = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small", self.whoNickName];
+    
+    [myImage sd_setImageWithURL:[NSURL URLWithString:urlBigStr]];
     myImage.backgroundColor = [UIColor blackColor];
     [headerView addSubview:myImage];
     self.tableView.tableHeaderView = headerView;
@@ -197,6 +202,72 @@
     nameLabel.font = [UIFont systemFontOfSize:20 weight:5];
     nameLabel.textColor = [UIColor whiteColor];
     [myImage addSubview:nameLabel];
+    
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    //返回按钮
+    UIButton *backBtn = [[UIButton alloc] init];
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    
+    [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
+    backBtn.size = CGSizeMake(70, 30);
+    //设置按钮的内容靠左边
+    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //设置按钮的切割
+    backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    
+    backBtn.x = 20;
+    backBtn.y = 15;
+    
+    backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    
+    [backBtn addTarget:self action:@selector(exitViewController) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.backBtn = backBtn;
+    
+    [window addSubview:backBtn];
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
+    
+}
+
+- (void)exitViewController
+{
+    
+    //除掉返回按钮
+    [self.backBtn removeFromSuperview];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+// scroView的代理
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    ZSLog(@"%lf", scrollView.contentOffset.y);
+    
+    if (scrollView.contentOffset.y >= 190) {
+    
+        [UIView animateWithDuration:0.5 animations:^{
+            self.navigationController.navigationBar.hidden = NO;
+            self.backBtn.hidden = YES;
+            
+        }];
+        
+    } else {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            self.navigationController.navigationBar.hidden = YES;
+            self.backBtn.hidden = NO;
+        }];
+    }
     
 }
 

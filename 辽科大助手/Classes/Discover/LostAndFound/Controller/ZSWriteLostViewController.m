@@ -395,9 +395,18 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/LostAndFoundWrite" parameters:params success:^(id responseObject) {
         
-        [SVProgressHUD showSuccessWithStatus:@"发表成功！"];
         
-        [self.navigationController popViewControllerAnimated:YES];
+        if ([responseObject[@"state"] integerValue] == 100) {
+            
+            [SVProgressHUD showSuccessWithStatus:@"发表成功！"];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } else {
+            
+            [SVProgressHUD showSuccessWithStatus:@"发表失败，请重新发送！"];
+            
+        }
         
         
     } failure:^(NSError *error) {

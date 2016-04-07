@@ -19,6 +19,7 @@
 #import "ZSAccountTool.h"
 #import "ZSAboutViewController.h"
 #import "ZSMyLostAndThingViewController.h"
+#import "ZSStudentNumBindViewController.h"
 
 @interface ZSProfileViewController ()<UIAlertViewDelegate>
 
@@ -44,11 +45,42 @@
 - (void)clickRightBtn
 {
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"退出当前账号" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"退出当前账号" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+//    
+//    [alertView setTag:1];
+//    
+//    [alertView show];
+
     
-    [alertView setTag:1];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"退出当前账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    [alertView show];
+    //创建按钮
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+       
+        ZSLoginViewController *loginViewVC = [[ZSLoginViewController alloc] init];
+        
+        ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:loginViewVC];
+        
+        [self.navigationController presentViewController:nav animated:YES completion:^{
+            
+            [ZSAccountTool saveAccount:nil];
+            
+        }];
+        
+        
+    }];
+    
+    //取消按钮
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    
+    [alertController addAction:okAction];
+    
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
     
 }
 
@@ -60,14 +92,17 @@
 //初始化模型数据
 - (void)initModelData
 {
-
-    ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"我的糯米粒" detailTitle:@"" vcClass:[ZSMyNovcltyViewController class]];
-    ZSModel *item3 = [ZSModel itemWithIcon:@"mylost_found" title:@"我的寻物公告" detailTitle:@"" vcClass:[ZSMyLostAndThingViewController class]];
+    
+    ZSModel *item1 = [ZSModel itemWithIcon:@"mynovelty" title:@"我的糯米粒" detailTitle:@"" vcClass:[ZSMyNovcltyViewController class]];
+    ZSModel *item2 = [ZSModel itemWithIcon:@"mylost_found" title:@"我的寻物公告" detailTitle:@"" vcClass:[ZSMyLostAndThingViewController class]];
     
     ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
-    group1.items = @[item2,item3];
+    group1.items = @[item1,item2];
     [self.cellData addObject:group1];
     
+    
+    
+    ZSModel *item3 = [ZSModel itemWithIcon:@"bindStudentNo" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
     ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置" detailTitle:@""];
     ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"消息提醒模式" detailTitle:@""];
     
@@ -89,7 +124,7 @@
     ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@"" vcClass:[ZSAboutViewController class]];
     
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
-    group2.items = @[item4,item5,item6];
+    group2.items = @[item3,item4,item5,item6];
     [self.cellData addObject:group2];
 
 }
@@ -104,7 +139,6 @@
             
             ZSLoginViewController *loginViewVC = [[ZSLoginViewController alloc] init];
         
-            
             ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:loginViewVC];
             
             [self.navigationController presentViewController:nav animated:YES completion:^{

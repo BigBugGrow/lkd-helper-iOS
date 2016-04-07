@@ -14,10 +14,11 @@
 #import "ZSDynamicPicturesView.h"
 #import "MJRefresh.h"
 #import "ZSWriteLostViewController.h"
+#import "ZSLostCommenViewController.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 
-@interface ZSLostAndFoundViewController ()
+@interface ZSLostAndFoundViewController ()<ZSLostThingViewCellDelegate>
 
 /** plusBtn*/
 @property (nonatomic, weak) UIButton *plusBtn;
@@ -168,6 +169,8 @@ static NSString *ID = @"lostAndFoundCell";
     
     ZSLostThingViewCell *cell = [ZSLostThingViewCell cellWithTableView:tableView];
     
+    cell.delegate = self;
+    
     ZSLostThing *lostThing = self.lostThings[indexPath.row];
     
     cell.lostThing = lostThing;
@@ -182,6 +185,38 @@ static NSString *ID = @"lostAndFoundCell";
     CGSize size = [ZSDynamicPicturesView sizeWithPicturesCount:pics.count];
     
     return 230 + size.height + 20;
+}
+
+
+- (void)clickCall:(ZSLostThingViewCell *)lostThingViewCell PhoneNum:(NSString *)phoneNum
+{
+    
+    ZSLog(@"%@", phoneNum);
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定拨打电话？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    //创建按钮
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSString *telUrl = [NSString stringWithFormat:@"tel://%@", phoneNum];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telUrl]];
+        
+    }];
+    
+    //取消按钮
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+
 }
 
 

@@ -18,13 +18,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="晴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c48-Fg-FWI" userLabel="天气">
-                    <rect key="frame" x="10" y="45" width="12" height="14.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pm2.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWL-ze-hEc" userLabel="pm">
-                    <rect key="frame" x="82" y="45" width="35.5" height="14.5"/>
+                    <rect key="frame" x="217" y="45" width="12" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -43,7 +37,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v10-Hf-vto" userLabel="第几周">
-                    <rect key="frame" x="177" y="76" width="48" height="21"/>
+                    <rect key="frame" x="107" y="76" width="48" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="fHV-PB-aMN"/>
                         <constraint firstAttribute="width" constant="48" id="xaE-NZ-dEj"/>
@@ -52,18 +46,24 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pm2.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWL-ze-hEc" userLabel="pm">
+                    <rect key="frame" x="65" y="45" width="35.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="v10-Hf-vto" secondAttribute="bottom" constant="14" id="0jM-Mo-QGn"/>
-                <constraint firstItem="FWL-ze-hEc" firstAttribute="leading" secondItem="c48-Fg-FWI" secondAttribute="trailing" constant="60" id="Jtf-7J-XQh"/>
+                <constraint firstItem="FWL-ze-hEc" firstAttribute="leading" secondItem="bsN-kL-53U" secondAttribute="leading" constant="65" id="6ff-Uk-n7Q"/>
                 <constraint firstItem="FWL-ze-hEc" firstAttribute="top" secondItem="c48-Fg-FWI" secondAttribute="top" id="LPL-Wy-COY"/>
                 <constraint firstItem="JVq-Dc-Xg5" firstAttribute="leading" secondItem="bsN-kL-53U" secondAttribute="leading" constant="10" id="P3U-il-hP9"/>
                 <constraint firstAttribute="trailing" secondItem="igz-Mb-YGs" secondAttribute="trailing" constant="24" id="VzG-wT-uHd"/>
-                <constraint firstItem="v10-Hf-vto" firstAttribute="trailing" secondItem="bsN-kL-53U" secondAttribute="trailingMargin" constant="-80" id="Y5b-4h-7jL"/>
+                <constraint firstItem="v10-Hf-vto" firstAttribute="trailing" secondItem="bsN-kL-53U" secondAttribute="trailingMargin" constant="-150" id="Y5b-4h-7jL"/>
                 <constraint firstItem="c48-Fg-FWI" firstAttribute="top" secondItem="JVq-Dc-Xg5" secondAttribute="bottom" constant="11" id="Y7P-Qg-Tu6"/>
                 <constraint firstItem="JVq-Dc-Xg5" firstAttribute="top" secondItem="bsN-kL-53U" secondAttribute="top" constant="10" id="Y7u-PY-SRX"/>
-                <constraint firstItem="c48-Fg-FWI" firstAttribute="leading" secondItem="JVq-Dc-Xg5" secondAttribute="leading" id="Ymx-Mc-hyx"/>
+                <constraint firstItem="igz-Mb-YGs" firstAttribute="leading" secondItem="c48-Fg-FWI" secondAttribute="trailing" constant="15" id="h1a-Ca-Gku"/>
                 <constraint firstAttribute="bottom" secondItem="igz-Mb-YGs" secondAttribute="bottom" constant="35" id="mOE-B3-h8N"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

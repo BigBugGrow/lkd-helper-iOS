@@ -24,6 +24,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
 //    //判断当前是否有新的版本，如果有，进入新特性界面
 //    ZSNewFeatureController *newFeatureVC = [[ZSNewFeatureController alloc] init];
