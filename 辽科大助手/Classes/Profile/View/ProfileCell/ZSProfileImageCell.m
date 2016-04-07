@@ -44,7 +44,7 @@
     
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"icon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
        
-        self.imgView.image = image;
+        self.imgView.image = image ? image : [UIImage imageNamed:@"pic_treehole_avatar_img"];
         
     }];
     

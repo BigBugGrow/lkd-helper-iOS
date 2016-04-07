@@ -34,6 +34,9 @@
 #import "ZSCourseViewController.h"
 #import "SVProgressHUD.h"
 
+#import "ZSLostAndFoundViewController.h"
+#import "ZSAboutViewController.h"
+
 
 @interface ZSHomeViewController ()<ZSWeatherViewDelegate>
 
@@ -254,10 +257,10 @@
     ZSInquireModel *item6 = [ZSInquireModel itemWithIcon:@"classroom" title:@"空教室" vcClass:[ZSInquireWebViewController class]];
     
     ZSInquireModel *item7 = [ZSInquireModel itemWithIcon:@"select" title:@"培养计划" vcClass:[ZSInquireWebViewController class]];
-    
+    ZSInquireModel *item8 = [ZSInquireModel itemWithIcon:@"student" title:@"学生信息" vcClass:[ZSInquireWebViewController class]];
     
     ZSHomeGroupModel *group2 = [[ZSHomeGroupModel alloc] init];
-    group2.items = @[item1,item2,item3,item4,item5,item6,item7];
+    group2.items = @[item1,item2,item3,item4,item5,item6,item7,item8];
     [self.cellData addObject:group2];
 
 }
@@ -279,12 +282,17 @@
 
 - (void)kdLogClick
 {
+    ZSAboutViewController *about = [[ZSAboutViewController alloc] init];
     
+    [self.navigationController pushViewController:about animated:YES];
 }
 
 - (void)find
 {
-    
+    ZSLostAndFoundViewController *lostAndFoundViewVC = [[ZSLostAndFoundViewController alloc] init];
+
+    //寻找丢失物品
+    [self.navigationController pushViewController:lostAndFoundViewVC animated:YES];
 }
 
 #pragma mark - ZSWeather的代理方法
@@ -366,7 +374,6 @@
                         [self.navigationController pushViewController:courseViewController animated:YES];
                         
                         
-                        
                     }else {
                         
                         [SVProgressHUD showErrorWithStatus:@"亲， 你还没绑定学号哦！"];
@@ -375,39 +382,37 @@
                 case 2:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/teachingEvaluation"];
                     
-                    [self.navigationController pushViewController:inquireVC animated:YES];
-                    break;
-
                 case 3:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/selectclass"];
-                    
-                    [self.navigationController pushViewController:inquireVC animated:YES];
+    
                     break;
 
                 case 4:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/ExamApply"];
                     
-                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
                 case 5:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/score"];
-                    
-                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
                     
                 case 6:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/EmptyClassroom"];
-                    
-                    [self.navigationController pushViewController:inquireVC animated:YES];
                     break;
     
                 case 7:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/TrainingPlan"];
-                    
-                    [self.navigationController pushViewController:inquireVC animated:YES];
+                    break;
+                case 8:
+                    inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/studentinfo"];
                     break;
                 default:
                     break;
+            }
+            
+            inquireVC.title = item.title;
+            if (![item.title isEqualToString:@"详细课表"]) {
+                
+                [self.navigationController pushViewController:inquireVC animated:YES];
             }
         
         }

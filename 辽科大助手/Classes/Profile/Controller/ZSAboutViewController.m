@@ -34,25 +34,22 @@
     
     self.abloutLabel.text = about;
     
-    
     [self.chargeBtn addTarget:self action:@selector(clickChargeBtn) forControlEvents:UIControlEventTouchUpInside];
-    
 }
 
 - (void)clickChargeBtn
 {
     
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
     
     CGFloat margin = 15;
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     
-    
     UIView *cover = [[UIView alloc] init];
     cover.backgroundColor = RGBColor(123, 123, 123, 0.7);
-    cover.frame = self.view.bounds;
-    [self.view addSubview:cover];
+    cover.frame = window.bounds;
+    [window addSubview:cover];
     self.cover = cover;
     
     window.backgroundColor = RGBColor(123, 123, 123, 0.5);
@@ -66,15 +63,14 @@
     [window addSubview:scroView];
     self.scroView = scroView;
     
-    
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.font = [UIFont systemFontOfSize:20];
+    titleLabel.font = [UIFont systemFontOfSize:22];
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.backgroundColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.text = @"    免责声明";
     titleLabel.width = ZSScreenW - margin * 2;
-    titleLabel.height = 40;
+    titleLabel.height = 50;
     titleLabel.x = margin;
     titleLabel.y = margin;
     [window addSubview:titleLabel];
@@ -82,12 +78,15 @@
     
     UIButton *kownBtn = [[UIButton alloc] init];
     [kownBtn setTitle:@"知道了" forState:UIControlStateNormal];
-    [kownBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [kownBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     kownBtn.width = ZSScreenW - 2 * margin;
-    kownBtn.height = 30;
+    kownBtn.height = 40;
     kownBtn.x = margin;
     kownBtn.y = window.height - kownBtn.height - 20;
-    kownBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+    
+    [kownBtn setBackgroundImage:[UIImage imageNamed:@"blue"] forState:UIControlStateHighlighted];
+    [kownBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
     [window addSubview:kownBtn];
     [kownBtn addTarget:self action:@selector(clickKownBtn) forControlEvents:UIControlEventTouchUpInside];
     kownBtn.backgroundColor = [UIColor whiteColor];
@@ -118,7 +117,7 @@
 
 - (void)clickKownBtn
 {
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
     [self.cover removeFromSuperview];
     [self.scroView removeFromSuperview];
     [self.kownBtn removeFromSuperview];

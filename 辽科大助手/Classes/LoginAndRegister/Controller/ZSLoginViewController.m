@@ -22,8 +22,6 @@
 #import "ZSRegisterViewController.h"
 #import "ZSNavigationController.h"
 
-
-
 @interface ZSLoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;

@@ -20,7 +20,6 @@
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
-
 @interface ZSCommenViewController () <UITableViewDelegate, UITableViewDataSource>
 
 - (IBAction)send;
@@ -106,13 +105,8 @@ static NSString * const commentID = @"commentCell";
         
         NSArray *comments = responseObject[@"data"];
         
-        
-        
         ZSLog(@"%@", responseObject[@"data"]);
         self.comments = [ZSComment objectArrayWithKeyValuesArray:comments];
-        
-        
-        ZSLog(@"%@", comments);
         
         //刷新表格
         [self.tableView reloadData];
@@ -208,7 +202,6 @@ static NSString * const commentID = @"commentCell";
 /** 发送评论*/
 
 - (IBAction)send {
-    
     
     self.isFirstCome = YES;
     

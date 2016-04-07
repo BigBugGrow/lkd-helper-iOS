@@ -11,8 +11,9 @@
 #import "ZSDynamicPicturesView.h"
 #import "UIImageView+WebCache.h"
 
-@interface ZSLostThingViewCell ()
+#define myNickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
+@interface ZSLostThingViewCell () 
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageVIew;
 /** 电话*/
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
@@ -78,7 +79,10 @@
     //1.头像
     
     /** 头像imageView*/
-    NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small", lostThing.nickname];
+    
+    NSString *imageStr = lostThing.nickname ? lostThing.nickname : myNickName;
+    
+    NSString *str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picUser/%@.jpg!small", imageStr];
     
     NSURL *url = [NSURL URLWithString:str];
     
@@ -102,7 +106,7 @@
     }];
     
     /** 昵称*/
-    self.nameLabel.text = lostThing.nickname;
+    self.nameLabel.text = imageStr;
     
     /** 性别*/
     self.sexImageVIew.image = [UIImage imageNamed:@"boy"];

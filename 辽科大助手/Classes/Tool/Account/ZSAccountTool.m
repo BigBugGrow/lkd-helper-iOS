@@ -22,6 +22,7 @@ static ZSAccount *_account;
 
 + (void)saveAccount:(ZSAccount *)account
 {
+    _account = account;
     [NSKeyedArchiver archiveRootObject:account toFile:ZSAccountFileName];
 }
 

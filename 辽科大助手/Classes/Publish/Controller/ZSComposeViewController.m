@@ -11,7 +11,6 @@
 #import "NSDate+Convert.h"
 #import "NSDate+Utilities.h"
 
-#import "AFNetworking.h"
 #import "ZSComposePictrueView.h"
 #import "MBProgressHUD+MJ.h"
 #import "ZSComposeToolBar.h"
@@ -209,8 +208,8 @@
     //添加导航栏左边按钮
     self.navigationItem.leftBarButtonItem= [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftBtn)];
     
-//    //添加导航栏右边按钮
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(send)];
+    //添加导航栏右边按钮
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(send)];
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
     

@@ -17,6 +17,8 @@
 
 #import "UIImage+Image.h"
 
+#import "ZSNewsController.h"
+
 @interface ZSTabBarController ()
 
 @end
@@ -66,9 +68,10 @@
     [self setUpOneChildViewController:homeVC image:[UIImage imageNamed:@"tab_home_normal"] selectedImage:[UIImage imageNamed:@"tab_home_pressed"] title:@"辽科大助手"];
     
     //消息
-    ZSMessageViewController *messageVC = [[ZSMessageViewController alloc] init];
+//    ZSMessageViewController *messageVC = [[ZSMessageViewController alloc] init];
+    ZSNewsController *newsViewController = [[ZSNewsController alloc] init];
     //messageVC.view.backgroundColor = [UIColor greenColor];
-    [self setUpOneChildViewController:messageVC image:[UIImage imageNamed:@"tab_passage_normal"] selectedImage:[UIImage imageNamed:@"tab_passage_pressed"] title:@"消息"];
+    [self setUpOneChildViewController:newsViewController image:[UIImage imageNamed:@"tab_passage_normal"] selectedImage:[UIImage imageNamed:@"tab_passage_pressed"] title:@"消息"];
     
     //发现
     ZSDiscoverViewController *discoverVC = [[ZSDiscoverViewController alloc] init];

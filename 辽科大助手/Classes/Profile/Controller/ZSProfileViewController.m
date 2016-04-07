@@ -18,6 +18,7 @@
 #import "ZSNavigationController.h"
 #import "ZSAccountTool.h"
 #import "ZSAboutViewController.h"
+#import "ZSMyLostAndThingViewController.h"
 
 @interface ZSProfileViewController ()<UIAlertViewDelegate>
 
@@ -28,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     
     //设置导航按钮
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
@@ -62,7 +62,7 @@
 {
 
     ZSModel *item2 = [ZSModel itemWithIcon:@"mynovelty" title:@"我的糯米粒" detailTitle:@"" vcClass:[ZSMyNovcltyViewController class]];
-    ZSModel *item3 = [ZSModel itemWithIcon:@"mylost_found" title:@"我的寻物公告" detailTitle:@""];
+    ZSModel *item3 = [ZSModel itemWithIcon:@"mylost_found" title:@"我的寻物公告" detailTitle:@"" vcClass:[ZSMyLostAndThingViewController class]];
     
     ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
     group1.items = @[item2,item3];

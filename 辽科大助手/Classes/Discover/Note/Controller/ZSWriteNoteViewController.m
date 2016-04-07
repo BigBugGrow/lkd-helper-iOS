@@ -123,6 +123,7 @@
 
 - (void)clickImageView
 {
+    
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除照片" otherButtonTitles:@"查看照片", nil];
     
     [sheet showInView:self.view];
@@ -250,7 +251,6 @@
     
     ZSNoteModel *noteModel = [[ZSNoteModel alloc] init];
     
-    noteModel.headerTitle = [self getMoonDayStr];
     noteModel.title = self.titleView.text ? self.titleView.text : @"默认";
     noteModel.content =  self.textView.text ? [NSString stringWithFormat:@" %@", self.textView.text] : nil;
     
@@ -258,6 +258,9 @@
     
     if (self.note == nil) {
 
+        
+        
+        noteModel.headerTitle = [self getMoonDayStr];
         noteModel.time = [self getHourMinuteStr];
         //执行新增加笔记的方法
         if ([self.delegate respondsToSelector:@selector(writeNoteViewControllerDelegate:noteModael:)]) {
@@ -265,8 +268,9 @@
             [self.delegate writeNoteViewControllerDelegate:self noteModael:noteModel];
         }
     } else {
-        noteModel.time = self.note.time;
         
+        noteModel.time = self.note.time;
+        noteModel.headerTitle = self.note.headerTitle;
         if ([self.delegate respondsToSelector:@selector(writeNoteViewControllerDelegate:addnoteModael:th:)]) {
             //执行修改笔记的方法
             [self.delegate writeNoteViewControllerDelegate:self addnoteModael:noteModel th:self.th];

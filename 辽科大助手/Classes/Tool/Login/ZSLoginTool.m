@@ -38,11 +38,7 @@
         //warning 新接口课表不再是以字符串返回，而是字典数组，下面这个方法用不上了
         //        //字符串转字典数组
         //        NSArray *dictArr = [NSString stringTimeTableConvertToDictArray:responseObject[@"timetable"]];
-        
-        
-        ZSLog(@"%@", responseObject);
-        
-        
+
         NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
         //warning 新接口返回的课表中的周，还是以字符串形式返回的，还是得重新处理，烦人
         
@@ -96,7 +92,10 @@
         //字典转模型
         ZSAccount *account = [ZSAccount objectWithKeyValues:accountDict];
         
-        ZSLog(@"%@", account.hasTimetable);
+        ZSLog(@"%@", account);
+        
+        //更新当前数据
+        [ZSAccountTool saveAccount:account];
         
         if (success) {
             
@@ -111,6 +110,8 @@
                 [[NSUserDefaults standardUserDefaults] setObject:user forKey:ZSUser];
                 [[NSUserDefaults standardUserDefaults] setObject:password forKey:ZSPassword];
                 [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"key"] forKey:ZSKey];
+                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"sex"] forKey:ZSSex];
+                
                 [[NSUserDefaults standardUserDefaults] synchronize];
             }
         }

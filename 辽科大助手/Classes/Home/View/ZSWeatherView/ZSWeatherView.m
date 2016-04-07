@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *pm25Label;
 @property (weak, nonatomic) IBOutlet UILabel *daon_temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentWeekLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *weatherImageView;
 
 @end
 
@@ -31,6 +32,34 @@
     self.pm25Label.text = [NSString stringWithFormat:@"PM2.5: %@",weatherModel.pm25];
     self.daon_temperatureLabel.text = weatherModel.temperature;
     self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",weatherModel.currentWeek];
+    
+    
+    ZSLog(@"%@", weatherModel.weather);
+    
+    if ([weatherModel.weather isEqualToString:@"晴"]) {
+        
+        self.weatherImageView.image = [UIImage imageNamed:@"fine"];
+        
+    } else if ([weatherModel.weather isEqualToString:@"雨"] || [weatherModel.weather isEqualToString:@"小雨"]){
+        
+        self.weatherImageView.image = [UIImage imageNamed:@"rain"];
+    } else if ([weatherModel.weather isEqualToString:@"雪"]){
+        
+        self.weatherImageView.image = [UIImage imageNamed:@"snow"];
+    }  else if ([weatherModel.weather isEqualToString:@"云"]){
+        
+        self.weatherImageView.image = [UIImage imageNamed:@""];
+    } else if ([weatherModel.weather isEqualToString:@"阴"]){
+        
+        self.weatherImageView.image = [UIImage imageNamed:@"cloudy"];
+    } else if ([weatherModel.weather isEqualToString:@"雷"]){
+        
+        self.weatherImageView.image = [UIImage imageNamed:@"thunder"];
+    }
+    
+    
+    
+    
 }
 
 //- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event

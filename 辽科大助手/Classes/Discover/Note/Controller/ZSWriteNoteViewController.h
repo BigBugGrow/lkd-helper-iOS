@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @class ZSWriteNoteViewController, ZSNoteModel;
 
 @protocol ZSWriteNoteViewControllerDelegate <NSObject>
@@ -16,7 +15,7 @@
 /** 新添加的属性*/
 - (void)writeNoteViewControllerDelegate:(ZSWriteNoteViewController *)writeNoteViewController noteModael:(ZSNoteModel *)noteModel;
 
-/** 修改后添加的模型*/
+/** 修改后添加的模型 th 表示第几个模型*/
 - (void)writeNoteViewControllerDelegate:(ZSWriteNoteViewController *)writeNoteViewController addnoteModael:(ZSNoteModel *)noteModel th:(NSInteger)th;
 
 @end
