@@ -182,7 +182,8 @@
     
     //标题
     UITextField *titleView = [[UITextField alloc] init];
-    titleView.frame =  CGRectMake(0, CGRectGetMaxY(scroView.frame), ZSScreenW, 35);
+    titleView.frame =  CGRectMake(0, CGRectGetMaxY(scroView.frame), ZSScreenW, 50);
+    titleView.font = [UIFont systemFontOfSize:20];
     titleView.placeholder = @"标题";
     titleView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:titleView];
@@ -207,6 +208,7 @@
     UITextView *textView = [[UITextView alloc] init];
 
     textView.frame = CGRectMake(0, CGRectGetMaxY(titleView.frame), ZSScreenW, ZSScreenH - CGRectGetMaxY(titleView.frame));
+    textView.font = [UIFont systemFontOfSize:17];
     self.textView = textView;
     [self.view addSubview:textView];
     
@@ -249,37 +251,60 @@
 - (void)clickLeftBtn
 {
     
-    ZSNoteModel *noteModel = [[ZSNoteModel alloc] init];
     
-    noteModel.title = self.titleView.text ? self.titleView.text : @"默认";
-    noteModel.content =  self.textView.text ? [NSString stringWithFormat:@" %@", self.textView.text] : nil;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"保存笔记退出？" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    noteModel.icons = self.imagePathArray;
-    
-    if (self.note == nil) {
-
+    //创建按钮
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        ZSNoteModel *noteModel = [[ZSNoteModel alloc] init];
         
-        noteModel.headerTitle = [self getMoonDayStr];
-        noteModel.time = [self getHourMinuteStr];
-        //执行新增加笔记的方法
-        if ([self.delegate respondsToSelector:@selector(writeNoteViewControllerDelegate:noteModael:)]) {
+        noteModel.title = self.titleView.text ? self.titleView.text : @"默认";
+        noteModel.content =  self.textView.text ? [NSString stringWithFormat:@" %@", self.textView.text] : nil;
+        
+        noteModel.icons = self.imagePathArray;
+        
+        if (self.note == nil) {
             
-            [self.delegate writeNoteViewControllerDelegate:self noteModael:noteModel];
+            noteModel.headerTitle = [self getMoonDayStr];
+            noteModel.time = [self getHourMinuteStr];
+            //执行新增加笔记的方法
+            if ([self.delegate respondsToSelector:@selector(writeNoteViewControllerDelegate:noteModael:)]) {
+                
+                [self.delegate writeNoteViewControllerDelegate:self noteModael:noteModel];
+            }
+        } else {
+            
+            noteModel.time = self.note.time;
+            noteModel.headerTitle = self.note.headerTitle;
+            if ([self.delegate respondsToSelector:@selector(writeNoteViewControllerDelegate:addnoteModael:th:)]) {
+                //执行修改笔记的方法
+                [self.delegate writeNoteViewControllerDelegate:self addnoteModael:noteModel th:self.th];
+            }
         }
-    } else {
         
-        noteModel.time = self.note.time;
-        noteModel.headerTitle = self.note.headerTitle;
-        if ([self.delegate respondsToSelector:@selector(writeNoteViewControllerDelegate:addnoteModael:th:)]) {
-            //执行修改笔记的方法
-            [self.delegate writeNoteViewControllerDelegate:self addnoteModael:noteModel th:self.th];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    //取消按钮
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        //如果不保存修改，直接保存原来的值
+        if ([self.delegate respondsToSelector:@selector(writeNoteViewControllerDelegate:noteModael:)] && self.note != nil) {
+            
+            [self.delegate writeNoteViewControllerDelegate:self noteModael:self.note];
         }
-    }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
     
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -329,6 +354,29 @@
     //拿出info中包含选择的图片
     UIImage *picture = info[UIImagePickerControllerOriginalImage];
     
+    CGFloat imageWidth = picture.size.width;
+    CGFloat imageHeight = picture.size.height;
+    
+    CGFloat newImageWidth, newImageHeight;
+    
+    if (imageWidth >= imageHeight) {
+        
+        newImageWidth = imageWidth >= 500 ? 500 : imageWidth;
+        newImageHeight = newImageWidth / imageWidth * imageHeight;
+    } else {
+        newImageHeight = imageHeight >= 500 ? 500 : imageHeight;
+        newImageWidth = newImageHeight / imageHeight  * imageWidth;
+        
+    }
+    
+    ZSLog(@"%@", NSStringFromCGSize(picture.size));
+    //图片压缩
+    UIImage *newImage = [self imageByScalingAndCroppingForSize:CGSizeMake(newImageWidth, newImageHeight) image:picture];
+    
+    ZSLog(@"%@", NSStringFromCGSize(newImage.size));
+
+    
+    
     UIImageView *imageView = [[UIImageView alloc] init];
     
     imageView.width = 94;
@@ -336,14 +384,14 @@
     imageView.x = self.imagePathArray.count * (imageView.width + 5) + 3;
     imageView.y = 3;
     
-    imageView.image = picture;
+    imageView.image = newImage;
     
     [self.scroView addSubview:imageView];
     
     NSString *imagePathName = [NSString stringWithFormat:@"icon%@", [self getTimeImageStr]];
     
     //保存图片
-    [self SaveImageToLocal:picture Keys:imagePathName];
+    [self SaveImageToLocal:newImage Keys:imagePathName];
     
     [self.imagePathArray addObject:imagePathName];
     
@@ -363,6 +411,65 @@
     
     
 }
+
+
+
+/** 图片压缩*/
+//图片压缩到指定大小
+- (UIImage *)imageByScalingAndCroppingForSize:(CGSize)targetSize image:(UIImage *)sourceImage
+{
+    UIImage *newImage = nil;
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
+    {
+        CGFloat widthFactor = targetWidth / width;
+        CGFloat heightFactor = targetHeight / height;
+        
+        if (widthFactor > heightFactor)
+            scaleFactor = widthFactor; // scale to fit height
+        else
+            scaleFactor = heightFactor; // scale to fit width
+        scaledWidth= width * scaleFactor;
+        scaledHeight = height * scaleFactor;
+        
+        // center the image
+        if (widthFactor > heightFactor)
+        {
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+        }
+        else if (widthFactor < heightFactor)
+        {
+            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+        }
+    }
+    
+    UIGraphicsBeginImageContext(targetSize); // this will crop
+    
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width= scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    
+    [sourceImage drawInRect:thumbnailRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    if(newImage == nil)
+        NSLog(@"could not scale image");
+    
+    //pop the context to get back to the default
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 
 - (NSString *)getHourMinuteStr
 {

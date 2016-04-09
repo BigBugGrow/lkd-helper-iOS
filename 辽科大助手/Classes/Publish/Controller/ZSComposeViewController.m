@@ -278,6 +278,8 @@
 //取消发送
 - (void)clickLeftBtn
 {
+
+    
     //先去除键盘
     [self.textView endEditing:YES];
     

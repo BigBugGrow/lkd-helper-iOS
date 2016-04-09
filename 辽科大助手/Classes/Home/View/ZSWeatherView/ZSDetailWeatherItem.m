@@ -111,6 +111,8 @@
     self.wind.text = wind;
     self.weather.text = weather;
     
+    ZSLog(@"%@", weather);
+    
     if ([weather isEqualToString:@"晴"]) {
         
         self.iconView.image = [UIImage imageNamed:@"sunny"];
@@ -122,7 +124,7 @@
         self.iconView.image = [UIImage imageNamed:@"fog"];
     } else if([weather isEqualToString:@"霾"]) {
         self.iconView.image = [UIImage imageNamed:@"haze"];
-    } else if([weather isEqualToString:@"云"]) {
+    } else if([weather isEqualToString:@"云"] || [weather isEqualToString:@"晴转多云"]) {
         self.iconView.image = [UIImage imageNamed:@"cloudy"];
     } else if([weather isEqualToString:@"阴"]) {
         self.iconView.image = [UIImage imageNamed:@"overcast"];

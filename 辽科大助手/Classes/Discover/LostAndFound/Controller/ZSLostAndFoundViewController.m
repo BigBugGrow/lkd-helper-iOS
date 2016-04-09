@@ -191,7 +191,6 @@ static NSString *ID = @"lostAndFoundCell";
 - (void)clickCall:(ZSLostThingViewCell *)lostThingViewCell PhoneNum:(NSString *)phoneNum
 {
     
-    ZSLog(@"%@", phoneNum);
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定拨打电话？" message:nil preferredStyle:UIAlertControllerStyleAlert];
     

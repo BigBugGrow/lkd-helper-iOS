@@ -36,28 +36,26 @@
     
     ZSLog(@"%@", weatherModel.weather);
     
-    if ([weatherModel.weather isEqualToString:@"晴"]) {
+    NSString *weather = weatherModel.weather;
+    
+    if ([weather isEqualToString:@"晴"]) {
         
-        self.weatherImageView.image = [UIImage imageNamed:@"fine"];
-        
-    } else if ([weatherModel.weather isEqualToString:@"雨"] || [weatherModel.weather isEqualToString:@"小雨"]){
-        
+        self.weatherImageView.image = [UIImage imageNamed:@"sunny"];
+    } else if([weather isEqualToString:@"雨"] || [weather isEqualToString:@"小雨"]) {
         self.weatherImageView.image = [UIImage imageNamed:@"rain"];
-    } else if ([weatherModel.weather isEqualToString:@"雪"]){
-        
+    } else if([weather isEqualToString:@"雪"]) {
         self.weatherImageView.image = [UIImage imageNamed:@"snow"];
-    }  else if ([weatherModel.weather isEqualToString:@"云"]){
-        
-        self.weatherImageView.image = [UIImage imageNamed:@""];
-    } else if ([weatherModel.weather isEqualToString:@"阴"]){
-        
+    } else if([weather isEqualToString:@"雾"]) {
+        self.weatherImageView.image = [UIImage imageNamed:@"fog"];
+    } else if([weather isEqualToString:@"霾"]) {
+        self.weatherImageView.image = [UIImage imageNamed:@"haze"];
+    } else if([weather isEqualToString:@"云"] || [weather isEqualToString:@"晴转多云"]) {
         self.weatherImageView.image = [UIImage imageNamed:@"cloudy"];
-    } else if ([weatherModel.weather isEqualToString:@"雷"]){
-        
+    } else if([weather isEqualToString:@"阴"]) {
+        self.weatherImageView.image = [UIImage imageNamed:@"overcast"];
+    } else if([weather isEqualToString:@"雷"]) {
         self.weatherImageView.image = [UIImage imageNamed:@"thunder"];
     }
-    
-    
     
     
 }

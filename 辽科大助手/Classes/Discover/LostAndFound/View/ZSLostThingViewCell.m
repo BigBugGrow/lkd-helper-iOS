@@ -152,7 +152,7 @@
     self.pictureView = dynamicPictureView;
     
     
-    
+    self.callBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     
 //    self.phoneLabel.userInteractionEnabled = YES;
 //    self.phoneImageView.userInteractionEnabled = YES;
@@ -169,9 +169,10 @@
 {
     
     ZSLog(@"ssss");
+    
     if ([self.delegate respondsToSelector:@selector(clickCall:PhoneNum:)]) {
         
-        [self.delegate clickCall:self PhoneNum:self.phoneLabel.text];
+        [self.delegate clickCall:self PhoneNum:self.callBtn.titleLabel.text];
     }
     
     
