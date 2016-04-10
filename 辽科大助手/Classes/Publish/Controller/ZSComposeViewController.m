@@ -94,8 +94,6 @@
     [self.textView addSubview:pictureView];
     self.pictureView = pictureView;
     
-    
-    
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor grayColor];
     label.text = @"匿名发表";
@@ -318,18 +316,18 @@
     [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 1000;
     
     __block UpYun *uy = [[UpYun alloc] init];
-    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        ZSLog(@"response body %@", responseData);
-    };
-    
-    uy.failBlocker = ^(NSError * error) {
-        NSString *message = [error.userInfo objectForKey:@"message"];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        ZSLog(@"error %@", message);
-    };
+//    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+//        ZSLog(@"response body %@", responseData);
+//    };
+//    
+//    uy.failBlocker = ^(NSError * error) {
+//        NSString *message = [error.userInfo objectForKey:@"message"];
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+//        ZSLog(@"error %@", message);
+//    };
 
     /**
      *	@brief	根据 UIImage 上传
@@ -430,7 +428,7 @@
     params[@"date"] = [self getTimeStr];
     params[@"class"] = self.type;
     params[@"nickname"] = self.switchView.isOn ? @"匿名" : nickName;
-    params[@"key"] = self.switchView.isOn ? @"ABCDEFGHIJ" : key;
+    params[@"key"] = self.switchView.isOn ? @"ABCDEFG" : key;
     params[@"essay"] = [self.textView fullText] ? [self.textView fullText] : @"haha";
     return params;
 
@@ -448,6 +446,9 @@
     NSMutableDictionary *params = [self getParamsDict];
     params[@"pic"] = [NSString stringWithFormat:@"[%@]", path];
 
+    ZSLog(@"%@,,,,%@", key, params[@"key"]);
+    
+    ZSLog(@"%@", params);
     
     NSInteger count = [[self.pictureView addPictrues] count];
     for (int i = 0; i < count; i ++) {

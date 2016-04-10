@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520C576A1CB9262600E0795D /* ZSWLostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520C57681CB9262600E0795D /* ZSWLostViewController.m */; };
 		5229251D1CA61B0500F7EE7A /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229251C1CA61B0500F7EE7A /* UIImage+Tool.m */; };
 		5229E5FA1CA264230088F047 /* ZSCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5229E5F91CA264230088F047 /* ZSCommentViewCell.xib */; };
 		522D3BCA1C9D814C00A6927F /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D3BC31C9D814C00A6927F /* SVIndefiniteAnimatedView.m */; };
@@ -29,8 +30,6 @@
 		523E21B81CB388C5003BC391 /* ZSLostThingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E21B61CB388C5003BC391 /* ZSLostThingViewCell.m */; };
 		523E21B91CB388C5003BC391 /* ZSLostThingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523E21B71CB388C5003BC391 /* ZSLostThingViewCell.xib */; };
 		52408F0D1CB4D66100F0EFC9 /* ZSMyLostAndThingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52408F0C1CB4D66100F0EFC9 /* ZSMyLostAndThingViewController.m */; };
-		52408F111CB4DB1600F0EFC9 /* ZSWriteLostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52408F0F1CB4DB1600F0EFC9 /* ZSWriteLostViewController.m */; };
-		52408F121CB4DB1600F0EFC9 /* ZSWriteLostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52408F101CB4DB1600F0EFC9 /* ZSWriteLostViewController.xib */; };
 		5241578E1CA6C80F004A543E /* ZSCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5241578C1CA6C80F004A543E /* ZSCourseViewController.m */; };
 		5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */; };
 		524471B41CA7D0E000B8D2E6 /* ZSCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524471B31CA7D0E000B8D2E6 /* ZSCourseView.m */; };
@@ -64,6 +63,7 @@
 		5261363F1CB5E2CF00458C87 /* ZSPublishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5261363B1CB5E2CF00458C87 /* ZSPublishView.m */; };
 		526136401CB5E2CF00458C87 /* ZSPublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5261363C1CB5E2CF00458C87 /* ZSPublishView.xib */; };
 		526136411CB5E2CF00458C87 /* ZSVerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5261363E1CB5E2CF00458C87 /* ZSVerticalButton.m */; };
+		526472E21CB9ED3400C5039C /* ZSWTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 526472E11CB9ED3400C5039C /* ZSWTextView.m */; };
 		526775931C9FF73500C55191 /* ZSComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526775721C9FF73500C55191 /* ZSComposeViewController.m */; };
 		526775941C9FF73500C55191 /* ZSEmotionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 526775751C9FF73500C55191 /* ZSEmotionTool.m */; };
 		526775951C9FF73500C55191 /* ZSEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 526775781C9FF73500C55191 /* ZSEmotion.m */; };
@@ -256,6 +256,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		520C57671CB9262600E0795D /* ZSWLostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWLostViewController.h; sourceTree = "<group>"; };
+		520C57681CB9262600E0795D /* ZSWLostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWLostViewController.m; sourceTree = "<group>"; };
 		5229251B1CA61B0500F7EE7A /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
 		5229251C1CA61B0500F7EE7A /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
 		5229E5F91CA264230088F047 /* ZSCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCommentViewCell.xib; sourceTree = "<group>"; };
@@ -296,9 +298,6 @@
 		523E21B71CB388C5003BC391 /* ZSLostThingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSLostThingViewCell.xib; sourceTree = "<group>"; };
 		52408F0B1CB4D66100F0EFC9 /* ZSMyLostAndThingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyLostAndThingViewController.h; sourceTree = "<group>"; };
 		52408F0C1CB4D66100F0EFC9 /* ZSMyLostAndThingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyLostAndThingViewController.m; sourceTree = "<group>"; };
-		52408F0E1CB4DB1600F0EFC9 /* ZSWriteLostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWriteLostViewController.h; sourceTree = "<group>"; };
-		52408F0F1CB4DB1600F0EFC9 /* ZSWriteLostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWriteLostViewController.m; sourceTree = "<group>"; };
-		52408F101CB4DB1600F0EFC9 /* ZSWriteLostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSWriteLostViewController.xib; sourceTree = "<group>"; };
 		5241578B1CA6C80F004A543E /* ZSCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourseViewController.h; sourceTree = "<group>"; };
 		5241578C1CA6C80F004A543E /* ZSCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourseViewController.m; sourceTree = "<group>"; };
 		5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCourseViewController.xib; sourceTree = "<group>"; };
@@ -360,6 +359,8 @@
 		5261363C1CB5E2CF00458C87 /* ZSPublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSPublishView.xib; sourceTree = "<group>"; };
 		5261363D1CB5E2CF00458C87 /* ZSVerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSVerticalButton.h; sourceTree = "<group>"; };
 		5261363E1CB5E2CF00458C87 /* ZSVerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSVerticalButton.m; sourceTree = "<group>"; };
+		526472E01CB9ED3400C5039C /* ZSWTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWTextView.h; sourceTree = "<group>"; };
+		526472E11CB9ED3400C5039C /* ZSWTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWTextView.m; sourceTree = "<group>"; };
 		526775711C9FF73500C55191 /* ZSComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSComposeViewController.h; sourceTree = "<group>"; };
 		526775721C9FF73500C55191 /* ZSComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSComposeViewController.m; sourceTree = "<group>"; };
 		526775741C9FF73500C55191 /* ZSEmotionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSEmotionTool.h; sourceTree = "<group>"; };
@@ -394,6 +395,7 @@
 		5272E3171CB2A76D00A078A3 /* ZSSendInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSendInfoViewController.h; sourceTree = "<group>"; };
 		5272E3181CB2A76D00A078A3 /* ZSSendInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSendInfoViewController.m; sourceTree = "<group>"; };
 		5272E3191CB2A76D00A078A3 /* ZSSendInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSSendInfoViewController.xib; sourceTree = "<group>"; };
+		5275BB561CBA1EA3008855CF /* 辽科大助手.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "辽科大助手.entitlements"; sourceTree = "<group>"; };
 		528206511CAC2DE80066C634 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		52857A721C9D7F2200F44C27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1246,12 +1248,11 @@
 				52D90B771CB0BB8D002B74A6 /* ZSLostAndFoundViewController.m */,
 				52408F0B1CB4D66100F0EFC9 /* ZSMyLostAndThingViewController.h */,
 				52408F0C1CB4D66100F0EFC9 /* ZSMyLostAndThingViewController.m */,
-				52408F0E1CB4DB1600F0EFC9 /* ZSWriteLostViewController.h */,
-				52408F0F1CB4DB1600F0EFC9 /* ZSWriteLostViewController.m */,
-				52408F101CB4DB1600F0EFC9 /* ZSWriteLostViewController.xib */,
 				523B6DFF1CB64C210031FC23 /* ZSLostCommenViewController.h */,
 				523B6DFE1CB64C210031FC23 /* ZSLostCommenViewController.m */,
 				523B6DFD1CB64C210031FC23 /* ZSLostCommenViewController.xib */,
+				520C57671CB9262600E0795D /* ZSWLostViewController.h */,
+				520C57681CB9262600E0795D /* ZSWLostViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1271,6 +1272,8 @@
 				523E21B51CB388C5003BC391 /* ZSLostThingViewCell.h */,
 				523E21B61CB388C5003BC391 /* ZSLostThingViewCell.m */,
 				523E21B71CB388C5003BC391 /* ZSLostThingViewCell.xib */,
+				526472E01CB9ED3400C5039C /* ZSWTextView.h */,
+				526472E11CB9ED3400C5039C /* ZSWTextView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1992,6 +1995,7 @@
 		EFFC6AEE1C04852500469F99 /* 辽科大助手 */ = {
 			isa = PBXGroup;
 			children = (
+				5275BB561CBA1EA3008855CF /* 辽科大助手.entitlements */,
 				EF56D66F1C09DA8B00A3B314 /* Classes */,
 				EFFC6AEF1C04852500469F99 /* Supporting Files */,
 			);
@@ -2095,6 +2099,11 @@
 					EFFC6AEB1C04852500469F99 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = M6EBT7J6SN;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					EFFC6B041C04852500469F99 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -2147,7 +2156,6 @@
 				EFE9D8921C0D94AE0072A4F7 /* ZSProfileImageCell.xib in Resources */,
 				529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */,
 				EFE9D89B1C0DABAE0072A4F7 /* ZSMyInfoHeader.xib in Resources */,
-				52408F121CB4DB1600F0EFC9 /* ZSWriteLostViewController.xib in Resources */,
 				5272E31B1CB2A76D00A078A3 /* ZSSendInfoViewController.xib in Resources */,
 				5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */,
 				5267759E1C9FF73500C55191 /* ZSEmotionPopView.xib in Resources */,
@@ -2186,6 +2194,7 @@
 				EF2AB6141C0F17A500DB93FC /* MJRefreshFooterView.m in Sources */,
 				5267759D1C9FF73500C55191 /* ZSEmotionPopView.m in Sources */,
 				52B82C991CB5050400FCE456 /* ZSShoppingViewController.m in Sources */,
+				520C576A1CB9262600E0795D /* ZSWLostViewController.m in Sources */,
 				EFD44D451C182B210016A602 /* ZSNewsController.m in Sources */,
 				52857AAF1C9D7F2200F44C27 /* POPAnimationRuntime.mm in Sources */,
 				EF2AB6201C0F17A500DB93FC /* SDWebImageManager.m in Sources */,
@@ -2250,6 +2259,7 @@
 				EFE538331C157EA700A2B6EF /* NSDate+Convert.m in Sources */,
 				EF2AB6031C0F17A500DB93FC /* AFURLConnectionOperation.m in Sources */,
 				52857AB91C9D7F2200F44C27 /* POPPropertyAnimation.mm in Sources */,
+				526472E21CB9ED3400C5039C /* ZSWTextView.m in Sources */,
 				5244DC761CA1039500147B72 /* ZSDynamicPicturesView.m in Sources */,
 				52857AB81C9D7F2200F44C27 /* POPMath.mm in Sources */,
 				529D09531C8669AB00DE8C7F /* ZSWeatherView.m in Sources */,
@@ -2376,7 +2386,6 @@
 				EF2AB6131C0F17A500DB93FC /* MJRefreshConst.m in Sources */,
 				EF4B1B891C3E3284000A48F2 /* ZSRegisterViewController.m in Sources */,
 				EF2AB6281C0F17A500DB93FC /* UIView+WebCacheOperation.m in Sources */,
-				52408F111CB4DB1600F0EFC9 /* ZSWriteLostViewController.m in Sources */,
 				EF2AB6041C0F17A500DB93FC /* AFURLRequestSerialization.m in Sources */,
 				EF2AB6821C105E3900DB93FC /* NSString+ReplaceUnicode.m in Sources */,
 				5244DC731CA1039500147B72 /* ZSAllDynamicFrame.m in Sources */,
@@ -2531,7 +2540,7 @@
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.ustl.lkdhelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ustl.lkdhelper;
 				PRODUCT_NAME = "辽科大助手";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2547,7 +2556,7 @@
 				INFOPLIST_FILE = "辽科大助手/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.ustl.lkdhelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ustl.lkdhelper;
 				PRODUCT_NAME = "辽科大助手";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

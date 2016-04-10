@@ -32,6 +32,11 @@
     // Do any additional setup after loading the view from its nib.
     
     self.title = @"修改个人联系信息";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
 }
 

@@ -116,7 +116,7 @@
     if ([weather isEqualToString:@"晴"]) {
         
         self.iconView.image = [UIImage imageNamed:@"sunny"];
-    } else if([weather isEqualToString:@"雨"]) {
+    } else if([weather isEqualToString:@"雨"] || [weather isEqualToString:@"多云转小雨"] || [weather isEqualToString:@"小雨"]) {
         self.iconView.image = [UIImage imageNamed:@"rain"];
     } else if([weather isEqualToString:@"雪"]) {
         self.iconView.image = [UIImage imageNamed:@"snow"];

@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "bindStudentNum.png",
       "scale" : "1x"
     },
     {
@@ -11,6 +10,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "屏幕快照 2016-04-09 12.10.13.png",
       "scale" : "3x"
     }
   ],

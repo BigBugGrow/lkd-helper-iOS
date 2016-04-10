@@ -15,6 +15,8 @@
 #import "ZSPersonalUser.h"
 #import "ZSHttpTool.h"
 #import "ZSAccount.h"
+#import "SVProgressHUD.h"
+#import "ZSStudentNumBindViewController.h"
 
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
@@ -134,6 +136,15 @@
         if (vc == nil) {
             return;
         }
+        
+        ZSAccount *account = [ZSAccountTool account];
+        if (account.zjh && [vc isKindOfClass:[ZSStudentNumBindViewController class]]) {
+            
+            [SVProgressHUD showErrorWithStatus:@"该账号以绑定学号！"];
+            return;
+        }
+        
+        
         
         [self.navigationController pushViewController:vc animated:YES];
     }

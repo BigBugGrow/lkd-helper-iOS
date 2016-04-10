@@ -1,50 +1,55 @@
 //
-//  ZSWriteLostViewController.m
+//  ZSWLostViewController.m
 //  辽科大助手
 //
-//  Created by MacBook Pro on 16/4/6.
+//  Created by MacBook Pro on 16/4/9.
 //  Copyright © 2016年 USTL. All rights reserved.
 //
 
-#import "ZSWriteLostViewController.h"
+#import "ZSWLostViewController.h"
 #import "ZSComposePictrueView.h"
 #import "UpYun.h"
 #import "ZSHttpTool.h"
 #import "UIBarButtonItem+Extension.h"
 #import "SVProgressHUD.h"
+#import "ZSWTextView.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
-@interface ZSWriteLostViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ZSWLostViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 
 
 /** 图片名字数组*/
 @property (nonatomic, strong) NSArray *imageArray;
 
 /** 物品*/
-@property (weak, nonatomic) IBOutlet UITextField *thingLabel;
+@property (weak, nonatomic) UITextField *thingLabel;
 
 /** 地点*/
-@property (weak, nonatomic) IBOutlet UITextField *adressLabel;
+@property (weak, nonatomic) UITextField *adressLabel;
 
 /** 物品描述*/
-@property (weak, nonatomic) IBOutlet UITextView *sumaryTextView;
+@property (weak, nonatomic) UITextView *sumaryTextView;
 
 /** 联系电话*/
-@property (weak, nonatomic) IBOutlet UITextField *phoneLabel;
+@property (weak, nonatomic) UITextField *phoneLabel;
 
 /**
  *  pictureView 相册
  */
 @property (nonatomic, weak) ZSComposePictrueView *pictureView;
 
+@property (weak, nonatomic)  UIScrollView *scroView;
+
 /** 登陆按钮*/
 @property (nonatomic, weak) UIButton *loginBtn;
 
+@property (nonatomic, weak) ZSWTextView *textView;
+
 @end
 
-@implementation ZSWriteLostViewController
+@implementation ZSWLostViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,45 +57,128 @@
     //设置导航栏
     [self initNav];
     
+    
+    //添加物品描述
+    [self settingDes];
+    
     //添加相册
     [self setPictureView];
 
-    //添加发表按钮
-    [self setSendBtn];
-    
     // 1.addTarget
     [self.thingLabel addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
     [self.phoneLabel addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
-    
     //添加监听
     [self textChange];
     
 }
 
-- (void)textChange
+- (void)settingDes
 {
-    // 判断两个文本框的内容
-//    self.   .enabled = _accountField.text.length && _pwdField.text.length;
-    self.loginBtn.enabled = _thingLabel.text.length && _phoneLabel.text.length;
-}
+    
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[NSForegroundColorAttributeName] = [UIColor redColor];
+    
+    CGFloat margin = 20;
+    
+    UIScrollView *scroView = [[UIScrollView alloc] init];
+    scroView.x = 0;
+    scroView.y = 0;
+    scroView.width = ZSScreenW;
+    scroView.height = ZSScreenH;
+    [self.view addSubview:scroView];
+    self.scroView = scroView;
+    self.scroView.backgroundColor = [UIColor lightGrayColor];
+    self.scroView.bounces = NO;
+    self.scroView.showsHorizontalScrollIndicator = NO;
+    self.scroView.alwaysBounceHorizontal = NO;
+    self.scroView.contentSize = CGSizeMake(0, ZSScreenH + 200);
+    scroView.delegate = self;
+    
+    UITextField *thingLabel = [[UITextField alloc] init];
+    thingLabel.width = ZSScreenW -2 * margin;
+    thingLabel.height = 30;
+    thingLabel.x = margin;
+    thingLabel.y = 30;
+    self.thingLabel = thingLabel;
+    thingLabel.backgroundColor = [UIColor whiteColor];
+    thingLabel.placeholder = @"*物品";
+//    thingLabel.attributedPlaceholder = dict;
+    [self.scroView addSubview:thingLabel];
+    
+    UITextField *addresLabel = [[UITextField alloc] init];
+    addresLabel.width = thingLabel.width;
+    addresLabel.height = 30;
+    addresLabel.x = thingLabel.x;
+    addresLabel.y = CGRectGetMaxY(thingLabel.frame) + margin;
+    self.adressLabel = addresLabel;
+    addresLabel.placeholder = @"地点";
+    addresLabel.backgroundColor = [UIColor whiteColor];
+    [self.scroView addSubview:addresLabel];
+    
 
+    //添加带有placeholder的textView
+    ZSWTextView *textView = [[ZSWTextView alloc] init];
+    textView.x = thingLabel.x;
+    textView.y = CGRectGetMaxY(addresLabel.frame) + margin;
+    textView.width = thingLabel.width;
+    textView.height = 100;
+    self.textView = textView;
+    textView.delegate = self;
+    textView.placeHolder = @"写下你丢的或捡的东西的描述...";
+    [self.scroView addSubview:textView];
+    
+    //电话
+    UITextField *phoneLabel = [[UITextField alloc] init];
+    phoneLabel.width = thingLabel.width;
+    phoneLabel.height = 30;
+    phoneLabel.x = thingLabel.x;
+    phoneLabel.y = CGRectGetMaxY(textView.frame) + margin;
+    self.phoneLabel = phoneLabel;
+    phoneLabel.backgroundColor = [UIColor whiteColor];
+    phoneLabel.placeholder = @"*电话";
+    [self.scroView addSubview:phoneLabel];
+    
+    //相册
+    ZSComposePictrueView *pictureView = [[ZSComposePictrueView alloc] init];
+    pictureView.width = self.view.width - 120;
+    pictureView.height = self.view.height;
+    pictureView.y = CGRectGetMaxY(self.phoneLabel.frame) + 15;
+    [self.scroView addSubview:pictureView];
+    self.pictureView = pictureView;
 
-- (void)setSendBtn
-{
+    //发表按钮
     UIButton *sendBtn = [[UIButton alloc] init];
-    sendBtn.width = 100;
+    sendBtn.width = 50;
     sendBtn.height = 30;
     sendBtn.x = ZSScreenW - sendBtn.width - 15;
     sendBtn.y = CGRectGetMaxY(self.phoneLabel.frame) + 40;
     [sendBtn setTitle:@"发表" forState:UIControlStateNormal];
-    [self.view addSubview:sendBtn];
+    [self.scroView addSubview:sendBtn];
     [sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [sendBtn setBackgroundImage:[UIImage imageNamed:@"blue"] forState:UIControlStateHighlighted];
     [sendBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     [sendBtn addTarget:self action:@selector(clickSendBtn) forControlEvents:UIControlEventTouchUpInside];
     [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     self.loginBtn = sendBtn;
+
+    
+
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+
+    [self.view endEditing:YES];
+}
+
+- (void)textChange
+{
+    // 判断两个文本框的内容
+    //    self.   .enabled = _accountField.text.length && _pwdField.text.length;
+    self.loginBtn.enabled = _thingLabel.text.length && _phoneLabel.text.length;
+}
+
 
 /**
  * 初始化导航栏
@@ -104,27 +192,15 @@
     
     self.navigationItem.rightBarButtonItems = @[item2 ,item1];
     
-    self.title = @"寻物启事";
+    self.title = @"写下来";
     
-}
-
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
 }
 
 /** 相册*/
 
 - (void)setPictureView
 {
-    ZSComposePictrueView *pictureView = [[ZSComposePictrueView alloc] init];
-    pictureView.width = self.view.width;
-    pictureView.height = self.view.height;
-    pictureView.y = CGRectGetMaxY(self.phoneLabel.frame) + 15;
-    [self.view addSubview:pictureView];
-    self.pictureView = pictureView;
-}
+   }
 
 
 
@@ -259,18 +335,18 @@
     [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 1000;
     
     __block UpYun *uy = [[UpYun alloc] init];
-//    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alert show];
-//        ZSLog(@"response body %@", responseData);
-//    };
-//    
-//    uy.failBlocker = ^(NSError * error) {
-//        NSString *message = [error.userInfo objectForKey:@"message"];
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alert show];
-//        ZSLog(@"error %@", message);
-//    };
+    //    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
+    //        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    //        [alert show];
+    //        ZSLog(@"response body %@", responseData);
+    //    };
+    //
+    //    uy.failBlocker = ^(NSError * error) {
+    //        NSString *message = [error.userInfo objectForKey:@"message"];
+    //        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    //        [alert show];
+    //        ZSLog(@"error %@", message);
+    //    };
     
     /**
      *	@brief	根据 UIImage 上传
@@ -373,7 +449,7 @@
     params[@"adress"] = self.adressLabel.text;
     params[@"date"] = [self getTimeStr];
     params[@"phone"] = self.phoneLabel.text;
-
+    
     //图片名字
     NSString *path = [self getImageName];
     
@@ -392,9 +468,17 @@
         
     }
     
+    if (count == 0) {
+        params[@"pic"] = @"[]";
+    }
+    
+    ZSLog(@"%@", params);
+    
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/LostAndFoundWrite" parameters:params success:^(id responseObject) {
         
+        
+        ZSLog(@"%@", responseObject);
         
         if ([responseObject[@"state"] integerValue] == 100) {
             
@@ -404,16 +488,39 @@
             
         } else {
             
-            [SVProgressHUD showSuccessWithStatus:@"发表失败，请重新发送！"];
-            
+            [SVProgressHUD showErrorWithStatus:@"发表失败!"];
         }
         
         
     } failure:^(NSError *error) {
         
-        [SVProgressHUD showSuccessWithStatus:@"发表失败！"];
+        [SVProgressHUD showErrorWithStatus:@"发表失败！请连接网络"];
     }];
     
+}
+
+#pragma mark - textView的代理方法
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.textView.placeHolder = textView.hasText ? @"写下你丢的或捡的东西的描述..." : @"";
+}
+
+#pragma mark - UItextFild的代理方法
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [textField becomeFirstResponder];
+}
+
+#pragma mark - UISCroView的代理方法
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
 }
 
 @end

@@ -102,7 +102,7 @@
     
     
     
-    ZSModel *item3 = [ZSModel itemWithIcon:@"bindStudentNo" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
+    ZSModel *item3 = [ZSModel itemWithIcon:@"lock" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
     ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置" detailTitle:@""];
     ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"消息提醒模式" detailTitle:@""];
     

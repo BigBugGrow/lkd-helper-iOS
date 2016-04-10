@@ -59,7 +59,6 @@
             }
             
             [dict setObject:weekNumArr forKey:@"week"];
-            NSLog(@"%@",dict);
 
             [timetableArrayM setObject:dict atIndexedSubscript:i];
             i++;
@@ -76,23 +75,24 @@
         //字典转模型
         ZSAccount *account = [ZSAccount objectWithKeyValues:accountDict];
         
-        
-        
-        
-        
         if (success) {
             success(account.state);
             
             if (account.state == 100) {
                 
+                
+                account.nickname = nickname;
+                account.key = key;
+                
+                ZSLog(@"%@", key);
                 //保存账户信息
                 [ZSAccountTool saveAccount:account];
                 
                 //单独保存账号和密码，key，用用户偏好设置
-                [[NSUserDefaults standardUserDefaults] setObject:nickname forKey:ZSUser];
-                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"key"] forKey:ZSKey];
-                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"key"] forKey:ZSZjh];
-                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"key"] forKey:ZSMm];
+//                [[NSUserDefaults standardUserDefaults] setObject:nickname forKey:ZSUser];
+//                [[NSUserDefaults standardUserDefaults] setObject:key forKey:ZSKey];
+//                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"zjh"] forKey:ZSZjh];
+//                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"mm"] forKey:ZSMm];
                 
                 [[NSUserDefaults standardUserDefaults] synchronize];
             }

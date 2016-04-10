@@ -13,7 +13,7 @@
 #import "ZSHttpTool.h"
 #import "ZSDynamicPicturesView.h"
 #import "MJRefresh.h"
-#import "ZSWriteLostViewController.h"
+#import "ZSWLostViewController.h"
 #import "ZSLostCommenViewController.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
@@ -76,7 +76,7 @@ static NSString *ID = @"lostAndFoundCell";
 - (void)clickSendBtn
 {
     /** 写寻物启事公告*/
-    ZSWriteLostViewController *writeLostViewController = [[ZSWriteLostViewController alloc] init];
+    ZSWLostViewController *writeLostViewController = [[ZSWLostViewController alloc] init];
     
     [self.navigationController pushViewController:writeLostViewController animated:YES];
 }

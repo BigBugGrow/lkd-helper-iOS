@@ -23,6 +23,8 @@
 
 @property (nonatomic, weak) UIButton *backBtn;
 
+//@property (nonatomic, weak) UIButton *writeInffoBtn;
+
 @end
 
 @implementation ZSInfoViewController
@@ -37,8 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.navigationController.navigationBar.hidden = YES;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
@@ -47,6 +47,85 @@
     
     //设置数据
     [self initModelData];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.backBtn removeFromSuperview];
+//    [self.writeInffoBtn removeFromSuperview];
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //设置按钮
+    [self settingNavBtn];
+    
+    self.navigationController.navigationBarHidden = YES;
+}
+
+
+- (void)settingNavBtn
+{
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    //返回按钮
+    UIButton *backBtn = [[UIButton alloc] init];
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    
+    [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
+    backBtn.size = CGSizeMake(70, 30);
+    //设置按钮的内容靠左边
+    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //设置按钮的切割
+    backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    
+    backBtn.x = 20;
+    backBtn.y = 25;
+    
+    backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    
+    [backBtn addTarget:self action:@selector(exitViewController) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.backBtn = backBtn;
+    
+    
+    
+//    //更多信息按钮
+//    UIButton *writeInffoBtn = [[UIButton alloc] init];
+//    writeInffoBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//    [writeInffoBtn setTitle:@"更多" forState:UIControlStateNormal];
+//    [writeInffoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [writeInffoBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+//    
+//    writeInffoBtn.size = CGSizeMake(40, 30);
+//    //设置按钮的内容靠左边
+//    writeInffoBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    //设置按钮的切割
+//    writeInffoBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+//    
+//    writeInffoBtn.x = ZSScreenW - writeInffoBtn.width;
+//    writeInffoBtn.y = 25;
+//    
+//    writeInffoBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+//    
+//    [writeInffoBtn addTarget:self action:@selector(clickWriteInfoBtn) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    self.writeInffoBtn = writeInffoBtn;
+//    
+//    [window addSubview:writeInffoBtn];
+    
+    [window addSubview:backBtn];
+
 }
 
 
@@ -121,6 +200,10 @@
         
         return @"在校信息";
     } else {
+        
+         if ([self.whoNickName isEqualToString:nickName]) {
+             return @"联系方式   (点击可修改)";
+         }
         return @"联系方式";
     }
 }
@@ -203,46 +286,26 @@
     nameLabel.textColor = [UIColor whiteColor];
     [myImage addSubview:nameLabel];
     
-    
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    
-    //返回按钮
-    UIButton *backBtn = [[UIButton alloc] init];
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
-    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    
-    [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
-    backBtn.size = CGSizeMake(70, 30);
-    //设置按钮的内容靠左边
-    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    //设置按钮的切割
-    backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    
-    backBtn.x = 20;
-    backBtn.y = 15;
-    
-    backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
-    
-    [backBtn addTarget:self action:@selector(exitViewController) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.backBtn = backBtn;
-    
-    [window addSubview:backBtn];
-    
-    self.navigationController.navigationBar.hidden = YES;
-    
-    
 }
+
+- (void)clickWriteInfoBtn
+{
+//    ZSSendInfoViewController *sendInfoViewController = [[ZSSendInfoViewController alloc] init];
+    
+//    self.navigationController.navigationBarHidden = NO;
+    
+//    [self.navigationController pushViewController:sendInfoViewController animated:YES];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+}
+
 
 - (void)exitViewController
 {
     
     //除掉返回按钮
     [self.backBtn removeFromSuperview];
-    
-    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -250,23 +313,21 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    ZSLog(@"%lf", scrollView.contentOffset.y);
     
     if (scrollView.contentOffset.y >= 190) {
     
-        [UIView animateWithDuration:0.5 animations:^{
-            self.navigationController.navigationBar.hidden = NO;
+        [UIView animateWithDuration:0.01 animations:^{
+            self.navigationController.navigationBarHidden = NO;
             self.backBtn.hidden = YES;
-            
+//            self.writeInffoBtn.hidden = YES;
         }];
         
     } else {
         
-        [UIView animateWithDuration:0.5 animations:^{
-            
-            self.navigationController.navigationBar.hidden = YES;
+        //隐藏导航栏
+            self.navigationController.navigationBarHidden = YES;
             self.backBtn.hidden = NO;
-        }];
+//            self.writeInffoBtn.hidden = NO;
     }
     
 }

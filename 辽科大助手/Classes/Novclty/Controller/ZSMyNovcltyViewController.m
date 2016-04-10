@@ -53,6 +53,8 @@
 
 @property (nonatomic, weak) UIButton *backBtn;
 
+@property (nonatomic, weak) UIButton *moreBtn;
+
 @end
 
 @implementation ZSMyNovcltyViewController
@@ -78,7 +80,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.navigationController.navigationBar.hidden = YES;
     //设置nav
     [self initNav];
     
@@ -93,13 +94,77 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    //添加按钮
+    [self settingBackBtn];
+    //隐藏导航栏
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+ 
+    self.navigationController.navigationBarHidden = NO;
     [self.backBtn removeFromSuperview];
+    [self.moreBtn removeFromSuperview];
+}
+
+/** 添加返回按钮*/
+- (void)settingBackBtn
+{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    //返回按钮
+    UIButton *backBtn = [[UIButton alloc] init];
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    
+    [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
+    backBtn.size = CGSizeMake(70, 30);
+    //设置按钮的内容靠左边
+    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //设置按钮的切割
+    backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    
+    backBtn.x = 20;
+    backBtn.y = 25;
+    
+    backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    
+    [backBtn addTarget:self action:@selector(exitViewController) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.backBtn = backBtn;
+    
+    
+    //更多信息按钮
+    UIButton *moreBtn = [[UIButton alloc] init];
+    moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
+    [moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [moreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    
+    moreBtn.size = CGSizeMake(40, 30);
+    //设置按钮的内容靠左边
+    moreBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //设置按钮的切割
+    moreBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    
+    moreBtn.x = ZSScreenW - moreBtn.width;
+    moreBtn.y = 25;
+    
+    moreBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    
+    [moreBtn addTarget:self action:@selector(clickRightBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.moreBtn = moreBtn;
+    
+    
+    [window addSubview:self.moreBtn];
+    [window addSubview:self.backBtn];
+
 }
 
 /** 初始化headerView*/
@@ -372,8 +437,6 @@
             
         }
     
-      
-        
         NSRange range = NSMakeRange(0, arrayM.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         //将新的数据添加到大数组的最前面
@@ -413,40 +476,12 @@
     //去掉分界线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    
-//    //返回按钮
-//    UIButton *backBtn = [[UIButton alloc] init];
-//    backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-//    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
-//    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-//    
-//    [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
-//    backBtn.size = CGSizeMake(70, 30);
-//    //设置按钮的内容靠左边
-//    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    //设置按钮的切割
-//    backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-//    
-//    backBtn.x = 20;
-//    backBtn.y = 15;
-//    
-//    backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
-//    
-//    [backBtn addTarget:self action:@selector(exitViewController) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    self.backBtn = backBtn;
-//    
-//    [window addSubview:backBtn];
-    
 }
 
 
 - (void)exitViewController
 {
-//    self.navigationController.navigationBar.hidden = NO;
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -482,9 +517,6 @@
     } failure:^(NSError *error) {
         
     }];
-
-
-    
 }
 
 
@@ -528,7 +560,6 @@
 
 }
 
-
 #pragma mark - ZSCommentViewControllerDelegate
 
 - (void)loadNewData
@@ -544,27 +575,22 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    ZSLog(@"%lf", scrollView.contentOffset.y);
-//    
-//    if (scrollView.contentOffset.y >= -45) {
-//        
-//        [UIView animateWithDuration:0.5 animations:^{
-//            self.navigationController.navigationBar.hidden = NO;
-//            self.backBtn.hidden = YES;
-//            
-//        }];
-//        
-//    } else {
-//        
-//        [UIView animateWithDuration:0.5 animations:^{
-//            
-//            self.navigationController.navigationBar.hidden = YES;
-//            self.backBtn.hidden = NO;
-//        }];
-//    }
-//    
     
-    
+    if (scrollView.contentOffset.y >= -45) {
+        
+        [UIView animateWithDuration:0.01 animations:^{
+            self.navigationController.navigationBarHidden = NO;
+            self.backBtn.hidden = YES;
+            self.moreBtn.hidden = YES;
+            
+        }];
+        
+    } else {
+        
+            self.navigationController.navigationBarHidden = YES;
+            self.backBtn.hidden = NO;
+            self.moreBtn.hidden = NO;
+    }
     // 向下拽了多少距离
     CGFloat down = -(HMTopViewH * 0.5) - scrollView.contentOffset.y;
     if (down < 0) return;
