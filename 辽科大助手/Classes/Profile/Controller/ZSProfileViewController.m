@@ -27,9 +27,36 @@
 
 @implementation ZSProfileViewController
 
+
++ (void)initialize
+{
+    //1.创建本地通知对对象
+    UILocalNotification *noti = [[UILocalNotification alloc] init];
+    
+    //指定通知发送的时间
+    noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+    //指定时区
+    noti.timeZone = [NSTimeZone defaultTimeZone];
+    noti.alertBody = @"马上要上课喽";
+    
+    noti.repeatInterval = NSCalendarUnitMinute;
+    noti.alertAction = @"查看消息";
+    noti.alertLaunchImage = @"splash_tops";
+    noti.soundName = @"sendmsg.caf";
+    
+    
+    //2注册通知
+    UIApplication *app = [UIApplication sharedApplication];
+    
+    [app scheduleLocalNotification:noti];
+    
+    ZSLog(@"444");
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     //设置导航按钮
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
@@ -102,25 +129,57 @@
     
     
     
-    ZSModel *item3 = [ZSModel itemWithIcon:@"lock" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
+    ZSModel *item3 = [ZSModel itemWithIcon:@"bindStudentNo" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
     ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置" detailTitle:@""];
-    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"消息提醒模式" detailTitle:@""];
+    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"不提醒上课" detailTitle:@""];
+    
     
     // 解决循环引用， 内存泄露问题
     __unsafe_unretained ZSModel *item55 = item5;
     
     item5.operation = ^(){
-        if ([item55.title isEqualToString:@"消息提醒模式"]) {
-            item55.title = @"静音模式";
+        if ([item55.title isEqualToString:@"提醒上课"]) {
+            item55.title = @"不提醒上课";
             item55.icon = @"quiet";
             [self.tableView reloadData];
+            
+            //1.创建本地通知对对象
+            UILocalNotification *noti = [[UILocalNotification alloc] init];
+            
+            //指定通知发送的时间
+            noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+            //指定时区
+            noti.timeZone = [NSTimeZone defaultTimeZone];
+            noti.alertBody = @"马上要上课喽";
+            
+            noti.repeatInterval = NSCalendarUnitMinute;
+            noti.alertAction = @"查看消息";
+            noti.alertLaunchImage = @"splash_tops";
+            noti.soundName = @"sendmsg.caf";
+            
+            
+            //2注册通知
+            UIApplication *app = [UIApplication sharedApplication];
+            
+            [app scheduleLocalNotification:noti];
+            
+            
+            ZSLog(@"aaaa");
         } else {
-            item55.title = @"消息提醒模式";
+            item55.title = @"提醒上课";
             item55.icon = @"ring";
             [self.tableView reloadData];
 
+            UIApplication *app = [UIApplication sharedApplication];
+            
+            [app cancelAllLocalNotifications];
+            
+            ZSLog(@"bbbb");
+            
         }
     };
+    
+    
     ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@"" vcClass:[ZSAboutViewController class]];
     
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];

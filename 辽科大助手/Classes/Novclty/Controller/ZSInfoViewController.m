@@ -16,6 +16,8 @@
 #import "ZSHttpTool.h"
 #import "ZSPersonalUser.h"
 #import "ZSSendInfoViewController.h"
+#import "SVProgressHUD.h"
+
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
@@ -24,6 +26,9 @@
 @property (nonatomic, weak) UIButton *backBtn;
 
 //@property (nonatomic, weak) UIButton *writeInffoBtn;
+
+/**user对象*/
+@property (nonatomic, strong) ZSPersonalUser *user;
 
 @end
 
@@ -40,15 +45,52 @@
 {
     [super viewDidLoad];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    //加载个人信息
+    [self loadUserInfo];
     
     //初始化tableView
     [self initHeaderView];
     
     //设置数据
-    [self initModelData];
+//    [self initModelData];
 }
 
+//加载跟人信息
+- (void)loadUserInfo
+{
+    
+    ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    params[@"nickname"] = self.whoNickName ? self.whoNickName : nickName;
+    
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoRead" parameters:params success:^(NSDictionary *responseObject) {
+        
+        user.sex = [responseObject[@"sex"] isEqualToString:@"boy"] ? @"男" : @"女";
+        user.name = responseObject[@"name"];
+        user.college = responseObject[@"college"];
+        user.major = responseObject[@"major"];
+        user.class = responseObject[@"class"];
+        user.home = responseObject[@"home"];
+        user.birthday = responseObject[@"birthday"];
+        user.phone = responseObject[@"phone"];
+        user.qq = responseObject[@"qq"];
+        user.wechat = responseObject[@"wechat"];
+        self.user = user;
+        
+        [self initModelData];
+        
+        //刷新表格
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        
+        [SVProgressHUD showInfoWithStatus:@"加载跟人信息失败，请检查网络"];
+        
+    }];
+    
+}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -97,32 +139,6 @@
     [backBtn addTarget:self action:@selector(exitViewController) forControlEvents:UIControlEventTouchUpInside];
     
     self.backBtn = backBtn;
-    
-    
-    
-//    //更多信息按钮
-//    UIButton *writeInffoBtn = [[UIButton alloc] init];
-//    writeInffoBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-//    [writeInffoBtn setTitle:@"更多" forState:UIControlStateNormal];
-//    [writeInffoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [writeInffoBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-//    
-//    writeInffoBtn.size = CGSizeMake(40, 30);
-//    //设置按钮的内容靠左边
-//    writeInffoBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    //设置按钮的切割
-//    writeInffoBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-//    
-//    writeInffoBtn.x = ZSScreenW - writeInffoBtn.width;
-//    writeInffoBtn.y = 25;
-//    
-//    writeInffoBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
-//    
-//    [writeInffoBtn addTarget:self action:@selector(clickWriteInfoBtn) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    self.writeInffoBtn = writeInffoBtn;
-//    
-//    [window addSubview:writeInffoBtn];
     
     [window addSubview:backBtn];
 
@@ -216,6 +232,9 @@
 /** 初始化headerView*/
 - (void)initHeaderView
 {
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
     //headerView的大背景
     UIView *headerView = [[UIView alloc] init];
     headerView.width = ZSScreenW;

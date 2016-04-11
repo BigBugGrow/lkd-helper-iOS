@@ -101,6 +101,8 @@
         [MBProgressHUD showError:@"网络错误"];
         
     }];
+    
+    [self.view endEditing:YES];
 
 }
 

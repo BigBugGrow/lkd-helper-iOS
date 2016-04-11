@@ -84,7 +84,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     //设置导航栏按钮
     [self setUpNavigtionItem];
     
@@ -192,10 +191,6 @@
     //得到账户信息
     ZSAccount *account = [ZSAccountTool account];
     self.account = account;
-    
-    
-    ZSLog(@"%@", account);
-    
     
      //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];

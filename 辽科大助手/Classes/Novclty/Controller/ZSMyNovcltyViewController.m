@@ -491,32 +491,10 @@
     
     ZSInfoViewController *info = [[ZSInfoViewController alloc] init];
     
-    ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    params[@"nickname"] = self.whoNickName ? self.whoNickName : nickName;
-    
-    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoRead" parameters:params success:^(NSDictionary *responseObject) {
+    info.whoNickName = self.whoNickName ? self.whoNickName : nickName;
         
-        user.sex = [responseObject[@"sex"] isEqualToString:@"boy"] ? @"男" : @"女";
-        user.name = responseObject[@"name"];
-        user.college = responseObject[@"college"];
-        user.major = responseObject[@"major"];
-        user.class = responseObject[@"class"];
-        user.home = responseObject[@"home"];
-        user.birthday = responseObject[@"birthday"];
-        user.phone = responseObject[@"phone"];
-        user.qq = responseObject[@"qq"];
-        user.wechat = responseObject[@"wechat"];
-        info.user = user;
-        info.whoNickName = self.whoNickName ? self.whoNickName : nickName;
-        
-        [self.navigationController pushViewController:info animated:YES];
+    [self.navigationController pushViewController:info animated:YES];
     
-    } failure:^(NSError *error) {
-        
-    }];
 }
 
 

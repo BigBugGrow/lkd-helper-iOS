@@ -16,7 +16,4 @@
 /** name*/
 @property (nonatomic, copy) NSString *whoNickName;
 
-/** 用户模型*/
-@property (nonatomic, strong) ZSPersonalUser *user;
-
 @end

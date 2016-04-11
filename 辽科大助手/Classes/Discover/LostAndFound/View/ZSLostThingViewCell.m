@@ -140,7 +140,7 @@
     [self.commentBtn setImage:[UIImage imageNamed:@"commentNum"] forState:UIControlStateNormal];
     
     [self.callBtn setTitle:lostThing.phone forState:UIControlStateNormal];
-    [self.callBtn setImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+    [self.callBtn setImage:[UIImage imageNamed:@"phone0"] forState:UIControlStateNormal];
     [self.callBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
 }

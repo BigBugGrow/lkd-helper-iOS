@@ -9,9 +9,10 @@
 #import "ZSCourseViewController.h"
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
-#import <AudioToolbox/AudioToolbox.h>
+//#import <AudioToolbox/AudioToolbox.h>
 #import "NSDate+Utilities.h"
-
+#import <AVFoundation/AVFoundation.h>
+#import "ZSAudioTool.h"
 
 @interface ZSCourseViewController ()
 /** 加号按钮*/
@@ -510,9 +511,9 @@
 
 - (IBAction)clickNextCourseBtn {
     
-    
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    
+    //播放音效
+    [ZSAudioTool playAudioWithFilename:@"sendmsg.caf"];
+
     self.currentWeek ++;
     if (self.currentWeek > 20) {
         
@@ -539,7 +540,10 @@
 - (IBAction)clickLastCourseBtn {
     
     
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    //播放音效
+    [ZSAudioTool playAudioWithFilename:@"sendmsg.caf"];
+
+//    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     
     self.currentWeek --;
     if (self.currentWeek <= 0) {

@@ -63,39 +63,13 @@
 /** 点击headerView*/
 - (void)clickHeaderView
 {
-    
     ZSInfoViewController *infoViewCV = [[ZSInfoViewController alloc] init];
+    infoViewCV.whoNickName = nickName;
     
-    
-    ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    params[@"nickname"] = nickName;
-    
-    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoRead" parameters:params success:^(NSDictionary *responseObject) {
-        
-        user.sex = [responseObject[@"sex"] isEqualToString:@"boy"] ? @"男" : @"女";
-        user.name = responseObject[@"name"];
-        user.college = responseObject[@"college"];
-        user.major = responseObject[@"major"];
-        user.class = responseObject[@"class"];
-        user.home = responseObject[@"home"];
-        user.birthday = responseObject[@"birthday"];
-        user.phone = responseObject[@"phone"];
-        user.qq = responseObject[@"qq"];
-        user.wechat = responseObject[@"wechat"];
-        infoViewCV.user = user;
-        infoViewCV.whoNickName = nickName;
-        [self.navigationController pushViewController:infoViewCV animated:YES];
-        
-    } failure:^(NSError *error) {
-        
-    }];
-    
+    ZSLog(@"%@", nickName);
+    [self.navigationController pushViewController:infoViewCV animated:YES];
+
 }
-
-
 
 #pragma mark - Table view data source
 

@@ -51,11 +51,19 @@ static NSString *ID = @"noteCell";
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.plusBtn.enabled = YES;
+}
+
 /** 按钮监听方法*/
 - (void)clickPlusBtn
 {
     ZSWriteNoteViewController *writeNote = [[ZSWriteNoteViewController alloc] init];
     writeNote.delegate = self;
+    self.plusBtn.enabled = NO;
     [self.navigationController pushViewController:writeNote animated:YES];
 }
 

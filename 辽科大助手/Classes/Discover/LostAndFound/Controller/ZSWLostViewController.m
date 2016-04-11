@@ -186,9 +186,9 @@
 - (void)initNav
 {
     
-    UIBarButtonItem *item1 = [UIBarButtonItem itemWithImage:@"compose_camerabutton_background" highLightImage:@"" target:self action:@selector(openCamera)];
+    UIBarButtonItem *item1 = [UIBarButtonItem itemWithImage:@"camera" highLightImage:@"" target:self action:@selector(openCamera)];
     
-    UIBarButtonItem *item2 = [UIBarButtonItem itemWithImage:@"compose_toolbar_picture" highLightImage:@"" target:self action:@selector(openAlbum)];
+    UIBarButtonItem *item2 = [UIBarButtonItem itemWithImage:@"album" highLightImage:@"" target:self action:@selector(openAlbum)];
     
     self.navigationItem.rightBarButtonItems = @[item2 ,item1];
     

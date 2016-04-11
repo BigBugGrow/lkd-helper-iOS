@@ -82,6 +82,8 @@
 		526775A21C9FF73500C55191 /* ZSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 526775921C9FF73500C55191 /* ZSTextView.m */; };
 		5272E31A1CB2A76D00A078A3 /* ZSSendInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272E3181CB2A76D00A078A3 /* ZSSendInfoViewController.m */; };
 		5272E31B1CB2A76D00A078A3 /* ZSSendInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5272E3191CB2A76D00A078A3 /* ZSSendInfoViewController.xib */; };
+		5275BB581CBA3A8B008855CF /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5275BB571CBA3A8B008855CF /* sendmsg.caf */; };
+		5275BB5C1CBA3D50008855CF /* ZSAudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275BB5B1CBA3D50008855CF /* ZSAudioTool.m */; };
 		528206531CAC2DE80066C634 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */; };
 		52857AA91C9D7F2200F44C27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52857A711C9D7F2200F44C27 /* InfoPlist.strings */; };
 		52857AAA1C9D7F2200F44C27 /* pop-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52857A731C9D7F2200F44C27 /* pop-Info.plist */; };
@@ -396,6 +398,9 @@
 		5272E3181CB2A76D00A078A3 /* ZSSendInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSendInfoViewController.m; sourceTree = "<group>"; };
 		5272E3191CB2A76D00A078A3 /* ZSSendInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSSendInfoViewController.xib; sourceTree = "<group>"; };
 		5275BB561CBA1EA3008855CF /* 辽科大助手.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "辽科大助手.entitlements"; sourceTree = "<group>"; };
+		5275BB571CBA3A8B008855CF /* sendmsg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sendmsg.caf; sourceTree = "<group>"; };
+		5275BB5A1CBA3D50008855CF /* ZSAudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAudioTool.h; sourceTree = "<group>"; };
+		5275BB5B1CBA3D50008855CF /* ZSAudioTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAudioTool.m; sourceTree = "<group>"; };
 		528206511CAC2DE80066C634 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		52857A721C9D7F2200F44C27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -997,6 +1002,15 @@
 				5261363E1CB5E2CF00458C87 /* ZSVerticalButton.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5275BB591CBA3D2E008855CF /* ZSAudioTool */ = {
+			isa = PBXGroup;
+			children = (
+				5275BB5A1CBA3D50008855CF /* ZSAudioTool.h */,
+				5275BB5B1CBA3D50008855CF /* ZSAudioTool.m */,
+			);
+			path = ZSAudioTool;
 			sourceTree = "<group>";
 		};
 		52857A6F1C9D7F2200F44C27 /* POP */ = {
@@ -1639,6 +1653,7 @@
 		EF56D6801C09DA8B00A3B314 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				5275BB591CBA3D2E008855CF /* ZSAudioTool */,
 				52857AC31C9D7F9100F44C27 /* Controller */,
 				52857AC41C9D7F9100F44C27 /* View */,
 				52ACBCFF1C84242700BAE1A4 /* Const */,
@@ -2005,6 +2020,7 @@
 		EFFC6AEF1C04852500469F99 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5275BB571CBA3A8B008855CF /* sendmsg.caf */,
 				525D3EF31C9E5449007AF860 /* EmotionIcons */,
 				EFFC6AFB1C04852500469F99 /* Assets.xcassets */,
 				EFFC6B001C04852500469F99 /* Info.plist */,
@@ -2160,6 +2176,7 @@
 				5241578F1CA6C80F004A543E /* ZSCourseViewController.xib in Resources */,
 				5267759E1C9FF73500C55191 /* ZSEmotionPopView.xib in Resources */,
 				EF4B1B8A1C3E3284000A48F2 /* ZSRegisterViewController.xib in Resources */,
+				5275BB581CBA3A8B008855CF /* sendmsg.caf in Resources */,
 				523B6E001CB64C210031FC23 /* ZSLostCommenViewController.xib in Resources */,
 				52C89B461CAE9F1200295180 /* ZSNoteViewCell.xib in Resources */,
 				525D3EF41C9E5449007AF860 /* EmotionIcons in Resources */,
@@ -2323,6 +2340,7 @@
 				524471B41CA7D0E000B8D2E6 /* ZSCourseView.m in Sources */,
 				525021D31C9ECA2C008F2526 /* UPMultipartBody.m in Sources */,
 				5244DC701CA1039500147B72 /* ZSBasicViewController.m in Sources */,
+				5275BB5C1CBA3D50008855CF /* ZSAudioTool.m in Sources */,
 				EF2AB5FE1C0F17A500DB93FC /* AFHTTPRequestOperation.m in Sources */,
 				525021D01C9ECA2C008F2526 /* NSString+NSHash.m in Sources */,
 				EF56D6961C09E15600A3B314 /* ZSHomeViewController.m in Sources */,

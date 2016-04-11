@@ -78,6 +78,8 @@ static NSString *ID = @"lostAndFoundCell";
     /** 写寻物启事公告*/
     ZSWLostViewController *writeLostViewController = [[ZSWLostViewController alloc] init];
     
+    self.plusBtn.enabled = NO;
+    
     [self.navigationController pushViewController:writeLostViewController animated:YES];
 }
 

@@ -19,6 +19,8 @@
     
     button.size = button.currentBackgroundImage.size;
     
+    button.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     //action 写成@selector(action) 改了半天 ，，，，哎
     [button addTarget:target action:action forControlEvents:
      UIControlEventTouchUpInside];
