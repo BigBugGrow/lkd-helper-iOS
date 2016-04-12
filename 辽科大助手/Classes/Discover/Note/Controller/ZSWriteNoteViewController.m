@@ -11,9 +11,10 @@
 #import "ZSNoteModel.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "ZSTextView.h"
 
 
-@interface ZSWriteNoteViewController ()<UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+@interface ZSWriteNoteViewController ()<UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate,UIActionSheetDelegate>
 
 /** scroView*/
 @property (nonatomic, weak) UIScrollView *scroView;
@@ -22,7 +23,7 @@
 @property (nonatomic, weak) UITextField *titleView;
 
 /** textView*/
-@property (nonatomic, weak) UITextView *textView;
+@property (nonatomic, weak) ZSTextView *textView;
 
 /** 图片路径数组*/
 @property (nonatomic, strong) NSMutableArray *imagePathArray;
@@ -124,9 +125,43 @@
 - (void)clickImageView
 {
     
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除照片" otherButtonTitles:@"查看照片", nil];
+//    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除照片" otherButtonTitles:@"查看照片", nil];
+//    
+//    
     
-    [sheet showInView:self.view];
+//    [sheet showInView:self.view];
+    
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"删除照片" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
+        
+        if (self.imageCount == 0) {
+            
+            UIImageView *imageView = [self.scroView.subviews lastObject];
+            [imageView removeFromSuperview];
+            self.imageCount ++;
+        }
+        
+        //现只能够删除最后一张
+        UIImageView *imageView = [self.scroView.subviews lastObject];
+        [imageView removeFromSuperview];
+        [self.imagePathArray removeLastObject];
+        
+        
+    }];
+    UIAlertAction* fromCameraAction = [UIAlertAction actionWithTitle:@"查看照片" style:UIAlertActionStyleDefault                                                             handler:^(UIAlertAction * action) {
+       
+        
+        //查看照片
+        [self seePhoto];
+        
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:fromCameraAction];
+    [alertController addAction:fromPhotoAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 
 
@@ -186,6 +221,7 @@
     titleView.font = [UIFont systemFontOfSize:20];
     titleView.placeholder = @"标题";
     titleView.backgroundColor = [UIColor whiteColor];
+    
     [self.view addSubview:titleView];
     
     UIView *line = [[UIView alloc] init];
@@ -205,12 +241,14 @@
     }
     
 
-    UITextView *textView = [[UITextView alloc] init];
+    ZSTextView *textView = [[ZSTextView alloc] init];
 
     textView.frame = CGRectMake(0, CGRectGetMaxY(titleView.frame), ZSScreenW, ZSScreenH - CGRectGetMaxY(titleView.frame));
     textView.font = [UIFont systemFontOfSize:17];
     self.textView = textView;
     [self.view addSubview:textView];
+    
+    textView.placeHolder = @"留下你最心爱的笔记吧。。。";
     
     //添加退出键盘按钮
     UIButton *exitKeyBoardBtn = [[UIButton alloc] init];
@@ -236,11 +274,11 @@
 {
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"aio_fileAssitant_success" highLightImage:@"" target:self action:@selector(clickLeftBtn)];
     
-    UIBarButtonItem *item1 = [UIBarButtonItem itemWithImage:@"camera" highLightImage:@"" target:self action:@selector(openCamera)];
+    UIBarButtonItem *item1 = [UIBarButtonItem itemWithImage:@"camera" highLightImage:@"" target:self action:@selector(openCameraAlbum)];
     
-    UIBarButtonItem *item2 = [UIBarButtonItem itemWithImage:@"album" highLightImage:@"" target:self action:@selector(openAlbum)];
+//    UIBarButtonItem *item2 = [UIBarButtonItem itemWithImage:@"album" highLightImage:@"" target:self action:@selector(openAlbum)];
     
-    self.navigationItem.rightBarButtonItems = @[item2 ,item1];
+    self.navigationItem.rightBarButtonItems = @[item1];
     
     
     self.title = @"写笔记";
@@ -250,7 +288,6 @@
 
 - (void)clickLeftBtn
 {
-    
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"保存笔记退出？" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
@@ -292,7 +329,8 @@
         //如果不保存修改，直接保存原来的值
         if ([self.delegate respondsToSelector:@selector(writeNoteViewControllerDelegate:noteModael:)] && self.note != nil) {
             
-            [self.delegate writeNoteViewControllerDelegate:self noteModael:self.note];
+            //执行修改笔记的方法
+            [self.delegate writeNoteViewControllerDelegate:self addnoteModael:self.note th:self.th];
         }
         
         [self.navigationController popViewControllerAnimated:YES];
@@ -310,6 +348,38 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)openCameraAlbum
+{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"打开相册" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {                                                                     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        //        imagePicker.allowsEditing = YES;
+        imagePicker.allowsEditing = NO;
+        imagePicker.delegate = self;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }];
+    UIAlertAction* fromCameraAction = [UIAlertAction actionWithTitle:@"打开相机" style:UIAlertActionStyleDefault                                                             handler:^(UIAlertAction * action) {
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.delegate = self;
+            //            imagePicker.allowsEditing = YES;
+            imagePicker.allowsEditing = NO;
+            imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePicker animated:YES completion:nil];
+        }
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:fromCameraAction];
+    [alertController addAction:fromPhotoAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 
 
@@ -563,31 +633,19 @@
 
 #pragma mark - UIActionSheetdelegate
 
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    
-    ZSLog(@"%@", self.scroView.subviews);
-    
-    if (buttonIndex == 0) {
-        
-        if (self.imageCount == 0) {
-            
-            UIImageView *imageView = [self.scroView.subviews lastObject];
-            [imageView removeFromSuperview];
-            self.imageCount ++;
-        }
-
-        //现只能够删除最后一张
-        
-        UIImageView *imageView = [self.scroView.subviews lastObject];
-        [imageView removeFromSuperview];
-        [self.imagePathArray removeLastObject];
-        
-    } else if (buttonIndex == 1) {
-        
-        [self seePhoto];
-    }
-}
+//- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+//{
+//    
+//    ZSLog(@"%@", self.scroView.subviews);
+//    
+//    if (buttonIndex == 0) {
+//        
+//        
+//    } else if (buttonIndex == 1) {
+//            }
+//}
+//
+//
 
 /*
 #pragma mark - Navigation

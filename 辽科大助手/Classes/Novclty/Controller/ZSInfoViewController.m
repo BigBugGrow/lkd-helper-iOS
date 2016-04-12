@@ -21,7 +21,7 @@
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
-@interface ZSInfoViewController ()<UINavigationControllerDelegate ,UIImagePickerControllerDelegate>
+@interface ZSInfoViewController ()<UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, weak) UIButton *backBtn;
 
@@ -341,7 +341,10 @@
     
     if (![self.whoNickName isEqualToString:nickName]) return;
     
-    [self openAlbum];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"打开相机" otherButtonTitles:@"打开相册", nil];
+    
+    [sheet showInView:self.view];
+
   
 }
 
@@ -609,6 +612,7 @@
     [[SDImageCache sharedImageCache] clearMemory];//可有可无
 
 }
+
 
 
 @end

@@ -16,7 +16,6 @@
 @interface ZSLostThingViewCell () 
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageVIew;
 /** 电话*/
-@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UIButton *callBtn;
 
 /** 描述*/
@@ -27,7 +26,6 @@
 /** 拾到物品*/
 @property (weak, nonatomic) IBOutlet UIView *thingInfoView;
 
-@property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 /** 头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 
@@ -42,8 +40,6 @@
 
 /** 物品的地点*/
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
-
-@property (weak, nonatomic) IBOutlet UIImageView *phoneImageView;
 
 @end
 
@@ -106,6 +102,10 @@
         
     }];
     
+    self.iconView.userInteractionEnabled = YES;
+    [self.iconView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cliclImageView)]];
+    
+
     /** 昵称*/
     self.nameLabel.text = imageStr;
     
@@ -125,25 +125,40 @@
     self.descriptionLabel.text = lostThing.summary;
     
     /** 电话*/
-    self.phoneLabel.text = lostThing.phone;
+//    self.phoneLabel.text = lostThing.phone;
     
-    
-    /** 评论数量*/
-    if ([lostThing.commentNum integerValue]) {
-        
-        [self.commentBtn setTitle:lostThing.commentNum forState:UIControlStateNormal];
-    } else {
-        
-        [self.commentBtn setTitle:@"" forState:UIControlStateNormal];
-    }
-    
-    [self.commentBtn setImage:[UIImage imageNamed:@"commentNum"] forState:UIControlStateNormal];
-    
+//    
+//    /** 评论数量*/
+//    if ([lostThing.commentNum integerValue]) {
+//        
+//        [self.commentBtn setTitle:lostThing.commentNum forState:UIControlStateNormal];
+//    } else {
+//        
+//        [self.commentBtn setTitle:@"" forState:UIControlStateNormal];
+//    }
+//    
+//    [self.commentBtn setImage:[UIImage imageNamed:@"commentNum"] forState:UIControlStateNormal];
+//    
     [self.callBtn setTitle:lostThing.phone forState:UIControlStateNormal];
-    [self.callBtn setImage:[UIImage imageNamed:@"phone0"] forState:UIControlStateNormal];
+    [self.callBtn setImage:[UIImage imageNamed:@"pic_register_mobile"] forState:UIControlStateNormal];
     [self.callBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
 }
+
+
+/** 点击图片*/
+- (void)cliclImageView
+{
+    NSString *nickname = self.nameLabel.text;
+    
+    if ([nickname isEqualToString:@"匿名"]) return;
+    
+    if ([self.delegate respondsToSelector:@selector(pushToInfoViewController: nickName:)]) {
+        
+        [self.delegate pushToInfoViewController:self nickName:nickname];
+    }
+}
+
 
 - (void)awakeFromNib {
 

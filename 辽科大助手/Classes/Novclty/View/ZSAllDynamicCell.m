@@ -118,6 +118,8 @@
     return self;
 }
 
+
+
 /** 点击图片*/
 - (void)cliclImageView
 {

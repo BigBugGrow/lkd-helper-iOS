@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "ZSWLostViewController.h"
 #import "ZSLostCommenViewController.h"
+#import "ZSInfoViewController.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 
@@ -149,7 +150,7 @@ static NSString *ID = @"lostAndFoundCell";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ZSLostThingCell" bundle:nil] forCellReuseIdentifier:ID];
     
-    self.title = @"失物启事";
+    self.title = @"寻物公告";
 
 }
 
@@ -186,7 +187,7 @@ static NSString *ID = @"lostAndFoundCell";
     
     CGSize size = [ZSDynamicPicturesView sizeWithPicturesCount:pics.count];
     
-    return 230 + size.height + 20;
+    return 230 + size.height + 10;
 }
 
 
@@ -220,6 +221,18 @@ static NSString *ID = @"lostAndFoundCell";
 
 }
 
+
+#pragma mark -Delegate的代理方法
+
+/** 跳转到我的糯米粒信息*/
+- (void)pushToInfoViewController:(ZSLostThingViewCell *)allDynamicCell nickName:(NSString *)nickName
+{
+    ZSInfoViewController *infoViewController = [[ZSInfoViewController alloc] init];
+    
+    infoViewController.whoNickName = nickName;
+    
+    [self.navigationController pushViewController:infoViewController animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

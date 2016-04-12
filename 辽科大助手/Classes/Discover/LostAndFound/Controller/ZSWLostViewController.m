@@ -156,7 +156,6 @@
     [self.scroView addSubview:sendBtn];
     [sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [sendBtn setBackgroundImage:[UIImage imageNamed:@"blue"] forState:UIControlStateHighlighted];
-    [sendBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     [sendBtn addTarget:self action:@selector(clickSendBtn) forControlEvents:UIControlEventTouchUpInside];
     [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     self.loginBtn = sendBtn;
@@ -187,7 +186,7 @@
     
     UIBarButtonItem *item1 = [UIBarButtonItem itemWithImage:@"camera" highLightImage:@"" target:self action:@selector(openCamera)];
     
-    UIBarButtonItem *item2 = [UIBarButtonItem itemWithImage:@"compose_toolbar_picture" highLightImage:@"" target:self action:@selector(openAlbum)];
+    UIBarButtonItem *item2 = [UIBarButtonItem itemWithImage:@"album" highLightImage:@"" target:self action:@selector(openAlbum)];
     
     self.navigationItem.rightBarButtonItems = @[item2 ,item1];
     
@@ -476,8 +475,8 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/LostAndFoundWrite" parameters:params success:^(id responseObject) {
         
-        
         ZSLog(@"%@", responseObject);
+        
         
         if ([responseObject[@"state"] integerValue] == 100) {
             

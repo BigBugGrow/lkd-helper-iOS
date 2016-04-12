@@ -12,10 +12,13 @@
 
 @protocol ZSLostThingViewCellDelegate <NSObject>
 
+@optional
 - (void)clickCall:(ZSLostThingViewCell *)lostThingViewCell PhoneNum:(NSString *)phoneNum;
+/** 通知控制器push到myNovcltyController*/
+- (void)pushToInfoViewController:(ZSLostThingViewCell *)lostThingViewCell nickName:(NSString *)nickName;
+
 
 @end
-
 
 @interface ZSLostThingViewCell : UITableViewCell
 
