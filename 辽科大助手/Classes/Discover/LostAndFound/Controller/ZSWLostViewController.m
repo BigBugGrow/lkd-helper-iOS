@@ -29,8 +29,6 @@
 /** 地点*/
 @property (weak, nonatomic) UITextField *adressLabel;
 
-/** 物品描述*/
-@property (weak, nonatomic) UITextView *sumaryTextView;
 
 /** 联系电话*/
 @property (weak, nonatomic) UITextField *phoneLabel;
@@ -45,7 +43,8 @@
 /** 登陆按钮*/
 @property (nonatomic, weak) UIButton *loginBtn;
 
-@property (nonatomic, weak) ZSWTextView *textView;
+/** 物品描述*/
+@property (nonatomic, weak) ZSWTextView *sumaryTextView;
 
 @end
 
@@ -123,7 +122,7 @@
     textView.y = CGRectGetMaxY(addresLabel.frame) + margin;
     textView.width = thingLabel.width;
     textView.height = 100;
-    self.textView = textView;
+    self.sumaryTextView = textView;
     textView.delegate = self;
     textView.placeHolder = @"写下你丢的或捡的东西的描述...";
     [self.scroView addSubview:textView];
@@ -188,7 +187,7 @@
     
     UIBarButtonItem *item1 = [UIBarButtonItem itemWithImage:@"camera" highLightImage:@"" target:self action:@selector(openCamera)];
     
-    UIBarButtonItem *item2 = [UIBarButtonItem itemWithImage:@"album" highLightImage:@"" target:self action:@selector(openAlbum)];
+    UIBarButtonItem *item2 = [UIBarButtonItem itemWithImage:@"compose_toolbar_picture" highLightImage:@"" target:self action:@selector(openAlbum)];
     
     self.navigationItem.rightBarButtonItems = @[item2 ,item1];
     
@@ -200,7 +199,7 @@
 
 - (void)setPictureView
 {
-   }
+}
 
 
 
@@ -503,7 +502,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    self.textView.placeHolder = textView.hasText ? @"写下你丢的或捡的东西的描述..." : @"";
+    self.sumaryTextView.placeHolder = textView.hasText ? @"写下你丢的或捡的东西的描述..." : @"";
 }
 
 #pragma mark - UItextFild的代理方法

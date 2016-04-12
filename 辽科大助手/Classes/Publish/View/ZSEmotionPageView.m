@@ -101,7 +101,7 @@
                 info[@"emotion"] = emotiomBtn;
                 
                 //发送通知向控制器，显示表情
-                [LBNotificationCenter postNotificationName:LBDidClickEmotionButton object:self userInfo:info];
+                [ZSNotificationCenter postNotificationName:LBDidClickEmotionButton object:self userInfo:info];
    
             }
             //销毁放大镜表情
@@ -117,7 +117,7 @@
 //删除按钮的监听方法
 - (void)clickDeleteBtn
 {
-    [LBNotificationCenter postNotificationName:LBDidClickDeleteButton object:nil];
+    [ZSNotificationCenter postNotificationName:LBDidClickDeleteButton object:nil];
 }
 
 - (ZSEmotionPopView *)popView
@@ -191,7 +191,7 @@
     info[@"emotion"] = emotionBtn;
     
     //发送通知向控制器，显示表情
-    [LBNotificationCenter postNotificationName:LBDidClickEmotionButton object:self userInfo:info];
+    [ZSNotificationCenter postNotificationName:LBDidClickEmotionButton object:self userInfo:info];
 
 }
 

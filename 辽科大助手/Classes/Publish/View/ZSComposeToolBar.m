@@ -99,7 +99,7 @@
 - (void)dealloc
 {
     //消除通知对象
-    [LBNotificationCenter removeObserver:self];
+    [ZSNotificationCenter removeObserver:self];
 }
 
 

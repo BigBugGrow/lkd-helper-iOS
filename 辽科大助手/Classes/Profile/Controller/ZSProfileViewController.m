@@ -50,7 +50,7 @@
     
     [app scheduleLocalNotification:noti];
     
-    ZSLog(@"444");
+    ZSLog(@"333");
 }
 
 - (void)viewDidLoad
@@ -68,6 +68,8 @@
     
     [self initModelData];
 }
+
+
 
 - (void)clickRightBtn
 {
@@ -129,8 +131,8 @@
     
     
     
-    ZSModel *item3 = [ZSModel itemWithIcon:@"bindStudentNo" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
-    ZSModel *item4 = [ZSModel itemWithIcon:@"setting" title:@"设置" detailTitle:@""];
+    ZSModel *item3 = [ZSModel itemWithIcon:@"setting" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
+//    ZSModel *item4 = [ZSModel itemWithIcon:@"lock1" title:@"设置" detailTitle:@""];
     ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"不提醒上课" detailTitle:@""];
     
     
@@ -140,7 +142,7 @@
     item5.operation = ^(){
         if ([item55.title isEqualToString:@"提醒上课"]) {
             item55.title = @"不提醒上课";
-            item55.icon = @"quiet";
+            item55.icon = @"ring";
             [self.tableView reloadData];
             
             //1.创建本地通知对对象
@@ -163,19 +165,14 @@
             
             [app scheduleLocalNotification:noti];
             
-            
-            ZSLog(@"aaaa");
         } else {
             item55.title = @"提醒上课";
-            item55.icon = @"ring";
+            item55.icon = @"quiet";
             [self.tableView reloadData];
 
             UIApplication *app = [UIApplication sharedApplication];
             
             [app cancelAllLocalNotifications];
-            
-            ZSLog(@"bbbb");
-            
         }
     };
     
@@ -183,7 +180,7 @@
     ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@"" vcClass:[ZSAboutViewController class]];
     
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
-    group2.items = @[item3,item4,item5,item6];
+    group2.items = @[item3,item5,item6];
     [self.cellData addObject:group2];
 
 }

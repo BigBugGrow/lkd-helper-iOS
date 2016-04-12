@@ -93,8 +93,8 @@
 
 // 退出
 - (void)exitViewController
-{
-    [self popViewControllerAnimated:YES];
+
+{   [self popViewControllerAnimated:YES];
 }
 
 

@@ -19,13 +19,11 @@
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
 
-
 #import "ZSNovcltyTool.h"
 
 #define HMTopViewH 300
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
-
 
 @interface ZSMyNovcltyViewController ()<commenViewControllerDelegate>
 
@@ -49,12 +47,16 @@
 @property (nonatomic, strong) ZSAllDynamicCell *cell;
 
 /** topView*/
-@property (nonatomic, weak) UIImageView *topView;
+@property (nonatomic, weak) UIImageView *bigImageView;
 
+/** 返回按钮*/
 @property (nonatomic, weak) UIButton *backBtn;
 
+/** 更多按钮*/
 @property (nonatomic, weak) UIButton *moreBtn;
 
+/** 小头像*/
+@property (nonatomic, weak) UIImageView *smallImageView;
 @end
 
 @implementation ZSMyNovcltyViewController
@@ -76,7 +78,6 @@
     return _allDynamicFrames;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -88,8 +89,32 @@
     
     //初始化headerView
     [self initHeaderView];
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(updateImage) name:@"swapImage" object:nil];
 
 }
+
+- (void)updateImage
+{
+    self.bigImageView.image = [self GetImageFromLocal:ZSIconImageStr];
+    self.smallImageView.image = self.bigImageView.image;
+}
+
+//从本地获取图片
+- (UIImage*)GetImageFromLocal:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    NSData* imageData = [preferences objectForKey:key];
+    UIImage* image;
+    if (imageData) {
+        image = [UIImage imageWithData:imageData];
+    }
+    else {
+        ZSLog(@"未从本地获得图片");
+    }
+    return image;
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -227,7 +252,7 @@
     
     // 设置内边距(让cell往下移动一段距离)
     self.tableView.contentInset = UIEdgeInsetsMake(HMTopViewH * 0.5, 0, 0, 0);
-    self.topView = myImage;
+    self.bigImageView = myImage;
     
     NSString *nickNameStr = self.whoNickName ? self.whoNickName : nickName;
     
@@ -273,6 +298,8 @@
         
     }];
     
+    self.smallImageView = smallImageView;
+    
     [myImage addSubview:smallImageView];
     
     //昵称
@@ -288,7 +315,16 @@
     nameLabel.textColor = [UIColor whiteColor];
     [myImage addSubview:nameLabel];
     
+
+    
 }
+
+
+- (void)dealloc
+{
+    [ZSNotificationCenter removeObserver:self];
+}
+
 
 /** 添加下拉刷新*/
 - (void)settingRefresh
@@ -394,6 +430,9 @@
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/myNoveltyRead" parameters:params success:^(NSDictionary *responseObject) {
 
+        
+        ZSLog(@"%@", responseObject);
+        
         NSArray *dynamics = [NSArray array];
         
         dynamics = responseObject[@"data"];
@@ -403,6 +442,8 @@
         NSMutableArray *arrayM = [NSMutableArray array];
 
         if (self.lastDynamicId == 0)  return ;
+        
+        ZSLog(@"%ld", self.lastDynamicId);
         
        
         for (NSDictionary *dict in dynamics) {
@@ -427,13 +468,12 @@
             ZSAllDynamicFrame *allDynamicFrame = [[ZSAllDynamicFrame alloc] init];
             allDynamicFrame.allDynamic = dynamic;
             
-            if ([dynamic.ID integerValue] > self.lastDynamicId) {
+            if ([dynamic.ID integerValue] >= self.lastDynamicId) {
                 
                 [arrayM addObject:allDynamicFrame];
             } else {
                 break;
             }
-            
             
         }
     
@@ -446,8 +486,6 @@
         
         //刷新表格
         [self.tableView reloadData];
-        
-        
         
         
     } failure:^(NSError *error) {
@@ -481,9 +519,10 @@
 
 - (void)exitViewController
 {
-
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 /** */
 - (void)clickRightBtn
@@ -573,13 +612,23 @@
     CGFloat down = -(HMTopViewH * 0.5) - scrollView.contentOffset.y;
     if (down < 0) return;
     
-    CGRect frame = self.topView.frame;
+    CGRect frame = self.bigImageView.frame;
     // 5决定图片变大的速度,值越大,速度越快
     //    frame.size.width = ZSScreenW + down * 0.2;
     frame.size.height = HMTopViewH + down * 0.8;
-    self.topView.frame = frame;
+    self.bigImageView.frame = frame;
     
 }
+
+/** 设置头像*/
+
+- (void)swapImage
+{
+    self.bigImageView.image = [self GetImageFromLocal:ZSIconImageStr];
+    self.smallImageView.image = self.bigImageView.image;
+
+}
+
 
 
 

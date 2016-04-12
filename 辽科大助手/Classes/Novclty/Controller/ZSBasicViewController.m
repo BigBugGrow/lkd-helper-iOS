@@ -73,7 +73,21 @@
     //添加刷新下拉刷新
     [self settingRefresh];
     
+    [ZSNotificationCenter addObserver:self selector:@selector(updateImage) name:@"swapImage" object:nil];
+    
 }
+
+- (void)dealloc
+{
+    [ZSNotificationCenter removeObserver:self];
+}
+
+
+- (void)updateImage
+{
+    [self.tableView reloadData];
+}
+
 
 /** 添加下拉刷新*/
 - (void)settingRefresh

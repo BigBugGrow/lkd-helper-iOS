@@ -48,17 +48,49 @@
         
     }];
     
+    //添加image点击事件
+//    self.imgView.userInteractionEnabled = YES;
+//    [self.imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swapImage)]];
+    
+    
     UIImage *imageBoy = [UIImage imageNamed:@"boy"];
     UIImage *imageGril = [UIImage imageNamed:@"girl"];
     self.sexImageView.image = [sex isEqualToString:@"boy"] ? imageBoy : imageGril;
-    
-    ZSLog(@"%@", sex);
     
     // 昵称
     self.nameLabel.text = nickName;
     
     //名言
     self.sayingLabel.text = @"聚没有品的代言词很牛逼";
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(swapImage) name:@"swapImage" object:nil];
+
+}
+
+- (void)dealloc
+{
+    [ZSNotificationCenter removeObserver:self];
+}
+
+
+- (void)swapImage
+{
+    self.imgView.image = [self GetImageFromLocal:ZSIconImageStr];
+}
+
+//从本地获取图片
+- (UIImage*)GetImageFromLocal:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    NSData* imageData = [preferences objectForKey:key];
+    UIImage* image;
+    if (imageData) {
+        image = [UIImage imageWithData:imageData];
+    }
+    else {
+        ZSLog(@"未从本地获得图片");
+    }
+    return image;
 }
 
 

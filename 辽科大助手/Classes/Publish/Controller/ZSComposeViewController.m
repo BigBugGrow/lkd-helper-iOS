@@ -162,16 +162,16 @@
     self.textView = textView;
     
     //通知textView变化
-    [LBNotificationCenter addObserver:self selector:@selector(textDidChanged) name:UITextViewTextDidChangeNotification object:textView];
+    [ZSNotificationCenter addObserver:self selector:@selector(textDidChanged) name:UITextViewTextDidChangeNotification object:textView];
     
     //根据键盘的y值来设定工具条的位置
-    [LBNotificationCenter addObserver:self selector:@selector(keyBoardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [ZSNotificationCenter addObserver:self selector:@selector(keyBoardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     //点击表情按钮得到通知
     //根据键盘的y值来设定工具条的位置
-    [LBNotificationCenter addObserver:self selector:@selector(didClickEmotionBtn:) name:LBDidClickEmotionButton object:nil];
+    [ZSNotificationCenter addObserver:self selector:@selector(didClickEmotionBtn:) name:LBDidClickEmotionButton object:nil];
     
-    [LBNotificationCenter addObserver:self selector:@selector(clickDeleteButton) name:LBDidClickDeleteButton object:nil];
+    [ZSNotificationCenter addObserver:self selector:@selector(clickDeleteButton) name:LBDidClickDeleteButton object:nil];
     
 }
 
@@ -196,7 +196,7 @@
 - (void)dealloc
 {
     //消除通知对象
-    [LBNotificationCenter removeObserver:self];
+    [ZSNotificationCenter removeObserver:self];
 }
 
 

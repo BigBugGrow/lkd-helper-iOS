@@ -46,13 +46,14 @@
 
 @property (nonatomic,copy)NSString *weibo;
 
+/** 真实姓名*/
+@property (nonatomic, copy) NSString *name;
+
+/** 班级*/
+@property (nonatomic, copy) NSString *Class;
+
 /** 学期开始*/
 @property (nonatomic, copy) NSString *termBeginTime;
 
-
-//@property (nonatomic,copy)NSString *startweek;
-//@property (nonatomic,copy)NSString *date;
-
-#warning 新登录接口增加的字段,接口还不完善，之后还会修改
 
 @end

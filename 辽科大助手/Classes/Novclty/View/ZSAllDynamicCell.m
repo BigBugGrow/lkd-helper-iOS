@@ -281,6 +281,7 @@
     }
     
     [self.commentButton setImage:[UIImage imageNamed:@"commentNum"] forState:UIControlStateNormal];
+    
 }
 
 
@@ -293,7 +294,5 @@
 
     // Configure the view for the selected state
 }
-
-
 
 @end

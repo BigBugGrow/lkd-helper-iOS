@@ -67,6 +67,14 @@
         self.iconView.image = newImage ? newImage : placeHolderImage;
         
     }];
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(updateImage) name:@"swapImage" object:nil];
+
+}
+
+- (void)updateImage
+{
+    self.iconView.image = [self GetImageFromLocal:ZSIconImageStr];
 }
 
 
@@ -79,5 +87,22 @@
 
     // Configure the view for the selected state
 }
+
+
+//从本地获取图片
+- (UIImage*)GetImageFromLocal:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    NSData* imageData = [preferences objectForKey:key];
+    UIImage* image;
+    if (imageData) {
+        image = [UIImage imageWithData:imageData];
+    }
+    else {
+        ZSLog(@"未从本地获得图片");
+    }
+    return image;
+}
+
 
 @end

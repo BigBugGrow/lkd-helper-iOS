@@ -15,10 +15,17 @@
     if (self = [super init]) {
         
         //设置通知 不能够设置代理， 代理只能设置一次 没有监听方法
-        [LBNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:self];
+        [ZSNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:self];
     }
     return self;
 }
+
+
+- (void)dealloc
+{
+    [ZSNotificationCenter removeObserver:self];
+}
+
 
 //通知方法
 - (void)textDidChange

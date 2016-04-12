@@ -17,15 +17,24 @@
 #import "ZSPersonalUser.h"
 #import "ZSSendInfoViewController.h"
 #import "SVProgressHUD.h"
-
+#import "UpYun.h"
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
-@interface ZSInfoViewController ()
+@interface ZSInfoViewController ()<UINavigationControllerDelegate ,UIImagePickerControllerDelegate>
 
 @property (nonatomic, weak) UIButton *backBtn;
 
 //@property (nonatomic, weak) UIButton *writeInffoBtn;
+
+/**头像的view*/
+@property (nonatomic, weak) UIImageView *iconView;
+
+/** 头*/
+@property (nonatomic, weak) UIView *headerView;
+
+/** 大图片*/
+@property (nonatomic, weak) UIImageView *bigImageView;
 
 /**user对象*/
 @property (nonatomic, strong) ZSPersonalUser *user;
@@ -51,13 +60,13 @@
     //初始化tableView
     [self initHeaderView];
     
-    //设置数据
-//    [self initModelData];
 }
 
 //加载跟人信息
 - (void)loadUserInfo
 {
+    
+    ZSAccount *account = [ZSAccountTool account];
     
     ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
     
@@ -67,16 +76,18 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoRead" parameters:params success:^(NSDictionary *responseObject) {
         
+        
         user.sex = [responseObject[@"sex"] isEqualToString:@"boy"] ? @"男" : @"女";
-        user.name = responseObject[@"name"];
-        user.college = responseObject[@"college"];
-        user.major = responseObject[@"major"];
-        user.class = responseObject[@"class"];
-        user.home = responseObject[@"home"];
-        user.birthday = responseObject[@"birthday"];
+        user.name = self.whoNickName == nickName ? account.name : @"保密";
+        user.college = self.whoNickName == nickName ? account.college : responseObject[@"college"];
+        user.major = self.whoNickName == nickName ? account.major : responseObject[@"major"];
+        user.class = self.whoNickName == nickName ? account.Class : responseObject[@"class"];
+        user.home = self.whoNickName == nickName ? account.home : responseObject[@"home"];
+        user.birthday = self.whoNickName == nickName ? account.birthday : responseObject[@"birthday"];
         user.phone = responseObject[@"phone"];
         user.qq = responseObject[@"qq"];
         user.wechat = responseObject[@"wechat"];
+        user.zjh = self.whoNickName == nickName ? account.zjh : @"保密";;
         self.user = user;
         
         [self initModelData];
@@ -151,19 +162,21 @@
     //去掉分界线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //标题
+    
+    ZSModel *item0 = [ZSModel itemWithIcon:@"zhj" title:@"学号" detailTitle:self.user.zjh];
     self.title = [NSString stringWithFormat:@"%@的信息", self.whoNickName];
     
-    ZSModel *item0 = [ZSModel itemWithIcon:@"name" title:@"姓名" detailTitle:self.user.name];
+    ZSModel *item1 = [ZSModel itemWithIcon:@"name" title:@"姓名" detailTitle:self.user.name];
     
-    ZSModel *item1 = [ZSModel itemWithIcon:@"age" title:@"性别" detailTitle:self.user.sex];
-    ZSModel *item2 = [ZSModel itemWithIcon:@"class" title:@"班级" detailTitle:self.user.class];
+    ZSModel *item2 = [ZSModel itemWithIcon:@"sex" title:@"性别" detailTitle:self.user.sex];
+    ZSModel *item3 = [ZSModel itemWithIcon:@"class" title:@"班级" detailTitle:self.user.class];
     
-    ZSModel *item3 = [ZSModel itemWithIcon:@"major" title:@"专业" detailTitle:self.user.major];
-    ZSModel *item4 = [ZSModel itemWithIcon:@"college" title:@"学院" detailTitle:self.user.college];
-    ZSModel *item5 = [ZSModel itemWithIcon:@"home" title:@"故乡" detailTitle:self.user.home];
+    ZSModel *item4 = [ZSModel itemWithIcon:@"major" title:@"专业" detailTitle:self.user.major];
+    ZSModel *item5 = [ZSModel itemWithIcon:@"college" title:@"学院" detailTitle:self.user.college];
+    ZSModel *item6 = [ZSModel itemWithIcon:@"home" title:@"故乡" detailTitle:self.user.home];
     
     ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
-    group1.items = @[item0,item1,item2,item3, item4, item5];
+    group1.items = @[item0,item1,item2,item3, item4, item5, item6];
     [self.cellData addObject:group1];
     
     
@@ -183,29 +196,29 @@
         wechat = @"添加";
     }
     
-    ZSModel *item6 = [[ZSModel alloc] init];
-    
     ZSModel *item7 = [[ZSModel alloc] init];
     
     ZSModel *item8 = [[ZSModel alloc] init];
     
+    ZSModel *item9 = [[ZSModel alloc] init];
+    
     if ([self.whoNickName isEqualToString:nickName]) {
         
-        item6 = [ZSModel itemWithIcon:@"phone" title:@"电话" detailTitle:phone vcClass:[ZSSendInfoViewController class]];
-        item7 = [ZSModel itemWithIcon:@"qq" title:@"QQ" detailTitle:qq vcClass:[ZSSendInfoViewController class]];
+        item7 = [ZSModel itemWithIcon:@"phone1" title:@"电话" detailTitle:phone vcClass:[ZSSendInfoViewController class]];
+        item8 = [ZSModel itemWithIcon:@"qq" title:@"QQ" detailTitle:qq vcClass:[ZSSendInfoViewController class]];
         
-        item8 = [ZSModel itemWithIcon:@"weichat" title:@"微信号" detailTitle:wechat vcClass:[ZSSendInfoViewController class]];
+        item9 = [ZSModel itemWithIcon:@"weichat" title:@"微信号" detailTitle:wechat vcClass:[ZSSendInfoViewController class]];
     } else {
-        item6 = [ZSModel itemWithIcon:@"phone" title:@"电话" detailTitle:phone];
-        item7 = [ZSModel itemWithIcon:@"qq" title:@"QQ" detailTitle:qq];
+        item7 = [ZSModel itemWithIcon:@"phone1" title:@"电话" detailTitle:phone];
+        item8 = [ZSModel itemWithIcon:@"qq" title:@"QQ" detailTitle:qq];
         
-        item8 = [ZSModel itemWithIcon:@"weichat" title:@"微信号" detailTitle:wechat ];
+        item9 = [ZSModel itemWithIcon:@"weichat" title:@"微信号" detailTitle:wechat ];
 
     }
     
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
     
-    group2.items = @[item6, item7, item8];
+    group2.items = @[item7, item8, item9];
     [self.cellData addObject:group2];
 
 }
@@ -242,7 +255,10 @@
     headerView.x = 0;
     headerView.y = 0;
     
+    headerView.userInteractionEnabled = YES;
+    [headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swapImage:)]];
     
+    self.headerView = headerView;
     //大图片
     UIImageView *myImage = [[UIImageView alloc] init];
     myImage.width = ZSScreenW;
@@ -261,14 +277,20 @@
     [myImage sd_setImageWithURL:[NSURL URLWithString:urlBigStr]];
     myImage.backgroundColor = [UIColor blackColor];
     [headerView addSubview:myImage];
-    self.tableView.tableHeaderView = headerView;
     
+    self.bigImageView = myImage;
+    self.tableView.tableHeaderView = headerView;
     
     //边界宽度
     CGFloat marginWidth = 20;
     
     //小头像
     UIImageView *smallImageView = [[UIImageView alloc] init];
+    
+    //添加image点击事件
+//    smallImageView.userInteractionEnabled = YES;
+//    [smallImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swapImage)]];
+//    
     
     smallImageView.width = 60;
     smallImageView.height = 60;
@@ -289,7 +311,8 @@
         smallImageView.image = picture;
         
     }];
-    
+    self.iconView = smallImageView;
+
     [myImage addSubview:smallImageView];
     
     //昵称
@@ -304,7 +327,22 @@
     nameLabel.font = [UIFont systemFontOfSize:20 weight:5];
     nameLabel.textColor = [UIColor whiteColor];
     [myImage addSubview:nameLabel];
+ 
+    if ([self.whoNickName isEqualToString:nickName] && [self GetImageFromLocal:ZSIconImageStr]) {
+        
+        myImage.image = [self GetImageFromLocal:ZSIconImageStr];
+        smallImageView.image = myImage.image;
+    }
     
+}
+
+- (void)swapImage:(UITapGestureRecognizer *)tap
+{
+    
+    if (![self.whoNickName isEqualToString:nickName]) return;
+    
+    [self openAlbum];
+  
 }
 
 - (void)clickWriteInfoBtn
@@ -351,6 +389,226 @@
     
 }
 
+
+
+/** 发送头像到又赔云*/
+
+- (void)sendImageWithImage:(UIImage *)image imageName:(NSString *)imageName
+{
+    
+    if (image == nil) return;
+    
+    
+    //设置空间和秘钥
+    [UPYUNConfig sharedInstance].DEFAULT_BUCKET = DEFAULT_BUCKET;
+    [UPYUNConfig sharedInstance].DEFAULT_PASSCODE = DEFAULT_PASSCODE;
+    [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 100;
+    
+    
+    __block UpYun *uy = [[UpYun alloc] init];
+//
+//    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//            [alert show];
+//            ZSLog(@"response body %@", responseData);
+//    };
+//    uy.failBlocker = ^(NSError * error) {
+//        NSString *message = [error.userInfo objectForKey:@"message"];
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+//        ZSLog(@"error %@", message);
+//    };
+//    
+    
+    NSString *pictruePath = [NSString stringWithFormat:@"/picUser/%@.jpg", imageName];
+    
+    [uy uploadImage:image savekey:pictruePath];
+    
+    //删除缓存
+    [self clearTmpPics];
+    
+}
+
+- (void)openCamera
+{
+    ZSLog(@"打开相机");
+    [self openImagePickerController:UIImagePickerControllerSourceTypeCamera];
+}
+
+- (void)openAlbum
+{
+    //    UIImagePickerControllerSourceTypePhotoLibrary > UIImagePickerControllerSourceTypeSavedPhotosAlbum
+    //获得所有图片
+    [self openImagePickerController:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (void)openImagePickerController:(UIImagePickerControllerSourceType)ImagePickerControllerSourceType
+{
+    //若相机在没摔坏 没故障的情况下，就打开相机
+    if (![UIImagePickerController isSourceTypeAvailable:ImagePickerControllerSourceType]) return;
+    
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = ImagePickerControllerSourceType;
+    //监听她的图片
+    ipc.delegate = self;
+    [self presentViewController:ipc animated:YES completion:nil];
+    
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+/**
+ *  从UIImagePickerControllerDelegate选择图片后就调用（拍完照完毕或者选择相册图片完毕）
+ */
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    //拿出info中包含选择的图片
+    UIImage *picture = info[UIImagePickerControllerOriginalImage];
+    
+    CGFloat imageWidth = picture.size.width;
+    CGFloat imageHeight = picture.size.height;
+    
+    CGFloat newImageWidth, newImageHeight;
+    
+    if (imageWidth >= imageHeight) {
+        
+        newImageWidth = imageWidth >= 500 ? 500 : imageWidth;
+        newImageHeight = newImageWidth / imageWidth * imageHeight;
+    } else {
+        newImageHeight = imageHeight >= 500 ? 500 : imageHeight;
+        newImageWidth = newImageHeight / imageHeight  * imageWidth;
+        
+    }
+    
+    ZSLog(@"%@", NSStringFromCGSize(picture.size));
+    //图片压缩
+    UIImage *newImage = [self imageByScalingAndCroppingForSize:CGSizeMake(newImageWidth, newImageHeight) image:picture];
+    
+    ZSLog(@"%@", NSStringFromCGSize(newImage.size));
+   
+    //清除缓存图片
+    [self clearTmpPics];
+    
+    self.iconView.image = newImage;
+    
+    self.bigImageView.image = newImage;
+    
+    //上传图片
+    [self sendImageWithImage:newImage imageName:nickName];
+    
+    //保存图片
+    [self SaveImageToLocal:newImage Keys:ZSIconImageStr];
+    
+    //创建通知
+    //创建一个消息对象
+//    NSNotification * notice = [NSNotification notificationWithName:@"swapImage" object:nil ];
+//    //发送消息
+//    [ZSNotificationCenter postNotification:notice];
+    
+    [ZSNotificationCenter postNotificationName:@"swapImage" object:nil];
+    
+}
+
+/** 图片压缩*/
+//图片压缩到指定大小
+- (UIImage *)imageByScalingAndCroppingForSize:(CGSize)targetSize image:(UIImage *)sourceImage
+{
+    UIImage *newImage = nil;
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
+    {
+        CGFloat widthFactor = targetWidth / width;
+        CGFloat heightFactor = targetHeight / height;
+        
+        if (widthFactor > heightFactor)
+            scaleFactor = widthFactor; // scale to fit height
+        else
+            scaleFactor = heightFactor; // scale to fit width
+        scaledWidth= width * scaleFactor;
+        scaledHeight = height * scaleFactor;
+        
+        // center the image
+        if (widthFactor > heightFactor)
+        {
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+        }
+        else if (widthFactor < heightFactor)
+        {
+            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+        }
+    }
+    
+    UIGraphicsBeginImageContext(targetSize); // this will crop
+    
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width= scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    
+    [sourceImage drawInRect:thumbnailRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    if(newImage == nil)
+        NSLog(@"could not scale image");
+    
+    //pop the context to get back to the default
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+#pragma mark - 保存图片
+
+//将图片保存到本地
+- (void)SaveImageToLocal:(UIImage*)image Keys:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    [preferences setObject:UIImagePNGRepresentation(image) forKey:key];
+}
+
+//本地是否有相关图片
+- (BOOL)LocalHaveImage:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    NSData* imageData = [preferences objectForKey:key];
+    if (imageData) {
+        return YES;
+    }
+    return NO;
+}
+
+//从本地获取图片
+- (UIImage*)GetImageFromLocal:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    NSData* imageData = [preferences objectForKey:key];
+    UIImage* image;
+    if (imageData) {
+        image = [UIImage imageWithData:imageData];
+    }
+    else {
+        ZSLog(@"未从本地获得图片");
+    }
+    return image;
+}
+
+- (void)clearTmpPics
+{
+    
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearMemory];//可有可无
+
+}
 
 
 @end

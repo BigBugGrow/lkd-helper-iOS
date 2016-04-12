@@ -40,6 +40,7 @@
 #define ZSKey @"key"
 #define ZSZjh @"zjh"
 #define ZSMm @"mm"
+#define ZSIconImageStr @"iconImage"
 
 
 #define RGBColor(r, g, b, a) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:a]
@@ -48,8 +49,7 @@
 #define randomColor RGBColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), 1)
 
 
-#define LBNotificationCenter [NSNotificationCenter defaultCenter]
-
+#define ZSNotificationCenter [NSNotificationCenter defaultCenter]
 
 //分类
 #import "UIView+Extension.h"

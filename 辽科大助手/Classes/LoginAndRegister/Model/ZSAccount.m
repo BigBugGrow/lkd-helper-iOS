@@ -65,17 +65,17 @@ MJCodingImplementation   //NSArchive  将模型存档  不用自己去手动敲
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"state:%ld\nnickname:%@\nkey:%@\npassword:%@\nzjh:%@\nmm:%@\nsex:%@\nhasTimetable:%@\ncollege:%@\nmajor:%@\nhome:%@\nwechate:%@\nweibo:%@\nqq:%@\nphone:%@\ntimetable:%@\n",_state,_nickname,_key,_password,_zjh,_mm,_sex,_hasTimetable,_college,_major,_home,_wechat,_weibo,_qq,_phone,_timetable];
+    return [NSString stringWithFormat:@"state:%ld\nnickname:%@\nkey:%@\npassword:%@\nzjh:%@\nmm:%@\nsex:%@\nhasTimetable:%@\ncollege:%@\nmajor:%@\nhome:%@\nwechate:%@\nweibo:%@\nqq:%@\nphone:%@\ntimetable:%@name:%@\n class:%@\n",_state,_nickname,_key,_password,_zjh,_mm,_sex,_hasTimetable,_college,_major,_home,_wechat,_weibo,_qq,_phone,_timetable,_name, _Class];
 }
 
 
-//+ (NSDictionary *)replacedKeyFromPropertyName
-//{
-//    return @{
-//             @"major" : @"专业"
-//             
-//             };
-//}
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    return @{
+             @"Class" : @"class"
+             
+             };
+}
 
 
 - (NSString *)sex

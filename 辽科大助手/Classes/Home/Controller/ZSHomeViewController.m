@@ -192,6 +192,8 @@
     ZSAccount *account = [ZSAccountTool account];
     self.account = account;
     
+    
+    
      //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
     NSInteger count = [self getUTCFormateDate:account.termBeginTime];

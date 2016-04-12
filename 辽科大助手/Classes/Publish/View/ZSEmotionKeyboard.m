@@ -120,7 +120,7 @@
     
         //监听点击表情按钮的通知
         //点击表情按钮得到通知
-        [LBNotificationCenter addObserver:self selector:@selector(didClickEmotionBtn) name:LBDidClickEmotionButton object:nil];
+        [ZSNotificationCenter addObserver:self selector:@selector(didClickEmotionBtn) name:LBDidClickEmotionButton object:nil];
     }
     return self;
 }
@@ -128,7 +128,7 @@
 //移除通知
 - (void)dealloc
 {
-    [LBNotificationCenter removeObserver:self];
+    [ZSNotificationCenter removeObserver:self];
 }
 
 - (void)didClickEmotionBtn

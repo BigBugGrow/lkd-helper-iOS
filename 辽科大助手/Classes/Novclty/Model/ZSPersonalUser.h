@@ -40,13 +40,8 @@
 /** 姓名*/
 @property (nonatomic, copy) NSString *name;
 
-
-
-
-
-
-
-
+/** 学号*/
+@property (nonatomic, copy) NSString *zjh;
 
 
 @end
