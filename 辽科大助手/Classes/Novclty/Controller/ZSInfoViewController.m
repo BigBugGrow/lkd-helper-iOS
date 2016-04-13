@@ -328,6 +328,7 @@
     nameLabel.textColor = [UIColor whiteColor];
     [myImage addSubview:nameLabel];
  
+    //如果是自己的头像 本地还存有头像
     if ([self.whoNickName isEqualToString:nickName] && [self GetImageFromLocal:ZSIconImageStr]) {
         
         myImage.image = [self GetImageFromLocal:ZSIconImageStr];
@@ -341,9 +342,41 @@
     
     if (![self.whoNickName isEqualToString:nickName]) return;
     
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"打开相机" otherButtonTitles:@"打开相册", nil];
     
-    [sheet showInView:self.view];
+//    ZSLog(@"1111111111");
+//    
+//    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"打开相机" otherButtonTitles:@"打开相册", nil];
+//    
+//    [sheet showInView:self.view];
+//    
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"打开相册" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {                                                                     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        //        imagePicker.allowsEditing = YES;
+        imagePicker.allowsEditing = NO;
+        imagePicker.delegate = self;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }];
+    UIAlertAction* fromCameraAction = [UIAlertAction actionWithTitle:@"打开相机" style:UIAlertActionStyleDefault                                                             handler:^(UIAlertAction * action) {
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.delegate = self;
+            //            imagePicker.allowsEditing = YES;
+            imagePicker.allowsEditing = NO;
+            imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePicker animated:YES completion:nil];
+        }
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:fromCameraAction];
+    [alertController addAction:fromPhotoAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
 
   
 }

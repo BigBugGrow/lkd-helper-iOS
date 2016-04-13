@@ -92,7 +92,10 @@
         
         [self.navigationController presentViewController:nav animated:YES completion:^{
             
+            //清空账号
             [ZSAccountTool saveAccount:nil];
+            //清空头像
+            [self SaveImageToLocal:nil Keys:ZSIconImageStr];
             
         }];
         
@@ -111,6 +114,13 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
     
+}
+
+//将图片保存到本地
+- (void)SaveImageToLocal:(UIImage*)image Keys:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    [preferences setObject:UIImagePNGRepresentation(image) forKey:key];
 }
 
 
