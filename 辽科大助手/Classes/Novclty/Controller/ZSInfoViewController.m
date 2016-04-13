@@ -136,7 +136,7 @@
     [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     
     [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
-    backBtn.size = CGSizeMake(70, 30);
+    backBtn.size = CGSizeMake(130, 40);
     //设置按钮的内容靠左边
     backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     //设置按钮的切割
@@ -223,6 +223,8 @@
 
 }
 
+#pragma mark - tableViewDelelgate 代理方法
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -235,6 +237,32 @@
          }
         return @"联系方式";
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    
+    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, ZSScreenW, 44.0)];
+    
+    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    headerLabel.backgroundColor = RGBColor(242, 242, 242, 1);
+    headerLabel.opaque = NO;
+    headerLabel.textColor = [UIColor blackColor];
+    headerLabel.highlightedTextColor = [UIColor whiteColor];
+    headerLabel.font = [UIFont boldSystemFontOfSize:18];
+    headerLabel.frame = CGRectMake(5, 0.0, ZSScreenW, 44.0);
+    
+    if (section == 0) {
+        headerLabel.text =   @"在校信息";
+    }else if ([self.whoNickName isEqualToString:nickName]) {
+        headerLabel.text = @"联系方式   (点击可修改)";
+    } else {
+        headerLabel.text = @"联系方式";
+    }
+     customView.backgroundColor = RGBColor(242, 242, 242, 1);
+    [customView addSubview:headerLabel];
+    
+    return customView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

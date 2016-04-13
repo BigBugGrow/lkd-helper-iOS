@@ -15,6 +15,8 @@
         self.title = title;
         self.icon = icon;
         self.detailTitle = detailTitle;
+        
+        
     }
     return self;
 }

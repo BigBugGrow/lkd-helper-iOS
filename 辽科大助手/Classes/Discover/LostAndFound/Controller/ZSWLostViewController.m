@@ -170,6 +170,7 @@
     [self.view endEditing:YES];
 }
 
+
 - (void)textChange
 {
     // 判断两个文本框的内容
@@ -431,7 +432,6 @@
     return createDate;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -439,10 +439,15 @@
 
 - (void)clickSendBtn{
     
+    
+    ZSLog(@"weqweqqqqqq");
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"nickname"] = nickName;
     params[@"key"] = key;
-    params[@"thing"] = self.thingLabel.text;
+    
+    params[@"thing"] = [NSString stringWithFormat:@"#%@#", self.thingLabel.text];
+
     params[@"summary"] = self.sumaryTextView.text;
     params[@"adress"] = self.adressLabel.text;
     params[@"date"] = [self getTimeStr];
@@ -457,38 +462,35 @@
     
     NSInteger count = [[self.pictureView addPictrues] count];
     
-    //发送图片
-    for (int i = 0; i < count; i ++) {
-        
-        UIImage *picture = [self.pictureView addPictrues][i];
-        NSString *picturePath = self.imageArray[i];
-        [self sendImageWithImage:picture imagePath:picturePath];
-        
-    }
-    
     if (count == 0) {
         params[@"pic"] = @"[]";
     }
     
-    ZSLog(@"%@", params);
-    
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/LostAndFoundWrite" parameters:params success:^(id responseObject) {
         
-        ZSLog(@"%@", responseObject);
-        
-        
-        if ([responseObject[@"state"] integerValue] == 100) {
+        if ([responseObject[@"state"] integerValue] == 602) {
             
+            [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
+            
+        }else if ([responseObject[@"state"] integerValue] == 100) {
+            
+            //发送图片
+            for (int i = 0; i < count; i ++) {
+                
+                UIImage *picture = [self.pictureView addPictrues][i];
+                NSString *picturePath = self.imageArray[i];
+                [self sendImageWithImage:picture imagePath:picturePath];
+                
+            }
+        
             [SVProgressHUD showSuccessWithStatus:@"发表成功！"];
-            
             [self.navigationController popViewControllerAnimated:YES];
-            
-        } else {
-            
-            [SVProgressHUD showErrorWithStatus:@"发表失败!"];
-        }
         
+        } else if ([responseObject[@"state"] integerValue] == 204) {
+            
+            [SVProgressHUD showInfoWithStatus:@"电话只能够填数字！"];
+        }
         
     } failure:^(NSError *error) {
         

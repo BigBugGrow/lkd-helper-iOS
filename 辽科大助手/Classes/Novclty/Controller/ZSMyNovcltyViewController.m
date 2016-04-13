@@ -604,6 +604,7 @@
         
     } else {
         
+    
             self.navigationController.navigationBarHidden = YES;
             self.backBtn.hidden = NO;
             self.moreBtn.hidden = NO;

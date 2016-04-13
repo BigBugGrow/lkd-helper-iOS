@@ -21,6 +21,8 @@
         cell = [[ZSInquireCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID];
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 

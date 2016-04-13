@@ -19,11 +19,17 @@
 #import "ZSEmotion.h"
 #import "UpYun.h"
 #import "ZSHttpTool.h"
+#import "SVProgressHUD.h"
+#import "ZSLoginViewController.h"
+#import "ZSNavigationController.h"
+#import "ZSAccountTool.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSComposeViewController ()<UIScrollViewDelegate, UITextViewDelegate, ZSComposeToolBarDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@property (nonatomic, weak) UITextField *titleView;
 
 /**
  *  textView 文本输入框
@@ -152,12 +158,41 @@
     } else if ([self.type isEqualToString:@"confessionWall"]) {
         placeHolder = @"表白 to who ...";
     } else {
-        placeHolder = @"找个话题 ...";
+        placeHolder = @"说出你这一刻的想法 ...";
     }
 
     textView.placeHolder = placeHolder;
     textView.font = [UIFont systemFontOfSize:15];
-    textView.frame = self.view.bounds;
+    
+    self.textView = textView;
+    [self.view addSubview:textView];
+    
+    if ([self.type isEqualToString:@"topics"]) {
+        
+        //标题
+        UITextField *titleView = [[UITextField alloc] init];
+        titleView.frame =  CGRectMake(0, 0, ZSScreenW, 40);
+        titleView.font = [UIFont systemFontOfSize:20];
+        titleView.placeholder = @" 热门话题";
+        titleView.backgroundColor = [UIColor whiteColor];
+        
+        [self.view addSubview:titleView];
+        
+        UIView *line = [[UIView alloc] init];
+        line.backgroundColor = [UIColor lightGrayColor];
+        line.height = 1;
+        line.width = ZSScreenW;
+        line.x = 0;
+        line.y = titleView.height - line.height;
+        [titleView addSubview:line];
+        
+        self.titleView = titleView;
+        
+        textView.frame = CGRectMake(0, CGRectGetMaxY(titleView.frame), ZSScreenW, ZSScreenH - CGRectGetMaxY(titleView.frame));
+    } else {
+        textView.frame = self.view.bounds;
+    }
+    
     [self.view addSubview:textView];
     self.textView = textView;
     
@@ -294,8 +329,6 @@
 
 - (void)send
 {
-    
-    ZSLog(@"11111");
     //判断是否有图片要发送
     if (self.pictureView.subviews.count) {
         [self sendWithImage];
@@ -303,7 +336,7 @@
         [self sendWithoutImage];
     }
     
-//    [self dismissViewControllerAnimated:YES completion:nil];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -429,7 +462,19 @@
     params[@"class"] = self.type;
     params[@"nickname"] = self.switchView.isOn ? @"匿名" : nickName;
     params[@"key"] = self.switchView.isOn ? @"ABCDEFG" : key;
-    params[@"essay"] = [self.textView fullText] ? [self.textView fullText] : @"haha";
+    
+    
+    NSString *fullText = nil;
+    if ([self.type isEqualToString:@"topics"]) {
+        
+        fullText = [NSString stringWithFormat:@"#%@# %@", self.titleView.text,[self.textView fullText]];
+        
+    } else {
+        
+        fullText = [NSString stringWithFormat:@"%@", [self.textView fullText]];
+    }
+    
+    params[@"essay"] = fullText;
     return params;
 
 }
@@ -445,29 +490,27 @@
     //传递属性参数
     NSMutableDictionary *params = [self getParamsDict];
     params[@"pic"] = [NSString stringWithFormat:@"[%@]", path];
-
-    ZSLog(@"%@,,,,%@", key, params[@"key"]);
-    
-    ZSLog(@"%@", params);
-    
-    NSInteger count = [[self.pictureView addPictrues] count];
-    for (int i = 0; i < count; i ++) {
-        
-        UIImage *picture = [self.pictureView addPictrues][i];
-        NSString *picturePath = self.imageArray[i];
-        [self sendImageWithImage:picture imagePath:picturePath];
-        
-    }
     
     //发送带有图片的糯米
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params success:^(id responseObject) {
         
-        
-        [MBProgressHUD showSuccess:@"发送成功"];
-        
-        ZSLog(@"%@", responseObject);
-
+        if ([responseObject[@"state"] integerValue] == 602) {
+            
+            [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
+            
+        } else {
+            
+            NSInteger count = [[self.pictureView addPictrues] count];
+            for (int i = 0; i < count; i ++) {
+                
+                UIImage *picture = [self.pictureView addPictrues][i];
+                NSString *picturePath = self.imageArray[i];
+                [self sendImageWithImage:picture imagePath:picturePath];
+                
+            }
+            [MBProgressHUD showSuccess:@"发送成功"];
+        }
         
     } failure:^(NSError *error) {
        
@@ -478,6 +521,13 @@
     }];
     
     
+}
+
+//将图片保存到本地
+- (void)SaveImageToLocal:(UIImage*)image Keys:(NSString*)key1 {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    [preferences setObject:UIImagePNGRepresentation(image) forKey:key1];
 }
 
 
@@ -493,9 +543,16 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params success:^(id responseObject) {
         
-        [MBProgressHUD showSuccess:@"发送成功"];
-        
         ZSLog(@"%@", responseObject);
+        
+        if ([responseObject[@"state"] integerValue] == 602) {
+            
+            [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
+            
+        } else {
+            
+            [MBProgressHUD showSuccess:@"发送成功"];
+        }
         
     } failure:^(NSError *error) {
        
@@ -503,6 +560,8 @@
  
     }];
 }
+
+
 
 
 #pragma mark - 代理方法
@@ -699,5 +758,8 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
+
+
+
 
 @end

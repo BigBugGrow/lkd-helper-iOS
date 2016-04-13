@@ -20,6 +20,8 @@
 #import "ZSAboutViewController.h"
 #import "ZSMyLostAndThingViewController.h"
 #import "ZSStudentNumBindViewController.h"
+#import "UIImageView+WebCache.h"
+#import "SVProgressHUD.h"
 
 @interface ZSProfileViewController ()<UIAlertViewDelegate>
 
@@ -58,6 +60,16 @@
     [super viewDidLoad];
 
     
+    ZSLog(@"%@", NSHomeDirectory());
+    
+    
+    NSString *path = [self getCachesPath];
+    
+    long long sizeM = [self fileSizeAtPath:path];
+    
+    ZSLog(@"%lld", sizeM);
+    
+    
     //设置导航按钮
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
     
@@ -74,13 +86,14 @@
 - (void)clickRightBtn
 {
     
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"退出当前账号" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-//    
-//    [alertView setTag:1];
-//    
-//    [alertView show];
-
+    [self clearTmpPics];
     
+    NSString *path = [self getCachesPath];
+    
+    long long sizeM = [self fileSizeAtPath:path];
+    
+    ZSLog(@"%lld", sizeM);
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"退出当前账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     //创建按钮
@@ -116,11 +129,42 @@
     
 }
 
+- (void)clearTmpPics
+{
+    
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearMemory];//可有可无
+    
+}
+
 //将图片保存到本地
 - (void)SaveImageToLocal:(UIImage*)image Keys:(NSString*)key {
     NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
     //[preferences persistentDomainForName:LocalPath];
     [preferences setObject:UIImagePNGRepresentation(image) forKey:key];
+}
+
+//获取缓存文件路径
+-(NSString *)getCachesPath{
+    // 获取Caches目录路径
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachesDir = [paths objectAtIndex:0];
+    
+    ZSLog(@"%@", paths);
+    
+    NSString *filePath = [cachesDir stringByAppendingPathComponent:@"com.hackemist.SDWebImageCache.default"];
+    
+    return filePath;
+}
+///计算缓存文件的大小的M
+- (long long) fileSizeAtPath:(NSString*) filePath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    
+    return 0;
 }
 
 
@@ -189,38 +233,42 @@
     
     ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@"" vcClass:[ZSAboutViewController class]];
     
+    ZSModel *item7 = [ZSModel itemWithIcon:@"clearCache" title:@"清除缓存" detailTitle:@""];
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
-    group2.items = @[item3,item5,item6];
+    group2.items = @[item3,item5,item7,item6];
     [self.cellData addObject:group2];
-
-}
-
-#pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
     
-    if ([alertView tag] == 1) {
-
-        if (buttonIndex == 0) {
-            
-            ZSLoginViewController *loginViewVC = [[ZSLoginViewController alloc] init];
+    item7.operation = ^(){
         
-            ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:loginViewVC];
-            
-            [self.navigationController presentViewController:nav animated:YES completion:^{
-                
-            [ZSAccountTool saveAccount:nil];
-                
-            }];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"清除缓存？" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+        UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"立即清除" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
             
             
-        } else {
+            NSString *path = [self getCachesPath];
             
-            ZSLog(@"取消");
-        }
+            long long sizeM = [self fileSizeAtPath:path];
+            
+            ZSLog(@"%lld", sizeM);
+            
+            NSString *msg = [NSString stringWithFormat:@"已清除缓存%.1lfM", sizeM / 1000.0];
+            
+            [SVProgressHUD showSuccessWithStatus:msg];
+            
+            [self clearTmpPics];
+            
+            
+        }];
         
-    }
+        [alertController addAction:cancelAction];
+        [alertController addAction:fromPhotoAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+    };
+    
+    
 }
+
 
 
 /*

@@ -35,6 +35,7 @@
     
     self.detailTextLabel.x = -80;
     
+    self.detailTextLabel.font = [UIFont systemFontOfSize:15];
     self.detailTextLabel.text = item.detailTitle;
     self.detailTextLabel.textAlignment = NSTextAlignmentLeft;
     

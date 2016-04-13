@@ -105,6 +105,7 @@
 		52857ABA1C9D7F2200F44C27 /* POPSpringAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52857A9F1C9D7F2200F44C27 /* POPSpringAnimation.mm */; };
 		52857ABB1C9D7F2200F44C27 /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52857AA31C9D7F2200F44C27 /* POPVector.mm */; };
 		52857ABC1C9D7F2200F44C27 /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52857AA61C9D7F2200F44C27 /* TransformationMatrix.cpp */; };
+		5286CCB81CBE6ABC00B72C52 /* sonar_pop.aif in Resources */ = {isa = PBXBuildFile; fileRef = 5286CCB71CBE6ABC00B72C52 /* sonar_pop.aif */; };
 		529229601CB3FCAB0042F101 /* ZSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5292295E1CB3FCAB0042F101 /* ZSAboutViewController.m */; };
 		529229611CB3FCAB0042F101 /* ZSAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5292295F1CB3FCAB0042F101 /* ZSAboutViewController.xib */; };
 		529D09521C8669AB00DE8C7F /* ZSDetailWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D094E1C8669AB00DE8C7F /* ZSDetailWeatherCell.m */; };
@@ -452,6 +453,7 @@
 		52857AA61C9D7F2200F44C27 /* TransformationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformationMatrix.cpp; sourceTree = "<group>"; };
 		52857AA71C9D7F2200F44C27 /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformationMatrix.h; sourceTree = "<group>"; };
 		52857AA81C9D7F2200F44C27 /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
+		5286CCB71CBE6ABC00B72C52 /* sonar_pop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = sonar_pop.aif; sourceTree = "<group>"; };
 		5292295D1CB3FCAB0042F101 /* ZSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAboutViewController.h; sourceTree = "<group>"; };
 		5292295E1CB3FCAB0042F101 /* ZSAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAboutViewController.m; sourceTree = "<group>"; };
 		5292295F1CB3FCAB0042F101 /* ZSAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSAboutViewController.xib; sourceTree = "<group>"; };
@@ -1958,6 +1960,7 @@
 		EFFC6AEF1C04852500469F99 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5286CCB71CBE6ABC00B72C52 /* sonar_pop.aif */,
 				5275BB571CBA3A8B008855CF /* sendmsg.caf */,
 				525D3EF31C9E5449007AF860 /* EmotionIcons */,
 				EFFC6AFB1C04852500469F99 /* Assets.xcassets */,
@@ -2118,6 +2121,7 @@
 				525D3EF41C9E5449007AF860 /* EmotionIcons in Resources */,
 				526136401CB5E2CF00458C87 /* ZSPublishView.xib in Resources */,
 				EF2AB6111C0F17A500DB93FC /* MJRefresh.bundle in Resources */,
+				5286CCB81CBE6ABC00B72C52 /* sonar_pop.aif in Resources */,
 				EF4B1B991C3EA7AD000A48F2 /* ZSStudentNumBindViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

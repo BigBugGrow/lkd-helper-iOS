@@ -61,7 +61,7 @@
     self.nameLabel.text = nickName;
     
     //名言
-    self.sayingLabel.text = @"聚没有品的代言词很牛逼";
+    self.sayingLabel.text = @"个人详细信息查看";
     
     [ZSNotificationCenter addObserver:self selector:@selector(swapImage) name:@"swapImage" object:nil];
 

@@ -512,7 +512,7 @@
 - (IBAction)clickNextCourseBtn {
     
     //播放音效
-    [ZSAudioTool playAudioWithFilename:@"sendmsg.caf"];
+    [ZSAudioTool playAudioWithFilename:@"sonar_pop.aif"];
 
     self.currentWeek ++;
     if (self.currentWeek > 20) {
@@ -541,7 +541,7 @@
     
     
     //播放音效
-    [ZSAudioTool playAudioWithFilename:@"sendmsg.caf"];
+    [ZSAudioTool playAudioWithFilename:@"sonar_pop.aif"];
 
 //    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     

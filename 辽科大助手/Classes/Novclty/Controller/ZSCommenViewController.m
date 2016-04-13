@@ -16,6 +16,7 @@
 #import "ZSCommentViewCell.h"
 #import "MJRefresh.h"
 #import "SVProgressHUD.h"
+#import "ZSAudioTool.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
@@ -25,6 +26,7 @@
 - (IBAction)send;
 /** 工具条距离底部的间距*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomSpace;
+@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 
 /** 内容显示*/
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -91,7 +93,19 @@ static NSString * const commentID = @"commentCell";
     
     
     
+    // 1.addTarget
+    [self.inputTextFild addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    //添加监听
+    [self textChange];
+    
 }
+
+- (void)textChange
+{
+    // 判断两个文本框的内容
+    self.sendBtn.enabled =  _inputTextFild.text.length;
+}
+
 
 - (void)addRefresh
 {
@@ -229,29 +243,40 @@ static NSString * const commentID = @"commentCell";
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/CommentWrite" parameters:params success:^(id responseObject) {
         
-        [SVProgressHUD showSuccessWithStatus:@"评论成功"];
         
-        //加载数据 刷新表格
-        [self loadNewComments];
-        
-        //退出键盘
-        [self.view endEditing:YES];
-        
-        //清空textFild内容为空
-        self.inputTextFild.text = nil;
-        
-        //告诉其他控制器显示新的评论数量
-        if ([self.delegate respondsToSelector:@selector(loadNewData)]) {
+        if ([responseObject[@"state"] integerValue] == 602) {
             
-            [self.delegate loadNewData];
+            [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
+            
+        } else {
+            
+            [SVProgressHUD showSuccessWithStatus:@"评论成功"];
+            
+            //播放音效
+            [ZSAudioTool playAudioWithFilename:@"sendmsg.caf"];
+            
+            //加载数据 刷新表格
+            [self loadNewComments];
+            
+            //退出键盘
+            [self.view endEditing:YES];
+            
+            //清空textFild内容为空
+            self.inputTextFild.text = nil;
+            
+            //告诉其他控制器显示新的评论数量
+            if ([self.delegate respondsToSelector:@selector(loadNewData)]) {
+                
+                [self.delegate loadNewData];
+            }
+            
+            //重新计算评论数量
+            int countNum = [self.allDynamicFrame.allDynamic.commentNum intValue];
+            countNum ++;
+            self.allDynamicFrame.allDynamic.commentNum = [NSString stringWithFormat:@"%d", countNum];
+            
+            [self initHeaderView];
         }
-
-        //重新计算评论数量
-        int countNum = [self.allDynamicFrame.allDynamic.commentNum intValue];
-        countNum ++;
-        self.allDynamicFrame.allDynamic.commentNum = [NSString stringWithFormat:@"%d", countNum];
-        
-        [self initHeaderView];
         
     } failure:^(NSError *error) {
        

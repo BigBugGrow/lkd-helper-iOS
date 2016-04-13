@@ -65,11 +65,11 @@
     group1.items = @[item1];
     [self.cellData addObject:group1];
     
-    ZSDiscoverModel *item2 = [ZSDiscoverModel itemWithIcon:@"tab03_shop" title:@"科大商城" detailTitle:@"在这里重新定义微商！" vcClass:[ZSShoppingViewController class]];
-    
-    ZSDiscoverGroupModel *group2 = [[ZSDiscoverGroupModel alloc] init];
-    group2.items = @[item2];
-    [self.cellData addObject:group2];
+//    ZSDiscoverModel *item2 = [ZSDiscoverModel itemWithIcon:@"tab03_shop" title:@"科大商城" detailTitle:@"在这里重新定义微商！" vcClass:[ZSShoppingViewController class]];
+//    
+//    ZSDiscoverGroupModel *group2 = [[ZSDiscoverGroupModel alloc] init];
+////    group2.items = @[item2];
+//    [self.cellData addObject:group2];
     
     ZSDiscoverModel *item3 = [ZSDiscoverModel itemWithIcon:@"express" title:@"找快递" detailTitle:@"" vcClass:[ZSExpressDeliveryViewController class]];
     ZSDiscoverModel *item4 = [ZSDiscoverModel itemWithIcon:@"lost_found" title:@"寻物公告" detailTitle:nil vcClass:[ZSLostAndFoundViewController class]];

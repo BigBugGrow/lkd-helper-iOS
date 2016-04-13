@@ -77,15 +77,17 @@
     params[@"qq"] = qq;
     params[@"wechat"] = wechat;
     
-    ZSLog(@"%@", key);
-    
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoWrite" parameters:params success:^(NSDictionary *responseObject) {
         
+
         if ([responseObject[@"state"] integerValue] == 100) {
             
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             
             [self.navigationController popToRootViewControllerAnimated:YES];
+        } else if([responseObject[@"state"] integerValue] == 602) {
+            
+            [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
         }
         
         
