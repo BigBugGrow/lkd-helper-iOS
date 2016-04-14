@@ -14,11 +14,13 @@
 
 @interface ZSSendInfoViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneNum;
 @property (weak, nonatomic) IBOutlet UITextField *qqNum;
 @property (weak, nonatomic) IBOutlet UITextField *wechatNum;
 - (IBAction)saveInfo;
+- (IBAction)back;
 
 @end
 
@@ -30,15 +32,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+ 
+    self.navigationController.navigationBarHidden = NO;
+    
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login_register_background"]];
     
     self.title = @"修改个人联系信息";
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -84,7 +86,8 @@
             
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
+            
         } else if([responseObject[@"state"] integerValue] == 602) {
             
             [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
@@ -95,6 +98,12 @@
         
     }];
     
+    
+}
+
+- (IBAction)back {
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
     
 }
 @end

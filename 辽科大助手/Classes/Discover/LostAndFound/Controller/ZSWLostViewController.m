@@ -438,9 +438,7 @@
 }
 
 - (void)clickSendBtn{
-    
-    
-    ZSLog(@"weqweqqqqqq");
+
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"nickname"] = nickName;

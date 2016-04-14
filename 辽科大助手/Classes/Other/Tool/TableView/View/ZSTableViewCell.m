@@ -22,6 +22,7 @@
     }
     //修改cell不可点击
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 
@@ -33,11 +34,9 @@
     self.textLabel.text = item.title;
     self.imageView.image = [UIImage imageNamed:item.icon];
     
-    self.detailTextLabel.x = -80;
-    
+    self.detailTextLabel.textAlignment = NSTextAlignmentLeft;
     self.detailTextLabel.font = [UIFont systemFontOfSize:15];
     self.detailTextLabel.text = item.detailTitle;
-    self.detailTextLabel.textAlignment = NSTextAlignmentLeft;
     
 }
 

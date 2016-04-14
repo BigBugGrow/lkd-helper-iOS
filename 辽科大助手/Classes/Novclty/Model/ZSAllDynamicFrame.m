@@ -48,7 +48,11 @@
     NSMutableDictionary *attr = [NSMutableDictionary dictionary];
     attr[NSFontAttributeName] = essayTextFont;
     
-    CGSize essaySize = [allDynamic.essay boundingRectWithSize:CGSizeMake(ScreenWidth- iconImageViewWH - 3 * marginW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
+//    CGSize essaySize = [allDynamic.essay boundingRectWithSize:CGSizeMake(ScreenWidth- iconImageViewWH - 3 * marginW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
+    
+    //用attribute bounding 设置字体
+    CGSize essaySize = [allDynamic.attributeText boundingRectWithSize:CGSizeMake(ScreenWidth- iconImageViewWH - 3 * marginW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+//    self.contentLabelF = CGRectMake(contentX, contentY, contentSize.width, contentSize.height);
     
     
     CGFloat essayTextViewW = essaySize.width;

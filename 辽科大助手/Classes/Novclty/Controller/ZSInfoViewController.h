@@ -11,7 +11,7 @@
 
 @class ZSPersonalUser;
 
-@interface ZSInfoViewController : ZSGroupTableViewController
+@interface ZSInfoViewController : UITableViewController
 
 /** name*/
 @property (nonatomic, copy) NSString *whoNickName;

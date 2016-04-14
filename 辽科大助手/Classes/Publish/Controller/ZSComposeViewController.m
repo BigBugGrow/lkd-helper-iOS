@@ -171,7 +171,7 @@
         
         //标题
         UITextField *titleView = [[UITextField alloc] init];
-        titleView.frame =  CGRectMake(0, 0, ZSScreenW, 40);
+        titleView.frame =  CGRectMake(5, 0, ZSScreenW-5, 40);
         titleView.font = [UIFont systemFontOfSize:20];
         titleView.placeholder = @" 热门话题";
         titleView.backgroundColor = [UIColor whiteColor];
@@ -189,6 +189,10 @@
         self.titleView = titleView;
         
         textView.frame = CGRectMake(0, CGRectGetMaxY(titleView.frame), ZSScreenW, ZSScreenH - CGRectGetMaxY(titleView.frame));
+        
+        //成为第一响应者
+        [titleView becomeFirstResponder];
+        
     } else {
         textView.frame = self.view.bounds;
     }
@@ -249,6 +253,9 @@
     
     NSString *title = @"心动态";
     NSString *name =[[NSUserDefaults standardUserDefaults] objectForKey:ZSUser];
+    
+    //白色
+    self.view.backgroundColor = [UIColor whiteColor];
     
     if (name) {
         

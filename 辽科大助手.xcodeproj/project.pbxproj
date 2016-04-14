@@ -88,6 +88,8 @@
 		5275C2871CBF266D007CEB56 /* ZSEmotionPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275C2861CBF266D007CEB56 /* ZSEmotionPart.m */; };
 		5275C28B1CBF2900007CEB56 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275C28A1CBF2900007CEB56 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5275C28D1CBF81F2007CEB56 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5275C28C1CBF81F2007CEB56 /* libicucore.tbd */; };
+		5275C2911CBF8CC0007CEB56 /* ZSInfoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275C28F1CBF8CC0007CEB56 /* ZSInfoViewCell.m */; };
+		5275C2921CBF8CC0007CEB56 /* ZSInfoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5275C2901CBF8CC0007CEB56 /* ZSInfoViewCell.xib */; };
 		528206531CAC2DE80066C634 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */; };
 		52857AA91C9D7F2200F44C27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52857A711C9D7F2200F44C27 /* InfoPlist.strings */; };
 		52857AAA1C9D7F2200F44C27 /* pop-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52857A731C9D7F2200F44C27 /* pop-Info.plist */; };
@@ -408,6 +410,9 @@
 		5275C2891CBF2900007CEB56 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		5275C28A1CBF2900007CEB56 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		5275C28C1CBF81F2007CEB56 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		5275C28E1CBF8CC0007CEB56 /* ZSInfoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSInfoViewCell.h; sourceTree = "<group>"; };
+		5275C28F1CBF8CC0007CEB56 /* ZSInfoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSInfoViewCell.m; sourceTree = "<group>"; };
+		5275C2901CBF8CC0007CEB56 /* ZSInfoViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSInfoViewCell.xib; sourceTree = "<group>"; };
 		528206511CAC2DE80066C634 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		528206521CAC2DE80066C634 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		52857A721C9D7F2200F44C27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -851,6 +856,9 @@
 				52C426A71CA13970005F2325 /* ZSCommentViewCell.h */,
 				52C426A81CA13970005F2325 /* ZSCommentViewCell.m */,
 				5229E5F91CA264230088F047 /* ZSCommentViewCell.xib */,
+				5275C28E1CBF8CC0007CEB56 /* ZSInfoViewCell.h */,
+				5275C28F1CBF8CC0007CEB56 /* ZSInfoViewCell.m */,
+				5275C2901CBF8CC0007CEB56 /* ZSInfoViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2135,6 +2143,7 @@
 				525F32BF1C852A4000014A64 /* MBProgressHUD.bundle in Resources */,
 				529229611CB3FCAB0042F101 /* ZSAboutViewController.xib in Resources */,
 				5229E5FA1CA264230088F047 /* ZSCommentViewCell.xib in Resources */,
+				5275C2921CBF8CC0007CEB56 /* ZSInfoViewCell.xib in Resources */,
 				EF2AB59A1C0F015F00DB93FC /* ZSLoginViewController.xib in Resources */,
 				EFE9D8921C0D94AE0072A4F7 /* ZSProfileImageCell.xib in Resources */,
 				529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */,
@@ -2336,6 +2345,7 @@
 				5275C2841CBF2446007CEB56 /* ZSSpecial.m in Sources */,
 				525021D11C9ECA2C008F2526 /* UPHTTPBodyPart.m in Sources */,
 				52D90B781CB0BB8D002B74A6 /* ZSLostAndFoundViewController.m in Sources */,
+				5275C2911CBF8CC0007CEB56 /* ZSInfoViewCell.m in Sources */,
 				EFE9D8AB1C0E52DB0072A4F7 /* ZSNewFeatureCell.m in Sources */,
 				EF2AB6011C0F17A500DB93FC /* AFNetworkReachabilityManager.m in Sources */,
 				522D3BCC1C9D814C00A6927F /* SVProgressHUD.m in Sources */,

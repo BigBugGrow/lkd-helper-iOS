@@ -94,8 +94,6 @@
     ZSModel *item = group.items[indexPath.row];
     cell.item = item;
     
-    
-    
     return cell;
 }
 

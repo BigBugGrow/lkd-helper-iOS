@@ -22,8 +22,6 @@
 
 MJCodingImplementation
 
-
-
 /**
  *  根据普通文字设置图片属性
  *
@@ -158,11 +156,6 @@ MJCodingImplementation
     
     return attributeText;
 }
-//- (void)setText:(NSString *)text
-//{
-//     = [text copy];
-//    self.attributeText = [self attributeStringWithText:text];
-//}
 
 - (void)setEssay:(NSString *)essay
 {

@@ -91,13 +91,11 @@ static NSString * const commentID = @"commentCell";
     //添加刷新框架
     [self addRefresh];
     
-    
-    
     // 1.addTarget
     [self.inputTextFild addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
     //添加监听
     [self textChange];
-    
+
 }
 
 - (void)textChange

@@ -22,12 +22,10 @@
 
 @interface ZSLostThingViewCell : UITableViewCell
 
-
 @property (nonatomic, weak) id<ZSLostThingViewCellDelegate> delegate;
 
 /**模型*/
 @property (nonatomic, strong) ZSLostThing *lostThing;
-
 
 /** 提供cell*/
 + (instancetype)cellWithTableView:(UITableView *)tableView;

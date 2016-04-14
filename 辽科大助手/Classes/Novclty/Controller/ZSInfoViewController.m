@@ -18,6 +18,7 @@
 #import "ZSSendInfoViewController.h"
 #import "SVProgressHUD.h"
 #import "UpYun.h"
+#import "ZSInfoViewCell.h"
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
@@ -39,6 +40,8 @@
 /**user对象*/
 @property (nonatomic, strong) ZSPersonalUser *user;
 
+@property (nonatomic, weak) UIButton *moreBtn;
+
 @end
 
 @implementation ZSInfoViewController
@@ -49,10 +52,14 @@
     return UIStatusBarStyleLightContent;
 }
 
+static NSString *ID = @"infoCell";
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = [NSString stringWithFormat:@"%@的信息", self.whoNickName];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([ZSInfoViewCell class]) bundle:nil] forCellReuseIdentifier:ID];
     
     //加载个人信息
     [self loadUserInfo];
@@ -65,7 +72,6 @@
 //加载跟人信息
 - (void)loadUserInfo
 {
-    
     ZSAccount *account = [ZSAccountTool account];
     
     ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
@@ -90,7 +96,7 @@
         user.zjh = self.whoNickName == nickName ? account.zjh : @"保密";;
         self.user = user;
         
-        [self initModelData];
+//        [self initModelData];
         
         //刷新表格
         [self.tableView reloadData];
@@ -106,7 +112,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+ 
     
+    [self.moreBtn removeFromSuperview];
     [self.backBtn removeFromSuperview];
 //    [self.writeInffoBtn removeFromSuperview];
     self.navigationController.navigationBarHidden = NO;
@@ -115,6 +123,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    //加载个人信息
+    [self loadUserInfo];
     
     //设置按钮
     [self settingNavBtn];
@@ -151,79 +162,51 @@
     
     self.backBtn = backBtn;
     
+    
+    //更多信息按钮
+    UIButton *moreBtn = [[UIButton alloc] init];
+    moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
+    [moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [moreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    
+    moreBtn.size = CGSizeMake(40, 30);
+    //设置按钮的内容靠左边
+    moreBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //设置按钮的切割
+    moreBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    
+    moreBtn.x = ZSScreenW - moreBtn.width;
+    moreBtn.y = 25;
+    
+    moreBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    
+    [moreBtn addTarget:self action:@selector(clickRightBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.moreBtn = moreBtn;
+    
+    [window addSubview:self.moreBtn];
+    
     [window addSubview:backBtn];
 
 }
 
 
-//初始化模型数据
-- (void)initModelData
+#pragma mark - tableViewDelelgate 代理方法
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //去掉分界线
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //标题
-    
-    ZSModel *item0 = [ZSModel itemWithIcon:@"zhj" title:@"学号" detailTitle:self.user.zjh];
-    self.title = [NSString stringWithFormat:@"%@的信息", self.whoNickName];
-    
-    ZSModel *item1 = [ZSModel itemWithIcon:@"name" title:@"姓名" detailTitle:self.user.name];
-    
-    ZSModel *item2 = [ZSModel itemWithIcon:@"sex" title:@"性别" detailTitle:self.user.sex];
-    ZSModel *item3 = [ZSModel itemWithIcon:@"class" title:@"班级" detailTitle:self.user.class];
-    
-    ZSModel *item4 = [ZSModel itemWithIcon:@"major" title:@"专业" detailTitle:self.user.major];
-    ZSModel *item5 = [ZSModel itemWithIcon:@"college" title:@"学院" detailTitle:self.user.college];
-    ZSModel *item6 = [ZSModel itemWithIcon:@"home" title:@"故乡" detailTitle:self.user.home];
-    
-    ZSGroupModel *group1 = [[ZSGroupModel alloc] init];
-    group1.items = @[item0,item1,item2,item3, item4, item5, item6];
-    [self.cellData addObject:group1];
-    
-    
-    NSString *phone = self.user.phone;
-    NSString *qq = self.user.qq;
-    NSString *wechat = self.user.wechat;
-    if ([phone isEqualToString:@"暂无"] && [self.whoNickName isEqualToString:nickName]) {
-      
-        phone = @"添加";
-    }
-    if ([qq isEqualToString:@"暂无"] && [self.whoNickName isEqualToString:nickName]) {
-        
-        qq = @"添加";
-    }
-    if ([wechat isEqualToString:@"暂无"] && [self.whoNickName isEqualToString:nickName]) {
-        
-        wechat = @"添加";
-    }
-    
-    ZSModel *item7 = [[ZSModel alloc] init];
-    
-    ZSModel *item8 = [[ZSModel alloc] init];
-    
-    ZSModel *item9 = [[ZSModel alloc] init];
-    
-    if ([self.whoNickName isEqualToString:nickName]) {
-        
-        item7 = [ZSModel itemWithIcon:@"phone1" title:@"电话" detailTitle:phone vcClass:[ZSSendInfoViewController class]];
-        item8 = [ZSModel itemWithIcon:@"qq" title:@"QQ" detailTitle:qq vcClass:[ZSSendInfoViewController class]];
-        
-        item9 = [ZSModel itemWithIcon:@"weichat" title:@"微信号" detailTitle:wechat vcClass:[ZSSendInfoViewController class]];
-    } else {
-        item7 = [ZSModel itemWithIcon:@"phone1" title:@"电话" detailTitle:phone];
-        item8 = [ZSModel itemWithIcon:@"qq" title:@"QQ" detailTitle:qq];
-        
-        item9 = [ZSModel itemWithIcon:@"weichat" title:@"微信号" detailTitle:wechat ];
-
-    }
-    
-    ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
-    
-    group2.items = @[item7, item8, item9];
-    [self.cellData addObject:group2];
-
+    return 2;
 }
 
-#pragma mark - tableViewDelelgate 代理方法
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (section == 0) {
+        return 7;
+    }
+    
+    return 3;
+}
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -232,44 +215,110 @@
         return @"在校信息";
     } else {
         
-         if ([self.whoNickName isEqualToString:nickName]) {
-             return @"联系方式   (点击可修改)";
-         }
         return @"联系方式";
     }
 }
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    
-    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, ZSScreenW, 44.0)];
-    
-    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    headerLabel.backgroundColor = RGBColor(242, 242, 242, 1);
-    headerLabel.opaque = NO;
-    headerLabel.textColor = [UIColor blackColor];
-    headerLabel.highlightedTextColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont boldSystemFontOfSize:18];
-    headerLabel.frame = CGRectMake(5, 0.0, ZSScreenW, 44.0);
-    
-    if (section == 0) {
-        headerLabel.text =   @"在校信息";
-    }else if ([self.whoNickName isEqualToString:nickName]) {
-        headerLabel.text = @"联系方式   (点击可修改)";
-    } else {
-        headerLabel.text = @"联系方式";
-    }
-     customView.backgroundColor = RGBColor(242, 242, 242, 1);
-    [customView addSubview:headerLabel];
-    
-    return customView;
-}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    
+//    
+//    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, ZSScreenW, 44.0)];
+//    
+//    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+//    headerLabel.backgroundColor = RGBColor(242, 242, 242, 1);
+//    headerLabel.opaque = NO;
+//    headerLabel.textColor = [UIColor blackColor];
+//    headerLabel.highlightedTextColor = [UIColor whiteColor];
+//    headerLabel.font = [UIFont boldSystemFontOfSize:18];
+//    headerLabel.frame = CGRectMake(5, 0.0, ZSScreenW, 44.0);
+//    
+//    if (section == 0) {
+//        headerLabel.text =   @" 在校信息";
+//    } else {
+//        headerLabel.text = @"联系方式";
+//    }
+//     customView.backgroundColor = RGBColor(242, 242, 242, 1);
+//    [customView addSubview:headerLabel];
+//    
+//    return customView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZSInfoViewCell *cell = [ZSInfoViewCell tableViewCell];
+    
+    ZSLog(@"%@", cell);
+    
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == 0) {
+    
+            cell.nameLabel.text = @"学号";
+            cell.detail.text = self.user.zjh;
+            
+        } else if(indexPath.row == 1) {
+            
+            cell.nameLabel.text = @"姓名";
+            cell.detail.text = self.user.name;
+            
+        } else if(indexPath.row == 2) {
+            
+            cell.nameLabel.text = @"性别";
+            cell.detail.text = self.user.sex;
+            
+        }else if(indexPath.row == 3) {
+            
+            cell.nameLabel.text = @"班级";
+            cell.detail.text = self.user.class;
+            
+        }else if(indexPath.row == 4) {
+            
+            cell.nameLabel.text = @"专业";
+            cell.detail.text = self.user.major;
+            
+        }else if(indexPath.row == 5) {
+            
+            cell.nameLabel.text = @"学院";
+            cell.detail.text = self.user.college;
+            
+        }else if(indexPath.row == 6){
+            
+            cell.nameLabel.text = @"故乡";
+            cell.detail.text = self.user.home;
+            
+        }
+        
+    } else if(indexPath.section == 1){
+        
+        if (indexPath.row == 0) {
+            
+            cell.nameLabel.text = @"电话";
+            cell.detail.text = self.user.phone;
+            
+        } else if(indexPath.row == 1) {
+            
+            cell.nameLabel.text = @"微信";
+            cell.detail.text = self.user.wechat;
+            
+        } else if(indexPath.row == 2) {
+            
+            cell.nameLabel.text = @"QQ";
+            
+            cell.detail.text = self.user.qq;
+            
+        }
+    }
+    
+    return cell;
+}
+
+
+#pragma mark - 自定义headerView
 /** 初始化headerView*/
 - (void)initHeaderView
 {
@@ -363,6 +412,7 @@
         smallImageView.image = myImage.image;
     }
     
+    
 }
 
 - (void)swapImage:(UITapGestureRecognizer *)tap
@@ -409,16 +459,14 @@
   
 }
 
-- (void)clickWriteInfoBtn
+- (void)clickRightBtn
 {
-//    ZSSendInfoViewController *sendInfoViewController = [[ZSSendInfoViewController alloc] init];
     
-//    self.navigationController.navigationBarHidden = NO;
     
-//    [self.navigationController pushViewController:sendInfoViewController animated:YES];
+    ZSSendInfoViewController *info = [[ZSSendInfoViewController alloc] init];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
-    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:info animated:YES completion:nil];
+    
 }
 
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define essayTextFont [UIFont systemFontOfSize:18]
+#define essayTextFont [UIFont systemFontOfSize:14]
 
 @class ZSAllDynamic;
 

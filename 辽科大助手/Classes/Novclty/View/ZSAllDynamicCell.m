@@ -82,7 +82,7 @@
         
         /** 昵称*/
         UILabel *nameLabel = [[UILabel alloc] init];
-        [nameLabel setTextColor:[UIColor blueColor]];
+        nameLabel.textColor = RGBColor(129, 214, 248, 1);
         self.nameLabel = nameLabel;
         [self.containerView addSubview:nameLabel];
         
@@ -90,6 +90,8 @@
         /** 正文*/
         ZSEssayTextView *essayTextView = [[ZSEssayTextView alloc] init];
         self.essayTextView = essayTextView;
+        //正文的字体大小
+        self.essayTextView.font = [UIFont systemFontOfSize:14];
         [self.containerView addSubview:essayTextView];
 
         
