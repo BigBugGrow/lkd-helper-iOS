@@ -13,12 +13,12 @@
 #import "MJPhoto.h"
 
 //设置最大列数
-#define LBMaxColsWithCount(count) ((count == 4) ? 2 : 3)
+#define ZSMaxColsWithCount(count) ((count == 4) ? 2 : 3)
 
 //图片的宽高
-#define LBPictureSizeWH 70
+#define ZSPictureSizeWH 70
 //图片之间的间距
-#define LBPictureMargin 15
+#define ZSPictureMargin 15
 
 
 @implementation ZSDynamicPicturesView
@@ -122,7 +122,7 @@
     
     NSInteger picturesCount = self.pictrueArr.count;
     
-    NSInteger maxCol = LBMaxColsWithCount(picturesCount);
+    NSInteger maxCol = ZSMaxColsWithCount(picturesCount);
     
     for (int i = 0; i < picturesCount; i ++) {
         
@@ -130,14 +130,14 @@
         
         //列
         int col = i % maxCol;
-        imageView.x = col * (LBPictureSizeWH + LBPictureMargin);
+        imageView.x = col * (ZSPictureSizeWH + ZSPictureMargin);
         
         //行
         int row = i / maxCol;
-        imageView.y = row * (LBPictureSizeWH + LBPictureMargin);
+        imageView.y = row * (ZSPictureSizeWH + ZSPictureMargin);
         
-        imageView.width = LBPictureSizeWH;
-        imageView.height = LBPictureSizeWH;
+        imageView.width = ZSPictureSizeWH;
+        imageView.height = ZSPictureSizeWH;
         
     }
 
@@ -147,14 +147,14 @@
 {
     
     //最大列数
-    NSInteger maxCols = LBMaxColsWithCount(count);
+    NSInteger maxCols = ZSMaxColsWithCount(count);
     
     //列数
     NSInteger cols = (count >= maxCols) ? maxCols : count;
-    CGFloat width = cols * LBPictureSizeWH + (cols - 1) * LBPictureMargin;
+    CGFloat width = cols * ZSPictureSizeWH + (cols - 1) * ZSPictureMargin;
     
     NSInteger rows = (count + maxCols - 1) / maxCols;
-    CGFloat height = rows * LBPictureSizeWH + (rows - 1) * LBPictureMargin;
+    CGFloat height = rows * ZSPictureSizeWH + (rows - 1) * ZSPictureMargin;
     
     return CGSizeMake(width, height);
 }

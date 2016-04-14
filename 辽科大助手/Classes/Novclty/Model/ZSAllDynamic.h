@@ -19,6 +19,9 @@
 /** 动态正文*/
 @property (nonatomic, copy) NSString *essay;
 
+/**"text": 正文带有属性的正文，*/
+@property (nonatomic, copy) NSAttributedString *attributeText;
+
 /** 图片URL*/
 @property (nonatomic, copy) NSArray *pic;
 

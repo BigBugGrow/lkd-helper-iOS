@@ -33,6 +33,8 @@
 #define cellDetailHeight = 50
 #define marginOfCell 10
 
+
+#define LBStatusTextViewCoverTag 100
 //用户名和密码和key
 #define ZSUser @"user"
 #define ZSPassword @"password"

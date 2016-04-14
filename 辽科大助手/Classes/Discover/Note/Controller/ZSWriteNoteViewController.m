@@ -148,6 +148,17 @@
         [imageView removeFromSuperview];
         [self.imagePathArray removeLastObject];
         
+        //如果没有照片  隐藏scroview
+        if (self.scroView.subviews.count == 0) {
+            
+            self.scroView.hidden = YES;
+            self.titleView.y = 0;
+        
+            self.textView.frame = CGRectMake(0, CGRectGetMaxY(self.titleView.frame), ZSScreenW, ZSScreenH - CGRectGetMaxY(self.titleView.frame));
+
+        }
+        
+        
         
     }];
     UIAlertAction* fromCameraAction = [UIAlertAction actionWithTitle:@"查看照片" style:UIAlertActionStyleDefault                                                             handler:^(UIAlertAction * action) {
@@ -217,7 +228,7 @@
     
     //标题
     UITextField *titleView = [[UITextField alloc] init];
-    titleView.frame =  CGRectMake(0, CGRectGetMaxY(scroView.frame), ZSScreenW, 50);
+    titleView.frame =  CGRectMake(5, CGRectGetMaxY(scroView.frame), ZSScreenW-5, 50);
     titleView.font = [UIFont systemFontOfSize:20];
     titleView.placeholder = @"标题";
     titleView.backgroundColor = [UIColor whiteColor];
@@ -482,8 +493,6 @@
     
 }
 
-
-
 /** 图片压缩*/
 //图片压缩到指定大小
 - (UIImage *)imageByScalingAndCroppingForSize:(CGSize)targetSize image:(UIImage *)sourceImage
@@ -631,21 +640,7 @@
     [self tab:imageView];
 }
 
-#pragma mark - UIActionSheetdelegate
 
-//- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-//{
-//    
-//    ZSLog(@"%@", self.scroView.subviews);
-//    
-//    if (buttonIndex == 0) {
-//        
-//        
-//    } else if (buttonIndex == 1) {
-//            }
-//}
-//
-//
 
 /*
 #pragma mark - Navigation

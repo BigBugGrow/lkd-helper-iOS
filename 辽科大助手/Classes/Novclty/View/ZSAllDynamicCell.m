@@ -264,7 +264,10 @@
     self.nameLabel.text = allDynamic.nickname;
     
     /** 正文*/
-    self.essayTextView.text = allDynamic.essay;
+//    self.essayTextView.text = allDynamic.essay;
+    
+    self.essayTextView.attributedText = allDynamic.attributeText;
+
     
     /** 时间*/
     self.timeLabel.text = allDynamic.date;

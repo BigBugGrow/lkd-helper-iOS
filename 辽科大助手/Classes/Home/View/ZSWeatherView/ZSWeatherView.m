@@ -20,22 +20,19 @@
 
 @end
 
-
 @implementation ZSWeatherView
 
 - (void)setWeatherModel:(ZSWeatherModel *)weatherModel
 {
     _weatherModel = weatherModel;
     
-    self.dayon_dateLabel.text = weatherModel.date;
-    self.dayon_weatherLabel.text = weatherModel.weather;
-    self.pm25Label.text = [NSString stringWithFormat:@"PM2.5: %@",weatherModel.pm25];
-    self.daon_temperatureLabel.text = weatherModel.temperature;
-    self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",weatherModel.currentWeek];
-    
+    self.dayon_dateLabel.text = weatherModel.date ? weatherModel.date : @"下拉加载天气信息";
+    self.dayon_weatherLabel.text = weatherModel.weather ? weatherModel.weather : @"晴";
+    self.pm25Label.text = [NSString stringWithFormat:@"PM2.5: %@",weatherModel.pm25 ? weatherModel.pm25 : @"2.6"];
+    self.daon_temperatureLabel.text = weatherModel.temperature ? weatherModel.temperature : @"28";
+    self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",weatherModel.currentWeek ? weatherModel.currentWeek : @"二"];
     
     NSString *weather = weatherModel.weather;
-    
     
     if ([weather containsString:@"晴"] && ![weather containsString:@"转"]) {
         

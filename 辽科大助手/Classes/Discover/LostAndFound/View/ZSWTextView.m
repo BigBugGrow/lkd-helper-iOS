@@ -1,5 +1,5 @@
 //
-//  LBTextView.m
+//  ZSTextView.m
 //  辽科大微博
 //
 //  Created by MacBook Pro on 16/1/12.
