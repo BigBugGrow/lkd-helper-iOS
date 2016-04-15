@@ -17,6 +17,7 @@
 #import "MJRefresh.h"
 #import "ZSMyNovcltyViewController.h"
 #import "ZSNovcltyTool.h"
+#import "SVProgressHUD.h"
 
 
 @interface ZSBasicViewController () <commenViewControllerDelegate, ZSAllDynamicCellDelegate>
@@ -40,7 +41,8 @@
 /**cell*/
 @property (nonatomic, strong) ZSAllDynamicCell *cell;
 
-
+/** 判断是否第一次加载数据*/
+@property (nonatomic, assign) BOOL flag;
 
 @end
 
@@ -129,7 +131,7 @@
         //self.endId = [[[savedAllDynamics lastObject] ID] integerValue];
         
     }
-
+    
     [self.tableView reloadData];
     
     [self.tableView headerBeginRefreshing];
@@ -217,6 +219,7 @@
         
     } failure:^(NSError *error) {
         
+        [SVProgressHUD showErrorWithStatus:@"请检查网络！！"];
         
         //结束下拉刷新
         [self.tableView footerEndRefreshing];
@@ -276,7 +279,10 @@
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/noveltyRead" parameters:params success:^(NSDictionary *responseObject) {
         
         //保存上一次访问的一条数据的最后一个
-        self.endId = [responseObject[@"endId"] integerValue];
+        if (!self.flag) {
+            self.flag = true;
+            self.endId = [responseObject[@"endId"] integerValue];
+        }
         
         //最新的加载的数据
         NSArray *dynamics = responseObject[@"data"];
@@ -299,10 +305,25 @@
             } else {
                 dynamic.pic = nil;
             }
-        
-            [arrayM addObject:dynamic];
+            
+            //保存最新的数据
+            if ([dynamic.ID integerValue] > self.lastFirstDynamicId) {
+                
+                [arrayM addObject:dynamic];
+            }
+            
         }
         
+//        self.lastFirstDynamicId = [[arrayM ID] integerValue];
+        
+        if (arrayM.count == 0) {
+            
+            //结束下拉刷新
+            [self.tableView headerEndRefreshing];
+            return ;
+        }
+        
+        self.lastFirstDynamicId = [[arrayM[0] ID] integerValue];
         
         //保存起来的数组
         NSArray *savedDynamics = [NSArray array];
@@ -317,7 +338,7 @@
             
             nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
             //保存最新的数据
-            [ZSNovcltyTool saveAllNovcltys:nowDynamics];
+//            [ZSNovcltyTool saveAllNovcltys:nowDynamics];
             
         } else if ([self.type isEqualToString:@"discloseBoard"]) {
             
@@ -326,7 +347,7 @@
               nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
             
             //保存最新的数据
-            [ZSNovcltyTool saveDiscloseBoardNovcltys:nowDynamics];
+//            [ZSNovcltyTool saveDiscloseBoardNovcltys:nowDynamics];
         } else if ([self.type isEqualToString:@"confessionWall"]) {
             
             savedDynamics = [ZSNovcltyTool resentConfessionWallNovcltys];
@@ -334,16 +355,15 @@
              nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
             //保存最新的数据
             
-            [ZSNovcltyTool saveConfessionWallNovcltys:nowDynamics];
+//            [ZSNovcltyTool saveConfessionWallNovcltys:nowDynamics];
         } else {
             
             savedDynamics = [ZSNovcltyTool resentTopicsNovcltys];
             
             nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
             
-            
             //保存最新的数据
-            [ZSNovcltyTool saveTopicsNovcltys:nowDynamics];
+//            [ZSNovcltyTool saveTopicsNovcltys:nowDynamics];
         }
         
 
@@ -353,7 +373,6 @@
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         //将新的数据添加到大数组的最前面
         [self.allDynamicFrames insertObjects:arrayFrames atIndexes:indexSet];
-        
         
         //刷新表格
         [self.tableView reloadData];
@@ -365,6 +384,9 @@
     } failure:^(NSError *error) {
         
         ZSLog(@"获取信息失败");
+        
+        [SVProgressHUD showErrorWithStatus:@"请检查网络！！"];
+        
         //结束下拉刷新
         [self.tableView headerEndRefreshing];
         

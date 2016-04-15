@@ -6,6 +6,9 @@
 //  Copyright © 2016年 USTL. All rights reserved.
 //
 
+/** 本想做一个数据缓存， 但是显示表情 有一个bug 表情字体会变大*/
+
+
 #import <Foundation/Foundation.h>
 
 @interface ZSNovcltyTool : NSObject

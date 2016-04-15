@@ -42,7 +42,6 @@ NSMutableArray *_recentTopicNovcltys;
     
     
     //吐槽
-    
     _recentDiscloseBoardNovcltys = [NSKeyedUnarchiver unarchiveObjectWithFile:ZSRecentDiscloseBoardNovcltyPath];
     
     if (_recentDiscloseBoardNovcltys == nil) {
@@ -66,8 +65,6 @@ NSMutableArray *_recentTopicNovcltys;
         _recentTopicNovcltys = [NSMutableArray array];
     }
 }
-
-
 
 /**
  * 全部

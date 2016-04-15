@@ -250,6 +250,9 @@ static NSString * const commentID = @"commentCell";
             
             [SVProgressHUD showSuccessWithStatus:@"评论成功"];
             
+            //添加监听
+            [self textChange];
+            
             //播放音效
             [ZSAudioTool playAudioWithFilename:@"sendmsg.caf"];
             

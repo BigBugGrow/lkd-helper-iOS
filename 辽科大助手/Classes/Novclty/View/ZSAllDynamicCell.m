@@ -89,12 +89,13 @@
         
         /** 正文*/
         ZSEssayTextView *essayTextView = [[ZSEssayTextView alloc] init];
+        essayTextView.font = [UIFont systemFontOfSize:14];
         self.essayTextView = essayTextView;
         //正文的字体大小
-        self.essayTextView.font = [UIFont systemFontOfSize:14];
+//        self.essayTextView setat
+        
         [self.containerView addSubview:essayTextView];
 
-        
         /** 时间*/
         UILabel *timeLabel = [[UILabel alloc] init];
         timeLabel.font = [UIFont systemFontOfSize:10];
@@ -106,7 +107,6 @@
         ZSDynamicPicturesView *picturesView = [[ZSDynamicPicturesView alloc] init];
         self.picturesView = picturesView;
         [self.containerView addSubview:picturesView];
-        
         
         /** 评论数量*/
         UIButton *commentButton = [[UIButton alloc] init];
@@ -269,7 +269,7 @@
 //    self.essayTextView.text = allDynamic.essay;
     
     self.essayTextView.attributedText = allDynamic.attributeText;
-
+    self.essayTextView.frame = allDynamicFrame.essayTextViewF;
     
     /** 时间*/
     self.timeLabel.text = allDynamic.date;

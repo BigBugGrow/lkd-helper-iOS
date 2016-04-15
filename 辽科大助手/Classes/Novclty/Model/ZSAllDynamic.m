@@ -90,7 +90,7 @@ MJCodingImplementation
         return part1.range.location > part2.range.location;
     }];
     
-    UIFont *font = [UIFont systemFontOfSize:15];
+    UIFont *font = [UIFont systemFontOfSize:14];
     
     NSMutableArray *specials = [NSMutableArray array];
     

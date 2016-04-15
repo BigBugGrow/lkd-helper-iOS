@@ -824,10 +824,6 @@
 		5244DC601CA1039500147B72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5275C2851CBF266D007CEB56 /* ZSEmotionPart.h */,
-				5275C2861CBF266D007CEB56 /* ZSEmotionPart.m */,
-				5275C2821CBF2446007CEB56 /* ZSSpecial.h */,
-				5275C2831CBF2446007CEB56 /* ZSSpecial.m */,
 				5244DC611CA1039500147B72 /* ZSAllDynamic.h */,
 				5244DC621CA1039500147B72 /* ZSAllDynamic.m */,
 				5244DC631CA1039500147B72 /* ZSAllDynamicFrame.h */,
@@ -838,6 +834,10 @@
 				52C426A51CA12FDE005F2325 /* ZSComment.m */,
 				52D90B7F1CB0ED08002B74A6 /* ZSPersonalUser.h */,
 				52D90B801CB0ED08002B74A6 /* ZSPersonalUser.m */,
+				5275C2851CBF266D007CEB56 /* ZSEmotionPart.h */,
+				5275C2861CBF266D007CEB56 /* ZSEmotionPart.m */,
+				5275C2821CBF2446007CEB56 /* ZSSpecial.h */,
+				5275C2831CBF2446007CEB56 /* ZSSpecial.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

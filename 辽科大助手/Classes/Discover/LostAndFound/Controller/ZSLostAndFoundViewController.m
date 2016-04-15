@@ -27,12 +27,31 @@
 /** 模型数组*/
 @property (nonatomic, strong) NSMutableArray *lostThings;
 
+/** item*/
+@property (nonatomic, assign) NSInteger endId;
+
+/**最新数据的id*/
+@property (nonatomic, assign) NSInteger lastFirstDynamicId;
+
+/**是否第一次来*/
+@property (nonatomic, assign) BOOL flag;
+
 @end
 
 static NSString *ID = @"lostAndFoundCell";
 
 
 @implementation ZSLostAndFoundViewController
+
+/** 懒加载*/
+- (NSMutableArray *)lostThings
+{
+    if (_lostThings == nil) {
+        _lostThings = [NSMutableArray array];
+    }
+    return _lostThings;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -92,17 +111,25 @@ static NSString *ID = @"lostAndFoundCell";
     
     [self.tableView headerBeginRefreshing];
     
+    [self.tableView addFooterWithTarget:self action:@selector(loadMoreData)];
+    
 }
 
-/** 加载新的数据*/
-- (void)loadNewData
+- (void)loadMoreData
 {
+    
+    [self.tableView headerEndRefreshing];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    params[@"item"] = @"00";
+    params[@"item"] = @(self.endId);
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/LostAndFoundRead" parameters:params success:^(id responseObject) {
         
+        
+        self.endId = [responseObject[@"endId"] integerValue];
+        
+        ZSLog(@"%ld", self.endId);
         
         NSArray *datas = responseObject[@"data"];
         
@@ -126,7 +153,83 @@ static NSString *ID = @"lostAndFoundCell";
             [lostThings addObject:lostThing];
         }
         
-        self.lostThings = lostThings;
+        [self.lostThings addObjectsFromArray:lostThings];
+        
+        [self.tableView reloadData];
+        
+        //结束刷新
+        [self.tableView footerEndRefreshing];
+        
+        
+    } failure:^(NSError *error) {
+        
+        [self.tableView footerEndRefreshing];
+        
+    }];
+    
+
+}
+
+
+/** 加载新的数据*/
+- (void)loadNewData
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    params[@"item"] = @"00";
+    
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/LostAndFoundRead" parameters:params success:^(id responseObject) {
+        
+        
+        NSArray *datas = responseObject[@"data"];
+        
+        //保存上一次访问的一条数据的最后一个
+        if (!self.flag) {
+            self.flag = true;
+            self.endId = [responseObject[@"endId"] integerValue];
+        }
+        
+//        self.lastFirstDynamicId = 
+        //保存最新的数据的id
+        
+        ZSLog(@"%@", responseObject);
+        ZSLog(@"%ld", self.lastFirstDynamicId);
+        
+        NSMutableArray *lostThings = [NSMutableArray array];
+        
+        for (NSDictionary *dict in datas) {
+            
+            ZSLostThing *lostThing = [ZSLostThing objectWithKeyValues:dict];
+            
+            NSString *picPreSubStr = [dict[@"pic"] substringFromIndex:1];
+            NSString *picSufSubStr = [picPreSubStr substringToIndex:picPreSubStr.length - 1];
+            
+            if (![picSufSubStr isEqualToString:@""]) {
+                
+                NSArray *pics = [picSufSubStr componentsSeparatedByString:@","];
+                lostThing.pics = pics;
+            } else {
+                lostThing.pics = nil;
+            }
+            
+            if (lostThing.ID > self.lastFirstDynamicId) {
+                
+//                self.lastFirstDynamicId = lostThing.ID;
+                [lostThings addObject:lostThing];
+            }
+            
+            
+        }
+        
+        NSRange range = NSMakeRange(0, lostThings.count);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        //将新的数据添加到大数组的最前面
+        [self.lostThings insertObjects:lostThings atIndexes:indexSet];
+        
+        
+        self.lastFirstDynamicId = [self.lostThings[0] ID];
+        
+        ZSLog(@"%@", self.lostThings);
         
         [self.tableView reloadData];
         

@@ -8,6 +8,8 @@
 
 #import "ZSLostThing.h"
 
+
+
 @implementation ZSLostThing
 
 
@@ -15,5 +17,14 @@
 {
     return [NSString stringWithFormat:@"%@, %@, %@, %@, %@", self.nickname, self.pics, self.adress, self.phone, self.summary];
 }
+
+
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    return @{
+             @"ID" : @"id",
+             };
+}
+
 
 @end

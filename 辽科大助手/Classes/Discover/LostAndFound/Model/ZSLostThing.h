@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString *thing;
 
 /**id*/
-@property (nonatomic, assign) NSInteger id;
+@property (nonatomic, assign) NSInteger ID;
 
 /** 物品描述*/
 @property (nonatomic, copy) NSString *summary;
