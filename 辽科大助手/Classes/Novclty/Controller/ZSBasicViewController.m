@@ -331,6 +331,9 @@
         //新来的最新数据
         NSArray *nowDynamics = [NSArray array];
         
+        
+        
+        /** 本想做一个数据缓存， 但是显示表情 有一个bug 表情字体会变大*/
         if ([self.type isEqualToString:@"all"]) {
             
             //缓存数据

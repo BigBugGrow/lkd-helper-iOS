@@ -36,15 +36,17 @@
     UILocalNotification *noti = [[UILocalNotification alloc] init];
     
     //指定通知发送的时间
+    
+    noti.fireDate = [NSDate date];
     noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
     //指定时区
     noti.timeZone = [NSTimeZone defaultTimeZone];
     noti.alertBody = @"马上要上课喽";
     
-    noti.repeatInterval = NSCalendarUnitMinute;
+//    noti.repeatInterval = NSCalendarUnitMinute;
     noti.alertAction = @"查看消息";
     noti.alertLaunchImage = @"splash_tops";
-    noti.soundName = @"sendmsg.caf";
+    noti.soundName = UILocalNotificationDefaultSoundName;
     
     
     //2注册通知

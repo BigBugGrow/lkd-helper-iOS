@@ -345,6 +345,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //等待开发添加课表功能，按钮先设置为不能够点击
     self.plusBtn.userInteractionEnabled = NO;
     
     NSDate *date = [NSDate date];
@@ -432,7 +433,6 @@
         
         [label removeFromSuperview];
     }
-    
     
     
     for (int i = 0; i < 7; i ++) {

@@ -19,7 +19,6 @@
 #import "SVProgressHUD.h"
 
 
-
 @interface ZSStudentNumBindViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *xHText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -34,7 +33,6 @@
     // Do any additional setup after loading the view from its nib.
      self.activityIndicator.hidden = YES;
      self.navigationItem.title = @"学号绑定";
-    
     
 }
 
@@ -124,8 +122,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

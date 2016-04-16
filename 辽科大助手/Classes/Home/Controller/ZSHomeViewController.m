@@ -192,8 +192,6 @@
     ZSAccount *account = [ZSAccountTool account];
     self.account = account;
     
-    
-    
      //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
     NSInteger count = [self getUTCFormateDate:account.termBeginTime];
@@ -212,13 +210,55 @@
         //1.得到当天的课表字典
         NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];
         
-        
         ZSTimeTabelModel *timetable0 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@0]];
         ZSTimeTabelModel *timetable1 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@1]];
         ZSTimeTabelModel *timetable2 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@2]];
         ZSTimeTabelModel *timetable3 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@3]];
         ZSTimeTabelModel *timetable4 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@4]];
         
+        
+//        3.使用NSDateFormatter可以将字符串转换成NSDate类型。同样需要注意格式的问题。
+        NSTimeZone* localzone = [NSTimeZone localTimeZone];
+        
+        NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+        
+        [formatter setDateFormat:@"HH:mm"];
+        
+        [formatter setTimeZone:localzone];
+        
+        NSString * dateStr = [formatter stringFromDate:[NSDate date]];
+        
+        
+        [formatter setDateFormat:@"HH:mm"];
+        
+        NSDate * date = [formatter dateFromString:dateStr];//把字符串转换成Date格式
+    
+        ZSLog(@"%@    %@", dateStr, date);
+        
+        if (timetable0 && [timetable0.timeOfLesson isEqualToString:dateStr]) {
+            
+            //1.创建本地通知对对象
+            UILocalNotification *noti = [[UILocalNotification alloc] init];
+            
+            //指定通知发送的时间
+            noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+            //指定时区
+            noti.timeZone = [NSTimeZone defaultTimeZone];
+            noti.alertBody = @"马上要上课喽";
+            
+            noti.alertAction = @"查看消息";
+            noti.alertLaunchImage = @"splash_tops";
+            noti.soundName = UILocalNotificationDefaultSoundName;
+            
+            
+            //2注册通知
+            UIApplication *app = [UIApplication sharedApplication];
+            
+            [app scheduleLocalNotification:noti];
+            
+        }
+        
+    
         
         ZSHomeGroupModel *group1 = [[ZSHomeGroupModel alloc] init];
         group1.items = @[timetable0,timetable1,timetable2,timetable3,timetable4];

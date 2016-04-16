@@ -19,6 +19,7 @@
 #import "SVProgressHUD.h"
 #import "UpYun.h"
 #import "ZSInfoViewCell.h"
+#import "MBProgressHUD+MJ.h"
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
@@ -462,7 +463,6 @@ static NSString *ID = @"infoCell";
 - (void)clickRightBtn
 {
     
-    
     ZSSendInfoViewController *info = [[ZSSendInfoViewController alloc] init];
     
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:info animated:YES completion:nil];
@@ -510,34 +510,55 @@ static NSString *ID = @"infoCell";
     
     if (image == nil) return;
     
-    
     //设置空间和秘钥
     [UPYUNConfig sharedInstance].DEFAULT_BUCKET = DEFAULT_BUCKET;
     [UPYUNConfig sharedInstance].DEFAULT_PASSCODE = DEFAULT_PASSCODE;
     [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 100;
     
+    [MBProgressHUD showMessage:@"正在修改中..." toView:self.view];
+    
     
     __block UpYun *uy = [[UpYun alloc] init];
-//
-//    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
-//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//            [alert show];
-//            ZSLog(@"response body %@", responseData);
-//    };
-//    uy.failBlocker = ^(NSError * error) {
-//        NSString *message = [error.userInfo objectForKey:@"message"];
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alert show];
-//        ZSLog(@"error %@", message);
-//    };
-//    
+
+    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
+        
+        [SVProgressHUD showSuccessWithStatus:@"修改头像成功"];
+        
+        //清除缓存图片
+        [self clearTmpPics];
+        
+        self.iconView.image = image;
+        
+        self.bigImageView.image = image;
+        
+        //保存图片
+        [self SaveImageToLocal:image Keys:ZSIconImageStr];
+        
+        //创建通知
+        //创建一个消息对象
+        [ZSNotificationCenter postNotificationName:@"swapImage" object:nil];
+        
+        
+        [MBProgressHUD hideHUDForView:self.view];
+        
+
+            ZSLog(@"response body %@", responseData);
+    };
+    uy.failBlocker = ^(NSError * error) {
+        NSString *message = [error.userInfo objectForKey:@"message"];
+        
+        
+        [MBProgressHUD hideHUDForView:self.view];
+        [SVProgressHUD showErrorWithStatus:@"修改头像失败，请检查网络"];
+
+        
+        ZSLog(@"error %@", message);
+    };
+    
     
     NSString *pictruePath = [NSString stringWithFormat:@"/picUser/%@.jpg", imageName];
     
     [uy uploadImage:image savekey:pictruePath];
-    
-    //删除缓存
-    [self clearTmpPics];
     
 }
 
@@ -565,6 +586,11 @@ static NSString *ID = @"infoCell";
     ipc.delegate = self;
     [self presentViewController:ipc animated:YES completion:nil];
     
+}
+
+- (void)dealloc
+{
+    [ZSNotificationCenter removeObserver:self];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -600,27 +626,8 @@ static NSString *ID = @"infoCell";
     
     ZSLog(@"%@", NSStringFromCGSize(newImage.size));
    
-    //清除缓存图片
-    [self clearTmpPics];
-    
-    self.iconView.image = newImage;
-    
-    self.bigImageView.image = newImage;
-    
     //上传图片
     [self sendImageWithImage:newImage imageName:nickName];
-    
-    //保存图片
-    [self SaveImageToLocal:newImage Keys:ZSIconImageStr];
-    
-    //创建通知
-    //创建一个消息对象
-//    NSNotification * notice = [NSNotification notificationWithName:@"swapImage" object:nil ];
-//    //发送消息
-//    [ZSNotificationCenter postNotification:notice];
-    
-    [ZSNotificationCenter postNotificationName:@"swapImage" object:nil];
-    
 }
 
 /** 图片压缩*/

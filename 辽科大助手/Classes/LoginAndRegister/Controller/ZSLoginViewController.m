@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"辽科大助手登录";
+    self.title = @"登录";
     self.activityIndicator.hidden = YES;
     self.userNameText.text = [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser];
     self.passwordText.text = [[NSUserDefaults standardUserDefaults] objectForKey:ZSPassword];

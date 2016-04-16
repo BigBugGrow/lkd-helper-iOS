@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"辽科大助手注册";
+    self.title = @"注册";
     self.activityIndicator.hidden = YES;
     
     

@@ -125,7 +125,7 @@
                         </mask>
                     </variation>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_portrait" translatesAutoresizingMaskIntoConstraints="NO" id="2LN-OI-uh7">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="regist_head_unlogin" translatesAutoresizingMaskIntoConstraints="NO" id="2LN-OI-uh7">
                     <rect key="frame" x="147" y="25" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="yD6-8x-OUn"/>
@@ -145,8 +145,8 @@
         </view>
     </objects>
     <resources>
-        <image name="head_portrait" width="500" height="500"/>
         <image name="password" width="160" height="161"/>
+        <image name="regist_head_unlogin" width="160" height="160"/>
         <image name="username" width="160" height="161"/>
     </resources>
 </document>
