@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"关于辽科大助手";
+    self.title = @"关于";
 
     NSString *about = @"辽科大助手 由辽宁科技大学学生处（思政中心）管理，（网络文化工作室）负责运营，秉承“励志、利生、力行” 学生工作理念，发布大学生思想政治教育、日常管理、校园文化活动等信息，为广大师生提供校园最新资讯、查询等服务平台。";
 //    
@@ -133,7 +133,7 @@
     contentLabel.height = size.height + 400;
     contentLabel.text = content;
     
-    scroView.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
+    scroView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
     
     [scroView addSubview:contentLabel];
     

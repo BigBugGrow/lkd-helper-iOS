@@ -19,7 +19,7 @@
     CGFloat h = self.bounds.size.height;
         
     CGFloat btnX = 0;
-    CGFloat btnY = 5;
+    CGFloat btnY = 0;
     CGFloat btnW = w / self.items.count;
     CGFloat btnH = h;
     

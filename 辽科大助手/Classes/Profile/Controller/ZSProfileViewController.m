@@ -22,8 +22,12 @@
 #import "ZSStudentNumBindViewController.h"
 #import "UIImageView+WebCache.h"
 #import "SVProgressHUD.h"
+#import "SDImageCache.h"
 
 @interface ZSProfileViewController ()<UIAlertViewDelegate>
+
+/**缓存数量*/
+@property (nonatomic, assign) NSInteger cacheSize;
 
 @end
 
@@ -61,16 +65,23 @@
 {
     [super viewDidLoad];
 
+//    //1.获得全局的并发队列
+//    dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    //2.添加任务到队列中，就可以执行任务
+//    //异步函数：具备开启新线程的能力
+//    dispatch_async(queue, ^{
+//        
+//        self.cacheSize = [self getCachesCount];
+//        
+//        
+//        
+//    });
     
-    ZSLog(@"%@", NSHomeDirectory());
     
     
-    NSString *path = [self getCachesPath];
     
-    long long sizeM = [self fileSizeAtPath:path];
-    
-    ZSLog(@"%lld", sizeM);
-    
+    self.navigationItem.title = @"我";
+
     
     //设置导航按钮
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
@@ -88,14 +99,6 @@
 - (void)clickRightBtn
 {
     
-    [self clearTmpPics];
-    
-    NSString *path = [self getCachesPath];
-    
-    long long sizeM = [self fileSizeAtPath:path];
-    
-    ZSLog(@"%lld", sizeM);
-
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"退出当前账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     //创建按钮
@@ -135,7 +138,6 @@
 {
     
     [[SDImageCache sharedImageCache] clearDisk];
-    [[SDImageCache sharedImageCache] clearMemory];//可有可无
     
 }
 
@@ -145,30 +147,6 @@
     //[preferences persistentDomainForName:LocalPath];
     [preferences setObject:UIImagePNGRepresentation(image) forKey:key];
 }
-
-//获取缓存文件路径
--(NSString *)getCachesPath{
-    // 获取Caches目录路径
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *cachesDir = [paths objectAtIndex:0];
-    
-    ZSLog(@"%@", paths);
-    
-    NSString *filePath = [cachesDir stringByAppendingPathComponent:@"com.hackemist.SDWebImageCache.default"];
-    
-    return filePath;
-}
-///计算缓存文件的大小的M
-- (long long) fileSizeAtPath:(NSString*) filePath{
-    NSFileManager* manager = [NSFileManager defaultManager];
-    if ([manager fileExistsAtPath:filePath]){
-        
-        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
-    }
-    
-    return 0;
-}
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -235,7 +213,9 @@
     
     ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@"" vcClass:[ZSAboutViewController class]];
     
-    ZSModel *item7 = [ZSModel itemWithIcon:@"clearCache" title:@"清除缓存" detailTitle:@""];
+//    NSString *cacheStr = [NSString stringWithFormat:@"清除缓存   (已使用%.2lfM)", self.cacheSize/1000.0/1000];
+    
+    ZSModel *item7 = [ZSModel itemWithIcon:@"clearCache" title:@"清除缓存 " detailTitle:@""];
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
     group2.items = @[item3,item5,item7,item6];
     [self.cellData addObject:group2];
@@ -247,13 +227,13 @@
         UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"立即清除" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {
             
             
-            NSString *path = [self getCachesPath];
+            NSInteger totalSize = [self getCachesCount];
+        
+            NSString *msg = [NSString stringWithFormat:@"已清除缓存%.2lfM", totalSize / 1000.0 / 1000];
             
-            long long sizeM = [self fileSizeAtPath:path];
+            self.cacheSize = 0;
             
-            ZSLog(@"%lld", sizeM);
-            
-            NSString *msg = [NSString stringWithFormat:@"已清除缓存%.1lfM", sizeM / 1000.0];
+//            [self initModelData];
             
             [SVProgressHUD showSuccessWithStatus:msg];
             
@@ -269,6 +249,38 @@
     };
     
     
+}
+
+- (NSInteger)getCachesCount
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *cachePath = [caches stringByAppendingPathComponent:@"com.hackemist.SDWebImageCache.default"];
+    
+    NSDirectoryEnumerator *fileEnumerator = [manager enumeratorAtPath:cachePath];
+    
+    NSInteger totalSize = 0;
+    
+    for (NSString *fileName in fileEnumerator) {
+        NSString *filepath = [cachePath stringByAppendingPathComponent:fileName];
+        
+        
+        //                BOOL dir = NO;
+        //                // 判断文件的类型：文件\文件夹
+        //                [manager fileExistsAtPath:filepath isDirectory:&dir];
+        //                if (dir) continue;
+        NSDictionary *attrs = [manager attributesOfItemAtPath:filepath error:nil];
+        
+        if ([attrs[NSFileType] isEqualToString:NSFileTypeDirectory]) continue;
+        
+        totalSize += [attrs[NSFileSize] integerValue];
+    }
+    
+    ZSLog(@"%zd", totalSize);
+    
+    return totalSize;
+
 }
 
 

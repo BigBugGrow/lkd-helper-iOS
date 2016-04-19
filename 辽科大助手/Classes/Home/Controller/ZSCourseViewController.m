@@ -13,8 +13,12 @@
 #import "NSDate+Utilities.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ZSAudioTool.h"
+#import "QRadioButton.h"
+#import "SSCheckBoxView.h"
+#import "ZSCourse.h"
+#import "SVProgressHUD.h"
 
-@interface ZSCourseViewController ()
+@interface ZSCourseViewController ()<QRadioButtonDelegate, UITextFieldDelegate>
 /** 加号按钮*/
 @property (weak, nonatomic) IBOutlet UIButton *plusBtn;
 
@@ -24,8 +28,45 @@
 /** 当前月份*/
 @property (nonatomic, assign) NSInteger month;
 
+/** 蒙板*/
+@property (nonatomic, weak) UIView *cover;
+
+/** 课程信息背景*/
+@property (nonatomic, weak) UIView *courseBgView;
+
+/** 滚动条的背景*/
+@property (nonatomic, weak) UIView *allView;
+
+/** 选择周几的背景*/
+@property (nonatomic, weak) UIView *weekDayView;
+
+
+/** 选择周几的背景*/
+@property (nonatomic, weak) UIView *weekBgView;
+
+
+/** 选择当天第几节的背景*/
+@property (nonatomic, weak) UIView *courseDayView;
+
+/** 添加课程名*/
+@property (nonatomic, weak) UITextField *courseName;
+
+/** 添加上课地点*/
+@property (nonatomic, weak) UITextField *coursePlace;
+
 /** 当前日期*/
 @property (nonatomic, strong) NSDate *date;
+
+/** course*/
+@property (nonatomic, strong) ZSCourse *course;
+
+/**下一步btn*/
+@property (nonatomic, weak) UIButton *nextBtn;
+
+
+/**取消btn*/
+@property (nonatomic, weak) UIButton *cancelBtn;
+
 
 - (IBAction)clcikPlusBtn;
 - (IBAction)clickNextCourseBtn;
@@ -62,12 +103,23 @@
 @implementation ZSCourseViewController
 
 
+/** 懒加载*/
+- (ZSCourse *)course
+{
+    if (_course == nil) {
+        _course = [[ZSCourse alloc] init];
+    }
+    return _course;
+}
+
 //设置导航栏为白色
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
 }
 
+
+#pragma mark - 计算月份有多少天数
 
 /** 获取月结束的时的天数*/
 - (NSInteger)getCriticalDayWith:(BOOL)flag
@@ -98,6 +150,7 @@
     return criticalDay;
 }
 
+#pragma mark - 初始化navigation
 
 - (void)initNav
 {
@@ -323,6 +376,8 @@
 }
 
 
+#pragma mark - 格式化时间
+
 -(NSInteger)getUTCFormateDate:(NSString *)newsDate
 {
     //    newsDate = @"2013-08-09 17:01";
@@ -346,7 +401,7 @@
     [super viewDidLoad];
 
     //等待开发添加课表功能，按钮先设置为不能够点击
-    self.plusBtn.userInteractionEnabled = NO;
+//    self.plusBtn.userInteractionEnabled = NO;
     
     NSDate *date = [NSDate date];
     
@@ -377,7 +432,13 @@
     [self initCourseWithCurrentWeek:self.currentWeek];
     
     [self settingTitleWithWeek:self.currentWeek];
+    
+    
+    
+    
 }
+
+#pragma mark - 初始化课表
 
 /** 初始化课程时间*/
 - (void)initCourseTime
@@ -441,6 +502,8 @@
             
             
             NSArray *dayCourseArray = self.account.timetable[currentWeek][i];
+
+            
             if (dayCourseArray.count) {
                 
                 NSDictionary *dayCourseDict = (NSDictionary *)dayCourseArray;
@@ -494,20 +557,433 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
+#pragma mark - 点击添加课程
 
 - (IBAction)clcikPlusBtn {
     
     
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    UIView *cover = [[UIView alloc] init];
+    cover.backgroundColor = RGBColor(123, 123, 123, 0.7);
+    cover.frame = window.bounds;
+    [window addSubview:cover];
+    
+    [cover addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(exitKeyBoard)]];
+    
+    self.cover = cover;
+    
+    
+    
+    CGFloat marginW = 20;
+    
+    UIView *view = [[UIView alloc] init];
+    view.frame = CGRectMake(marginW, 120, ZSScreenW - 2 * marginW, 330);
+    view.backgroundColor = [UIColor whiteColor];
+    
+    [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(exitKeyBoard)]];
+    
+    [window addSubview:view];
+    self.courseBgView = view;
+    
+
+    UILabel *courseLabel = [[UILabel alloc] init];
+    courseLabel.frame = CGRectMake(marginW, 10, ZSScreenW - 4 * marginW, 30);
+    courseLabel.text = @"请输入课程信息:";
+    [view addSubview:courseLabel];
+    
+    UITextField *courseName = [[UITextField alloc] init];
+    courseName.delegate = self;
+    courseName.placeholder = @"课程名";
+    courseName.x = courseLabel.x;
+    courseName.y = CGRectGetMaxY(courseLabel.frame) + 20;
+    courseName.width = courseLabel.width;
+    courseName.height = courseLabel.height;
+    [view addSubview:courseName];
+    self.courseName = courseName;
+    
+    
+    UITextField *coursePlace = [[UITextField alloc] init];
+    coursePlace.delegate = self;
+    coursePlace.placeholder = @"上课地点";
+    coursePlace.x = courseLabel.x;
+    coursePlace.y = CGRectGetMaxY(courseName.frame) + 2 * marginW;
+    coursePlace.width = courseLabel.width;
+    coursePlace.height = courseLabel.height;
+    [view addSubview:coursePlace];
+    self.coursePlace = coursePlace;
+    
+    QRadioButton *radio1 = [[QRadioButton alloc]initWithDelegate:self groupId:@"remaind"];
+    
+    radio1.width = 50;
+    radio1.height = 30;
+    radio1.x = view.width - 4 * marginW - radio1.width;
+    radio1.y = CGRectGetMaxY(coursePlace.frame) + 10;
+    
+    [radio1 setTitle:@"必修" forState:UIControlStateNormal];
+    [radio1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [radio1.titleLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
+    [view addSubview:radio1];
+    [radio1 setChecked:YES];
+    
+    QRadioButton *radio2 = [[QRadioButton alloc]initWithDelegate:self groupId:@"remaind"];
+    radio2.width = 50;
+    radio2.height = 30;
+    radio2.x = view.width - marginW - radio2.width;
+    radio2.y = CGRectGetMaxY(coursePlace.frame) + 10;
+    
+    [radio2 setTitle:@"选修" forState:UIControlStateNormal];
+    [radio2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [radio2.titleLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
+    [view addSubview:radio2];
+    
+    UIButton *cancelBtn = [[UIButton alloc] init];
+    cancelBtn.width = 50;
+    cancelBtn.height = 30;
+    cancelBtn.x = view.width - cancelBtn.width - 5 * marginW;
+    cancelBtn.y = CGRectGetMaxY(radio1.frame) + 2 * marginW;
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [cancelBtn addTarget:self action:@selector(clickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
+    self.cancelBtn = cancelBtn;
+    [view addSubview:cancelBtn];
+    
+    UIButton *nextBtn = [[UIButton alloc] init];
+    nextBtn.width = 60;
+    nextBtn.height = 30;
+    nextBtn.x = view.width - nextBtn.width - marginW;
+    nextBtn.y = CGRectGetMaxY(radio1.frame) + 2 * marginW;
+    [nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+    
+    [nextBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [nextBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    
+    [nextBtn addTarget:self action:@selector(clickSelectWeekDay) forControlEvents:UIControlEventTouchUpInside];
+    self.nextBtn = nextBtn;
+    [view addSubview:nextBtn];
+    
+    // 1.addTarget
+    [self.courseName addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    
+    [self.coursePlace addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    
+    //添加监听
+    [self textChange];
+    
 }
+
+
+- (void)textChange
+{
+    // 判断两个文本框的内容
+    self.nextBtn.enabled =  self.courseName.text.length && self.coursePlace.text.length;
+}
+
+- (void)clickCancelBtn
+{
+    [self.allView removeFromSuperview];
+    [self.cover removeFromSuperview];
+    [self.courseBgView removeFromSuperview];
+}
+
+
+- (void)clickNextBtn:(UIButton *)btn
+{
+
+    
+    [self.courseDayView removeFromSuperview];
+    [self.courseBgView removeFromSuperview];
+    
+    self.course.courseNum = btn.tag;
+    
+    //    [cbv setStateChangedTarget:self
+    //                      selector:@selector(checkBoxViewChangedState:)];
+    
+//    [cbv setStateChangedBlock:^(SSCheckBoxView *v) {
+//        [self checkBoxViewChangedState:v];
+//    }];
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    /** 滚动条的背景*/
+    UIView *allView = [[UIView alloc] init];
+    allView.width = ZSScreenW - 40;
+    allView.height = ZSScreenH - 40;
+    allView.x = 20;
+    allView.y = 20;
+    [window addSubview:allView];
+    self.allView = allView;
+    
+    UIScrollView *weekBgView = [[UIScrollView alloc] init];
+    weekBgView.frame = CGRectMake(0, 30, ZSScreenW - 40, ZSScreenH - 100);
+
+//    NSMutableArray *a = [[NSMutableArray alloc] initWithCapacity:10];
+    
+    SSCheckBoxView *cbv = nil;
+    CGRect frame = CGRectMake(30, 0, ZSScreenW - 40, 30);
+    for (int i = 0; i < 20; ++i) {
+        SSCheckBoxViewStyle style = 2;
+        
+        
+        cbv = [[SSCheckBoxView alloc] initWithFrame:frame
+                                              style:style
+                                            checked:NO];
+        cbv.tag = i;
+        [cbv setText:[NSString stringWithFormat:@"第%02d周", (i + 1)]];
+        [weekBgView addSubview:cbv];
+        
+        frame.origin.y += 36;
+    }
+    
+//    frame.origin.y += 24;
+//    cbv = [[SSCheckBoxView alloc] initWithFrame:frame
+//                                          style:kSSCheckBoxViewStyleGlossy
+//                                        checked:NO];
+//    [cbv setText:@"Enable All"];
+    
+    weekBgView.contentSize = CGSizeMake(ZSScreenW - 40, 36 * 20);
+    
+    [weekBgView addSubview:cbv];
+
+    weekBgView.backgroundColor = [UIColor whiteColor];
+    
+    /** titleLabel*/
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.backgroundColor = [UIColor whiteColor];
+    titleLabel.width = ZSScreenW - 70;
+    titleLabel.height = 30;
+    titleLabel.x = 30;
+    titleLabel.y = 0;
+    titleLabel.text = @"第几周添加课程";
+    [allView addSubview:titleLabel];
+
+    /** titleLabel*/
+    UIButton *nextBtn = [[UIButton alloc] init];
+    nextBtn.width = 80;
+    nextBtn.height = 30;
+    
+    nextBtn.x = CGRectGetMaxX(weekBgView.frame) - nextBtn.width - 10;
+    nextBtn.y = CGRectGetMaxY(allView.frame) - nextBtn.height - 20;
+    [nextBtn setTitle:@"完成添加" forState:UIControlStateNormal];
+    [nextBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [nextBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [nextBtn addTarget:self action:@selector(clickOKBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    [allView addSubview:nextBtn];
+    
+    
+    /** 取消添加*/
+    UIButton *cancelBtn = [[UIButton alloc] init];
+    cancelBtn.width = 80;
+    cancelBtn.height = 30;
+    
+    cancelBtn.x = CGRectGetMaxX(weekBgView.frame) - cancelBtn.width - 20 - nextBtn.width;
+    cancelBtn.y = CGRectGetMaxY(allView.frame) - cancelBtn.height - 20;
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [nextBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [cancelBtn addTarget:self action:@selector(clickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    [allView addSubview:cancelBtn];
+    
+    
+    allView.backgroundColor = [UIColor whiteColor];
+    [allView addSubview:weekBgView];
+    self.weekBgView = weekBgView;
+    
+}
+
+- (void)clickOKBtn
+{
+    
+    [self clickCancelBtn];
+    
+    [SVProgressHUD showSuccessWithStatus:@"成功添加新课程"];
+    
+    NSMutableArray *courseArr = [NSMutableArray array];
+    
+    for (SSCheckBoxView *checkBoxView in self.weekBgView.subviews) {
+        
+        if ([checkBoxView isKindOfClass:[SSCheckBoxView class]]) {
+            
+            if (checkBoxView.checked) {
+                
+                [courseArr addObject:@(checkBoxView.tag + 1)];
+            }
+            
+        }
+    }
+    self.course.weekCourses = courseArr;
+
+    
+    NSArray *timeTable = self.account.timetable;
+    
+    ZSCourse *course = self.course;
+    
+    NSInteger count = self.course.weekCourses.count;
+    
+    NSMutableDictionary *dictCourse = [NSMutableDictionary dictionary];
+    
+    dictCourse[@"classroom"] = course.coursePlace;
+    dictCourse[@"course"] = course.courseName;
+    dictCourse[@"orderLesson"] = @(course.courseNum);
+    
+    for (int i = 0; i < count; i ++) {
+        
+        int k = [course.weekCourses[i] intValue];
+        NSInteger j = course.weekCourse + 1;
+        
+        NSArray *arr = timeTable[k];
+        
+        NSMutableDictionary *dictM = arr[j];
+        
+        dictM[@(course.weekCourse)] = dictCourse;
+    }
+    
+    //保存新课表
+    [ZSAccountTool saveAccountTimeTable:timeTable];
+    self.account = [ZSAccountTool account];
+    //设置课表
+    [self initCourseWithCurrentWeek:self.currentWeek];
+    
+}
+
+- (void)clickSelectWeekDay
+{
+   [self.courseBgView removeFromSuperview];
+    [self.courseName endEditing:YES];
+    [self.coursePlace endEditing:YES];
+
+    
+    self.course.courseName = self.courseName.text;
+    self.course.coursePlace = self.coursePlace.text;
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    UIView *weekDayView = [[UIView alloc] init];
+    weekDayView.backgroundColor = [UIColor whiteColor];
+    weekDayView.width = ZSScreenW - 40;
+    weekDayView.height = ZSScreenH - 150;
+    weekDayView.x = 20;
+    weekDayView.y = 80;
+    [window addSubview:weekDayView];
+    
+    self.weekDayView = weekDayView;
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.frame = CGRectMake(40, 5, ZSScreenW - 80, 30);
+    titleLabel.text = @"   请选择上课周";
+    titleLabel.textColor = [UIColor grayColor];
+    titleLabel.font = [UIFont systemFontOfSize:22];
+    titleLabel.backgroundColor = [UIColor whiteColor];
+    [weekDayView addSubview:titleLabel];
+    
+    NSArray *arr = @[@"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日"];
+    
+    for (int i = 0; i < 7; i ++) {
+        
+        UIButton *btn = [[UIButton alloc] init];
+        btn.width = weekDayView.width;
+        btn.height = 45;
+        btn.x = 0;
+        btn.y = i * (btn.height + 10) + 40;
+        
+        btn.titleEdgeInsets = UIEdgeInsetsMake(0, -150, 0, 0);
+        btn.titleLabel.textAlignment = NSTextAlignmentLeft;
+        
+        [btn setTitle:arr[i] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        
+        btn.tag = i;
+        
+        [btn addTarget:self action:@selector(clickCourse:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [weekDayView addSubview:btn];
+    }
+    
+}
+
+- (void)clickCourse:(UIButton *)btn
+{
+    
+    [self.weekDayView removeFromSuperview];
+    
+    self.course.weekCourse = btn.tag;
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    UIView *courseDayView = [[UIView alloc] init];
+    courseDayView.backgroundColor = [UIColor whiteColor];
+    courseDayView.width = ZSScreenW - 40;
+    courseDayView.height = ZSScreenH - 200;
+    courseDayView.x = 20;
+    courseDayView.y = 100;
+    [window addSubview:courseDayView];
+    
+    self.courseDayView = courseDayView;
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.frame = CGRectMake(40, 5, ZSScreenW - 80, 30);
+    titleLabel.text = @"请选择上课节次";
+    titleLabel.textColor = [UIColor grayColor];
+    titleLabel.font = [UIFont systemFontOfSize:22];
+    titleLabel.backgroundColor = [UIColor whiteColor];
+    [courseDayView addSubview:titleLabel];
+    
+    NSArray *arr = @[@"第一大节", @"第二大节", @"第三大节", @"第四大节", @"第五大节"];
+    
+    for (int i = 0; i < 5; i ++) {
+        
+        UIButton *btn = [[UIButton alloc] init];
+        btn.width = courseDayView.width;
+        btn.height = 45;
+        btn.x = 0;
+        btn.y = i * (btn.height + 10) + 40;
+        
+        btn.titleEdgeInsets = UIEdgeInsetsMake(0, -150, 0, 0);
+        btn.titleLabel.textAlignment = NSTextAlignmentLeft;
+        
+        [btn setTitle:arr[i] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        
+        btn.tag = i;
+        
+        [btn addTarget:self action:@selector(clickNextBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [courseDayView addSubview:btn];
+    }
+    
+}
+
+
+/**
+ *  点击单选按钮
+ */
+
+-(void)didSelectedRadioButton:(QRadioButton *)radio groupId:(NSString *)groupId
+{
+    if ([radio.titleLabel.text isEqualToString:@"必修"]) {
+        
+        ZSLog(@"必修");
+        self.course.neccesaryCourse = @"必修";
+    }
+    if ([radio.titleLabel.text isEqualToString:@"选修"]) {
+        NSLog(@"选修");
+        self.course.neccesaryCourse = @"选修";
+    }
+    
+}
+
+
+#pragma mark - 点击上周下周课表
 
 - (IBAction)clickNextCourseBtn {
     
@@ -569,4 +1045,35 @@
     [self initCourseWithCurrentWeek:self.currentWeek];
 
 }
+
+#pragma mark - 退出键盘
+
+- (void)exitKeyBoard
+{
+    [self.courseName endEditing:YES];
+    [self.coursePlace endEditing:YES];
+}
+
+#pragma mark - UItextFildDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    ZSLog(@"wwww");
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.courseBgView.y -= 100;
+    }];
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.5 animations:^{
+       
+        self.courseBgView.y += 100;
+    }];
+    
+}
+
 @end

@@ -25,6 +25,27 @@
 
 @implementation ZSTabBarController
 
+
++ (void)initialize
+{
+    // 通过appearance统一设置所有UITabBarItem的文字属性
+    // 后面带有UI_APPEARANCE_SELECTOR的方法, 都可以通过appearance对象来统一设置
+    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+    attrs[NSFontAttributeName] = [UIFont systemFontOfSize:12];
+    attrs[NSForegroundColorAttributeName] = [UIColor grayColor];
+    
+    NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
+    selectedAttrs[NSFontAttributeName] = attrs[NSFontAttributeName];
+    selectedAttrs[NSForegroundColorAttributeName] = RGBColor(0, 122, 255, 1);
+    
+    UITabBarItem *item = [UITabBarItem appearance];
+    [item setTitleTextAttributes:attrs forState:UIControlStateNormal];
+    [item setTitleTextAttributes:selectedAttrs forState:UIControlStateSelected];
+    
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -37,8 +58,6 @@
     // 自定义tabBar
     
     ZSTabBar *tabBar = [[ZSTabBar alloc] initWithFrame:self.tabBar.bounds];
-
-
     
     // 利用KVC把readly的属性改
     [self setValue:tabBar forKeyPath:@"tabBar"];
@@ -65,7 +84,7 @@
     //首页
     ZSHomeViewController *homeVC = [[ZSHomeViewController alloc] initWithStyle:UITableViewStyleGrouped];
     //homeVC.view.backgroundColor = [UIColor redColor];
-    [self setUpOneChildViewController:homeVC image:[UIImage imageNamed:@"tab_home_normal"] selectedImage:[UIImage imageNamed:@"tab_home_pressed"] title:@"辽科大助手"];
+    [self setUpOneChildViewController:homeVC image:[UIImage imageNamed:@"tab_home_normal"] selectedImage:[UIImage imageNamed:@"tab_home_pressed"] title:@"首页"];
     
     //消息
 //    ZSMessageViewController *messageVC = [[ZSMessageViewController alloc] init];
@@ -86,13 +105,14 @@
 
 - (void)setUpOneChildViewController:(UIViewController *)vc image:(UIImage *)image selectedImage:(UIImage *)selectedImage title:(NSString *)title
 {
-    vc.title = title;
     
-    vc.tabBarItem.title = @"";
+    vc.tabBarItem.title = title;
     
-    UIImage *ImageNormal = [UIImage imageCompressForSize:image targetSize:CGSizeMake(55, 55)];
-    UIImage *ImageSelected = [UIImage imageCompressForSize:selectedImage targetSize:CGSizeMake(55, 55)];
-
+    UIImage *ImageNormal = [UIImage imageCompressForSize:image targetSize:CGSizeMake(30, 30)];
+    UIImage *ImageSelected = [UIImage imageCompressForSize:selectedImage targetSize:CGSizeMake(30, 30)];
+    
+    [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
     vc.tabBarItem.image = ImageNormal;
     vc.tabBarItem.selectedImage = ImageSelected;
     

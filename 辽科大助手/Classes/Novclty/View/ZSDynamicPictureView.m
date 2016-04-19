@@ -79,7 +79,7 @@
         str = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picNovelty/%@.jpg!small", picture.thumbnail_pic];
     }
     
-    [self sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"about"]];
+    [self sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"gray"]];
     
     //创建gif动画提示
     //    if ([picture.thumbnail_pic.lowercaseString hasSuffix:@"gif"]) {

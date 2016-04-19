@@ -11,4 +11,7 @@
 @interface ZSAccountTool : NSObject
 + (void)saveAccount:(ZSAccount *)account;
 + (ZSAccount *)account;
+
++ (void)saveAccountTimeTable:(NSArray *)timeTable;
+
 @end

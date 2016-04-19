@@ -308,6 +308,15 @@
 #pragma mark -  设置导航栏按钮
 - (void)setUpNavigtionItem
 {
+    
+    NSMutableDictionary *attris = [NSMutableDictionary dictionary];
+    
+    attris[NSFontAttributeName] = [UIFont systemFontOfSize:23.0];
+    attris[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:attris];
+    self.navigationItem.title = @"辽科大助手";
+    
+    
     UIImage *leftImage = [UIImage imageCompressForSize:[UIImage imageNamed:@"top_title"] targetSize:CGSizeMake(44, 44)];
     UIImage *rightImage = [UIImage imageCompressForSize:[UIImage imageNamed:@"top_search"] targetSize:CGSizeMake(44, 44)];
     

@@ -34,4 +34,11 @@ static ZSAccount *_account;
     
     return _account;
 }
+
+
++ (void)saveAccountTimeTable:(NSArray *)timeTable
+{
+    _account.timetable = timeTable;
+    [self saveAccount:_account];
+}
 @end
