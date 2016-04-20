@@ -1,5 +1,5 @@
 //
-//  LBTest4ViewController.h
+//  ZSCourseMenuViewController.h
 //  新浪微博
 //
 //  Created by MacBook Pro on 16/1/1.

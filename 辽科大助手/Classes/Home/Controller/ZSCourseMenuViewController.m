@@ -1,5 +1,5 @@
 //
-//  LBTest4ViewController.m
+//  ZSCourseMenuViewController.h
 //  新浪微博
 //
 //  Created by MacBook Pro on 16/1/1.
@@ -68,14 +68,6 @@
         cell.textLabel.text = @"默认背景";
     }
     
-//    UIView *sparatorView = [[UIView alloc] init];
-//    sparatorView.width = self.view.width;
-//    sparatorView.height = 1;
-//    sparatorView.x = 10;
-//    sparatorView.y = 39;
-//    sparatorView.backgroundColor = [UIColor lightGrayColor];
-//    [cell addSubview:sparatorView];
-    
     
     return cell;
 }
@@ -88,19 +80,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    ZSLog(@"11111");
-    
-    ZSLog(@"%ld", indexPath.row);
-    
     if (indexPath.row == 0) {
-        
-        NSArray *timeTable = [NSKeyedUnarchiver unarchiveObjectWithFile:ZSTimeTablePath];
-        
-        [ZSAccountTool saveAccountTimeTable:timeTable];
         
         [ZSNotificationCenter postNotificationName:@"addCourse" object:nil];
         
     } else if (indexPath.row == 1) {
+
+        NSArray *timeTable = [NSKeyedUnarchiver unarchiveObjectWithFile:ZSTimeTablePath];
+        
+        [ZSAccountTool saveAccountTimeTable:timeTable];
         
         [ZSNotificationCenter postNotificationName:@"initTimetable" object:nil];
     } else if (indexPath.row == 2) {

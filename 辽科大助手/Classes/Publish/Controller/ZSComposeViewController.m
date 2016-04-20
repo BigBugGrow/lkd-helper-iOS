@@ -350,7 +350,6 @@
         [self sendWithoutImage];
     }
     
-
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -381,9 +380,6 @@
      */
     
     NSString *pictruePath = [NSString stringWithFormat:@"/picNovelty/%@.jpg", imagePath];
-    
-    
-    ZSLog(@"%@", pictruePath);
     
     [uy uploadImage:image savekey:pictruePath];
     
@@ -475,7 +471,7 @@
     params[@"date"] = [self getTimeStr];
     params[@"class"] = self.type;
     params[@"nickname"] = self.switchView.isOn ? @"匿名" : nickName;
-    params[@"key"] = self.switchView.isOn ? @"ABCDEFG" : key;
+    params[@"key"] = self.switchView.isOn ? @"ABCDEFGHIJ" : key;
     
     
     NSString *fullText = nil;
