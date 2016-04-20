@@ -136,9 +136,9 @@
 		52857ABC1C9D7F2200F44C27 /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52857AA61C9D7F2200F44C27 /* TransformationMatrix.cpp */; };
 		5286CCB81CBE6ABC00B72C52 /* sonar_pop.aif in Resources */ = {isa = PBXBuildFile; fileRef = 5286CCB71CBE6ABC00B72C52 /* sonar_pop.aif */; };
 		528D5A261CC76D700041A019 /* ZSCourseRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A251CC76D700041A019 /* ZSCourseRightView.m */; };
-		528D5A291CC773410041A019 /* LBTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A281CC773410041A019 /* LBTitleButton.m */; };
-		528D5A2C1CC773FA0041A019 /* LBDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A2B1CC773FA0041A019 /* LBDropDownMenu.m */; };
-		528D5A321CC7765C0041A019 /* LBTest4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A311CC7765C0041A019 /* LBTest4ViewController.m */; };
+		528D5A291CC773410041A019 /* ZSRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A281CC773410041A019 /* ZSRightButton.m */; };
+		528D5A2C1CC773FA0041A019 /* ZSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A2B1CC773FA0041A019 /* ZSDropDownMenu.m */; };
+		528D5A321CC7765C0041A019 /* ZSCourseMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A311CC7765C0041A019 /* ZSCourseMenuViewController.m */; };
 		528D5A361CC783950041A019 /* ZSProfileImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A341CC783950041A019 /* ZSProfileImageCell.m */; };
 		528D5A371CC783950041A019 /* ZSProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528D5A351CC783950041A019 /* ZSProfileImageCell.xib */; };
 		5291C24E1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
@@ -529,12 +529,12 @@
 		5286CCB71CBE6ABC00B72C52 /* sonar_pop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = sonar_pop.aif; sourceTree = "<group>"; };
 		528D5A241CC76D700041A019 /* ZSCourseRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourseRightView.h; sourceTree = "<group>"; };
 		528D5A251CC76D700041A019 /* ZSCourseRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourseRightView.m; sourceTree = "<group>"; };
-		528D5A271CC773410041A019 /* LBTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTitleButton.h; sourceTree = "<group>"; };
-		528D5A281CC773410041A019 /* LBTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTitleButton.m; sourceTree = "<group>"; };
-		528D5A2A1CC773FA0041A019 /* LBDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBDropDownMenu.h; sourceTree = "<group>"; };
-		528D5A2B1CC773FA0041A019 /* LBDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBDropDownMenu.m; sourceTree = "<group>"; };
-		528D5A301CC7765C0041A019 /* LBTest4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTest4ViewController.h; sourceTree = "<group>"; };
-		528D5A311CC7765C0041A019 /* LBTest4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTest4ViewController.m; sourceTree = "<group>"; };
+		528D5A271CC773410041A019 /* ZSRightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSRightButton.h; sourceTree = "<group>"; };
+		528D5A281CC773410041A019 /* ZSRightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSRightButton.m; sourceTree = "<group>"; };
+		528D5A2A1CC773FA0041A019 /* ZSDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSDropDownMenu.h; sourceTree = "<group>"; };
+		528D5A2B1CC773FA0041A019 /* ZSDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSDropDownMenu.m; sourceTree = "<group>"; };
+		528D5A301CC7765C0041A019 /* ZSCourseMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourseMenuViewController.h; sourceTree = "<group>"; };
+		528D5A311CC7765C0041A019 /* ZSCourseMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourseMenuViewController.m; sourceTree = "<group>"; };
 		528D5A331CC783950041A019 /* ZSProfileImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSProfileImageCell.h; sourceTree = "<group>"; };
 		528D5A341CC783950041A019 /* ZSProfileImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSProfileImageCell.m; sourceTree = "<group>"; };
 		528D5A351CC783950041A019 /* ZSProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSProfileImageCell.xib; sourceTree = "<group>"; };
@@ -1761,8 +1761,8 @@
 				5241578B1CA6C80F004A543E /* ZSCourseViewController.h */,
 				5241578C1CA6C80F004A543E /* ZSCourseViewController.m */,
 				5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */,
-				528D5A301CC7765C0041A019 /* LBTest4ViewController.h */,
-				528D5A311CC7765C0041A019 /* LBTest4ViewController.m */,
+				528D5A301CC7765C0041A019 /* ZSCourseMenuViewController.h */,
+				528D5A311CC7765C0041A019 /* ZSCourseMenuViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1800,10 +1800,10 @@
 				524471B31CA7D0E000B8D2E6 /* ZSCourseView.m */,
 				528D5A241CC76D700041A019 /* ZSCourseRightView.h */,
 				528D5A251CC76D700041A019 /* ZSCourseRightView.m */,
-				528D5A2A1CC773FA0041A019 /* LBDropDownMenu.h */,
-				528D5A2B1CC773FA0041A019 /* LBDropDownMenu.m */,
-				528D5A271CC773410041A019 /* LBTitleButton.h */,
-				528D5A281CC773410041A019 /* LBTitleButton.m */,
+				528D5A2A1CC773FA0041A019 /* ZSDropDownMenu.h */,
+				528D5A2B1CC773FA0041A019 /* ZSDropDownMenu.m */,
+				528D5A271CC773410041A019 /* ZSRightButton.h */,
+				528D5A281CC773410041A019 /* ZSRightButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2346,7 +2346,7 @@
 				EF2AB62B1C0F17DB00DB93FC /* ZSAccount.m in Sources */,
 				52C426AA1CA13970005F2325 /* ZSCommentViewCell.m in Sources */,
 				52F3AF831CB15F7600E799D7 /* ZSInfoViewController.m in Sources */,
-				528D5A321CC7765C0041A019 /* LBTest4ViewController.m in Sources */,
+				528D5A321CC7765C0041A019 /* ZSCourseMenuViewController.m in Sources */,
 				EF2AB6251C0F17A500DB93FC /* UIImage+WebP.m in Sources */,
 				52857AB61C9D7F2200F44C27 /* POPGeometry.mm in Sources */,
 				52857AAC1C9D7F2200F44C27 /* POPAnimation.mm in Sources */,
@@ -2364,7 +2364,7 @@
 				EFE538301C1574E200A2B6EF /* ZSTimeTabelModel.m in Sources */,
 				525021CE1C9ECA2C008F2526 /* UPYUNConfig.m in Sources */,
 				52857ABB1C9D7F2200F44C27 /* POPVector.mm in Sources */,
-				528D5A291CC773410041A019 /* LBTitleButton.m in Sources */,
+				528D5A291CC773410041A019 /* ZSRightButton.m in Sources */,
 				525021D21C9ECA2C008F2526 /* UPHTTPClient.m in Sources */,
 				529F91961CBCD14A00E851EB /* ZSNewsParams.m in Sources */,
 				EF2AB6101C0F17A500DB93FC /* NSObject+MJKeyValue.m in Sources */,
@@ -2375,7 +2375,7 @@
 				52B82C921CB502B300FCE456 /* ZSExpressDeliveryViewController.m in Sources */,
 				5291C24E1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */,
 				525F32BE1C852A4000014A64 /* MBProgressHUD+MJ.m in Sources */,
-				528D5A2C1CC773FA0041A019 /* LBDropDownMenu.m in Sources */,
+				528D5A2C1CC773FA0041A019 /* ZSDropDownMenu.m in Sources */,
 				52857AAB1C9D7F2200F44C27 /* POPAnimatableProperty.mm in Sources */,
 				523E21B81CB388C5003BC391 /* ZSLostThingViewCell.m in Sources */,
 				5244DC751CA1039500147B72 /* ZSAllDynamicCell.m in Sources */,

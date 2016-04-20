@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LBTitleButton : UIButton
+@interface ZSRightButton : UIButton
 
 @end

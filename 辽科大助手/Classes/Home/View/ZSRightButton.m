@@ -6,9 +6,9 @@
 //  Copyright © 2016年 USTL. All rights reserved.
 //
 
-#import "LBTitleButton.h"
+#import "ZSRightButton.h"
 
-@implementation LBTitleButton
+@implementation ZSRightButton
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

@@ -6,10 +6,10 @@
 //  Copyright © 2016年 USTL. All rights reserved.
 //
 
-#import "LBTest4ViewController.h"
+#import "ZSCourseMenuViewController.h"
 #import "ZSAccountTool.h"
 #import "ZSAccount.h"
-@implementation LBTest4ViewController
+@implementation ZSCourseMenuViewController
 
 
 - (void)viewDidLoad

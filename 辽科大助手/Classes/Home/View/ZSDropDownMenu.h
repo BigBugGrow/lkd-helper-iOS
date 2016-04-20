@@ -8,22 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@class LBDropDownMenu;
+@class ZSDropDownMenu;
 
-@protocol LBDropDownMenuDelegate <NSObject>
+@protocol ZSDropDownMenuDelegate <NSObject>
 
 @optional
 //设置标题按钮图片向下
-- (void)dropDownMenuDidDismiss:(LBDropDownMenu *)menu;
+- (void)dropDownMenuDidDismiss:(ZSDropDownMenu *)menu;
 //设置箭头向上
-- (void)dropDownMenuDidShow:(LBDropDownMenu *)menu;
+- (void)dropDownMenuDidShow:(ZSDropDownMenu *)menu;
 
 @end
 
-@interface LBDropDownMenu : UIView
+@interface ZSDropDownMenu : UIView
 
 //添加代理属性
-@property (nonatomic, weak) id<LBDropDownMenuDelegate> delegate;
+@property (nonatomic, weak) id<ZSDropDownMenuDelegate> delegate;
 
 //创建菜单
 + (instancetype)menu;

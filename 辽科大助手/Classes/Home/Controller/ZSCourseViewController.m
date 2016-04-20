@@ -19,9 +19,9 @@
 #import "SVProgressHUD.h"
 #import "UIBarButtonItem+Extension.h"
 #import "ZSCourseRightView.h"
-#import "LBTitleButton.h"
-#import "LBDropDownMenu.h"
-#import "LBTest4ViewController.h"
+#import "ZSRightButton.h"
+#import "ZSDropDownMenu.h"
+#import "ZSCourseMenuViewController.h"
 
 #define ZSBackGroudImage @"timeTableBackGroudImage"
 
@@ -29,7 +29,7 @@
 #define CHRight 250
 #define CHLeft -250
 
-@interface ZSCourseViewController ()<QRadioButtonDelegate, UITextFieldDelegate,LBDropDownMenuDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ZSCourseViewController ()<QRadioButtonDelegate, UITextFieldDelegate,ZSDropDownMenuDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 /** 加号按钮*/
 @property (weak, nonatomic) IBOutlet UIButton *plusBtn;
 
@@ -79,7 +79,7 @@
 
 
 /**menu*/
-@property (nonatomic, strong) LBDropDownMenu *menu;
+@property (nonatomic, strong) ZSDropDownMenu *menu;
 
 //侧栏
 @property(nonatomic,weak)UIView *rightView;
@@ -118,7 +118,6 @@
 @end
 
 @implementation ZSCourseViewController
-
 
 /** 懒加载*/
 - (ZSCourse *)course
@@ -327,13 +326,13 @@
 - (void)clickTitleBtn:(UIButton *)titleBtn
 {
     //1.创建菜单
-    LBDropDownMenu *menu = [LBDropDownMenu menu];
+    ZSDropDownMenu *menu = [ZSDropDownMenu menu];
     
     self.menu = menu;
     //4.设置代理
     menu.delegate = self;
     
-    LBTest4ViewController *menuVc = [[LBTest4ViewController alloc] init];
+    ZSCourseMenuViewController *menuVc = [[ZSCourseMenuViewController alloc] init];
     
     //设置高度
     menuVc.view.height = 220;
@@ -346,7 +345,7 @@
 }
 
 #pragma mark - LNDropDownMenuDelegate代理方法
-- (void)dropDownMenuDidDismiss:(LBDropDownMenu *)menu
+- (void)dropDownMenuDidDismiss:(ZSDropDownMenu *)menu
 {
     //获取UINavogation
     UIButton *titleBtn = (UIButton *)self.navigationItem.rightBarButtonItem;
@@ -356,7 +355,7 @@
     titleBtn.selected = NO;
 }
 
-- (void)dropDownMenuDidShow:(LBDropDownMenu *)menu
+- (void)dropDownMenuDidShow:(ZSDropDownMenu *)menu
 {
     //获取UINavogation
     UIButton *titleBtn = (UIButton *)self.navigationItem.rightBarButtonItem;

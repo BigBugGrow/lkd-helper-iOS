@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LBTest4ViewController : UITableViewController
+@interface ZSCourseMenuViewController : UITableViewController
 
 @end
