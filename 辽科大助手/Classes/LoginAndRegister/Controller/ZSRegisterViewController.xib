@@ -10,6 +10,7 @@
                 <outlet property="activityIndicator" destination="qKr-Vx-hgo" id="dut-WN-YsS"/>
                 <outlet property="iconImageView" destination="2LN-OI-uh7" id="XKx-x7-kaJ"/>
                 <outlet property="passwordText" destination="5uM-vu-JGW" id="jgJ-Tw-7Pf"/>
+                <outlet property="registBtn" destination="rYg-P9-6qe" id="Re0-8U-F4t"/>
                 <outlet property="segmentedControlButton" destination="00L-s7-3ys" id="YM5-1m-2ZI"/>
                 <outlet property="userNameText" destination="VBM-X6-e8J" id="9b7-st-Eoh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -77,6 +78,9 @@
                             </constraints>
                             <state key="normal" title="注册">
                                 <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -146,7 +150,7 @@
     </objects>
     <resources>
         <image name="password" width="160" height="161"/>
-        <image name="regist_head_unlogin" width="160" height="160"/>
+        <image name="regist_head_unlogin" width="158" height="157"/>
         <image name="username" width="160" height="161"/>
     </resources>
 </document>

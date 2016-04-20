@@ -19,24 +19,4 @@
 
 @implementation ZSCourseView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
-        
-        
-        
-    }
-    return self;
-}
-
-
-
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    
-}
-
 @end

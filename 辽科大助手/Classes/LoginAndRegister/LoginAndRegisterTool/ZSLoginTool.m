@@ -90,6 +90,11 @@
             
             accountDict[@"timetable"] = planarArr;
             
+            ZSLog(@"%@", planarArr);
+        
+            
+            [NSKeyedArchiver archiveRootObject:planarArr toFile:ZSTimeTablePath];
+            
         }
         
         //字典转模型

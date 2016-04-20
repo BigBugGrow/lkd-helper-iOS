@@ -87,11 +87,11 @@
     scroView.height = ZSScreenH;
     [self.view addSubview:scroView];
     self.scroView = scroView;
-    self.scroView.backgroundColor = [UIColor lightGrayColor];
+    self.scroView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login_register_background"]];
     self.scroView.bounces = NO;
     self.scroView.showsHorizontalScrollIndicator = NO;
     self.scroView.alwaysBounceHorizontal = NO;
-    self.scroView.contentSize = CGSizeMake(0, ZSScreenH + 200);
+    self.scroView.contentSize = CGSizeMake(0, ZSScreenH + 60);
     scroView.delegate = self;
     
     UITextField *thingLabel = [[UITextField alloc] init];

@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="B57-r8-UbG" id="Mrd-kD-2mx"/>
                 <outlet property="iconImageView" destination="RDG-JJ-JfJ" id="VkO-ac-kfR"/>
+                <outlet property="loginBtn" destination="piW-y7-M88" id="71t-5I-8i7"/>
                 <outlet property="passwordText" destination="tRr-hM-MKL" id="cUG-yA-W5d"/>
                 <outlet property="userNameText" destination="76X-yO-KLq" id="SpR-Ry-Fw6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -48,6 +49,9 @@
                             </constraints>
                             <state key="normal" title="登录">
                                 <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

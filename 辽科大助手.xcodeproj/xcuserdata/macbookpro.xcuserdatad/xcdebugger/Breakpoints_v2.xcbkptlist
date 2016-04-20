@@ -79,22 +79,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;/Classes/Novclty/Controller/ZSBasicViewController.m"
-            timestampString = "482491178.535069"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-updateImage"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x8fbd;&#x79d1;&#x5927;&#x52a9;&#x624b;/Classes/Novclty/View/ZSCommentViewCell.m"
             timestampString = "482491186.487276"
             startingColumnNumber = "9223372036854775807"

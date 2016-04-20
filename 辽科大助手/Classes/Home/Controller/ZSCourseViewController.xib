@@ -22,27 +22,27 @@
                     <color key="backgroundColor" red="0.86902592320000005" green="1" blue="0.61608212259999995" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qV-Gf-Lv0">
-                    <rect key="frame" x="135" y="523" width="50" height="45"/>
+                    <rect key="frame" x="137.5" y="523" width="45" height="45"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="hsZ-qT-pWE"/>
+                        <constraint firstAttribute="width" constant="45" id="hsZ-qT-pWE"/>
                     </constraints>
                     <state key="normal" image="eye">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="clcikPlusBtn" destination="-1" eventType="touchUpInside" id="xvd-xs-Ks8"/>
+                        <action selector="clickPlusBtn" destination="-1" eventType="touchUpInside" id="E6D-E8-Gm8"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xm-5O-RwQ">
-                    <rect key="frame" x="0.0" y="523" width="135" height="45"/>
+                    <rect key="frame" x="0.0" y="523" width="137.5" height="45"/>
                     <state key="normal" title="上周课表"/>
                     <connections>
                         <action selector="clickLastCourseBtn" destination="-1" eventType="touchUpInside" id="En3-d7-q1j"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qy5-yH-EFO">
-                    <rect key="frame" x="185" y="523" width="135" height="45"/>
+                    <rect key="frame" x="182.5" y="523" width="137.5" height="45"/>
                     <state key="normal" title="下周课表"/>
                     <connections>
                         <action selector="clickNextCourseBtn" destination="-1" eventType="touchUpInside" id="OTf-aB-rHf"/>

@@ -144,7 +144,7 @@ static NSString * const commentID = @"commentCell";
             self.isFirstCome = YES;
             //设置tableview默认选中行
             
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:(countNum - 1) inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:(countNum - 2) inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         }
             
     } failure:^(NSError *error) {
@@ -189,6 +189,8 @@ static NSString * const commentID = @"commentCell";
 /** 初始化headerView*/
 - (void)initHeaderView
 {
+    
+    self.navigationItem.title = @"评论";
     ZSAllDynamicCell *headerView = [[ZSAllDynamicCell alloc] init];
     
     headerView.backgroundColor = [UIColor whiteColor];
@@ -250,6 +252,9 @@ static NSString * const commentID = @"commentCell";
             
             [SVProgressHUD showSuccessWithStatus:@"评论成功"];
             
+            //清空textFild内容为空
+            self.inputTextFild.text = nil;
+            
             //添加监听
             [self textChange];
             
@@ -262,11 +267,9 @@ static NSString * const commentID = @"commentCell";
             //退出键盘
             [self.view endEditing:YES];
             
-            //清空textFild内容为空
-            self.inputTextFild.text = nil;
-            
             //告诉其他控制器显示新的评论数量
             if ([self.delegate respondsToSelector:@selector(loadNewData)]) {
+                
                 
                 [self.delegate loadNewData];
             }

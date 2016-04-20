@@ -17,8 +17,19 @@
 #import "SSCheckBoxView.h"
 #import "ZSCourse.h"
 #import "SVProgressHUD.h"
+#import "UIBarButtonItem+Extension.h"
+#import "ZSCourseRightView.h"
+#import "LBTitleButton.h"
+#import "LBDropDownMenu.h"
+#import "LBTest4ViewController.h"
 
-@interface ZSCourseViewController ()<QRadioButtonDelegate, UITextFieldDelegate>
+#define ZSBackGroudImage @"timeTableBackGroudImage"
+
+#define CHTopPadingY 100
+#define CHRight 250
+#define CHLeft -250
+
+@interface ZSCourseViewController ()<QRadioButtonDelegate, UITextFieldDelegate,LBDropDownMenuDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 /** 加号按钮*/
 @property (weak, nonatomic) IBOutlet UIButton *plusBtn;
 
@@ -63,10 +74,16 @@
 /**下一步btn*/
 @property (nonatomic, weak) UIButton *nextBtn;
 
-
 /**取消btn*/
 @property (nonatomic, weak) UIButton *cancelBtn;
 
+
+/**menu*/
+@property (nonatomic, strong) LBDropDownMenu *menu;
+
+//侧栏
+@property(nonatomic,weak)UIView *rightView;
+@property(nonatomic,assign)BOOL draging;
 
 - (IBAction)clcikPlusBtn;
 - (IBAction)clickNextCourseBtn;
@@ -157,13 +174,201 @@
 
     // 标题
     UIButton *titleButton = [[UIButton alloc] init];
-    titleButton.frame = CGRectMake(0, 0, 150, 30);
+    titleButton.frame = CGRectMake(0, 0, 120, 30);
     self.navigationItem.titleView = titleButton;
     self.titleBtn = titleButton;
     //下面加好按钮
     self.plusBtn.backgroundColor = RGBColor(3, 169, 244, 1);
     
+    //设置标题按钮
+    UIButton *rightBtn = [[UIButton alloc] init];
+    
+    rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+    
+    rightBtn.width = 55;
+    rightBtn.height = 30;
+    rightBtn.x = 0;
+    rightBtn.y = 0;
+    
+    [rightBtn setTitle:@"更多" forState:UIControlStateNormal];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [rightBtn addTarget:self action:@selector(clickTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];;
+    
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(changeBgImage) name:@"changeBgImage" object:nil];
+
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(initTimeTable) name:@"initTimetable" object:nil];
+
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(changeBgDefaultImage) name:@"changeBgDefaultImage" object:nil];
+
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(clickPlusBtn) name:@"addCourse" object:nil];
+
+    //如果本地存在背景图片， 就用本地背景图片
+    if ([self LocalHaveImage:ZSBackGroudImage]) {
+        
+        self.backGroudImageView.image = [self GetImageFromLocal:ZSBackGroudImage];
+    }
+    
 }
+
+
+#pragma mark - 通知方法
+
+- (void)changeBgDefaultImage
+{
+    [self.menu dismiss];
+    [SVProgressHUD showSuccessWithStatus:@"设置成功"];
+    UIImage *defaultImage = [UIImage imageNamed:@"back"];
+    self.backGroudImageView.image = defaultImage;
+    [self SaveImageToLocal:defaultImage Keys:ZSBackGroudImage];
+}
+
+- (void)initTimeTable
+{
+    
+    [self.menu dismiss];
+    
+    [SVProgressHUD showSuccessWithStatus:@"初始化成功"];
+    //设置课表
+    [self initCourseWithCurrentWeek:self.currentWeek];
+}
+
+- (void)changeBgImage
+{
+    [self.menu dismiss];
+    [self openAlbum];
+}
+
+#pragma mark - 代开相册
+
+- (void)openAlbum
+{
+    //    UIImagePickerControllerSourceTypePhotoLibrary > UIImagePickerControllerSourceTypeSavedPhotosAlbum
+    //获得所有图片
+    [self openImagePickerController:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (void)openImagePickerController:(UIImagePickerControllerSourceType)ImagePickerControllerSourceType
+{
+    //若相机在没摔坏 没故障的情况下，就打开相机
+    if (![UIImagePickerController isSourceTypeAvailable:ImagePickerControllerSourceType]) return;
+    
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = ImagePickerControllerSourceType;
+    //监听她的图片
+    ipc.delegate = self;
+    [self presentViewController:ipc animated:YES completion:nil];
+    
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+/**
+ *  从UIImagePickerControllerDelegate选择图片后就调用（拍完照完毕或者选择相册图片完毕）
+ */
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    //拿出info中包含选择的图片
+    UIImage *picture = info[UIImagePickerControllerOriginalImage];
+    
+    [self SaveImageToLocal:picture Keys:ZSBackGroudImage];
+    
+    self.backGroudImageView.image = picture;
+    
+    [SVProgressHUD showSuccessWithStatus:@"修改背景成功"];
+}
+
+#pragma mark - 保存图片
+
+//将图片保存到本地
+- (void)SaveImageToLocal:(UIImage*)image Keys:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    [preferences setObject:UIImagePNGRepresentation(image) forKey:key];
+}
+
+//本地是否有相关图片
+- (BOOL)LocalHaveImage:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    NSData* imageData = [preferences objectForKey:key];
+    if (imageData) {
+        return YES;
+    }
+    return NO;
+}
+
+//从本地获取图片
+- (UIImage*)GetImageFromLocal:(NSString*)key {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    //[preferences persistentDomainForName:LocalPath];
+    NSData* imageData = [preferences objectForKey:key];
+    UIImage* image;
+    if (imageData) {
+        image = [UIImage imageWithData:imageData];
+    }
+    else {
+        ZSLog(@"未从本地获得图片");
+    }
+    return image;
+}
+
+
+
+#pragma mark - 点击右边按钮
+
+//点击标题按钮
+- (void)clickTitleBtn:(UIButton *)titleBtn
+{
+    //1.创建菜单
+    LBDropDownMenu *menu = [LBDropDownMenu menu];
+    
+    self.menu = menu;
+    //4.设置代理
+    menu.delegate = self;
+    
+    LBTest4ViewController *menuVc = [[LBTest4ViewController alloc] init];
+    
+    //设置高度
+    menuVc.view.height = 220;
+    menuVc.view.width = 150;
+    //2.添加内容
+    menu.contentViewController = menuVc;
+    //3.显示菜单
+    [menu show:titleBtn];
+    
+}
+
+#pragma mark - LNDropDownMenuDelegate代理方法
+- (void)dropDownMenuDidDismiss:(LBDropDownMenu *)menu
+{
+    //获取UINavogation
+    UIButton *titleBtn = (UIButton *)self.navigationItem.rightBarButtonItem;
+    
+    //4.换标题按钮图片
+    //    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    titleBtn.selected = NO;
+}
+
+- (void)dropDownMenuDidShow:(LBDropDownMenu *)menu
+{
+    //获取UINavogation
+    UIButton *titleBtn = (UIButton *)self.navigationItem.rightBarButtonItem;
+    
+    //4.换标题按钮图片
+    //    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
+    titleBtn.selected = YES;
+}
+
+
+
+#pragma mark - 获取时间数组
 
 /** 获取时间数组*/
 - (NSArray *)getTimeArrayWithDay:(NSInteger)day month:(NSInteger)month
@@ -368,7 +573,7 @@
             
         }
         
-        
+
         self.lastMouth = 0;
         self.nextMouth = 0;
     }
@@ -397,17 +602,18 @@
     return days;
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //等待开发添加课表功能，按钮先设置为不能够点击
-//    self.plusBtn.userInteractionEnabled = NO;
     
     NSDate *date = [NSDate date];
     
     ZSAccount *account = [ZSAccountTool account];
     self.account = account;
     
+    //开学日期
     NSInteger count = [self getUTCFormateDate:account.termBeginTime];
     
     self.currentWeek = count / 7 + 1;
@@ -423,19 +629,22 @@
     //添加日期星期按钮
     [self initTimeDateLabel];
     
-    
     //设置星期， 月
     [self initLabelWithDay:self.currentDay month:self.month];
     
-
     //设置课表
     [self initCourseWithCurrentWeek:self.currentWeek];
     
     [self settingTitleWithWeek:self.currentWeek];
     
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     
-    
-    
+    [self.menu dismiss];
 }
 
 #pragma mark - 初始化课表
@@ -557,13 +766,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-
 #pragma mark - 点击添加课程
 
-- (IBAction)clcikPlusBtn {
+- (IBAction)clickPlusBtn {
     
+    //除去菜单
+    [self.menu dismiss];
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     
@@ -576,8 +784,7 @@
     
     self.cover = cover;
     
-    
-    
+
     CGFloat marginW = 20;
     
     UIView *view = [[UIView alloc] init];
@@ -646,7 +853,8 @@
     cancelBtn.x = view.width - cancelBtn.width - 5 * marginW;
     cancelBtn.y = CGRectGetMaxY(radio1.frame) + 2 * marginW;
     [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    
+    [cancelBtn setTitleColor:RGBColor(13, 148, 252, 1) forState:UIControlStateNormal];
     [cancelBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [cancelBtn addTarget:self action:@selector(clickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
     self.cancelBtn = cancelBtn;
@@ -659,7 +867,7 @@
     nextBtn.y = CGRectGetMaxY(radio1.frame) + 2 * marginW;
     [nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
     
-    [nextBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [nextBtn setTitleColor:RGBColor(13, 148, 252, 1) forState:UIControlStateNormal];
     [nextBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     
     [nextBtn addTarget:self action:@selector(clickSelectWeekDay) forControlEvents:UIControlEventTouchUpInside];

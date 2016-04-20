@@ -22,6 +22,7 @@
 @interface ZSStudentNumBindViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *xHText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
+@property (weak, nonatomic) IBOutlet UIButton *bindBtn;
 
 @property  (nonatomic,strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
@@ -34,7 +35,20 @@
      self.activityIndicator.hidden = YES;
      self.navigationItem.title = @"学号绑定";
     
+    // 1.addTarget
+    [self.xHText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    [self.passwordText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    //添加监听
+    [self textChange];
+
 }
+
+- (void)textChange
+{
+    // 判断两个文本框的内容
+    self.bindBtn.enabled = self.xHText.text.length && self.passwordText.text.length;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

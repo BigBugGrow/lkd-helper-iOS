@@ -286,6 +286,13 @@
     }
     
 }
+//
+//- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+//{
+//    ZSLog(@"222");
+//    self.navigationItem.rightBarButtonItem.enabled = (self.textView.hasText || self.textView.attributedText);
+//    return YES;
+//}
 
 #pragma mark - 监听按钮方法
 
@@ -306,10 +313,10 @@
 
 }
 
-
 - (void)textDidChanged
 {
-    self.navigationItem.rightBarButtonItem.enabled = self.textView.hasText;
+    ZSLog(@"222");
+    self.navigationItem.rightBarButtonItem.enabled = (self.textView.hasText || self.textView.attributedText);
 }
 
 

@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 /** 头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 @property  (nonatomic,strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -50,8 +51,20 @@
     returnButtonItem.title = @"返回";
     self.navigationItem.backBarButtonItem = returnButtonItem;
     
+    // 1.addTarget
+    [self.userNameText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    [self.passwordText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    //添加监听
+    [self textChange];
     
 }
+
+- (void)textChange
+{
+    // 判断两个文本框的内容
+    self.loginBtn.enabled = self.userNameText.text.length && self.passwordText.text.length;
+}
+
 
 
 - (void)didReceiveMemoryWarning {

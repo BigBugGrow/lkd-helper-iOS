@@ -192,6 +192,8 @@
     ZSAccount *account = [ZSAccountTool account];
     self.account = account;
     
+    ZSLog(@"%@", account.key);
+    
      //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
     NSInteger count = [self getUTCFormateDate:account.termBeginTime];
@@ -233,7 +235,7 @@
         
         NSDate * date = [formatter dateFromString:dateStr];//把字符串转换成Date格式
     
-        ZSLog(@"%@    %@", dateStr, date);
+        
         
         if (timetable0 && [timetable0.timeOfLesson isEqualToString:dateStr]) {
             

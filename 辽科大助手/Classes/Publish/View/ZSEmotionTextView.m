@@ -60,7 +60,7 @@
         //若想把所有的图片文字 还有emoji表情，拿过来，就必须重新定义自己的NSAttachment
         ZSTextAttachment *attach = attrs[@"NSAttachment"];
         
-        if (attach) { //如果是图片表情 ,将cht 文字发给新浪
+        if (attach) {
             
             [fullText appendString:attach.emotion.cht];
         } else { //否则就是普通文字

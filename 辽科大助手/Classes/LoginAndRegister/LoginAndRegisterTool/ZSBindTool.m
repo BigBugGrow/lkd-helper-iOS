@@ -70,6 +70,10 @@
         //字典数组转存放天课表，周课表的二维数组
         NSArray *planarArr = [self timetableDictArrConvertToPlanarArr:accountDict[@"timetable"]];
         
+        
+        [NSKeyedArchiver archiveRootObject:planarArr toFile:ZSTimeTablePath];
+
+        
         accountDict[@"timetable"] = planarArr;
         
         //字典转模型

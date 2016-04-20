@@ -92,6 +92,7 @@
     titleLabel.backgroundColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.text = @"    免责声明";
+    
     titleLabel.width = ZSScreenW - margin * 2;
     titleLabel.height = 50;
     titleLabel.x = margin;
@@ -101,7 +102,7 @@
     
     UIButton *kownBtn = [[UIButton alloc] init];
     [kownBtn setTitle:@"知道了" forState:UIControlStateNormal];
-    [kownBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [kownBtn setTitleColor:RGBColor(21, 156, 251, 1) forState:UIControlStateNormal];
     kownBtn.width = ZSScreenW - 2 * margin;
     kownBtn.height = 40;
     kownBtn.x = margin;

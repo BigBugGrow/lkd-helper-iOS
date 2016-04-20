@@ -44,6 +44,9 @@
 /** 判断是否第一次加载数据*/
 @property (nonatomic, assign) BOOL flag;
 
+/**点击的行*/
+@property (nonatomic, assign) NSInteger selectedRow;
+
 @end
 
 @implementation ZSBasicViewController
@@ -331,9 +334,9 @@
         //新来的最新数据
         NSArray *nowDynamics = [NSArray array];
         
-        
-        
-        /** 本想做一个数据缓存， 但是显示表情 有一个bug 表情字体会变大*/
+    
+
+#warning  /** 本想做一个数据缓存， 但是显示表情 有一个bug 表情字体会变大*/
         if ([self.type isEqualToString:@"all"]) {
             
             //缓存数据
@@ -449,9 +452,11 @@
 {
     ZSCommenViewController *commenView = [[ZSCommenViewController alloc] init];
     commenView.allDynamicFrame = self.allDynamicFrames[indexPath.row];
-    commenView.title = @"评论";
+    
+    //记录点击的行
+    self.selectedRow = indexPath.row;
+    
     [self.navigationController pushViewController:commenView animated:YES];
-
 
     commenView.delegate = self;
     
@@ -473,8 +478,9 @@
 - (void)loadNewData
 {
     ZSLog(@"输出");
-    //刷新数据
-    [self getNewData];
+    //刷新表格
+    [self.tableView reloadData];
+    
 }
 
 

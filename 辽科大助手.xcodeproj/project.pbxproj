@@ -135,6 +135,12 @@
 		52857ABB1C9D7F2200F44C27 /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52857AA31C9D7F2200F44C27 /* POPVector.mm */; };
 		52857ABC1C9D7F2200F44C27 /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52857AA61C9D7F2200F44C27 /* TransformationMatrix.cpp */; };
 		5286CCB81CBE6ABC00B72C52 /* sonar_pop.aif in Resources */ = {isa = PBXBuildFile; fileRef = 5286CCB71CBE6ABC00B72C52 /* sonar_pop.aif */; };
+		528D5A261CC76D700041A019 /* ZSCourseRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A251CC76D700041A019 /* ZSCourseRightView.m */; };
+		528D5A291CC773410041A019 /* LBTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A281CC773410041A019 /* LBTitleButton.m */; };
+		528D5A2C1CC773FA0041A019 /* LBDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A2B1CC773FA0041A019 /* LBDropDownMenu.m */; };
+		528D5A321CC7765C0041A019 /* LBTest4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A311CC7765C0041A019 /* LBTest4ViewController.m */; };
+		528D5A361CC783950041A019 /* ZSProfileImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A341CC783950041A019 /* ZSProfileImageCell.m */; };
+		528D5A371CC783950041A019 /* ZSProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528D5A351CC783950041A019 /* ZSProfileImageCell.xib */; };
 		5291C24E1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
 		5291C24F1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
 		5291C2501CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
@@ -258,8 +264,6 @@
 		EFE538301C1574E200A2B6EF /* ZSTimeTabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE5382F1C1574E200A2B6EF /* ZSTimeTabelModel.m */; };
 		EFE538331C157EA700A2B6EF /* NSDate+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE538321C157EA700A2B6EF /* NSDate+Convert.m */; };
 		EFE538391C15850F00A2B6EF /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE538381C15850F00A2B6EF /* NSDate+Utilities.m */; };
-		EFE9D8911C0D94AE0072A4F7 /* ZSProfileImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE9D88E1C0D94AE0072A4F7 /* ZSProfileImageCell.m */; };
-		EFE9D8921C0D94AE0072A4F7 /* ZSProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE9D88F1C0D94AE0072A4F7 /* ZSProfileImageCell.xib */; };
 		EFE9D8A81C0E4DB80072A4F7 /* ZSNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE9D8A71C0E4DB80072A4F7 /* ZSNewFeatureController.m */; };
 		EFE9D8AB1C0E52DB0072A4F7 /* ZSNewFeatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE9D8AA1C0E52DB0072A4F7 /* ZSNewFeatureCell.m */; };
 		EFFC6AFC1C04852500469F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFFC6AFB1C04852500469F99 /* Assets.xcassets */; };
@@ -523,6 +527,17 @@
 		52857AA71C9D7F2200F44C27 /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformationMatrix.h; sourceTree = "<group>"; };
 		52857AA81C9D7F2200F44C27 /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
 		5286CCB71CBE6ABC00B72C52 /* sonar_pop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = sonar_pop.aif; sourceTree = "<group>"; };
+		528D5A241CC76D700041A019 /* ZSCourseRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourseRightView.h; sourceTree = "<group>"; };
+		528D5A251CC76D700041A019 /* ZSCourseRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourseRightView.m; sourceTree = "<group>"; };
+		528D5A271CC773410041A019 /* LBTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTitleButton.h; sourceTree = "<group>"; };
+		528D5A281CC773410041A019 /* LBTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTitleButton.m; sourceTree = "<group>"; };
+		528D5A2A1CC773FA0041A019 /* LBDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBDropDownMenu.h; sourceTree = "<group>"; };
+		528D5A2B1CC773FA0041A019 /* LBDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBDropDownMenu.m; sourceTree = "<group>"; };
+		528D5A301CC7765C0041A019 /* LBTest4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTest4ViewController.h; sourceTree = "<group>"; };
+		528D5A311CC7765C0041A019 /* LBTest4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTest4ViewController.m; sourceTree = "<group>"; };
+		528D5A331CC783950041A019 /* ZSProfileImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSProfileImageCell.h; sourceTree = "<group>"; };
+		528D5A341CC783950041A019 /* ZSProfileImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSProfileImageCell.m; sourceTree = "<group>"; };
+		528D5A351CC783950041A019 /* ZSProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSProfileImageCell.xib; sourceTree = "<group>"; };
 		5291C24C1CC5FEFD00D2C1C0 /* ZSCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourse.h; sourceTree = "<group>"; };
 		5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourse.m; sourceTree = "<group>"; };
 		5292295D1CB3FCAB0042F101 /* ZSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAboutViewController.h; sourceTree = "<group>"; };
@@ -762,9 +777,6 @@
 		EFE538321C157EA700A2B6EF /* NSDate+Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Convert.m"; sourceTree = "<group>"; };
 		EFE538371C15850F00A2B6EF /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		EFE538381C15850F00A2B6EF /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
-		EFE9D88D1C0D94AE0072A4F7 /* ZSProfileImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSProfileImageCell.h; sourceTree = "<group>"; };
-		EFE9D88E1C0D94AE0072A4F7 /* ZSProfileImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSProfileImageCell.m; sourceTree = "<group>"; };
-		EFE9D88F1C0D94AE0072A4F7 /* ZSProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSProfileImageCell.xib; sourceTree = "<group>"; };
 		EFE9D8A61C0E4DB80072A4F7 /* ZSNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewFeatureController.h; sourceTree = "<group>"; };
 		EFE9D8A71C0E4DB80072A4F7 /* ZSNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNewFeatureController.m; sourceTree = "<group>"; };
 		EFE9D8A91C0E52DB0072A4F7 /* ZSNewFeatureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNewFeatureCell.h; sourceTree = "<group>"; };
@@ -1749,6 +1761,8 @@
 				5241578B1CA6C80F004A543E /* ZSCourseViewController.h */,
 				5241578C1CA6C80F004A543E /* ZSCourseViewController.m */,
 				5241578D1CA6C80F004A543E /* ZSCourseViewController.xib */,
+				528D5A301CC7765C0041A019 /* LBTest4ViewController.h */,
+				528D5A311CC7765C0041A019 /* LBTest4ViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1774,16 +1788,22 @@
 		EF56D6771C09DA8B00A3B314 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				529D094C1C8669AB00DE8C7F /* ZSWeatherView */,
 				525366EA1CC53636002D520C /* SSCheckBoxView */,
 				525366E71CC527F0002D520C /* QRadioButton.h */,
 				525366E81CC527F0002D520C /* QRadioButton.m */,
-				529D094C1C8669AB00DE8C7F /* ZSWeatherView */,
 				EFB6CA5E1C1111230065BAF8 /* ZSTimeTableCell.h */,
 				EFB6CA5F1C1111230065BAF8 /* ZSTimeTableCell.m */,
 				EFB6CA661C1111D20065BAF8 /* ZSInquireCell.h */,
 				EFB6CA671C1111D20065BAF8 /* ZSInquireCell.m */,
 				524471B21CA7D0E000B8D2E6 /* ZSCourseView.h */,
 				524471B31CA7D0E000B8D2E6 /* ZSCourseView.m */,
+				528D5A241CC76D700041A019 /* ZSCourseRightView.h */,
+				528D5A251CC76D700041A019 /* ZSCourseRightView.m */,
+				528D5A2A1CC773FA0041A019 /* LBDropDownMenu.h */,
+				528D5A2B1CC773FA0041A019 /* LBDropDownMenu.m */,
+				528D5A271CC773410041A019 /* LBTitleButton.h */,
+				528D5A281CC773410041A019 /* LBTitleButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1918,7 +1938,9 @@
 		EF56D68A1C09DA8B00A3B314 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EFE9D88A1C0D94AE0072A4F7 /* ProfileCell */,
+				528D5A331CC783950041A019 /* ZSProfileImageCell.h */,
+				528D5A341CC783950041A019 /* ZSProfileImageCell.m */,
+				528D5A351CC783950041A019 /* ZSProfileImageCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1975,16 +1997,6 @@
 				EFD44D481C182BDE0016A602 /* ZSNewsCell.m */,
 			);
 			path = NewsCell;
-			sourceTree = "<group>";
-		};
-		EFE9D88A1C0D94AE0072A4F7 /* ProfileCell */ = {
-			isa = PBXGroup;
-			children = (
-				EFE9D88D1C0D94AE0072A4F7 /* ZSProfileImageCell.h */,
-				EFE9D88E1C0D94AE0072A4F7 /* ZSProfileImageCell.m */,
-				EFE9D88F1C0D94AE0072A4F7 /* ZSProfileImageCell.xib */,
-			);
-			path = ProfileCell;
 			sourceTree = "<group>";
 		};
 		EFE9D8A21C0E4D8E0072A4F7 /* NewFeature */ = {
@@ -2248,6 +2260,7 @@
 				522D3BDF1C9D81A700A6927F /* MJPhotoBrowser.bundle in Resources */,
 				5253670B1CC53636002D520C /* cb_dark_off@2x.png in Resources */,
 				525367071CC53636002D520C /* cb_box_off@2x.png in Resources */,
+				528D5A371CC783950041A019 /* ZSProfileImageCell.xib in Resources */,
 				5253670D1CC53636002D520C /* cb_dark_on@2x.png in Resources */,
 				523E21B91CB388C5003BC391 /* ZSLostThingViewCell.xib in Resources */,
 				522D3BCB1C9D814C00A6927F /* SVProgressHUD.bundle in Resources */,
@@ -2261,7 +2274,6 @@
 				5229E5FA1CA264230088F047 /* ZSCommentViewCell.xib in Resources */,
 				5275C2921CBF8CC0007CEB56 /* ZSInfoViewCell.xib in Resources */,
 				EF2AB59A1C0F015F00DB93FC /* ZSLoginViewController.xib in Resources */,
-				EFE9D8921C0D94AE0072A4F7 /* ZSProfileImageCell.xib in Resources */,
 				525367081CC53636002D520C /* cb_box_on.png in Resources */,
 				529D09541C8669AB00DE8C7F /* ZSWeatherView.xib in Resources */,
 				5272E31B1CB2A76D00A078A3 /* ZSSendInfoViewController.xib in Resources */,
@@ -2315,6 +2327,7 @@
 				EF2AB6141C0F17A500DB93FC /* MJRefreshFooterView.m in Sources */,
 				5267759D1C9FF73500C55191 /* ZSEmotionPopView.m in Sources */,
 				52B82C991CB5050400FCE456 /* ZSShoppingViewController.m in Sources */,
+				528D5A361CC783950041A019 /* ZSProfileImageCell.m in Sources */,
 				520C576A1CB9262600E0795D /* ZSWLostViewController.m in Sources */,
 				EFD44D451C182B210016A602 /* ZSNewsController.m in Sources */,
 				52857AAF1C9D7F2200F44C27 /* POPAnimationRuntime.mm in Sources */,
@@ -2332,8 +2345,8 @@
 				5248C26B1C85D0B2003D9668 /* ZSDetailWeatherModel.m in Sources */,
 				EF2AB62B1C0F17DB00DB93FC /* ZSAccount.m in Sources */,
 				52C426AA1CA13970005F2325 /* ZSCommentViewCell.m in Sources */,
-				EFE9D8911C0D94AE0072A4F7 /* ZSProfileImageCell.m in Sources */,
 				52F3AF831CB15F7600E799D7 /* ZSInfoViewController.m in Sources */,
+				528D5A321CC7765C0041A019 /* LBTest4ViewController.m in Sources */,
 				EF2AB6251C0F17A500DB93FC /* UIImage+WebP.m in Sources */,
 				52857AB61C9D7F2200F44C27 /* POPGeometry.mm in Sources */,
 				52857AAC1C9D7F2200F44C27 /* POPAnimation.mm in Sources */,
@@ -2351,6 +2364,7 @@
 				EFE538301C1574E200A2B6EF /* ZSTimeTabelModel.m in Sources */,
 				525021CE1C9ECA2C008F2526 /* UPYUNConfig.m in Sources */,
 				52857ABB1C9D7F2200F44C27 /* POPVector.mm in Sources */,
+				528D5A291CC773410041A019 /* LBTitleButton.m in Sources */,
 				525021D21C9ECA2C008F2526 /* UPHTTPClient.m in Sources */,
 				529F91961CBCD14A00E851EB /* ZSNewsParams.m in Sources */,
 				EF2AB6101C0F17A500DB93FC /* NSObject+MJKeyValue.m in Sources */,
@@ -2361,6 +2375,7 @@
 				52B82C921CB502B300FCE456 /* ZSExpressDeliveryViewController.m in Sources */,
 				5291C24E1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */,
 				525F32BE1C852A4000014A64 /* MBProgressHUD+MJ.m in Sources */,
+				528D5A2C1CC773FA0041A019 /* LBDropDownMenu.m in Sources */,
 				52857AAB1C9D7F2200F44C27 /* POPAnimatableProperty.mm in Sources */,
 				523E21B81CB388C5003BC391 /* ZSLostThingViewCell.m in Sources */,
 				5244DC751CA1039500147B72 /* ZSAllDynamicCell.m in Sources */,
@@ -2396,6 +2411,7 @@
 				5244DC781CA1039500147B72 /* ZSEssayTextView.m in Sources */,
 				52FE8C4B1CA2B8E60042A92C /* ZSMyNovcltyViewController.m in Sources */,
 				525021D41C9ECA2C008F2526 /* UPMutUploaderManager.m in Sources */,
+				528D5A261CC76D700041A019 /* ZSCourseRightView.m in Sources */,
 				EF56D6931C09E14100A3B314 /* ZSDiscoverViewController.m in Sources */,
 				EF2AB60F1C0F17A500DB93FC /* NSObject+MJIvar.m in Sources */,
 				5244DC741CA1039500147B72 /* ZSPicture.m in Sources */,

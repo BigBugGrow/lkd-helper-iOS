@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 /** 头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIButton *registBtn;
 
 @property  (nonatomic,strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlButton;
@@ -42,7 +43,22 @@
     self.iconImageView.userInteractionEnabled = YES;
     [self.iconImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openAlbum)]];
     
+    
+    // 1.addTarget
+    [self.userNameText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    [self.passwordText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    //添加监听
+    [self textChange];
+
 }
+
+
+- (void)textChange
+{
+    // 判断两个文本框的内容
+    self.registBtn.enabled = self.userNameText.text.length && self.passwordText.text.length;
+}
+
 
 - (IBAction)registerButtonClicked:(id)sender {
     
@@ -84,16 +100,21 @@
             self.activityIndicator.hidden = YES;
             [MBProgressHUD showError:@"此用户名已被注册"];
             
-        } else {
+        } else { 
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.activityIndicator stopAnimating];
                 self.activityIndicator.hidden = YES;
                 
-                [self sendImageWithImage:self.iconImageView.image imageName:self.userNameText.text];
-            
+                UIImage *defaultImage = [UIImage imageNamed:@"icon"];
                 
+                UIImage *image = [UIImage imageNamed:@"regist_head_unlogin"];
+                
+                UIImage *iconImage = image == self.iconImageView.image ? defaultImage : image;
+                
+                [self sendImageWithImage:iconImage imageName:self.userNameText.text];
+            
                 [MBProgressHUD showSuccess:@"注册成功"];
             });
             
@@ -228,10 +249,7 @@
 
     [root dismissViewControllerAnimated:YES completion:nil];
     
-    
 }
-
-
 
 /** 图片压缩*/
 //图片压缩到指定大小
