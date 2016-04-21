@@ -29,37 +29,39 @@
 /**缓存数量*/
 @property (nonatomic, assign) NSInteger cacheSize;
 
+@property (nonatomic, strong) ZSModel *model7;
+
 @end
 
 @implementation ZSProfileViewController
 
-
-+ (void)initialize
-{
-    //1.创建本地通知对对象
-    UILocalNotification *noti = [[UILocalNotification alloc] init];
-    
-    //指定通知发送的时间
-    
-    noti.fireDate = [NSDate date];
-    noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
-    //指定时区
-    noti.timeZone = [NSTimeZone defaultTimeZone];
-    noti.alertBody = @"马上要上课喽";
-    
-//    noti.repeatInterval = NSCalendarUnitMinute;
-    noti.alertAction = @"查看消息";
-    noti.alertLaunchImage = @"splash_tops";
-    noti.soundName = UILocalNotificationDefaultSoundName;
-    
-    
-    //2注册通知
-    UIApplication *app = [UIApplication sharedApplication];
-    
-    [app scheduleLocalNotification:noti];
-    
-    ZSLog(@"333");
-}
+//
+//+ (void)initialize
+//{
+//    //1.创建本地通知对对象
+//    UILocalNotification *noti = [[UILocalNotification alloc] init];
+//    
+//    //指定通知发送的时间
+//    
+//    noti.fireDate = [NSDate date];
+//    noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+//    //指定时区
+//    noti.timeZone = [NSTimeZone defaultTimeZone];
+//    noti.alertBody = @"马上要上课喽";
+//    
+////    noti.repeatInterval = NSCalendarUnitMinute;
+//    noti.alertAction = @"查看消息";
+//    noti.alertLaunchImage = @"splash_tops";
+//    noti.soundName = UILocalNotificationDefaultSoundName;
+//    
+//    
+//    //2注册通知
+//    UIApplication *app = [UIApplication sharedApplication];
+//    
+//    [app scheduleLocalNotification:noti];
+//    
+//    ZSLog(@"333");
+//}
 
 - (void)viewDidLoad
 {
@@ -78,8 +80,6 @@
 //    });
     
     
-    
-    
     self.navigationItem.title = @"我";
 
     
@@ -91,10 +91,10 @@
     [self setUpTableHeaderView:@"ZSProfileImageCell"];
     
     
+    
     [self initModelData];
+    
 }
-
-
 
 - (void)clickRightBtn
 {
@@ -113,7 +113,7 @@
             //清空账号
             [ZSAccountTool saveAccount:nil];
             //清空头像
-            [self SaveImageToLocal:nil Keys:ZSIconImageStr];
+            [UIImage SaveImageToLocal:nil Keys:ZSIconImageStr];
             
         }];
         
@@ -136,21 +136,20 @@
 
 - (void)clearTmpPics
 {
-    
     [[SDImageCache sharedImageCache] clearDisk];
     
-}
-
-//将图片保存到本地
-- (void)SaveImageToLocal:(UIImage*)image Keys:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    [preferences setObject:UIImagePNGRepresentation(image) forKey:key];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
+    
+    [self.tableView reloadData];
+    
+    NSString *cacheStr = [NSString stringWithFormat:@"清除缓存   (已使用%.2lfM)", [self getCachesCount]/1000.0/1000];
+    
+    self.model7.title = cacheStr;
+    
 }
 //初始化模型数据
 - (void)initModelData
@@ -163,63 +162,67 @@
     group1.items = @[item1,item2];
     [self.cellData addObject:group1];
     
-    
-    
-    ZSModel *item3 = [ZSModel itemWithIcon:@"setting" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
-//    ZSModel *item4 = [ZSModel itemWithIcon:@"lock1" title:@"设置" detailTitle:@""];
-    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"不提醒上课" detailTitle:@""];
-    
-    
-    // 解决循环引用， 内存泄露问题
-    __unsafe_unretained ZSModel *item55 = item5;
-    
-    item5.operation = ^(){
-        if ([item55.title isEqualToString:@"提醒上课"]) {
-            item55.title = @"不提醒上课";
-            item55.icon = @"ring";
-            [self.tableView reloadData];
-            
-            //1.创建本地通知对对象
-            UILocalNotification *noti = [[UILocalNotification alloc] init];
-            
-            //指定通知发送的时间
-            noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
-            //指定时区
-            noti.timeZone = [NSTimeZone defaultTimeZone];
-            noti.alertBody = @"马上要上课喽";
-            
-            noti.repeatInterval = NSCalendarUnitMinute;
-            noti.alertAction = @"查看消息";
-            noti.alertLaunchImage = @"splash_tops";
-            noti.soundName = @"sendmsg.caf";
-            
-            
-            //2注册通知
-            UIApplication *app = [UIApplication sharedApplication];
-            
-            [app scheduleLocalNotification:noti];
-            
-        } else {
-            item55.title = @"提醒上课";
-            item55.icon = @"quiet";
-            [self.tableView reloadData];
 
-            UIApplication *app = [UIApplication sharedApplication];
-            
-            [app cancelAllLocalNotifications];
-        }
-    };
+    ZSModel *item3 = [ZSModel itemWithIcon:@"setting" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
+////    ZSModel *item4 = [ZSModel itemWithIcon:@"lock1" title:@"设置" detailTitle:@""];
+//    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"不提醒上课" detailTitle:@""];
+//    
+//    
+//    // 解决循环引用， 内存泄露问题
+//    __unsafe_unretained ZSModel *item55 = item5;
+//    
+//    item5.operation = ^(){
+//        if ([item55.title isEqualToString:@"提醒上课"]) {
+//            item55.title = @"不提醒上课";
+//            item55.icon = @"ring";
+//            [self.tableView reloadData];
+//            
+//            //1.创建本地通知对对象
+//            UILocalNotification *noti = [[UILocalNotification alloc] init];
+//            
+//            //指定通知发送的时间
+//            noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+//            //指定时区
+//            noti.timeZone = [NSTimeZone defaultTimeZone];
+//            noti.alertBody = @"马上要上课喽";
+//            
+//            noti.repeatInterval = NSCalendarUnitMinute;
+//            noti.alertAction = @"查看消息";
+//            noti.alertLaunchImage = @"splash_tops";
+//            noti.soundName = @"sendmsg.caf";
+//            
+//            
+//            //2注册通知
+//            UIApplication *app = [UIApplication sharedApplication];
+//            
+//            [app scheduleLocalNotification:noti];
+//            
+//        } else {
+//            item55.title = @"提醒上课";
+//            item55.icon = @"quiet";
+//            [self.tableView reloadData];
+//
+//            UIApplication *app = [UIApplication sharedApplication];
+//            
+//            [app cancelAllLocalNotifications];
+//        }
+//    };
     
     
     ZSModel *item6 = [ZSModel itemWithIcon:@"about" title:@"关于辽科大助手" detailTitle:@"" vcClass:[ZSAboutViewController class]];
     
-//    NSString *cacheStr = [NSString stringWithFormat:@"清除缓存   (已使用%.2lfM)", self.cacheSize/1000.0/1000];
+    NSString *cacheStr = [NSString stringWithFormat:@"清除缓存   (已使用%.2lfM)", [self getCachesCount]/1000.0/1000];
     
-    ZSModel *item7 = [ZSModel itemWithIcon:@"clearCache" title:@"清除缓存 " detailTitle:@""];
+    ZSModel *item7 = [ZSModel itemWithIcon:@"clearCache" title:cacheStr detailTitle:@""];
+    self.model7 = item7;
     ZSGroupModel *group2 = [[ZSGroupModel alloc] init];
-    group2.items = @[item3,item5,item7,item6];
+    group2.items = @[item3,item7,item6];
     [self.cellData addObject:group2];
     
+    
+    // 解决循环引用， 内存泄露问题
+    __unsafe_unretained ZSModel *item77 = item7;
+
     item7.operation = ^(){
         
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"清除缓存？" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -231,14 +234,15 @@
         
             NSString *msg = [NSString stringWithFormat:@"已清除缓存%.2lfM", totalSize / 1000.0 / 1000];
             
-            self.cacheSize = 0;
-            
-//            [self initModelData];
-            
-            [SVProgressHUD showSuccessWithStatus:msg];
-            
             [self clearTmpPics];
             
+            NSString *cacheStr = [NSString stringWithFormat:@"清除缓存   (已使用0.00M)"];
+            
+            item77.title = cacheStr;
+            
+            [self.tableView reloadData];
+            
+            [SVProgressHUD showSuccessWithStatus:msg];
             
         }];
         
@@ -251,6 +255,8 @@
     
 }
 
+
+#pragma mark - 获得缓存大小
 - (NSInteger)getCachesCount
 {
     NSFileManager *manager = [NSFileManager defaultManager];

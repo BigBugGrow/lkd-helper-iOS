@@ -16,7 +16,6 @@
 #import "ZSNavigationController.h"
 #import "MJRefresh.h"
 #import "ZSMyNovcltyViewController.h"
-#import "ZSNovcltyTool.h"
 #import "SVProgressHUD.h"
 
 
@@ -103,39 +102,6 @@
     
     //添加上拉刷新
     [self.tableView addFooterWithTarget:self action:@selector(refreshMoreData)];
-    
-    //保存过的模型数组
-    
-    NSArray *savedDynamics = [NSArray array];
-    
-    if ([self.type isEqualToString:@"all"]) {
-        
-        savedDynamics = (NSMutableArray *)[ZSNovcltyTool resentAllNovcltys];
-    
-    } else if ([self.type isEqualToString:@"discloseBoard"]) {
-        
-        
-        savedDynamics = (NSMutableArray *)[ZSNovcltyTool resentDiscloseBoardNovcltys];
-        
-    } else if ([self.type isEqualToString:@"confessionWall"]) {
-        
-        savedDynamics = (NSMutableArray *)[ZSNovcltyTool resentConfessionWallNovcltys];
-        
-    } else {
-        
-        savedDynamics = (NSMutableArray *)[ZSNovcltyTool resentTopicsNovcltys];
-    }
-    
-    if (savedDynamics.count) {
-        
-        //模型转换
-        self.allDynamicFrames = [self dynamicsTodynamicFrameArray:savedDynamics];
-        //保存上一次访问的一条数据的最后一个
-        //self.endId = [[[savedAllDynamics lastObject] ID] integerValue];
-        
-    }
-    
-    [self.tableView reloadData];
     
     [self.tableView headerBeginRefreshing];
     
@@ -332,46 +298,7 @@
         NSArray *savedDynamics = [NSArray array];
         
         //新来的最新数据
-        NSArray *nowDynamics = [NSArray array];
-        
-    
-
-#warning  /** 本想做一个数据缓存， 但是显示表情 有一个bug 表情字体会变大*/
-        if ([self.type isEqualToString:@"all"]) {
-            
-            //缓存数据
-            savedDynamics = [ZSNovcltyTool resentAllNovcltys];
-            
-            nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
-            //保存最新的数据
-//            [ZSNovcltyTool saveAllNovcltys:nowDynamics];
-            
-        } else if ([self.type isEqualToString:@"discloseBoard"]) {
-            
-            savedDynamics = [ZSNovcltyTool resentDiscloseBoardNovcltys];
-            
-              nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
-            
-            //保存最新的数据
-//            [ZSNovcltyTool saveDiscloseBoardNovcltys:nowDynamics];
-        } else if ([self.type isEqualToString:@"confessionWall"]) {
-            
-            savedDynamics = [ZSNovcltyTool resentConfessionWallNovcltys];
-            
-             nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
-            //保存最新的数据
-            
-//            [ZSNovcltyTool saveConfessionWallNovcltys:nowDynamics];
-        } else {
-            
-            savedDynamics = [ZSNovcltyTool resentTopicsNovcltys];
-            
-            nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
-            
-            //保存最新的数据
-//            [ZSNovcltyTool saveTopicsNovcltys:nowDynamics];
-        }
-        
+        NSArray *nowDynamics = [self getNewDynamicWithSavedArray:savedDynamics newDynamicArray:arrayM];
 
         NSArray *arrayFrames = [self dynamicsTodynamicFrameArray:nowDynamics];
         

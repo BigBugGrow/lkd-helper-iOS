@@ -219,30 +219,7 @@ static NSString *ID = @"infoCell";
         return @"联系方式";
     }
 }
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    
-//    
-//    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, ZSScreenW, 44.0)];
-//    
-//    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-//    headerLabel.backgroundColor = RGBColor(242, 242, 242, 1);
-//    headerLabel.opaque = NO;
-//    headerLabel.textColor = [UIColor blackColor];
-//    headerLabel.highlightedTextColor = [UIColor whiteColor];
-//    headerLabel.font = [UIFont boldSystemFontOfSize:18];
-//    headerLabel.frame = CGRectMake(5, 0.0, ZSScreenW, 44.0);
-//    
-//    if (section == 0) {
-//        headerLabel.text =   @" 在校信息";
-//    } else {
-//        headerLabel.text = @"联系方式";
-//    }
-//     customView.backgroundColor = RGBColor(242, 242, 242, 1);
-//    [customView addSubview:headerLabel];
-//    
-//    return customView;
-//}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -407,9 +384,9 @@ static NSString *ID = @"infoCell";
     [myImage addSubview:nameLabel];
  
     //如果是自己的头像 本地还存有头像
-    if ([self.whoNickName isEqualToString:nickName] && [self GetImageFromLocal:ZSIconImageStr]) {
+    if ([self.whoNickName isEqualToString:nickName] && [UIImage GetImageFromLocal:ZSIconImageStr]) {
         
-        myImage.image = [self GetImageFromLocal:ZSIconImageStr];
+        myImage.image = [UIImage GetImageFromLocal:ZSIconImageStr];
         smallImageView.image = myImage.image;
     }
     
@@ -532,7 +509,7 @@ static NSString *ID = @"infoCell";
         self.bigImageView.image = image;
         
         //保存图片
-        [self SaveImageToLocal:image Keys:ZSIconImageStr];
+        [UIImage SaveImageToLocal:image Keys:ZSIconImageStr];
         
         //创建通知
         //创建一个消息对象
@@ -622,7 +599,7 @@ static NSString *ID = @"infoCell";
     
     ZSLog(@"%@", NSStringFromCGSize(picture.size));
     //图片压缩
-    UIImage *newImage = [self imageByScalingAndCroppingForSize:CGSizeMake(newImageWidth, newImageHeight) image:picture];
+    UIImage *newImage = [UIImage imageByScalingAndCroppingForSize:CGSizeMake(newImageWidth, newImageHeight) image:picture];
     
     ZSLog(@"%@", NSStringFromCGSize(newImage.size));
    
@@ -630,96 +607,8 @@ static NSString *ID = @"infoCell";
     [self sendImageWithImage:newImage imageName:nickName];
 }
 
-/** 图片压缩*/
-//图片压缩到指定大小
-- (UIImage *)imageByScalingAndCroppingForSize:(CGSize)targetSize image:(UIImage *)sourceImage
-{
-    UIImage *newImage = nil;
-    CGSize imageSize = sourceImage.size;
-    CGFloat width = imageSize.width;
-    CGFloat height = imageSize.height;
-    CGFloat targetWidth = targetSize.width;
-    CGFloat targetHeight = targetSize.height;
-    CGFloat scaleFactor = 0.0;
-    CGFloat scaledWidth = targetWidth;
-    CGFloat scaledHeight = targetHeight;
-    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
-    
-    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
-    {
-        CGFloat widthFactor = targetWidth / width;
-        CGFloat heightFactor = targetHeight / height;
-        
-        if (widthFactor > heightFactor)
-            scaleFactor = widthFactor; // scale to fit height
-        else
-            scaleFactor = heightFactor; // scale to fit width
-        scaledWidth= width * scaleFactor;
-        scaledHeight = height * scaleFactor;
-        
-        // center the image
-        if (widthFactor > heightFactor)
-        {
-            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
-        }
-        else if (widthFactor < heightFactor)
-        {
-            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
-        }
-    }
-    
-    UIGraphicsBeginImageContext(targetSize); // this will crop
-    
-    CGRect thumbnailRect = CGRectZero;
-    thumbnailRect.origin = thumbnailPoint;
-    thumbnailRect.size.width= scaledWidth;
-    thumbnailRect.size.height = scaledHeight;
-    
-    [sourceImage drawInRect:thumbnailRect];
-    
-    newImage = UIGraphicsGetImageFromCurrentImageContext();
-    if(newImage == nil)
-        NSLog(@"could not scale image");
-    
-    //pop the context to get back to the default
-    UIGraphicsEndImageContext();
-    return newImage;
-}
 
 #pragma mark - 保存图片
-
-//将图片保存到本地
-- (void)SaveImageToLocal:(UIImage*)image Keys:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    [preferences setObject:UIImagePNGRepresentation(image) forKey:key];
-}
-
-//本地是否有相关图片
-- (BOOL)LocalHaveImage:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    NSData* imageData = [preferences objectForKey:key];
-    if (imageData) {
-        return YES;
-    }
-    return NO;
-}
-
-//从本地获取图片
-- (UIImage*)GetImageFromLocal:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    NSData* imageData = [preferences objectForKey:key];
-    UIImage* image;
-    if (imageData) {
-        image = [UIImage imageWithData:imageData];
-    }
-    else {
-        ZSLog(@"未从本地获得图片");
-    }
-    return image;
-}
 
 - (void)clearTmpPics
 {

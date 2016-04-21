@@ -49,7 +49,7 @@
     
     if (note.icons.count) {
         
-        self.iconView.image = [self GetImageFromLocal:[note.icons lastObject]];
+        self.iconView.image = [UIImage GetImageFromLocal:[note.icons lastObject]];
     }
     
     self.timeLabel.text = note.time;
@@ -58,22 +58,5 @@
 
     
 }
-
-
-//从本地获取图片
-- (UIImage*)GetImageFromLocal:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    NSData* imageData = [preferences objectForKey:key];
-    UIImage* image;
-    if (imageData) {
-        image = [UIImage imageWithData:imageData];
-    }
-    else {
-        NSLog(@"未从本地获得图片");
-    }
-    return image;
-}
-
 
 @end

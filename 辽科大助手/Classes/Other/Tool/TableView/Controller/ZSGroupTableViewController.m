@@ -118,9 +118,7 @@
             [SVProgressHUD showErrorWithStatus:@"该账号以绑定学号！"];
             return;
         }
-        
-        
-        
+    
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

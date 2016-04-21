@@ -34,12 +34,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个性名言" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFO-Ao-Oif">
-                                <rect key="frame" x="98" y="40" width="48" height="30"/>
+                                <rect key="frame" x="98" y="35" width="48" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="nUd-DE-TKF"/>
+                                    <constraint firstAttribute="height" constant="15" id="nUd-DE-TKF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.77022174870000004" green="0.77022174870000004" blue="0.77022174870000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chevron" translatesAutoresizingMaskIntoConstraints="NO" id="Wuj-eu-uL4">
@@ -63,7 +63,7 @@
                             <constraint firstItem="G6r-I2-KBq" firstAttribute="leading" secondItem="fDk-FZ-c3c" secondAttribute="leading" constant="15" id="GWw-lW-aND"/>
                             <constraint firstAttribute="trailing" secondItem="Wuj-eu-uL4" secondAttribute="trailing" constant="10" id="GrT-34-vTu"/>
                             <constraint firstAttribute="trailing" secondItem="g4O-07-AIj" secondAttribute="trailing" constant="50" id="Hv3-r3-Cn0"/>
-                            <constraint firstItem="eFO-Ao-Oif" firstAttribute="top" secondItem="g4O-07-AIj" secondAttribute="bottom" constant="10" id="K01-If-Rm5"/>
+                            <constraint firstItem="eFO-Ao-Oif" firstAttribute="top" secondItem="g4O-07-AIj" secondAttribute="bottom" constant="5" id="K01-If-Rm5"/>
                             <constraint firstItem="g4O-07-AIj" firstAttribute="leading" secondItem="6Xj-B7-J1h" secondAttribute="trailing" constant="5" id="Ysc-OG-Spf"/>
                             <constraint firstItem="6Xj-B7-J1h" firstAttribute="leading" secondItem="G6r-I2-KBq" secondAttribute="trailing" constant="13" id="gHF-CK-QkY"/>
                             <constraint firstItem="Wuj-eu-uL4" firstAttribute="top" secondItem="fDk-FZ-c3c" secondAttribute="top" constant="20" id="nYf-Z9-tYn"/>

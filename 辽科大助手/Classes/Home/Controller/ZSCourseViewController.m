@@ -207,9 +207,9 @@
     [ZSNotificationCenter addObserver:self selector:@selector(clickPlusBtn) name:@"addCourse" object:nil];
 
     //如果本地存在背景图片， 就用本地背景图片
-    if ([self LocalHaveImage:ZSBackGroudImage]) {
+    if ([UIImage LocalHaveImage:ZSBackGroudImage]) {
         
-        self.backGroudImageView.image = [self GetImageFromLocal:ZSBackGroudImage];
+        self.backGroudImageView.image = [UIImage GetImageFromLocal:ZSBackGroudImage];
     }
     
 }
@@ -223,7 +223,7 @@
     [SVProgressHUD showSuccessWithStatus:@"设置成功"];
     UIImage *defaultImage = [UIImage imageNamed:@"back"];
     self.backGroudImageView.image = defaultImage;
-    [self SaveImageToLocal:defaultImage Keys:ZSBackGroudImage];
+    [UIImage SaveImageToLocal:defaultImage Keys:ZSBackGroudImage];
 }
 
 - (void)initTimeTable
@@ -276,49 +276,12 @@
     //拿出info中包含选择的图片
     UIImage *picture = info[UIImagePickerControllerOriginalImage];
     
-    [self SaveImageToLocal:picture Keys:ZSBackGroudImage];
+    [UIImage SaveImageToLocal:picture Keys:ZSBackGroudImage];
     
     self.backGroudImageView.image = picture;
     
     [SVProgressHUD showSuccessWithStatus:@"修改背景成功"];
 }
-
-#pragma mark - 保存图片
-
-//将图片保存到本地
-- (void)SaveImageToLocal:(UIImage*)image Keys:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    [preferences setObject:UIImagePNGRepresentation(image) forKey:key];
-}
-
-//本地是否有相关图片
-- (BOOL)LocalHaveImage:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    NSData* imageData = [preferences objectForKey:key];
-    if (imageData) {
-        return YES;
-    }
-    return NO;
-}
-
-//从本地获取图片
-- (UIImage*)GetImageFromLocal:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    NSData* imageData = [preferences objectForKey:key];
-    UIImage* image;
-    if (imageData) {
-        image = [UIImage imageWithData:imageData];
-    }
-    else {
-        ZSLog(@"未从本地获得图片");
-    }
-    return image;
-}
-
-
 
 #pragma mark - 点击右边按钮
 
@@ -711,7 +674,6 @@
             
             NSArray *dayCourseArray = self.account.timetable[currentWeek][i];
 
-            
             if (dayCourseArray.count) {
                 
                 NSDictionary *dayCourseDict = (NSDictionary *)dayCourseArray;

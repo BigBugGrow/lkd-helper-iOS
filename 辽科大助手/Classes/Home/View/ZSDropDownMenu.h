@@ -1,6 +1,6 @@
 //
 //  ZSDropDownMenu.h
-//  新浪微博
+//  辽科大助手
 //
 //  Created by MacBook Pro on 16/1/1.
 //  Copyright © 2016年 USTL. All rights reserved.

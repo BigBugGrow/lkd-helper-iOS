@@ -19,8 +19,6 @@
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
 
-#import "ZSNovcltyTool.h"
-
 #define HMTopViewH 300
 
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
@@ -96,23 +94,8 @@
 
 - (void)updateImage
 {
-    self.bigImageView.image = [self GetImageFromLocal:ZSIconImageStr];
+    self.bigImageView.image = [UIImage GetImageFromLocal:ZSIconImageStr];
     self.smallImageView.image = self.bigImageView.image;
-}
-
-//从本地获取图片
-- (UIImage*)GetImageFromLocal:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    NSData* imageData = [preferences objectForKey:key];
-    UIImage* image;
-    if (imageData) {
-        image = [UIImage imageWithData:imageData];
-    }
-    else {
-        ZSLog(@"未从本地获得图片");
-    }
-    return image;
 }
 
 
@@ -625,7 +608,7 @@
 
 - (void)swapImage
 {
-    self.bigImageView.image = [self GetImageFromLocal:ZSIconImageStr];
+    self.bigImageView.image = [UIImage GetImageFromLocal:ZSIconImageStr];
     self.smallImageView.image = self.bigImageView.image;
 
 }

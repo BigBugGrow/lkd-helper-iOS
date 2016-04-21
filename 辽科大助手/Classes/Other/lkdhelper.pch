@@ -62,6 +62,7 @@
 #import "MJExtension.h"
 #import "NSString+Emoji.h"
 #import "UITextView+Extensiton.h"
+#import "UIImage+Extension.h"
 
 
 // ...表示宏定义的可变参数

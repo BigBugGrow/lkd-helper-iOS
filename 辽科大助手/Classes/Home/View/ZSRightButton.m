@@ -1,6 +1,6 @@
 //
 //  ZSRightButton.h
-//  新浪微博
+//   辽科大助手
 //
 //  Created by MacBook Pro on 16/1/2.
 //  Copyright © 2016年 USTL. All rights reserved.
@@ -16,7 +16,6 @@
         
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 //        self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-        
 //        self.imageView.image = [UIImage imageNamed:@"navigationbar_arrow_down"];
 //        [self setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
 //        [self setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateSelected];

@@ -61,7 +61,7 @@
     self.nameLabel.text = nickName;
     
     //名言
-    self.sayingLabel.text = @"个人详细信息查看";
+    self.sayingLabel.text = @"点击查看个人详细信息";
     
     [ZSNotificationCenter addObserver:self selector:@selector(swapImage) name:@"swapImage" object:nil];
 
@@ -75,23 +75,9 @@
 
 - (void)swapImage
 {
-    self.imgView.image = [self GetImageFromLocal:ZSIconImageStr];
+    self.imgView.image = [UIImage GetImageFromLocal:ZSIconImageStr];
 }
 
-//从本地获取图片
-- (UIImage*)GetImageFromLocal:(NSString*)key {
-    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    //[preferences persistentDomainForName:LocalPath];
-    NSData* imageData = [preferences objectForKey:key];
-    UIImage* image;
-    if (imageData) {
-        image = [UIImage imageWithData:imageData];
-    }
-    else {
-        ZSLog(@"未从本地获得图片");
-    }
-    return image;
-}
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
