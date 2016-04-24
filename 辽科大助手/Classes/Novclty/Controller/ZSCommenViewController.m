@@ -125,7 +125,7 @@ static NSString * const commentID = @"commentCell";
         
         NSArray *comments = responseObject[@"data"];
         
-        ZSLog(@"%@", responseObject[@"data"]);
+//        ZSLog(@"%@", responseObject[@"data"]);
         self.comments = [ZSComment objectArrayWithKeyValuesArray:comments];
         
         //刷新表格

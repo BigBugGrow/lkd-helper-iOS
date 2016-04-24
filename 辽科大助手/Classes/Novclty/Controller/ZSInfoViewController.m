@@ -243,8 +243,6 @@ static NSString *ID = @"infoCell";
 {
     ZSInfoViewCell *cell = [ZSInfoViewCell tableViewCell];
     
-    ZSLog(@"%@", cell);
-    
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {

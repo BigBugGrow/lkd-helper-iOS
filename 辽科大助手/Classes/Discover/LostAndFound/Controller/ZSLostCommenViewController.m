@@ -105,7 +105,6 @@ static NSString * const commentID = @"commentCell";
         
         NSArray *comments = responseObject[@"data"];
         
-        ZSLog(@"%@", responseObject[@"data"]);
         self.comments = [ZSComment objectArrayWithKeyValuesArray:comments];
         
         //刷新表格
@@ -113,8 +112,6 @@ static NSString * const commentID = @"commentCell";
         
         //重新计算评论数量
         int countNum = [self.allDynamicFrame.allDynamic.commentNum intValue];
-        
-        ZSLog(@"%d", self.isFirstCome);
         
         //先刷新， 在跳到
         [self.tableView headerEndRefreshing];
@@ -139,9 +136,6 @@ static NSString * const commentID = @"commentCell";
 - (void)loadMoreData
 {
     self.tableView.footerHidden = NO;
-    
-    
-    ZSLog(@"1111");
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         

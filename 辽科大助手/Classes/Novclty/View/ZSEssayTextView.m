@@ -39,10 +39,6 @@
     //取出特殊文字
     NSArray *specials = [self.attributedText attribute:@"specials" atIndex:0 effectiveRange:NULL];
     
-    
-    ZSLog(@"%@", specials);
-    
-    
     for (ZSSpecial *special in specials) {
         
         self.selectedRange = special.range;

@@ -30,8 +30,7 @@ static NSMutableDictionary *_soundIDs;
     if (!soundID) {
         
         NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:nil];
-        
-        ZSLog(@"创建新的soundID");
+    
         if (!url) return;
         
         //创建音效ID

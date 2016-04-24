@@ -111,8 +111,6 @@
     self.wind.text = wind;
     self.weather.text = weather;
     
-    ZSLog(@"%@", weather);
-    
     if ([weather containsString:@"晴"] && ![weather containsString:@"转"]) {
         
         self.iconView.image = [UIImage imageNamed:@"sunny"];

@@ -56,20 +56,5 @@
     
 }
 
-//- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    if (point.y <= 95) {
-//        
-////        if ([self.delegate respondsToSelector:@selector(weatherDetailController)]) {
-////            
-////            [self.delegate weatherDetailController];
-////        }
-//
-//        
-//        ZSLog(@"点击天气");
-//        return NO;
-//    }
-//    
-//    return NO;
-//}
+
 @end

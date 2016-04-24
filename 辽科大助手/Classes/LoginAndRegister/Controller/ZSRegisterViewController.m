@@ -138,9 +138,6 @@
         [self.activityIndicator stopAnimating];
         self.activityIndicator.hidden = YES;
         
-        
-        ZSLog(@"%@", error);
-        
         [MBProgressHUD showError:@"网络错误"];
     }];
 }
@@ -235,11 +232,9 @@
         
     }
     
-    ZSLog(@"%@", NSStringFromCGSize(picture.size));
     //图片压缩
     UIImage *newImage = [UIImage imageByScalingAndCroppingForSize:CGSizeMake(newImageWidth, newImageHeight) image:picture];
     
-    ZSLog(@"%@", NSStringFromCGSize(newImage.size));
     
     self.iconImageView.image = newImage;
     

@@ -325,12 +325,6 @@
     ZSLog(@"%ld", self.textView.attributedText.length);
 }
 
-- (void)textViewDidChange:(UITextView *)textView
-{
-        ZSLog(@"%ld", self.textView.attributedText.length);
-}
-
-
 #pragma mark - 点击按钮方法
 
 //取消发送

@@ -206,7 +206,7 @@
 //打开相机
 - (void)openCamera
 {
-    ZSLog(@"打开相机");
+//    ZSLog(@"打开相机");
     [self openImagePickerController:UIImagePickerControllerSourceTypeCamera];
 }
 
@@ -259,7 +259,7 @@
         
     }
     
-    ZSLog(@"%@", NSStringFromCGSize(picture.size));
+//    ZSLog(@"%@", NSStringFromCGSize(picture.size));
     //图片压缩
     UIImage *newImage = [UIImage imageByScalingAndCroppingForSize:CGSizeMake(newImageWidth, newImageHeight) image:picture];
     

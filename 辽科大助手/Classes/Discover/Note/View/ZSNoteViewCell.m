@@ -54,9 +54,6 @@
     
     self.timeLabel.text = note.time;
     
-    ZSLog(@"%@", note.title);
-
-    
 }
 
 @end

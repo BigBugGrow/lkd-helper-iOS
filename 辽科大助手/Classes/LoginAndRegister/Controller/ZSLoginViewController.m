@@ -123,7 +123,7 @@
 }
 - (IBAction)registerButtonClicked:(id)sender
 {
-    ZSLog(@"wwww");
+//    ZSLog(@"wwww");
     
     ZSRegisterViewController *registerVC = [[ZSRegisterViewController alloc] init];
     
@@ -159,7 +159,5 @@
     
     [root dismissViewControllerAnimated:YES completion:nil];
     
-    
-    ZSLog(@"ddd");
 }
 @end

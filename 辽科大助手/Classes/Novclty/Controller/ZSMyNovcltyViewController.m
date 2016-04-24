@@ -426,7 +426,7 @@
 
         if (self.lastDynamicId == 0)  return ;
         
-        ZSLog(@"%ld", self.lastDynamicId);
+//        ZSLog(@"%ld", self.lastDynamicId);
         
        
         for (NSDictionary *dict in dynamics) {
@@ -564,7 +564,7 @@
 
 - (void)loadNewData
 {
-    ZSLog(@"输出");
+//    ZSLog(@"输出");
     //刷新数据
     [self getNewData];
 }

@@ -182,9 +182,7 @@
 
 - (IBAction)clickPhone
 {
-    
-    ZSLog(@"ssss");
-    
+        
     if ([self.delegate respondsToSelector:@selector(clickCall:PhoneNum:)]) {
         
         [self.delegate clickCall:self PhoneNum:self.callBtn.titleLabel.text];

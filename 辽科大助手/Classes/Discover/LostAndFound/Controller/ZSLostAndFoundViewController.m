@@ -130,7 +130,7 @@ static NSString *ID = @"lostAndFoundCell";
         
         self.endId = [responseObject[@"endId"] integerValue];
         
-        ZSLog(@"%ld", self.endId);
+//        ZSLog(@"%ld", self.endId);
         
         NSArray *datas = responseObject[@"data"];
         
@@ -195,9 +195,9 @@ static NSString *ID = @"lostAndFoundCell";
         
 //        self.lastFirstDynamicId = 
         //保存最新的数据的id
-        
-        ZSLog(@"%@", responseObject);
-        ZSLog(@"%ld", self.lastFirstDynamicId);
+//        
+//        ZSLog(@"%@", responseObject);
+//        ZSLog(@"%ld", self.lastFirstDynamicId);
         
         NSMutableArray *lostThings = [NSMutableArray array];
         
@@ -232,8 +232,7 @@ static NSString *ID = @"lostAndFoundCell";
         
         
         self.lastFirstDynamicId = [self.lostThings[0] ID];
-        
-        ZSLog(@"%@", self.lostThings);
+
         
         [self.tableView reloadData];
         

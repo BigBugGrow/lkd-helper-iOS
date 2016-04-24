@@ -1147,7 +1147,6 @@
 {
     if ([radio.titleLabel.text isEqualToString:@"必修"]) {
         
-        ZSLog(@"必修");
         self.course.neccesaryCourse = @"必修";
     }
     if ([radio.titleLabel.text isEqualToString:@"选修"]) {
@@ -1233,7 +1232,6 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    ZSLog(@"wwww");
     
     [UIView animateWithDuration:0.5 animations:^{
         

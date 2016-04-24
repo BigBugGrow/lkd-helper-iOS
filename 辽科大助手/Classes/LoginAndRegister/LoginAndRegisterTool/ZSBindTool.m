@@ -34,7 +34,7 @@
         //        NSArray *dictArr = [NSString stringTimeTableConvertToDictArray:responseObject[@"timetable"]];
         
         
-        ZSLog(@"%@", responseObject);
+//        ZSLog(@"%@", responseObject);
         
         
         NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
@@ -88,7 +88,7 @@
                 account.nickname = nickname;
                 account.key = key;
                 
-                ZSLog(@"%@", key);
+//                ZSLog(@"%@", key);
                 //保存账户信息
                 [ZSAccountTool saveAccount:account];
                 

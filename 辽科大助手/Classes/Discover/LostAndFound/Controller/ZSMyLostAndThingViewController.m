@@ -76,7 +76,7 @@ static NSString *ID = @"lostAndFoundCell";
 
 - (void)clickSendBtn
 {
-    ZSLog(@"wruteBtn");
+//    ZSLog(@"wruteBtn");
 }
 
 
@@ -102,7 +102,6 @@ static NSString *ID = @"lostAndFoundCell";
         
         NSString *str = [NSString stringWithFormat:@"%@", responseObject[@"data"]];
         
-        ZSLog(@"%@", str);
         
         if ([str isEqualToString:@"<null>"]) {
             
