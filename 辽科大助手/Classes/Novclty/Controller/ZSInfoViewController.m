@@ -528,13 +528,10 @@ static NSString *ID = @"infoCell";
         
         //创建通知
         //创建一个消息对象
-        [ZSNotificationCenter postNotificationName:@"swapImage" object:nil];
-        
+        [self performSelector:@selector(postNotication) withObject:nil afterDelay:2.0];
         
         [MBProgressHUD hideHUDForView:self.view];
-        
-
-            ZSLog(@"response body %@", responseData);
+    
     };
     uy.failBlocker = ^(NSError * error) {
         NSString *message = [error.userInfo objectForKey:@"message"];
@@ -552,6 +549,12 @@ static NSString *ID = @"infoCell";
     
     [uy uploadImage:image savekey:pictruePath];
     
+}
+
+//通知方法
+- (void)postNotication
+{
+  [ZSNotificationCenter postNotificationName:@"swapImage" object:nil];
 }
 
 - (void)openCamera
@@ -586,7 +589,44 @@ static NSString *ID = @"infoCell";
 }
 
 
-#pragma mark - 保存图片
+#pragma mark - UIImagePickerControllerDelegate
+/**
+ *  从UIImagePickerControllerDelegate选择图片后就调用（拍完照完毕或者选择相册图片完毕）
+ */
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    //拿出info中包含选择的图片
+    UIImage *picture = info[UIImagePickerControllerOriginalImage];
+    
+    CGFloat imageWidth = picture.size.width;
+    CGFloat imageHeight = picture.size.height;
+    
+    CGFloat newImageWidth, newImageHeight;
+    
+    if (imageWidth >= imageHeight) {
+        
+        newImageWidth = imageWidth >= 500 ? 500 : imageWidth;
+        newImageHeight = newImageWidth / imageWidth * imageHeight;
+    } else {
+        newImageHeight = imageHeight >= 500 ? 500 : imageHeight;
+        newImageWidth = newImageHeight / imageHeight  * imageWidth;
+        
+    }
+    
+    ZSLog(@"%@", NSStringFromCGSize(picture.size));
+    //图片压缩
+    UIImage *newImage = [UIImage imageByScalingAndCroppingForSize:CGSizeMake(newImageWidth, newImageHeight) image:picture];
+    
+    ZSLog(@"%@", NSStringFromCGSize(newImage.size));
+    
+    //上传图片
+    [self sendImageWithImage:newImage imageName:nickName];
+}
+
+
 
 - (void)clearTmpPics
 {

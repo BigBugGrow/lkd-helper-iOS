@@ -105,7 +105,6 @@
 		5272E31A1CB2A76D00A078A3 /* ZSSendInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272E3181CB2A76D00A078A3 /* ZSSendInfoViewController.m */; };
 		5272E31B1CB2A76D00A078A3 /* ZSSendInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5272E3191CB2A76D00A078A3 /* ZSSendInfoViewController.xib */; };
 		5275BB581CBA3A8B008855CF /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5275BB571CBA3A8B008855CF /* sendmsg.caf */; };
-		5275BB5C1CBA3D50008855CF /* ZSAudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275BB5B1CBA3D50008855CF /* ZSAudioTool.m */; };
 		5275C2841CBF2446007CEB56 /* ZSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275C2831CBF2446007CEB56 /* ZSSpecial.m */; };
 		5275C2871CBF266D007CEB56 /* ZSEmotionPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275C2861CBF266D007CEB56 /* ZSEmotionPart.m */; };
 		5275C28B1CBF2900007CEB56 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 5275C28A1CBF2900007CEB56 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -142,6 +141,7 @@
 		528D5A3A1CC7D8DF0041A019 /* ZSRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A391CC7D8DF0041A019 /* ZSRightButton.m */; };
 		52909B2A1CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 52909B281CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.m */; };
 		52909B2B1CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52909B291CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.xib */; };
+		52909B2F1CCCED3B004AB325 /* ZSAudioTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 52909B2E1CCCED3B004AB325 /* ZSAudioTool.m */; };
 		5291C24E1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
 		5291C24F1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
 		5291C2501CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
@@ -456,8 +456,6 @@
 		5272E3191CB2A76D00A078A3 /* ZSSendInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSSendInfoViewController.xib; sourceTree = "<group>"; };
 		5275BB561CBA1EA3008855CF /* 辽科大助手.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "辽科大助手.entitlements"; sourceTree = "<group>"; };
 		5275BB571CBA3A8B008855CF /* sendmsg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sendmsg.caf; sourceTree = "<group>"; };
-		5275BB5A1CBA3D50008855CF /* ZSAudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAudioTool.h; sourceTree = "<group>"; };
-		5275BB5B1CBA3D50008855CF /* ZSAudioTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAudioTool.m; sourceTree = "<group>"; };
 		5275C2821CBF2446007CEB56 /* ZSSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSpecial.h; sourceTree = "<group>"; };
 		5275C2831CBF2446007CEB56 /* ZSSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSpecial.m; sourceTree = "<group>"; };
 		5275C2851CBF266D007CEB56 /* ZSEmotionPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSEmotionPart.h; sourceTree = "<group>"; };
@@ -539,6 +537,8 @@
 		52909B271CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSViewContrdsadfsdoller.h; sourceTree = "<group>"; };
 		52909B281CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSViewContrdsadfsdoller.m; sourceTree = "<group>"; };
 		52909B291CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSViewContrdsadfsdoller.xib; sourceTree = "<group>"; };
+		52909B2D1CCCED3B004AB325 /* ZSAudioTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAudioTool.h; sourceTree = "<group>"; };
+		52909B2E1CCCED3B004AB325 /* ZSAudioTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAudioTool.m; sourceTree = "<group>"; };
 		5291C24C1CC5FEFD00D2C1C0 /* ZSCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourse.h; sourceTree = "<group>"; };
 		5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourse.m; sourceTree = "<group>"; };
 		5292295D1CB3FCAB0042F101 /* ZSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAboutViewController.h; sourceTree = "<group>"; };
@@ -1121,15 +1121,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5275BB591CBA3D2E008855CF /* ZSAudioTool */ = {
-			isa = PBXGroup;
-			children = (
-				5275BB5A1CBA3D50008855CF /* ZSAudioTool.h */,
-				5275BB5B1CBA3D50008855CF /* ZSAudioTool.m */,
-			);
-			path = ZSAudioTool;
-			sourceTree = "<group>";
-		};
 		5275C2881CBF2900007CEB56 /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
@@ -1230,6 +1221,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		52909B2C1CCCED3B004AB325 /* ZSAudioTool */ = {
+			isa = PBXGroup;
+			children = (
+				52909B2D1CCCED3B004AB325 /* ZSAudioTool.h */,
+				52909B2E1CCCED3B004AB325 /* ZSAudioTool.m */,
+			);
+			path = ZSAudioTool;
+			sourceTree = "<group>";
+		};
 		529D094C1C8669AB00DE8C7F /* ZSWeatherView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1295,6 +1295,7 @@
 		529F91BE1CBCD4CA00E851EB /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				52909B2C1CCCED3B004AB325 /* ZSAudioTool */,
 				529F91BF1CBCD4CA00E851EB /* ChooseRootViewController */,
 				529F91C21CBCD4CA00E851EB /* HttpTool */,
 				529F91C51CBCD4CA00E851EB /* TableView */,
@@ -1849,7 +1850,6 @@
 			isa = PBXGroup;
 			children = (
 				529F91BE1CBCD4CA00E851EB /* Tool */,
-				5275BB591CBA3D2E008855CF /* ZSAudioTool */,
 				52857AC31C9D7F9100F44C27 /* Controller */,
 				52857AC41C9D7F9100F44C27 /* View */,
 				52ACBCFF1C84242700BAE1A4 /* Const */,
@@ -2418,7 +2418,6 @@
 				524471B41CA7D0E000B8D2E6 /* ZSCourseView.m in Sources */,
 				525021D31C9ECA2C008F2526 /* UPMultipartBody.m in Sources */,
 				5244DC701CA1039500147B72 /* ZSBasicViewController.m in Sources */,
-				5275BB5C1CBA3D50008855CF /* ZSAudioTool.m in Sources */,
 				EF2AB5FE1C0F17A500DB93FC /* AFHTTPRequestOperation.m in Sources */,
 				525021D01C9ECA2C008F2526 /* NSString+NSHash.m in Sources */,
 				529F91D41CBCD4CA00E851EB /* ZSGroupModel.m in Sources */,
@@ -2430,6 +2429,7 @@
 				526775A11C9FF73500C55191 /* ZSEmotionTextView.m in Sources */,
 				523445B31C9E3CBC005630B7 /* NSString+Emoji.m in Sources */,
 				EFB6CA551C1110690065BAF8 /* ZSWeatherModel.m in Sources */,
+				52909B2F1CCCED3B004AB325 /* ZSAudioTool.m in Sources */,
 				EFB6CA691C1111D20065BAF8 /* ZSInquireCell.m in Sources */,
 				522D3BDE1C9D81A700A6927F /* MJPhoto.m in Sources */,
 				52FE8C481CA2B2660042A92C /* NSDate+Extension.m in Sources */,

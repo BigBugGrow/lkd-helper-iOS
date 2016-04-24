@@ -187,9 +187,7 @@
     if (![UIImagePickerController isSourceTypeAvailable:ImagePickerControllerSourceType]) return;
     
     
-    //若打开相册 设置为YES
-    self.selectedIcon = YES;
-    
+  
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
     ipc.sourceType = ImagePickerControllerSourceType;
     //监听她的图片
@@ -237,6 +235,9 @@
     
     
     self.iconImageView.image = newImage;
+
+    //若打开相册 设置为YES
+    self.selectedIcon = YES;
     
 }
 

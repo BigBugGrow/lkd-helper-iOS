@@ -96,6 +96,9 @@
 {
     self.bigImageView.image = [UIImage GetImageFromLocal:ZSIconImageStr];
     self.smallImageView.image = self.bigImageView.image;
+    
+    [self.tableView reloadData];
+    
 }
 
 
