@@ -233,10 +233,6 @@
         
         [formatter setDateFormat:@"HH:mm"];
         
-        NSDate * date = [formatter dateFromString:dateStr];//把字符串转换成Date格式
-    
-        
-        
         if (timetable0 && [timetable0.timeOfLesson isEqualToString:dateStr]) {
             
             //1.创建本地通知对对象
@@ -293,12 +289,12 @@
     ZSInquireModel *item2 = [ZSInquireModel itemWithIcon:@"evaluate" title:@"评教" vcClass:[ZSInquireWebViewController class]];
     ZSInquireModel *item3 = [ZSInquireModel itemWithIcon:@"select" title:@"选课" vcClass:[ZSInquireWebViewController class]];
     
-    ZSInquireModel *item4 = [ZSInquireModel itemWithIcon:@"archives" title:@"考试报名" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item4 = [ZSInquireModel itemWithIcon:@"test" title:@"考试报名" vcClass:[ZSInquireWebViewController class]];
 
-    ZSInquireModel *item5 = [ZSInquireModel itemWithIcon:@"mark" title:@"成绩查询" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item5 = [ZSInquireModel itemWithIcon:@"queryScore" title:@"成绩查询" vcClass:[ZSInquireWebViewController class]];
     ZSInquireModel *item6 = [ZSInquireModel itemWithIcon:@"classroom" title:@"空教室" vcClass:[ZSInquireWebViewController class]];
     
-    ZSInquireModel *item7 = [ZSInquireModel itemWithIcon:@"select" title:@"培养计划" vcClass:[ZSInquireWebViewController class]];
+    ZSInquireModel *item7 = [ZSInquireModel itemWithIcon:@"plan" title:@"培养计划" vcClass:[ZSInquireWebViewController class]];
     ZSInquireModel *item8 = [ZSInquireModel itemWithIcon:@"student" title:@"学生信息" vcClass:[ZSInquireWebViewController class]];
     
     ZSHomeGroupModel *group2 = [[ZSHomeGroupModel alloc] init];
@@ -418,15 +414,19 @@
            // id vc = [[item.vcClass alloc] init];
             ZSInquireWebViewController *inquireVC = [[ZSInquireWebViewController alloc] init];
             ZSAccount *account = [ZSAccountTool account];
+            
+            if ([account.hasTimetable isEqualToString:@"no"] || account == nil) {
+                
+                [SVProgressHUD showErrorWithStatus:@"亲， 你还没绑定学号哦！"];
+                return;
+            }
+            
             switch (indexPath.row + 1) {
                 case 1:
                     if (![account.hasTimetable isEqualToString:@"no"]) {
                     
                         [self.navigationController pushViewController:courseViewController animated:YES];
-                    }else {
-                        
-                        [SVProgressHUD showErrorWithStatus:@"亲， 你还没绑定学号哦！"];
-                    }
+                        return;
                     break;
                 case 2:
                     inquireVC.inquireURL = [NSString stringWithFormat:@"http://infinitytron.sinaapp.com/tron/index.php?r=ustl/teachingEvaluation"];
@@ -457,13 +457,11 @@
                 default:
                     break;
             }
+        }
             
             inquireVC.title = item.title;
-            if (![item.title isEqualToString:@"详细课表"]) {
-                
-                [self.navigationController pushViewController:inquireVC animated:YES];
-            }
-        
+            
+            [self.navigationController pushViewController:inquireVC animated:YES];
         }
     }
     

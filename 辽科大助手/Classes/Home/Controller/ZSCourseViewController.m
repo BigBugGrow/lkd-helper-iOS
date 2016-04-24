@@ -140,7 +140,6 @@
 /** 获取月结束的时的天数*/
 - (NSInteger)getCriticalDayWith:(BOOL)flag
 {
-    
     //初始化课表数据
     //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
@@ -575,6 +574,7 @@
     ZSAccount *account = [ZSAccountTool account];
     self.account = account;
     
+    
     //开学日期
     NSInteger count = [self getUTCFormateDate:account.termBeginTime];
     
@@ -843,6 +843,12 @@
     //添加监听
     [self textChange];
     
+}
+
+- (void)dealloc
+{
+    //消除通知对象
+    [ZSNotificationCenter removeObserver:self];
 }
 
 

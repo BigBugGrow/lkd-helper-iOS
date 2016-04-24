@@ -38,6 +38,11 @@
     
 }
 
+- (void)dealloc
+{
+    //消除通知对象
+    [ZSNotificationCenter removeObserver:self];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

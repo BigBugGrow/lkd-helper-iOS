@@ -36,7 +36,7 @@
     
     NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
     selectedAttrs[NSFontAttributeName] = attrs[NSFontAttributeName];
-    selectedAttrs[NSForegroundColorAttributeName] = RGBColor(0, 122, 255, 1);
+    selectedAttrs[NSForegroundColorAttributeName] = RGBColor(3, 169, 244, 1);
     
     UITabBarItem *item = [UITabBarItem appearance];
     [item setTitleTextAttributes:attrs forState:UIControlStateNormal];
@@ -83,23 +83,23 @@
 {
     //首页
     ZSHomeViewController *homeVC = [[ZSHomeViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    //homeVC.view.backgroundColor = [UIColor redColor];
+    
     [self setUpOneChildViewController:homeVC image:[UIImage imageNamed:@"tab_home_normal"] selectedImage:[UIImage imageNamed:@"tab_home_pressed"] title:@"首页"];
     
     //消息
 //    ZSMessageViewController *messageVC = [[ZSMessageViewController alloc] init];
     ZSNewsController *newsViewController = [[ZSNewsController alloc] init];
-    //messageVC.view.backgroundColor = [UIColor greenColor];
+    
     [self setUpOneChildViewController:newsViewController image:[UIImage imageNamed:@"tab_passage_normal"] selectedImage:[UIImage imageNamed:@"tab_passage_pressed"] title:@"消息"];
     
     //发现
     ZSDiscoverViewController *discoverVC = [[ZSDiscoverViewController alloc] init];
-    //discoverVC.view.backgroundColor = [UIColor yellowColor];
+    
     [self setUpOneChildViewController:discoverVC image:[UIImage imageNamed:@"tab_finding_normal"] selectedImage:[UIImage imageNamed:@"tab_finding_pressed"] title:@"发现"];
     
     //我
     ZSProfileViewController *profileVC = [[ZSProfileViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    //profileVC.view.backgroundColor = [UIColor blackColor];
+    
     [self setUpOneChildViewController:profileVC image:[UIImage imageNamed:@"tab_settings_normal"] selectedImage:[UIImage imageNamed:@"tab_settings_pressed"] title:@"我"];
 }
 
@@ -108,13 +108,12 @@
     
     vc.tabBarItem.title = title;
     
-    UIImage *ImageNormal = [UIImage imageCompressForSize:image targetSize:CGSizeMake(30, 30)];
-    UIImage *ImageSelected = [UIImage imageCompressForSize:selectedImage targetSize:CGSizeMake(30, 30)];
     
     [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    vc.tabBarItem.image = ImageNormal;
-    vc.tabBarItem.selectedImage = ImageSelected;
+    vc.tabBarItem.image = image;
+    vc.tabBarItem.selectedImage = selectedImage;
     
     ZSNavigationController *nav = [[ZSNavigationController alloc] initWithRootViewController:vc];
     

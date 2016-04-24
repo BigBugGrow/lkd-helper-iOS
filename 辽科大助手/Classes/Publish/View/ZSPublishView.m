@@ -44,7 +44,7 @@
     //2.添加按钮
     
     // 数据
-    NSArray *images = @[@"tab03_novelty", @"publish-text", @"publish-audio", @"publish-review"];
+    NSArray *images = @[@"all", @"discloseBoard", @"confessionWall", @"topics"];
     NSArray *titles = @[@"新建随笔", @"吐个槽", @"表个白吧", @"热门话题"];
     
     //一行的 最大列值
@@ -73,6 +73,9 @@
         CGFloat buttonX = buttonMargin + (buttonMargin + buttonWidth) * col;
         CGFloat buttonY = buttonHeightMargin + buttonHeight * row;
         
+
+//        button.imageView.backgroundColor = [UIColor redColor];
+        
         //添加监听方法
         [button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -95,11 +98,12 @@
     
     //添加标题栏
     UIImageView *slogan = [[UIImageView alloc] init];
-    slogan.image = [UIImage imageNamed:@"app_slogan"];
+    slogan.image = [UIImage imageNamed:@"publishBg"];
     slogan.width = 202;
     slogan.height = 20;
     
-    
+    slogan.x = 0;
+    slogan.y = -20;
 //    slogan.centerX = BSScreeenWidth * 0.5;
 //    slogan.y = BSScreeenHeight * 0.2;
     

@@ -30,7 +30,7 @@
     self.dayon_weatherLabel.text = weatherModel.weather ? weatherModel.weather : @"晴";
     self.pm25Label.text = [NSString stringWithFormat:@"PM2.5: %@",weatherModel.pm25 ? weatherModel.pm25 : @"2.6"];
     self.daon_temperatureLabel.text = weatherModel.temperature ? weatherModel.temperature : @"28";
-    self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",weatherModel.currentWeek ? weatherModel.currentWeek : @"二"];
+    self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",weatherModel.currentWeek ? weatherModel.currentWeek : @"2"];
     
     NSString *weather = weatherModel.weather;
     

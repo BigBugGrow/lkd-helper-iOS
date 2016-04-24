@@ -67,8 +67,17 @@ static NSString *ID = @"infoCell";
     
     //初始化tableView
     [self initHeaderView];
+
+    self.navigationController.navigationBar.subviews[0].backgroundColor = [UIColor whiteColor];
+    
+    //
+    [UIView animateWithDuration:1.0 animations:^{
+        
+        self.navigationController.navigationBar.hidden = YES;
+    }];
     
 }
+
 
 //加载跟人信息
 - (void)loadUserInfo
@@ -117,21 +126,19 @@ static NSString *ID = @"infoCell";
     
     [self.moreBtn removeFromSuperview];
     [self.backBtn removeFromSuperview];
-//    [self.writeInffoBtn removeFromSuperview];
     self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     //加载个人信息
     [self loadUserInfo];
     
     //设置按钮
     [self settingNavBtn];
     
-    self.navigationController.navigationBarHidden = YES;
 }
 
 
@@ -141,6 +148,7 @@ static NSString *ID = @"infoCell";
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     
     //返回按钮
+    
     UIButton *backBtn = [[UIButton alloc] init];
     backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];
@@ -163,6 +171,11 @@ static NSString *ID = @"infoCell";
     
     self.backBtn = backBtn;
     
+    //如果导航栏没有隐藏， 就隐藏返回按钮
+    if (!self.navigationController.navigationBarHidden) {
+        
+        self.backBtn.hidden = YES;
+    }
     
     //更多信息按钮
     UIButton *moreBtn = [[UIButton alloc] init];
@@ -462,18 +475,22 @@ static NSString *ID = @"infoCell";
     
     if (scrollView.contentOffset.y >= 190) {
     
-        [UIView animateWithDuration:0.01 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             self.navigationController.navigationBarHidden = NO;
             self.backBtn.hidden = YES;
-//            self.writeInffoBtn.hidden = YES;
+//            self.moreBtn.hidden = YES;
         }];
         
     } else {
         
         //隐藏导航栏
+        [UIView animateWithDuration:0.05 animations:^{
+            
             self.navigationController.navigationBarHidden = YES;
             self.backBtn.hidden = NO;
-//            self.writeInffoBtn.hidden = NO;
+//            self.moreBtn.hidden = NO;
+        }];
+        
     }
     
 }
@@ -570,43 +587,6 @@ static NSString *ID = @"infoCell";
     [ZSNotificationCenter removeObserver:self];
 }
 
-#pragma mark - UIImagePickerControllerDelegate
-/**
- *  从UIImagePickerControllerDelegate选择图片后就调用（拍完照完毕或者选择相册图片完毕）
- */
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    //拿出info中包含选择的图片
-    UIImage *picture = info[UIImagePickerControllerOriginalImage];
-    
-    CGFloat imageWidth = picture.size.width;
-    CGFloat imageHeight = picture.size.height;
-    
-    CGFloat newImageWidth, newImageHeight;
-    
-    if (imageWidth >= imageHeight) {
-        
-        newImageWidth = imageWidth >= 500 ? 500 : imageWidth;
-        newImageHeight = newImageWidth / imageWidth * imageHeight;
-    } else {
-        newImageHeight = imageHeight >= 500 ? 500 : imageHeight;
-        newImageWidth = newImageHeight / imageHeight  * imageWidth;
-        
-    }
-    
-    ZSLog(@"%@", NSStringFromCGSize(picture.size));
-    //图片压缩
-    UIImage *newImage = [UIImage imageByScalingAndCroppingForSize:CGSizeMake(newImageWidth, newImageHeight) image:picture];
-    
-    ZSLog(@"%@", NSStringFromCGSize(newImage.size));
-   
-    //上传图片
-    [self sendImageWithImage:newImage imageName:nickName];
-}
-
 
 #pragma mark - 保存图片
 
@@ -617,7 +597,5 @@ static NSString *ID = @"infoCell";
     [[SDImageCache sharedImageCache] clearMemory];//可有可无
 
 }
-
-
 
 @end

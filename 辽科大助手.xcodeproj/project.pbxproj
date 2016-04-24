@@ -140,6 +140,8 @@
 		528D5A361CC783950041A019 /* ZSProfileImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A341CC783950041A019 /* ZSProfileImageCell.m */; };
 		528D5A371CC783950041A019 /* ZSProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528D5A351CC783950041A019 /* ZSProfileImageCell.xib */; };
 		528D5A3A1CC7D8DF0041A019 /* ZSRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D5A391CC7D8DF0041A019 /* ZSRightButton.m */; };
+		52909B2A1CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 52909B281CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.m */; };
+		52909B2B1CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52909B291CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.xib */; };
 		5291C24E1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
 		5291C24F1CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
 		5291C2501CC5FEFD00D2C1C0 /* ZSCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */; };
@@ -169,7 +171,6 @@
 		52ACBCFE1C84158100BAE1A4 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBCFD1C84158100BAE1A4 /* UIView+Extension.m */; };
 		52ACBD041C84247700BAE1A4 /* ZSConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ACBD031C84247700BAE1A4 /* ZSConst.m */; };
 		52B82C921CB502B300FCE456 /* ZSExpressDeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B82C911CB502B300FCE456 /* ZSExpressDeliveryViewController.m */; };
-		52B82C991CB5050400FCE456 /* ZSShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B82C981CB5050400FCE456 /* ZSShoppingViewController.m */; };
 		52C426A61CA12FDE005F2325 /* ZSComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C426A51CA12FDE005F2325 /* ZSComment.m */; };
 		52C426AA1CA13970005F2325 /* ZSCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C426A81CA13970005F2325 /* ZSCommentViewCell.m */; };
 		52C89B3D1CAE9ECE00295180 /* ZSNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C89B3B1CAE9ECE00295180 /* ZSNoteViewController.m */; };
@@ -535,6 +536,9 @@
 		528D5A351CC783950041A019 /* ZSProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSProfileImageCell.xib; sourceTree = "<group>"; };
 		528D5A381CC7D8DF0041A019 /* ZSRightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSRightButton.h; sourceTree = "<group>"; };
 		528D5A391CC7D8DF0041A019 /* ZSRightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSRightButton.m; sourceTree = "<group>"; };
+		52909B271CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSViewContrdsadfsdoller.h; sourceTree = "<group>"; };
+		52909B281CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSViewContrdsadfsdoller.m; sourceTree = "<group>"; };
+		52909B291CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSViewContrdsadfsdoller.xib; sourceTree = "<group>"; };
 		5291C24C1CC5FEFD00D2C1C0 /* ZSCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCourse.h; sourceTree = "<group>"; };
 		5291C24D1CC5FEFD00D2C1C0 /* ZSCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCourse.m; sourceTree = "<group>"; };
 		5292295D1CB3FCAB0042F101 /* ZSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAboutViewController.h; sourceTree = "<group>"; };
@@ -587,8 +591,6 @@
 		52ACBD031C84247700BAE1A4 /* ZSConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSConst.m; sourceTree = "<group>"; };
 		52B82C901CB502B300FCE456 /* ZSExpressDeliveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSExpressDeliveryViewController.h; sourceTree = "<group>"; };
 		52B82C911CB502B300FCE456 /* ZSExpressDeliveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSExpressDeliveryViewController.m; sourceTree = "<group>"; };
-		52B82C971CB5050400FCE456 /* ZSShoppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSShoppingViewController.h; sourceTree = "<group>"; };
-		52B82C981CB5050400FCE456 /* ZSShoppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSShoppingViewController.m; sourceTree = "<group>"; };
 		52C426A41CA12FDE005F2325 /* ZSComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSComment.h; sourceTree = "<group>"; };
 		52C426A51CA12FDE005F2325 /* ZSComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSComment.m; sourceTree = "<group>"; };
 		52C426A71CA13970005F2325 /* ZSCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCommentViewCell.h; sourceTree = "<group>"; };
@@ -1399,39 +1401,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		52B82C931CB504DE00FCE456 /* Shopping */ = {
-			isa = PBXGroup;
-			children = (
-				52B82C941CB504DE00FCE456 /* Controller */,
-				52B82C951CB504DE00FCE456 /* Model */,
-				52B82C961CB504DE00FCE456 /* View */,
-			);
-			path = Shopping;
-			sourceTree = "<group>";
-		};
-		52B82C941CB504DE00FCE456 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				52B82C971CB5050400FCE456 /* ZSShoppingViewController.h */,
-				52B82C981CB5050400FCE456 /* ZSShoppingViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		52B82C951CB504DE00FCE456 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		52B82C961CB504DE00FCE456 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		52C89B341CAE9E8700295180 /* Note */ = {
 			isa = PBXGroup;
 			children = (
@@ -1686,7 +1655,6 @@
 		EF56D6701C09DA8B00A3B314 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				52B82C931CB504DE00FCE456 /* Shopping */,
 				52B82C8C1CB5029500FCE456 /* expressDelivery */,
 				52D90B721CB0BB52002B74A6 /* LostAndFound */,
 				52C89B341CAE9E8700295180 /* Note */,
@@ -1791,6 +1759,9 @@
 				528D5A2B1CC773FA0041A019 /* ZSDropDownMenu.m */,
 				528D5A381CC7D8DF0041A019 /* ZSRightButton.h */,
 				528D5A391CC7D8DF0041A019 /* ZSRightButton.m */,
+				52909B271CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.h */,
+				52909B281CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.m */,
+				52909B291CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2240,6 +2211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				525367111CC53636002D520C /* cb_glossy_on@2x.png in Resources */,
+				52909B2B1CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.xib in Resources */,
 				525367131CC53636002D520C /* cb_green_off@2x.png in Resources */,
 				52857AAA1C9D7F2200F44C27 /* pop-Info.plist in Resources */,
 				5244DC7D1CA1050000147B72 /* ZSCommenViewController.xib in Resources */,
@@ -2313,7 +2285,6 @@
 				5267759F1C9FF73500C55191 /* ZSEmotionTabbar.m in Sources */,
 				EF2AB6141C0F17A500DB93FC /* MJRefreshFooterView.m in Sources */,
 				5267759D1C9FF73500C55191 /* ZSEmotionPopView.m in Sources */,
-				52B82C991CB5050400FCE456 /* ZSShoppingViewController.m in Sources */,
 				528D5A361CC783950041A019 /* ZSProfileImageCell.m in Sources */,
 				520C576A1CB9262600E0795D /* ZSWLostViewController.m in Sources */,
 				EFD44D451C182B210016A602 /* ZSNewsController.m in Sources */,
@@ -2488,6 +2459,7 @@
 				522D3BE41C9D81A700A6927F /* MJPhotoView.m in Sources */,
 				52D90B811CB0ED08002B74A6 /* ZSPersonalUser.m in Sources */,
 				529F91D11CBCD4CA00E851EB /* ZSRootTool.m in Sources */,
+				52909B2A1CCCC5BB004AB325 /* ZSViewContrdsadfsdoller.m in Sources */,
 				5244DC721CA1039500147B72 /* ZSAllDynamic.m in Sources */,
 				52857AB31C9D7F2200F44C27 /* POPCGUtils.mm in Sources */,
 				52857AB11C9D7F2200F44C27 /* POPAnimator.mm in Sources */,

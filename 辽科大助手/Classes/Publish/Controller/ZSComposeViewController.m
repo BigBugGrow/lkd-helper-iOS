@@ -200,6 +200,7 @@
     [self.view addSubview:textView];
     self.textView = textView;
     
+    
     //通知textView变化
     [ZSNotificationCenter addObserver:self selector:@selector(textDidChanged) name:UITextViewTextDidChangeNotification object:textView];
     
@@ -229,6 +230,9 @@
     
     //赋值模型
     self.textView.emotion = emotionButton.emotion;
+    
+    //设置发送按钮能够点击
+    [self textDidChanged];
  
 }
 
@@ -316,7 +320,14 @@
 - (void)textDidChanged
 {
     ZSLog(@"222");
-    self.navigationItem.rightBarButtonItem.enabled = (self.textView.hasText || self.textView.attributedText);
+    self.navigationItem.rightBarButtonItem.enabled = (self.textView.hasText || self.textView.attributedText.length);
+    
+    ZSLog(@"%ld", self.textView.attributedText.length);
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+        ZSLog(@"%ld", self.textView.attributedText.length);
 }
 
 
@@ -474,7 +485,7 @@
     params[@"key"] = self.switchView.isOn ? @"ABCDEFGHIJ" : key;
     
     
-    NSString *fullText = nil;
+    NSString *fullText = @" ";
     if ([self.type isEqualToString:@"topics"]) {
         
         fullText = [NSString stringWithFormat:@"#%@# %@", self.titleView.text,[self.textView fullText]];
@@ -711,6 +722,9 @@
     
     [self.pictureView addPicture:newImage];
     
+//    //右边按钮设置可点击
+//    [self textDidChanged];
+//    
 }
 
 

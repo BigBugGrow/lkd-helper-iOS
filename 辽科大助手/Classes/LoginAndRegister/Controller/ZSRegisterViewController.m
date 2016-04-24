@@ -29,6 +29,9 @@
 @property  (nonatomic,strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlButton;
 
+/**判断用户是否选择头像*/
+@property (nonatomic, assign) BOOL selectedIcon;
+
 @end
 
 @implementation ZSRegisterViewController
@@ -107,11 +110,12 @@
                 [self.activityIndicator stopAnimating];
                 self.activityIndicator.hidden = YES;
                 
-                UIImage *defaultImage = [UIImage imageNamed:@"icon"];
+                //如果用户没打开相册， 就是用默认头像
+                UIImage *defaultImage = [UIImage imageNamed:@"other_on"];
                 
-                UIImage *image = [UIImage imageNamed:@"regist_head_unlogin"];
+                UIImage  *newDefaultImage = [UIImage imageByScalingAndCroppingForSize:CGSizeMake(200, 200) image:defaultImage];
                 
-                UIImage *iconImage = image == self.iconImageView.image ? defaultImage : image;
+                UIImage *iconImage = self.selectedIcon ? self.iconImageView.image : newDefaultImage;
                 
                 [self sendImageWithImage:iconImage imageName:self.userNameText.text];
             
@@ -159,19 +163,23 @@
     
     NSString *pictruePath = [NSString stringWithFormat:@"/picUser/%@.jpg", imageName];
     
+    
+    
     [uy uploadImage:image savekey:pictruePath];
     
 }
 
 - (void)openCamera
 {
-    ZSLog(@"打开相机");
+    
     [self openImagePickerController:UIImagePickerControllerSourceTypeCamera];
+    
 }
 
 - (void)openAlbum
 {
     //    UIImagePickerControllerSourceTypePhotoLibrary > UIImagePickerControllerSourceTypeSavedPhotosAlbum
+    
     //获得所有图片
     [self openImagePickerController:UIImagePickerControllerSourceTypePhotoLibrary];
 }
@@ -180,6 +188,10 @@
 {
     //若相机在没摔坏 没故障的情况下，就打开相机
     if (![UIImagePickerController isSourceTypeAvailable:ImagePickerControllerSourceType]) return;
+    
+    
+    //若打开相册 设置为YES
+    self.selectedIcon = YES;
     
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
     ipc.sourceType = ImagePickerControllerSourceType;

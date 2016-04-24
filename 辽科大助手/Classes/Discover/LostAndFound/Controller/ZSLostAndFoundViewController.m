@@ -16,6 +16,7 @@
 #import "ZSWLostViewController.h"
 #import "ZSLostCommenViewController.h"
 #import "ZSInfoViewController.h"
+#import "SVProgressHUD.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 
@@ -163,6 +164,9 @@ static NSString *ID = @"lostAndFoundCell";
         
     } failure:^(NSError *error) {
         
+        
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
+        
         [self.tableView footerEndRefreshing];
         
     }];
@@ -238,6 +242,8 @@ static NSString *ID = @"lostAndFoundCell";
         
         
     } failure:^(NSError *error) {
+        
+        [SVProgressHUD showInfoWithStatus:@"请检查网络!"];
         
         [self.tableView headerEndRefreshing];
         

@@ -12,6 +12,7 @@
 #import "ZSDetailWeatherCell.h"
 #import "ZSDetailWeatherFrameModel.h"
 #import "ZSDetailWeatherView.h"
+#import "SVProgressHUD.h"
 
 #import "MJRefresh.h"
 
@@ -92,8 +93,20 @@
     } failure:^(NSError *error) {
         
         ZSLog(@"获取详细天气信息失败");
-        [MBProgressHUD showMessage:@"您的网速太慢了..." toView:self.view];
-    
+//        [MBProgressHUD showMessage:@"您的网速太慢了..." toView:self.view];
+        
+        [SVProgressHUD showInfoWithStatus:@"您的网速太慢了..."];
+        
+        
+        self.detailWeatherModel = nil;
+        
+        [self.tableView reloadData];
+        //结束刷新
+        [self.tableView headerEndRefreshing];
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        [self getDetailWeather];
         //结束刷新
         [self.tableView headerEndRefreshing];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];

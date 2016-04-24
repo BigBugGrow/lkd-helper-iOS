@@ -123,8 +123,8 @@
     self.nameLabel.text = detailWeatherModel.title;
     self.sugguest.text = @"建议:";
     
-    NSString *zs = nil;
-    NSString *sugguestText = nil;
+    NSString *zs = @"舒服";
+    NSString *sugguestText = @"天气较好，但风力较大，推荐您进行室内运动，若在户外运动请注意避风保暖。";
     
     if ([detailWeatherModel.title isEqualToString:@"穿衣"]) {
         
@@ -146,6 +146,7 @@
     
     self.zsLabel.text = [NSString stringWithFormat:@"指数:  %@", zs];
     self.sugguestTextView.text = sugguestText;
+    
     
 }
 

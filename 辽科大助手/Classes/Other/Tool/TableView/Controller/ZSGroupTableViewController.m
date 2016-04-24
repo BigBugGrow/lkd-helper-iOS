@@ -65,8 +65,6 @@
 {
     ZSInfoViewController *infoViewCV = [[ZSInfoViewController alloc] init];
     infoViewCV.whoNickName = nickName;
-    
-    ZSLog(@"%@", nickName);
 
     [self.navigationController pushViewController:infoViewCV animated:YES];
 
@@ -113,7 +111,7 @@
         }
         
         ZSAccount *account = [ZSAccountTool account];
-        if (account.zjh && [vc isKindOfClass:[ZSStudentNumBindViewController class]]) {
+        if (account.zjh && [vc isKindOfClass:[ZSStudentNumBindViewController class]] && ![account.zjh isEqualToString:@"暂无"]) {
             
             [SVProgressHUD showErrorWithStatus:@"该账号以绑定学号！"];
             return;

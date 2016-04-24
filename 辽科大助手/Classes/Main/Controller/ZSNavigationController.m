@@ -31,11 +31,10 @@
 //    titleAttr[NSFontAttributeName] = [UIFont systemFontOfSize:20];
 //    bar.titleTextAttributes = titleAttr;
 //    
-//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+//    [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
 //    
 //
 //}
-
 
 - (void)viewDidLoad
 {
@@ -51,12 +50,13 @@
         
 //        UINavigationBar *bar = [[UINavigationBar alloc] init];
         
-        [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"blue"] forBarMetrics:UIBarMetricsDefault];
+//        [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"blue"] forBarMetrics:UIBarMetricsDefault];
         NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
         titleAttr[NSForegroundColorAttributeName] = [UIColor whiteColor];
         titleAttr[NSFontAttributeName] = [UIFont systemFontOfSize:20];
-        self.navigationBar.titleTextAttributes = titleAttr;
-        
+        //设置全局导航栏
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"blue"] forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setTitleTextAttributes:titleAttr];
         [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         
 
@@ -77,14 +77,16 @@
         [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         
-        [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
-        backBtn.size = CGSizeMake(70, 30);
+        
+        backBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [backBtn setImage:[UIImage imageNamed:@"tab_back"] forState:UIControlStateNormal];
+        backBtn.size = CGSizeMake(50, 30);
         //设置按钮的内容靠左边
         backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         //设置按钮的切割
         backBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         
-        backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+        backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
         
         //按钮内容有多少 size就有多大
         //    [backBtn sizeToFit];
@@ -102,8 +104,8 @@
 
 // 退出
 - (void)exitViewController
-
-{   [self popViewControllerAnimated:YES];
+{
+    [self popViewControllerAnimated:YES];
 }
 
 

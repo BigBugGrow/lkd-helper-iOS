@@ -287,7 +287,7 @@
         [self.commentButton setTitle:@"" forState:UIControlStateNormal];
     }
     
-    [self.commentButton setImage:[UIImage imageNamed:@"commentNum"] forState:UIControlStateNormal];
+    [self.commentButton setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
     
 }
 

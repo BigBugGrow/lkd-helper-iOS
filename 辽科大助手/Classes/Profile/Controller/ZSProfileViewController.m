@@ -67,19 +67,6 @@
 {
     [super viewDidLoad];
 
-//    //1.获得全局的并发队列
-//    dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    //2.添加任务到队列中，就可以执行任务
-//    //异步函数：具备开启新线程的能力
-//    dispatch_async(queue, ^{
-//        
-//        self.cacheSize = [self getCachesCount];
-//        
-//        
-//        
-//    });
-    
-    
     self.navigationItem.title = @"我";
 
     
@@ -90,14 +77,13 @@
     
     [self setUpTableHeaderView:@"ZSProfileImageCell"];
     
-    
-    
     [self initModelData];
     
 }
 
 - (void)clickRightBtn
 {
+
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"退出当前账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
@@ -142,7 +128,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
     
     [self.tableView reloadData];
     
@@ -163,7 +149,7 @@
     [self.cellData addObject:group1];
     
 
-    ZSModel *item3 = [ZSModel itemWithIcon:@"setting" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
+    ZSModel *item3 = [ZSModel itemWithIcon:@"bind" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
 ////    ZSModel *item4 = [ZSModel itemWithIcon:@"lock1" title:@"设置" detailTitle:@""];
 //    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"不提醒上课" detailTitle:@""];
 //    
