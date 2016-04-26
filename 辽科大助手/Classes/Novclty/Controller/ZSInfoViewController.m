@@ -84,6 +84,13 @@ static NSString *ID = @"infoCell";
 {
     ZSAccount *account = [ZSAccountTool account];
     
+    
+    if ([account.hasTimetable isEqualToString:@"no"] || account == nil) {
+        
+        [SVProgressHUD showErrorWithStatus:@"亲， 你还没绑定学号哦！不能加载个人信息..."];
+        return;
+    }
+    
     ZSPersonalUser *user = [[ZSPersonalUser alloc] init];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -154,7 +161,7 @@ static NSString *ID = @"infoCell";
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];
     [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    
+    [backBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [backBtn setImage:[UIImage imageNamed:@"rightBack"] forState:UIControlStateNormal];
     backBtn.size = CGSizeMake(130, 40);
     //设置按钮的内容靠左边
@@ -183,7 +190,7 @@ static NSString *ID = @"infoCell";
     [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
     [moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [moreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    
+    [moreBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     moreBtn.size = CGSizeMake(40, 30);
     //设置按钮的内容靠左边
     moreBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -417,8 +424,15 @@ static NSString *ID = @"infoCell";
 //    [sheet showInView:self.view];
 //    
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    self.backBtn.enabled = NO;
+    self.moreBtn.enabled = NO;
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"随便更换头像, 会耗费流量哦 ！！！" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+    
+        self.backBtn.enabled = YES;
+        self.moreBtn.enabled = YES;
+    }];
     UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"打开相册" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {                                                                     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -493,8 +507,6 @@ static NSString *ID = @"infoCell";
     
 }
 
-
-
 /** 发送头像到又赔云*/
 
 - (void)sendImageWithImage:(UIImage *)image imageName:(NSString *)imageName
@@ -514,8 +526,6 @@ static NSString *ID = @"infoCell";
 
     uy.successBlocker = ^(NSURLResponse *response, id responseData) {
         
-        [SVProgressHUD showSuccessWithStatus:@"修改头像成功"];
-        
         //清除缓存图片
         [self clearTmpPics];
         
@@ -525,12 +535,11 @@ static NSString *ID = @"infoCell";
         
         //保存图片
         [UIImage SaveImageToLocal:image Keys:ZSIconImageStr];
+        //模仿网络延时
+        [self performSelector:@selector(postNotication) withObject:nil afterDelay:1.0];
         
-        //创建通知
-        //创建一个消息对象
-        [self performSelector:@selector(postNotication) withObject:nil afterDelay:2.0];
-        
-        [MBProgressHUD hideHUDForView:self.view];
+        self.backBtn.enabled = YES;
+        self.moreBtn.enabled = YES;
     
     };
     uy.failBlocker = ^(NSError * error) {
@@ -540,7 +549,8 @@ static NSString *ID = @"infoCell";
         [MBProgressHUD hideHUDForView:self.view];
         [SVProgressHUD showErrorWithStatus:@"修改头像失败，请检查网络"];
 
-        
+        self.backBtn.enabled = YES;
+        self.moreBtn.enabled = YES;
         ZSLog(@"error %@", message);
     };
     
@@ -554,7 +564,14 @@ static NSString *ID = @"infoCell";
 //通知方法
 - (void)postNotication
 {
-  [ZSNotificationCenter postNotificationName:@"swapImage" object:nil];
+    
+    //创建通知
+    //创建一个消息对象
+    [ZSNotificationCenter postNotificationName:@"swapImage" object:nil];
+    [MBProgressHUD hideHUDForView:self.view];
+    //提醒用户修改头像成功
+    [SVProgressHUD showSuccessWithStatus:@"修改头像成功"];
+    
 }
 
 - (void)openCamera

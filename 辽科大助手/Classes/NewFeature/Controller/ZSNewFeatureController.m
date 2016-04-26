@@ -56,7 +56,7 @@ static NSString * const reuseIdentifier = @"Cell";
     control.pageIndicatorTintColor = [UIColor lightGrayColor];
     control.currentPageIndicatorTintColor = [UIColor whiteColor];
     
-    control.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height - 10);
+    control.center = CGPointMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height - 30);
     _control = control;
     [self.view addSubview:control];
 }

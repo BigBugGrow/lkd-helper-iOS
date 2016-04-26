@@ -192,7 +192,7 @@
     
     //添加文字说明
     UILabel *label = [[UILabel alloc] init];
-    label.text = @" 全部动态";
+    label.text = @"  全部动态";
     label.font = [UIFont systemFontOfSize:15];
     label.textColor = [UIColor grayColor];
     label.width = ZSScreenW;
@@ -205,7 +205,7 @@
     topLine.backgroundColor = RGBColor(242, 242, 242, 0.9);
     topLine.width = 65;
     topLine.height = 1;
-    topLine.x = 0;
+    topLine.x = 10;
     topLine.y = headerView.height - topLine.height - label.height - 5;
     
 
@@ -213,19 +213,23 @@
     buttomLine.backgroundColor = topLine.backgroundColor;
     buttomLine.width = 65;
     buttomLine.height = 1;
-    buttomLine.x = 0;
+    buttomLine.x = 10;
     buttomLine.y = headerView.height - 1 - 5;
 
     [headerView addSubview:topLine];
     [headerView addSubview:buttomLine];
     [headerView addSubview:label];
     
-    UILabel *middleLabel = [[UILabel alloc] init];
-    middleLabel.text = @"下拉会放大图片哦";
+    UIImageView *middleLabel = [[UIImageView alloc] init];
+    
+    middleLabel.contentMode = UIViewContentModeScaleAspectFit;
+    
+    middleLabel.image = [UIImage imageNamed:@"topBg"];
+    
     middleLabel.frame = CGRectMake(0, headerView.height - 75, ZSScreenW, 30);
-    middleLabel.textAlignment = NSTextAlignmentCenter;
-    middleLabel.textColor = [UIColor lightGrayColor];
-    middleLabel.font = label.font;
+//    middleLabel.textAlignment = NSTextAlignmentCenter;
+//    middleLabel.textColor = [UIColor lightGrayColor];
+//    middleLabel.font = label.font;
     [headerView addSubview:middleLabel];
     
     
@@ -415,9 +419,6 @@
     
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/myNoveltyRead" parameters:params success:^(NSDictionary *responseObject) {
-
-        
-        ZSLog(@"%@", responseObject);
         
         NSArray *dynamics = [NSArray array];
         
@@ -601,7 +602,8 @@
     
     CGRect frame = self.bigImageView.frame;
     // 5决定图片变大的速度,值越大,速度越快
-    //    frame.size.width = ZSScreenW + down * 0.2;
+    
+    frame.size.width = ZSScreenW + down * 0.4;
     frame.size.height = HMTopViewH + down * 0.8;
     self.bigImageView.frame = frame;
     

@@ -144,7 +144,7 @@ static NSString * const commentID = @"commentCell";
             self.isFirstCome = YES;
             //设置tableview默认选中行
             
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:(countNum - 2) inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:(countNum - 1) inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         }
             
     } failure:^(NSError *error) {
@@ -159,17 +159,13 @@ static NSString * const commentID = @"commentCell";
 - (void)loadMoreData
 {
     self.tableView.footerHidden = NO;
-    
-    
-    ZSLog(@"1111");
+
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [self.tableView footerEndRefreshing];
     });
 }
-
-
 
 /** initCell*/
 - (void)initCell

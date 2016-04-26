@@ -81,6 +81,12 @@
             self.activityIndicator.hidden = YES;
             [MBProgressHUD showError:@"学号已被绑定"];
             
+        } else if (code == 704) {
+            //[responseObject[@"state"] isEqualToString:@"601"]
+            [self.activityIndicator stopAnimating];
+            self.activityIndicator.hidden = YES;
+            [MBProgressHUD showError:@"学号或密码错误"];
+            
         } else if (code == 701){
             
             //圆圈停止转动
@@ -110,7 +116,7 @@
         [self.activityIndicator stopAnimating];
         self.activityIndicator.hidden = YES;
         
-        [MBProgressHUD showError:@"网络错误"];
+        [MBProgressHUD showError:@"服务器故障,请稍后再试..."];
         
     }];
     

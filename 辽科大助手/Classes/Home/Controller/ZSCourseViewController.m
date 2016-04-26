@@ -870,10 +870,13 @@
 {
 
     
+    
     [self.courseDayView removeFromSuperview];
     [self.courseBgView removeFromSuperview];
     
     self.course.courseNum = btn.tag;
+    
+    ZSLog(@"%ld", self.course.courseNum);
     
     //    [cbv setStateChangedTarget:self
     //                      selector:@selector(checkBoxViewChangedState:)];
@@ -994,11 +997,13 @@
             
         }
     }
-    self.course.weekCourses = courseArr;
 
+    //增加课程的周数数组
+    self.course.weekCourses = courseArr;
     
     NSArray *timeTable = self.account.timetable;
     
+    //课程模型
     ZSCourse *course = self.course;
     
     NSInteger count = self.course.weekCourses.count;
@@ -1009,6 +1014,7 @@
     dictCourse[@"course"] = course.courseName;
     dictCourse[@"orderLesson"] = @(course.courseNum);
     
+    
     for (int i = 0; i < count; i ++) {
         
         int k = [course.weekCourses[i] intValue];
@@ -1018,14 +1024,19 @@
         
         NSMutableDictionary *dictM = arr[j];
         
-        dictM[@(course.weekCourse)] = dictCourse;
+        dictM[@(course.courseNum)] = dictCourse;
     }
     
     //保存新课表
     [ZSAccountTool saveAccountTimeTable:timeTable];
+    
     self.account = [ZSAccountTool account];
     //设置课表
     [self initCourseWithCurrentWeek:self.currentWeek];
+    
+    //通知控制器添加课表完成
+    [ZSNotificationCenter postNotificationName:@"overAddCourse" object:nil];
+    
     
 }
 

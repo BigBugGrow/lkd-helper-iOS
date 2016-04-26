@@ -27,15 +27,14 @@
     params.zjh = zjh;
     params.mm = mm;
     
+    
+    ZSLog(@"%@ %@ %@ %@", params.nickname, params.zjh, params.mm, params.key);
+    
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/Bind" parameters:params.keyValues success:^(id responseObject) {
         
 //warning 新接口课表不再是以字符串返回，而是字典数组，下面这个方法用不上了
         //        //字符串转字典数组
         //        NSArray *dictArr = [NSString stringTimeTableConvertToDictArray:responseObject[@"timetable"]];
-        
-        
-//        ZSLog(@"%@", responseObject);
-        
         
         NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
 //warning 新接口返回的课表中的周，还是以字符串形式返回的，还是得重新处理，烦人
@@ -80,6 +79,7 @@
         ZSAccount *account = [ZSAccount objectWithKeyValues:accountDict];
         
         if (success) {
+            
             success(account.state);
             
             if (account.state == 100) {
@@ -104,7 +104,11 @@
         
         
     } failure:^(NSError *error) {
+        
+        
+        
         if (failure) {
+            
             failure(error);
         }
         

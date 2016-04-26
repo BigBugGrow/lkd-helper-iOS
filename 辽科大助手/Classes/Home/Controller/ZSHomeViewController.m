@@ -79,6 +79,11 @@
     return UIStatusBarStyleLightContent;
 }
 
+- (void)dealloc
+{
+    //消除通知对象
+    [ZSNotificationCenter removeObserver:self];
+}
 
 
 - (void)viewDidLoad {
@@ -107,6 +112,9 @@
     
     // 添加下拉刷新控件
     [self.tableView addHeaderWithTarget:self action:@selector(refreshWeatherDataAndTimeTableData)];
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(refreshWeatherDataAndTimeTableData) name:@"overAddCourse" object:nil];
+    
 }
 
 - (void)refreshWeatherDataAndTimeTableData
@@ -192,7 +200,7 @@
     ZSAccount *account = [ZSAccountTool account];
     self.account = account;
     
-    ZSLog(@"%@", account.key);
+//    ZSLog(@"%@", account.key);
     
      //1.计算当前是第几周，星期几
     NSDate *currentDay = [NSDate date];
@@ -207,7 +215,7 @@
         weekday = 0;
     }
     
-    if (![account.hasTimetable isEqualToString:@"no"]) {
+    if (![account.hasTimetable isEqualToString:@"no"] || account == nil) {
         
         //1.得到当天的课表字典
         NSDictionary *dayDict = account.timetable[self.currentWeek][weekday];

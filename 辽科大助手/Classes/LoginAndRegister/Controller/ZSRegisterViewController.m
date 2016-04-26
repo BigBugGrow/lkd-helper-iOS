@@ -138,7 +138,7 @@
         [self.activityIndicator stopAnimating];
         self.activityIndicator.hidden = YES;
         
-        [MBProgressHUD showError:@"网络错误"];
+        [MBProgressHUD showError:@"服务器故障,请稍后再试..."];
     }];
 }
 

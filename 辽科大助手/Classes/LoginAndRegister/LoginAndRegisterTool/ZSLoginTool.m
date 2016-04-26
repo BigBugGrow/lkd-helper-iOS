@@ -90,9 +90,6 @@
             
             accountDict[@"timetable"] = planarArr;
             
-            ZSLog(@"%@", planarArr);
-        
-            
             [NSKeyedArchiver archiveRootObject:planarArr toFile:ZSTimeTablePath];
             
         }

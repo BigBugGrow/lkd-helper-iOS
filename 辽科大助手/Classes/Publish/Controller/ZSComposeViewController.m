@@ -558,8 +558,6 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params success:^(id responseObject) {
         
-        ZSLog(@"%@", responseObject);
-        
         if ([responseObject[@"state"] integerValue] == 602) {
             
             [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
