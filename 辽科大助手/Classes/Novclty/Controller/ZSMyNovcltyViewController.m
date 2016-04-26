@@ -220,17 +220,17 @@
     [headerView addSubview:buttomLine];
     [headerView addSubview:label];
     
-    UIImageView *middleLabel = [[UIImageView alloc] init];
+    UIImageView *middleImageView = [[UIImageView alloc] init];
     
-    middleLabel.contentMode = UIViewContentModeScaleAspectFit;
+    middleImageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    middleLabel.image = [UIImage imageNamed:@"topBg"];
+    middleImageView.image = [UIImage imageNamed:@"topBg"];
     
-    middleLabel.frame = CGRectMake(0, headerView.height - 75, ZSScreenW, 30);
+    middleImageView.frame = CGRectMake(25, headerView.height - 75, ZSScreenW - 50, 30);
 //    middleLabel.textAlignment = NSTextAlignmentCenter;
 //    middleLabel.textColor = [UIColor lightGrayColor];
 //    middleLabel.font = label.font;
-    [headerView addSubview:middleLabel];
+    [headerView addSubview:middleImageView];
     
     
     //大图片

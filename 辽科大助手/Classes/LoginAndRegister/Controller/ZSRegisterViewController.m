@@ -36,6 +36,7 @@
 
 @implementation ZSRegisterViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"注册";
