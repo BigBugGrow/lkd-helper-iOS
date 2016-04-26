@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZSWLostViewController : UIViewController
+@interface ZSWriteLostViewController : UIViewController
 
 @end

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		520C576A1CB9262600E0795D /* ZSWLostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520C57681CB9262600E0795D /* ZSWLostViewController.m */; };
+		520C576A1CB9262600E0795D /* ZSWriteLostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520C57681CB9262600E0795D /* ZSWriteLostViewController.m */; };
 		5229E5FA1CA264230088F047 /* ZSCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5229E5F91CA264230088F047 /* ZSCommentViewCell.xib */; };
 		522D3BCA1C9D814C00A6927F /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D3BC31C9D814C00A6927F /* SVIndefiniteAnimatedView.m */; };
 		522D3BCB1C9D814C00A6927F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 522D3BC51C9D814C00A6927F /* SVProgressHUD.bundle */; };
@@ -290,8 +290,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		520C57671CB9262600E0795D /* ZSWLostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWLostViewController.h; sourceTree = "<group>"; };
-		520C57681CB9262600E0795D /* ZSWLostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWLostViewController.m; sourceTree = "<group>"; };
+		520C57671CB9262600E0795D /* ZSWriteLostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWriteLostViewController.h; sourceTree = "<group>"; };
+		520C57681CB9262600E0795D /* ZSWriteLostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWriteLostViewController.m; sourceTree = "<group>"; };
 		5229E5F91CA264230088F047 /* ZSCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCommentViewCell.xib; sourceTree = "<group>"; };
 		522D3BC21C9D814C00A6927F /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		522D3BC31C9D814C00A6927F /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
@@ -1472,8 +1472,8 @@
 				523B6DFF1CB64C210031FC23 /* ZSLostCommenViewController.h */,
 				523B6DFE1CB64C210031FC23 /* ZSLostCommenViewController.m */,
 				523B6DFD1CB64C210031FC23 /* ZSLostCommenViewController.xib */,
-				520C57671CB9262600E0795D /* ZSWLostViewController.h */,
-				520C57681CB9262600E0795D /* ZSWLostViewController.m */,
+				520C57671CB9262600E0795D /* ZSWriteLostViewController.h */,
+				520C57681CB9262600E0795D /* ZSWriteLostViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2286,7 +2286,7 @@
 				EF2AB6141C0F17A500DB93FC /* MJRefreshFooterView.m in Sources */,
 				5267759D1C9FF73500C55191 /* ZSEmotionPopView.m in Sources */,
 				528D5A361CC783950041A019 /* ZSProfileImageCell.m in Sources */,
-				520C576A1CB9262600E0795D /* ZSWLostViewController.m in Sources */,
+				520C576A1CB9262600E0795D /* ZSWriteLostViewController.m in Sources */,
 				EFD44D451C182B210016A602 /* ZSNewsController.m in Sources */,
 				52857AAF1C9D7F2200F44C27 /* POPAnimationRuntime.mm in Sources */,
 				EF2AB6201C0F17A500DB93FC /* SDWebImageManager.m in Sources */,

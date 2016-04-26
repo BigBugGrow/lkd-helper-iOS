@@ -13,7 +13,7 @@
 #import "ZSHttpTool.h"
 #import "ZSDynamicPicturesView.h"
 #import "MJRefresh.h"
-#import "ZSWLostViewController.h"
+#import "ZSWriteLostViewController.h"
 #import "ZSLostCommenViewController.h"
 #import "ZSInfoViewController.h"
 #import "SVProgressHUD.h"
@@ -97,7 +97,7 @@ static NSString *ID = @"lostAndFoundCell";
 - (void)clickSendBtn
 {
     /** 写寻物启事公告*/
-    ZSWLostViewController *writeLostViewController = [[ZSWLostViewController alloc] init];
+    ZSWriteLostViewController *writeLostViewController = [[ZSWriteLostViewController alloc] init];
     
     self.plusBtn.enabled = NO;
     
@@ -295,7 +295,7 @@ static NSString *ID = @"lostAndFoundCell";
     
     CGSize size = [ZSDynamicPicturesView sizeWithPicturesCount:pics.count];
     
-    return 230 + size.height + 10;
+    return 230 + size.height;
 }
 
 

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 USTL. All rights reserved.
 //
 
-#import "ZSWLostViewController.h"
+#import "ZSWriteLostViewController.h"
 #import "ZSComposePictrueView.h"
 #import "UpYun.h"
 #import "ZSHttpTool.h"
@@ -17,7 +17,7 @@
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
-@interface ZSWLostViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
+@interface ZSWriteLostViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 
 
 /** 图片名字数组*/
@@ -48,7 +48,7 @@
 
 @end
 
-@implementation ZSWLostViewController
+@implementation ZSWriteLostViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

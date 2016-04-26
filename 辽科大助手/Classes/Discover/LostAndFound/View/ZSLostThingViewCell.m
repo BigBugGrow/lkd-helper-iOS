@@ -13,6 +13,10 @@
 
 #define myNickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
+#define sex [[NSUserDefaults standardUserDefaults] objectForKey:ZSSex]
+
+
+
 @interface ZSLostThingViewCell () 
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageVIew;
 /** 电话*/
@@ -110,7 +114,11 @@
     self.nameLabel.text = imageStr;
     
     /** 性别*/
-    self.sexImageVIew.image = [UIImage imageNamed:@"boy"];
+    
+    UIImage *imageBoy = [UIImage imageNamed:@"boy"];
+    UIImage *imageGril = [UIImage imageNamed:@"girl"];
+    self.sexImageVIew.image = [sex isEqualToString:@"boy"] ? imageBoy : imageGril;
+
     
     /** 时间*/
     self.dateLabel.text = lostThing.date;
