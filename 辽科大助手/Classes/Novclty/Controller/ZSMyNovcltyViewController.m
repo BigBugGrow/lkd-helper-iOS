@@ -18,6 +18,8 @@
 #import "ZSPersonalUser.h"
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
+#import "MBProgressHUD+MJ.h"
+#import "SVProgressHUD.h"
 
 #define HMTopViewH 300
 
@@ -83,7 +85,7 @@
     [self initNav];
     
     //添加刷新下拉刷新
-    [self getNewData];
+    [self settingRefresh];
     
     //初始化headerView
     [self initHeaderView];
@@ -305,8 +307,6 @@
     nameLabel.textColor = [UIColor whiteColor];
     [myImage addSubview:nameLabel];
     
-
-    
 }
 
 
@@ -320,8 +320,8 @@
 - (void)settingRefresh
 {
     // 添加下拉刷新
-//    [self.tableView addHeaderWithTarget:self action:@selector(refreshDown)];
-//    [self.tableView headerBeginRefreshing];
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshDown)];
+    [self.tableView headerBeginRefreshing];
     
     //添加上拉刷新
     [self.tableView addFooterWithTarget:self action:@selector(refreshMoreData)];
@@ -332,21 +332,34 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"item"] = @(self.endId);
-    params[@"nickname"] = self.whoNickName;
+    params[@"nickname"] = self.whoNickName ? self.whoNickName : nickName;
     
     //结束下拉刷新
     [self.tableView headerEndRefreshing];
     
     //获取数据
-    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/noveltyRead" parameters:params success:^(NSDictionary *responseObject) {
+    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/myNoveltyRead" parameters:params success:^(NSDictionary *responseObject) {
         
         //保存上一次访问的一条数据的最后一个
         self.endId = [responseObject[@"endId"] integerValue];
         
         NSArray *dynamics = responseObject[@"data"];
         
-        NSMutableArray *arrayM = [NSMutableArray array];
+      
+        if (self.endId == 0){
+            
+            [SVProgressHUD showSuccessWithStatus:@"已经没有数据了哦..."];
+            //结束下拉刷新
+            [self.tableView footerEndRefreshing];
+            return;
+        }
+        if (dynamics.count < 9) {
+            
+            self.endId = 0;
+        }
         
+
+        NSMutableArray *arrayM = [NSMutableArray array];
         
         for (NSDictionary *dict in dynamics) {
             
@@ -373,13 +386,8 @@
             [arrayM addObject:allDynamicFrame];
             
             
-            //            [MBProgressHUD showMessage:@"刷新成功"];
-            
         }
         [self.allDynamicFrames addObjectsFromArray:arrayM];
-        
-        //结束下拉刷新
-        [self.tableView headerEndRefreshing];
         
         //刷新表格
         [self.tableView reloadData];
@@ -424,14 +432,9 @@
         
         dynamics = responseObject[@"data"];
         //保存上一次访问的一条数据的最后一个
-        self.lastDynamicId = [responseObject[@"endId"] integerValue];
+        self.endId = [responseObject[@"endId"] integerValue];
         
         NSMutableArray *arrayM = [NSMutableArray array];
-
-        if (self.lastDynamicId == 0)  return ;
-        
-//        ZSLog(@"%ld", self.lastDynamicId);
-        
        
         for (NSDictionary *dict in dynamics) {
             
@@ -455,12 +458,7 @@
             ZSAllDynamicFrame *allDynamicFrame = [[ZSAllDynamicFrame alloc] init];
             allDynamicFrame.allDynamic = dynamic;
             
-            if ([dynamic.ID integerValue] >= self.lastDynamicId) {
-                
-                [arrayM addObject:allDynamicFrame];
-            } else {
-                break;
-            }
+            [arrayM addObject:allDynamicFrame];
             
         }
     
@@ -610,16 +608,12 @@
 }
 
 /** 设置头像*/
-
 - (void)swapImage
 {
     self.bigImageView.image = [UIImage GetImageFromLocal:ZSIconImageStr];
     self.smallImageView.image = self.bigImageView.image;
 
 }
-
-
-
 
 
 @end

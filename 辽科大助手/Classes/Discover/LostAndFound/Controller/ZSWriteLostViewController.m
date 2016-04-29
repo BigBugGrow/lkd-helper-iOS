@@ -13,6 +13,7 @@
 #import "UIBarButtonItem+Extension.h"
 #import "SVProgressHUD.h"
 #import "ZSWTextView.h"
+#import "MBProgressHUD+MJ.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
@@ -91,10 +92,11 @@
     self.scroView.bounces = NO;
     self.scroView.showsHorizontalScrollIndicator = NO;
     self.scroView.alwaysBounceHorizontal = NO;
-    self.scroView.contentSize = CGSizeMake(0, ZSScreenH + 60);
+    self.scroView.contentSize = CGSizeMake(0, ZSScreenH + 1);
     scroView.delegate = self;
     
     UITextField *thingLabel = [[UITextField alloc] init];
+    thingLabel.borderStyle = UITextBorderStyleRoundedRect;
     thingLabel.width = ZSScreenW -2 * margin;
     thingLabel.height = 30;
     thingLabel.x = margin;
@@ -106,6 +108,7 @@
     [self.scroView addSubview:thingLabel];
     
     UITextField *addresLabel = [[UITextField alloc] init];
+    addresLabel.borderStyle = UITextBorderStyleRoundedRect;
     addresLabel.width = thingLabel.width;
     addresLabel.height = 30;
     addresLabel.x = thingLabel.x;
@@ -118,6 +121,7 @@
 
     //添加带有placeholder的textView
     ZSWTextView *textView = [[ZSWTextView alloc] init];
+    textView.layer.cornerRadius = 5;
     textView.x = thingLabel.x;
     textView.y = CGRectGetMaxY(addresLabel.frame) + margin;
     textView.width = thingLabel.width;
@@ -129,6 +133,9 @@
     
     //电话
     UITextField *phoneLabel = [[UITextField alloc] init];
+    phoneLabel.keyboardType = UIKeyboardTypeDecimalPad;
+    phoneLabel.delegate = self;
+    phoneLabel.borderStyle = UITextBorderStyleRoundedRect;
     phoneLabel.width = thingLabel.width;
     phoneLabel.height = 30;
     phoneLabel.x = thingLabel.x;
@@ -279,22 +286,7 @@
     [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 1000;
     
     __block UpYun *uy = [[UpYun alloc] init];
-    //    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
-    //        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    //        [alert show];
-    //        ZSLog(@"response body %@", responseData);
-    //    };
-    //
-    //    uy.failBlocker = ^(NSError * error) {
-    //        NSString *message = [error.userInfo objectForKey:@"message"];
-    //        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    //        [alert show];
-    //        ZSLog(@"error %@", message);
-    //    };
-    
-    /**
-     *	@brief	根据 UIImage 上传
-     */
+  
     
     NSString *pictruePath = [NSString stringWithFormat:@"/picLostAndFound/%@.jpg", imagePath];
     
@@ -382,7 +374,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)clickSendBtn{
+- (void)clickSendBtn {
 
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -410,6 +402,9 @@
     }
     
     
+    //
+    [MBProgressHUD showMessage:@"正在发送中..."];
+    
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/LostAndFoundWrite" parameters:params success:^(id responseObject) {
         
         if ([responseObject[@"state"] integerValue] == 602) {
@@ -426,17 +421,19 @@
                 [self sendImageWithImage:picture imagePath:picturePath];
                 
             }
-        
+            [MBProgressHUD hideHUD];
             [SVProgressHUD showSuccessWithStatus:@"发表成功！"];
             [self.navigationController popViewControllerAnimated:YES];
         
         } else if ([responseObject[@"state"] integerValue] == 204) {
             
+            [MBProgressHUD hideHUD];
             [SVProgressHUD showInfoWithStatus:@"电话只能够填数字！"];
         }
         
     } failure:^(NSError *error) {
         
+        [MBProgressHUD hideHUD];
         [SVProgressHUD showErrorWithStatus:@"发表失败！请连接网络"];
     }];
     
@@ -452,12 +449,25 @@
 #pragma mark - UItextFild的代理方法
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+//    [textField resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+            
+            self.scroView.y += 100;
+        }];
+    
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [textField becomeFirstResponder];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.scroView.y -= 100;
+    }];
+    
 }
 
 #pragma mark - UISCroView的代理方法
@@ -465,5 +475,8 @@
 {
     [self.view endEditing:YES];
 }
+
+
+
 
 @end

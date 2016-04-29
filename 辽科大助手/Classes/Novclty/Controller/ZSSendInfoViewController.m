@@ -12,13 +12,15 @@
 #import "ZSAccountTool.h"
 #import "SVProgressHUD.h"
 
-@interface ZSSendInfoViewController ()
+@interface ZSSendInfoViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
+@property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNum;
 @property (weak, nonatomic) IBOutlet UITextField *qqNum;
 @property (weak, nonatomic) IBOutlet UITextField *wechatNum;
+@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 - (IBAction)saveInfo;
 - (IBAction)back;
 
@@ -39,6 +41,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login_register_background"]];
     
     self.title = @"修改个人联系信息";
+    
 }
 
 
@@ -106,4 +109,27 @@
     [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+#pragma mark - UItextFildDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.view.y -= 100;
+    }];
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.view.y += 100;
+    }];
+    
+}
+
+
 @end

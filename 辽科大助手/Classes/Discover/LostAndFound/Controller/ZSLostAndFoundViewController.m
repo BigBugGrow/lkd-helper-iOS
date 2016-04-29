@@ -14,19 +14,22 @@
 #import "ZSDynamicPicturesView.h"
 #import "MJRefresh.h"
 #import "ZSWriteLostViewController.h"
-#import "ZSLostCommenViewController.h"
 #import "ZSInfoViewController.h"
 #import "SVProgressHUD.h"
+#import "ZSLostingFrame.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 
-@interface ZSLostAndFoundViewController ()<ZSLostThingViewCellDelegate>
+@interface ZSLostAndFoundViewController () <ZSLostThingViewCellDelegate>
 
 /** plusBtn*/
 @property (nonatomic, weak) UIButton *plusBtn;
 
 /** 模型数组*/
 @property (nonatomic, strong) NSMutableArray *lostThings;
+
+/** 模型数组*/
+@property (nonatomic, strong) NSMutableArray *lostThingFrames;
 
 /** item*/
 @property (nonatomic, assign) NSInteger endId;
@@ -39,8 +42,6 @@
 
 @end
 
-static NSString *ID = @"lostAndFoundCell";
-
 
 @implementation ZSLostAndFoundViewController
 
@@ -51,6 +52,15 @@ static NSString *ID = @"lostAndFoundCell";
         _lostThings = [NSMutableArray array];
     }
     return _lostThings;
+}
+
+/** 懒加载*/
+- (NSMutableArray *)lostThingFrames
+{
+    if (_lostThingFrames == nil) {
+        _lostThingFrames = [NSMutableArray array];
+    }
+    return _lostThingFrames;
 }
 
 
@@ -130,10 +140,22 @@ static NSString *ID = @"lostAndFoundCell";
         
         self.endId = [responseObject[@"endId"] integerValue];
         
-//        ZSLog(@"%ld", self.endId);
-        
         NSArray *datas = responseObject[@"data"];
         
+        if (self.endId == 0){
+            
+            [SVProgressHUD showSuccessWithStatus:@"已经没有数据了哦..."];
+            //结束下拉刷新
+            [self.tableView footerEndRefreshing];
+            return;
+        }
+        
+        if (datas.count < 9) {
+            
+            self.endId = 0;
+        }
+
+    
         NSMutableArray *lostThings = [NSMutableArray array];
         
         for (NSDictionary *dict in datas) {
@@ -155,6 +177,10 @@ static NSString *ID = @"lostAndFoundCell";
         }
         
         [self.lostThings addObjectsFromArray:lostThings];
+        
+        NSMutableArray *lostTingFrames = [self lostThingsTolostThingFramesArray:self.lostThings];
+        
+        self.lostThingFrames = lostTingFrames;
         
         [self.tableView reloadData];
         
@@ -191,11 +217,7 @@ static NSString *ID = @"lostAndFoundCell";
             self.flag = true;
             self.endId = [responseObject[@"endId"] integerValue];
         }
-        
-//        self.lastFirstDynamicId = 
-        //保存最新的数据的id
-//        
-//        ZSLog(@"%@", responseObject);
+   
 //        ZSLog(@"%ld", self.lastFirstDynamicId);
         
         NSMutableArray *lostThings = [NSMutableArray array];
@@ -207,7 +229,7 @@ static NSString *ID = @"lostAndFoundCell";
             NSString *picPreSubStr = [dict[@"pic"] substringFromIndex:1];
             NSString *picSufSubStr = [picPreSubStr substringToIndex:picPreSubStr.length - 1];
             
-            if (![picSufSubStr isEqualToString:@""]) {
+            if (picSufSubStr.length) {
                 
                 NSArray *pics = [picSufSubStr componentsSeparatedByString:@","];
                 lostThing.pics = pics;
@@ -229,7 +251,10 @@ static NSString *ID = @"lostAndFoundCell";
         //将新的数据添加到大数组的最前面
         [self.lostThings insertObjects:lostThings atIndexes:indexSet];
         
+        NSMutableArray *lostThingFrames = [self lostThingsTolostThingFramesArray:self.lostThings];
         
+        self.lostThingFrames = lostThingFrames;
+  
         self.lastFirstDynamicId = [self.lostThings[0] ID];
 
         
@@ -250,13 +275,29 @@ static NSString *ID = @"lostAndFoundCell";
 
 }
 
+
+/** 转换为frame模型*/
+- (NSMutableArray *)lostThingsTolostThingFramesArray:(NSArray *)lostings
+{
+    
+    NSMutableArray *arrayM = [NSMutableArray array];
+    
+    for (ZSLostThing *losting in lostings) {
+        
+        ZSLostingFrame *lostThingFrame = [[ZSLostingFrame alloc] init];
+        lostThingFrame.lostTing = losting;
+        
+        [arrayM addObject:lostThingFrame];
+        
+    }
+    return arrayM;
+}
+
+
 /** 初始化tableView*/
 - (void)initTableView
 {
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"ZSLostThingCell" bundle:nil] forCellReuseIdentifier:ID];
-    
     self.title = @"寻物公告";
 
 }
@@ -276,25 +317,18 @@ static NSString *ID = @"lostAndFoundCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
     ZSLostThingViewCell *cell = [ZSLostThingViewCell cellWithTableView:tableView];
     
     cell.delegate = self;
     
-    ZSLostThing *lostThing = self.lostThings[indexPath.row];
-    
-    cell.lostThing = lostThing;
+    cell.lostTingFrame = self.lostThingFrames[indexPath.row];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *pics = [self.lostThings[indexPath.row] pics];
-    
-    CGSize size = [ZSDynamicPicturesView sizeWithPicturesCount:pics.count];
-    
-    return 230 + size.height;
+    return [self.lostThingFrames[indexPath.row] cellHeight];
 }
 
 

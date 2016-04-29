@@ -88,7 +88,7 @@
         NSString *urlS = nil;
         if (self.lol == 1) {
             
-            //失物认领
+            //失物认领tron2016030317491
             urlS = [NSString stringWithFormat:@"http://lkdhelper.b0.upaiyun.com/picLostAndFound/%@.jpg", urlStr];
         } else {
             

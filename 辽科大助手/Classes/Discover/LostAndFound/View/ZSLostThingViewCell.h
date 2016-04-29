@@ -1,3 +1,4 @@
+
 //
 //  ZSLostThingViewCell.h
 //  辽科大助手
@@ -8,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class ZSLostThing, ZSLostThingViewCell;
+@class ZSLostThingViewCell, ZSLostingFrame;
 
 @protocol ZSLostThingViewCellDelegate <NSObject>
 
@@ -24,10 +25,10 @@
 
 @property (nonatomic, weak) id<ZSLostThingViewCellDelegate> delegate;
 
-/**模型*/
-@property (nonatomic, strong) ZSLostThing *lostThing;
-
-/** 提供cell*/
+///** 提供cell*/
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+/** cell的frame模型*/
+@property (nonatomic, strong) ZSLostingFrame *lostTingFrame;
 
 @end

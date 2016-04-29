@@ -141,8 +141,22 @@
         
         //保存上一次访问的一条数据的最后一个
         self.endId = [responseObject[@"endId"] integerValue];
+              NSArray *dynamics = responseObject[@"data"];
+      
         
-        NSArray *dynamics = responseObject[@"data"];
+        if (self.endId == 0){
+            
+            [SVProgressHUD showSuccessWithStatus:@"已经没有数据了哦..."];
+            //结束下拉刷新
+            [self.tableView footerEndRefreshing];
+            return;
+        }
+        
+
+        if (dynamics.count < 9) {
+            
+            self.endId = 0;
+        }
         
         NSMutableArray *arrayM = [NSMutableArray array];
         

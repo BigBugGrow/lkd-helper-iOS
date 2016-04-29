@@ -184,29 +184,33 @@ static NSString *ID = @"infoCell";
         self.backBtn.hidden = YES;
     }
     
-    //更多信息按钮
-    UIButton *moreBtn = [[UIButton alloc] init];
-    moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
-    [moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [moreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [moreBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-    moreBtn.size = CGSizeMake(40, 30);
-    //设置按钮的内容靠左边
-    moreBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    //设置按钮的切割
-    moreBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    
-    moreBtn.x = ZSScreenW - moreBtn.width;
-    moreBtn.y = 25;
-    
-    moreBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
-    
-    [moreBtn addTarget:self action:@selector(clickRightBtn) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.moreBtn = moreBtn;
-    
-    [window addSubview:self.moreBtn];
+    if ([self.whoNickName isEqualToString:nickName]) {
+        
+        //更多信息按钮
+        UIButton *moreBtn = [[UIButton alloc] init];
+        moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
+        [moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [moreBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [moreBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        moreBtn.size = CGSizeMake(40, 30);
+        //设置按钮的内容靠左边
+        moreBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        //设置按钮的切割
+        moreBtn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        
+        moreBtn.x = ZSScreenW - moreBtn.width;
+        moreBtn.y = 25;
+        
+        moreBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+        
+        [moreBtn addTarget:self action:@selector(clickRightBtn) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.moreBtn = moreBtn;
+        
+        [window addSubview:self.moreBtn];
+        
+    }
     
     [window addSubview:backBtn];
 
@@ -426,12 +430,16 @@ static NSString *ID = @"infoCell";
     
     self.backBtn.enabled = NO;
     self.moreBtn.enabled = NO;
+    self.tableView.scrollEnabled = NO;
+    
+    
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"随便更换头像, 会耗费流量哦 ！！！" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
     
         self.backBtn.enabled = YES;
         self.moreBtn.enabled = YES;
+        self.tableView.scrollEnabled = YES;
     }];
     UIAlertAction* fromPhotoAction = [UIAlertAction actionWithTitle:@"打开相册" style:UIAlertActionStyleDefault                                                                 handler:^(UIAlertAction * action) {                                                                     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -538,8 +546,6 @@ static NSString *ID = @"infoCell";
         //模仿网络延时
         [self performSelector:@selector(postNotication) withObject:nil afterDelay:1.0];
         
-        self.backBtn.enabled = YES;
-        self.moreBtn.enabled = YES;
     
     };
     uy.failBlocker = ^(NSError * error) {
@@ -551,6 +557,7 @@ static NSString *ID = @"infoCell";
 
         self.backBtn.enabled = YES;
         self.moreBtn.enabled = YES;
+        self.tableView.scrollEnabled = YES;
         ZSLog(@"error %@", message);
     };
     
@@ -571,6 +578,12 @@ static NSString *ID = @"infoCell";
     [MBProgressHUD hideHUDForView:self.view];
     //提醒用户修改头像成功
     [SVProgressHUD showSuccessWithStatus:@"修改头像成功"];
+    
+    //改变按钮状态
+    self.backBtn.enabled = YES;
+    self.moreBtn.enabled = YES;
+    //tableview可以滚动
+    self.tableView.scrollEnabled = YES;
     
 }
 
