@@ -11,6 +11,8 @@
 #import "ZSAccount.h"
 #import "ZSAccountTool.h"
 #import "SVProgressHUD.h"
+#import "MBProgressHUD+MJ.h"
+
 
 @interface ZSSendInfoViewController ()<UITextFieldDelegate>
 
@@ -35,6 +37,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
  
+    
+    self.saveBtn.enabled = NO;
+    
+    [self.saveBtn setBackgroundImage:[UIImage imageNamed:@"blue"] forState:UIControlStateHighlighted];
+    
     self.navigationController.navigationBarHidden = NO;
     
     
@@ -42,7 +49,26 @@
     
     self.title = @"修改个人联系信息";
     
+    
+    // 1.addTarget
+    [self.qqNum addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    
+    [self.wechatNum addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    [self.phoneNum addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    //添加监听
+    [self textChange];
+    
+
+    
 }
+
+
+- (void)textChange
+{
+    // 判断两个文本框的内容
+    self.saveBtn.enabled =  _phoneNum.text.length || _qqNum.text.length || _wechatNum.text.length;
+}
+
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -67,6 +93,8 @@
 */
 
 - (IBAction)saveInfo {
+    
+    [MBProgressHUD showMessage:@"正在修改联系信息..." toView:self.view];
     
     NSString *phone = self.phoneNum.text ? self.phoneNum.text : @"暂无";
     
@@ -96,9 +124,13 @@
             [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
         }
         
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [SVProgressHUD showSuccessWithStatus:@"修改成功"];
     } failure:^(NSError *error) {
         
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [SVProgressHUD showSuccessWithStatus:@"请检查网络！"];
     }];
     
     

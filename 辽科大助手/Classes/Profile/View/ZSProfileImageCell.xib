@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个性名言" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFO-Ao-Oif">
-                                <rect key="frame" x="90" y="35" width="48" height="15"/>
+                                <rect key="frame" x="83" y="35" width="48" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="nUd-DE-TKF"/>
                                 </constraints>
@@ -68,7 +68,7 @@
                             <constraint firstItem="6Xj-B7-J1h" firstAttribute="leading" secondItem="G6r-I2-KBq" secondAttribute="trailing" constant="13" id="gHF-CK-QkY"/>
                             <constraint firstItem="Wuj-eu-uL4" firstAttribute="top" secondItem="fDk-FZ-c3c" secondAttribute="top" constant="20" id="nYf-Z9-tYn"/>
                             <constraint firstItem="G6r-I2-KBq" firstAttribute="top" secondItem="fDk-FZ-c3c" secondAttribute="top" constant="10" id="qQY-Pu-IkV"/>
-                            <constraint firstItem="eFO-Ao-Oif" firstAttribute="leading" secondItem="g4O-07-AIj" secondAttribute="leading" constant="-8" id="s9x-iW-aI3"/>
+                            <constraint firstItem="eFO-Ao-Oif" firstAttribute="leading" secondItem="g4O-07-AIj" secondAttribute="leading" constant="-15" id="s9x-iW-aI3"/>
                             <constraint firstItem="g4O-07-AIj" firstAttribute="centerY" secondItem="6Xj-B7-J1h" secondAttribute="centerY" id="wQV-5z-70A"/>
                         </constraints>
                     </view>

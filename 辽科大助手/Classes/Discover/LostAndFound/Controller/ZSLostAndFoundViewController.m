@@ -142,7 +142,7 @@
         
         NSArray *datas = responseObject[@"data"];
         
-        if (self.endId == 0){
+        if (self.endId == 0 || [responseObject[@"endId"] isKindOfClass:[NSNull class]]){
             
             [SVProgressHUD showSuccessWithStatus:@"已经没有数据了哦..."];
             //结束下拉刷新

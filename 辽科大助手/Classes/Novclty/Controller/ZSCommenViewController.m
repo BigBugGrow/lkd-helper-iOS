@@ -125,6 +125,16 @@ static NSString * const commentID = @"commentCell";
         
         NSArray *comments = responseObject[@"data"];
         
+        
+        if ([responseObject[@"endId"] isKindOfClass:[NSNull class]]){
+            
+            [SVProgressHUD showSuccessWithStatus:@"已经没有数据了哦..."];
+            //结束下拉刷新
+            [self.tableView footerEndRefreshing];
+            return;
+        }
+
+        
 //        ZSLog(@"%@", responseObject[@"data"]);
         self.comments = [ZSComment objectArrayWithKeyValuesArray:comments];
         
@@ -133,8 +143,6 @@ static NSString * const commentID = @"commentCell";
         
         //重新计算评论数量
         int countNum = [self.allDynamicFrame.allDynamic.commentNum intValue];
-        
-        ZSLog(@"%d", self.isFirstCome);
         
         //先刷新， 在跳到
         [self.tableView headerEndRefreshing];

@@ -28,8 +28,6 @@
     params.mm = mm;
     
     
-    ZSLog(@"%@ %@ %@ %@", params.nickname, params.zjh, params.mm, params.key);
-    
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/Bind" parameters:params.keyValues success:^(id responseObject) {
         
 //warning 新接口课表不再是以字符串返回，而是字典数组，下面这个方法用不上了
@@ -39,6 +37,8 @@
         NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
 //warning 新接口返回的课表中的周，还是以字符串形式返回的，还是得重新处理，烦人
 
+        
+        ZSLog(@"%@", responseObject[@"state"]);
         
         //初始化一个 课表 的可变数组
         NSMutableArray *timetableArrayM = [NSMutableArray arrayWithArray:accountDict[@"timetable"]];
@@ -99,7 +99,7 @@
 //                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"mm"] forKey:ZSMm];
                 
                 [[NSUserDefaults standardUserDefaults] synchronize];
-            }
+            } 
         }
         
         

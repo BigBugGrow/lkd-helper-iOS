@@ -81,6 +81,13 @@
             self.activityIndicator.hidden = YES;
             [MBProgressHUD showError:@"学号已被绑定"];
             
+        } else if (code == 602) {
+            //[responseObject[@"state"] isEqualToString:@"601"]
+            [self.activityIndicator stopAnimating];
+            self.activityIndicator.hidden = YES;
+            
+            [self xHBindButtonClicked:sender];
+            
         } else if (code == 704) {
             //[responseObject[@"state"] isEqualToString:@"601"]
             [self.activityIndicator stopAnimating];

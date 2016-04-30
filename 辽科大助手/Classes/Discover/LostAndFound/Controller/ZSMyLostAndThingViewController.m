@@ -133,17 +133,16 @@
     
    [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/myLostAndFoundRead" parameters:params success:^(id responseObject) {
        
-        self.endId = [responseObject[@"endId"] integerValue];
-       
         NSArray *datas = responseObject[@"data"];
        
-       if (self.endId == 0){
+       if (self.endId == 0 || [responseObject[@"endId"] isKindOfClass:[NSNull class]]){
            
            [SVProgressHUD showSuccessWithStatus:@"已经没有数据了哦..."];
            //结束下拉刷新
            [self.tableView footerEndRefreshing];
            return;
        }
+       self.endId = [responseObject[@"endId"] integerValue];
        
        if (datas.count < 9) {
            

@@ -120,7 +120,7 @@
     CGFloat timeLabelX = essayTextViewX - marginW * 2;
     
     CGFloat timeLabelY;
-    timeLabelY = CGRectGetMaxY(self.descriptionLabelF) + marginW;
+    timeLabelY = CGRectGetMaxY(self.descriptionLabelF) + marginW * 2;
     
     CGSize timeLabelSize = [lostTing.date sizeWithFont:[UIFont systemFontOfSize:12] maxW:ScreenWidth - marginW - 50];
     
@@ -130,7 +130,7 @@
     
     
     /** 电话按钮*/
-    CGFloat callBtnW = 200;
+    CGFloat callBtnW = 150;
     CGFloat callBtnH = 30;
     CGFloat callBtnY = timeLabelY;
     CGFloat callBtnX = ScreenWidth - marginW - callBtnW;

@@ -334,6 +334,9 @@
     params[@"item"] = @(self.endId);
     params[@"nickname"] = self.whoNickName ? self.whoNickName : nickName;
     
+    
+    ZSLog(@"%@", params[@"nickname"]);
+    
     //结束下拉刷新
     [self.tableView headerEndRefreshing];
     
@@ -346,13 +349,14 @@
         NSArray *dynamics = responseObject[@"data"];
         
       
-        if (self.endId == 0){
+        if (self.endId == 0 || [responseObject[@"endId"] isKindOfClass:[NSNull class]]){
             
             [SVProgressHUD showSuccessWithStatus:@"已经没有数据了哦..."];
             //结束下拉刷新
             [self.tableView footerEndRefreshing];
             return;
         }
+
         if (dynamics.count < 9) {
             
             self.endId = 0;
@@ -367,7 +371,8 @@
             ZSAllDynamic *dynamic = [ZSAllDynamic objectWithKeyValues:dict];
             
             //赋值自己的nickname
-            dynamic.nickname = nickName;
+            //赋值自己的nickname
+            dynamic.nickname = self.whoNickName ? self.whoNickName : nickName;
             
             NSString *picPreSubStr = [dict[@"pic"] substringFromIndex:1];
             NSString *picSufSubStr = [picPreSubStr substringToIndex:picPreSubStr.length - 1];
