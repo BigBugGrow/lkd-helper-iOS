@@ -320,8 +320,8 @@
 - (void)settingRefresh
 {
     // 添加下拉刷新
-    [self.tableView addHeaderWithTarget:self action:@selector(refreshDown)];
-    [self.tableView headerBeginRefreshing];
+
+    [self refreshDown];
     
     //添加上拉刷新
     [self.tableView addFooterWithTarget:self action:@selector(refreshMoreData)];

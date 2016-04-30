@@ -114,11 +114,8 @@
 {
    
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreData)];
-    
-    [self.tableView addHeaderWithTarget:self action:@selector(loadNewData)];
-    
-    [self.tableView headerBeginRefreshing];
-    
+
+    [self loadNewData];
 }
 
 - (void)loadMoreData
