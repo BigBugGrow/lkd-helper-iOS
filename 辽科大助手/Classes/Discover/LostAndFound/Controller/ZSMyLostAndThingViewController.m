@@ -202,6 +202,13 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=LostAndFound/myLostAndFoundRead" parameters:params success:^(id responseObject) {
         
+        
+        NSString *endId = [NSString stringWithFormat:@"%@", responseObject[@"endId"]];
+        
+        if ([endId isEqualToString:@"<null>"]) {
+            return ;
+        }
+        
         //保存上一次访问的一条数据的最后一个
         self.endId = [responseObject[@"endId"] integerValue];
         

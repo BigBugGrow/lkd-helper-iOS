@@ -433,6 +433,12 @@
     //获取数据
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/myNoveltyRead" parameters:params success:^(NSDictionary *responseObject) {
         
+        NSString *endId = [NSString stringWithFormat:@"%@", responseObject[@"endId"]];
+        
+        if ([endId isEqualToString:@"<null>"]) {
+            return ;
+        }
+        
         NSArray *dynamics = [NSArray array];
         
         dynamics = responseObject[@"data"];
