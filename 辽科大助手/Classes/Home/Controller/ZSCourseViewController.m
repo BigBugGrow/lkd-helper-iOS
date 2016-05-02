@@ -631,7 +631,7 @@
         
         UILabel *courseLabel = [[UILabel alloc] init];
         CGFloat mLabelWidth = ZSScreenW / 8;
-        CGFloat mLabelHeight = 80;
+        CGFloat mLabelHeight = (ZSScreenH  - 40 - 45 - 64)/ 5.0;
         CGFloat mLabelY = i * mLabelHeight + 40;
         
         courseLabel.frame = CGRectMake(0, mLabelY, mLabelWidth, mLabelHeight);
@@ -686,7 +686,7 @@
                 
                 
                 courseLabel.width = ZSScreenW / 8 - 2 * margin;
-                courseLabel.height = 80 - 2 * margin;
+                courseLabel.height = (ZSScreenH  - 40 - 45 - 64 - 7 * margin) / 5.0;
                 courseLabel.x = i * (ZSScreenW / 8) + margin;
                 courseLabel.y = j * (courseLabel.height + margin) + margin;
                 
