@@ -11,9 +11,9 @@
 #import "ZSNewsResult.h"
 
 
-#define ZSHelperNewsFileName [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"HelperNews.data"]
+#define ZSHelperNewsFileName [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"HelperNews.data"]
 
-#define ZSUSTLNewsFileName [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"USTLNews.data"]
+#define ZSUSTLNewsFileName [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"USTLNews.data"]
 
 static ZSNewsResult *_helperNews;
 static ZSNewsResult *_ustlNews;

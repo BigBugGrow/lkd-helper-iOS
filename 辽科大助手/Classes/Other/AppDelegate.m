@@ -11,6 +11,8 @@
 #import "ZSNewFeatureController.h"
 #import "ZSNavigationController.h"
 #import "ZSLoginViewController.h"
+#import "SDWebImageManager.h"
+
 
 #import "ZSRootTool.h"
 @interface AppDelegate ()
@@ -86,6 +88,16 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    
+    //清除图片缓存
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+    
+    //取消正在下载的图片
+    [[SDWebImageManager sharedManager] cancelAll];
 }
 
 @end

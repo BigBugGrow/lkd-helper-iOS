@@ -10,7 +10,7 @@
 #import "ZSEmotion.h"
 #import "MJExtension.h"
 //拼接路径
-#define ZSRecentEmotionPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"recentEmotions.plist"]
+#define ZSRecentEmotionPath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"recentEmotions.plist"]
 
 NSMutableArray *_recentEmotions;
 

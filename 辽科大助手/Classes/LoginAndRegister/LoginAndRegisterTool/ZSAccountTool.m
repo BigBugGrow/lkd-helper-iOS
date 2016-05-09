@@ -14,7 +14,7 @@
  /Users/DongAn/Library/Developer/CoreSimulator/Devices/9C42B58B-C12C-4C35-9A7B-5810CED62050/data/Containers/Data/Application/90436B60-F217-4568-9D9F-2B0E1DAE13E8
  */
 
-#define ZSAccountFileName [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"Account.data"]
+#define ZSAccountFileName [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"Account.data"]
 
 @implementation ZSAccountTool
 

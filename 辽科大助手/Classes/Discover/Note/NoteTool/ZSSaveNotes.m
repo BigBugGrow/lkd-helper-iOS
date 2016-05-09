@@ -10,7 +10,7 @@
 #import "ZSNoteModel.h"
 
 //拼接路径
-#define ZSRecentNotePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"recentNotes.plist"]
+#define ZSRecentNotePath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"recentNotes.plist"]
 
 NSMutableArray *_recentNotes;
 

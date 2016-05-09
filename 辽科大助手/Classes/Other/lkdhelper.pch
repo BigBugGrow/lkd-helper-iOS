@@ -53,7 +53,7 @@
 
 #define ZSNotificationCenter [NSNotificationCenter defaultCenter]
 
-#define ZSTimeTablePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"timeTable.plist"]
+#define ZSTimeTablePath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"timeTable.plist"]
 
 
 //分类
