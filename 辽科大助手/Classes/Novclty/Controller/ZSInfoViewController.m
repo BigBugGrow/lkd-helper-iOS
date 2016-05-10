@@ -528,7 +528,7 @@ static NSString *ID = @"infoCell";
     //设置空间和秘钥
     [UPYUNConfig sharedInstance].DEFAULT_BUCKET = DEFAULT_BUCKET;
     [UPYUNConfig sharedInstance].DEFAULT_PASSCODE = DEFAULT_PASSCODE;
-//    [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 1000;
+    [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 3000;
     
     [MBProgressHUD showMessage:@"正在修改中..." toView:self.view];
     

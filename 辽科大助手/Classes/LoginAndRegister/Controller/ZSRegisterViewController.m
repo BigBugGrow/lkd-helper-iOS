@@ -167,7 +167,7 @@
     //设置空间和秘钥
     [UPYUNConfig sharedInstance].DEFAULT_BUCKET = DEFAULT_BUCKET;
     [UPYUNConfig sharedInstance].DEFAULT_PASSCODE = DEFAULT_PASSCODE;
-    [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 100;
+    [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 3000;
     
 
     __block UpYun *uy = [[UpYun alloc] init];
