@@ -19,6 +19,8 @@
 
 #import "NSDate+Utilities.h"
 
+#import "SVProgressHUD.h"
+
 @implementation ZSBindTool
 + (void)bindWithUser:(NSString *)nickname key:(NSString *)key zjh:(NSString *)zjh Andmm:(NSString *)mm success:(void(^)(NSInteger code))success failure:(void(^)(NSError *error))failure
 {
@@ -39,47 +41,49 @@
         NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:responseObject];
 //warning 新接口返回的课表中的周，还是以字符串形式返回的，还是得重新处理，烦人
 
-        
-        ZSLog(@"%@", responseObject[@"state"]);
-        
-        //初始化一个 课表 的可变数组
-        NSMutableArray *timetableArrayM = [NSMutableArray arrayWithArray:accountDict[@"timetable"]];
-        int i = 0;
-        for (NSMutableDictionary *d in accountDict[@"timetable"]) {
+        if ([@"<null>" isEqualToString:accountDict[@"timetable"]]) {
             
-            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:d];
-            
-            //取出头和尾 []
-            NSString *weekValueSubPre = [dict[@"week"] substringFromIndex:1];
-            NSString *weekValueSubPreAndSuf = [weekValueSubPre substringToIndex:weekValueSubPre.length];
-            
-            NSArray *weekStrNumArr = [weekValueSubPreAndSuf componentsSeparatedByString:@","];
-            NSMutableArray *weekNumArr = [NSMutableArray array];
-            for (NSString *str in weekStrNumArr) {
-                [weekNumArr addObject:[NSNumber numberWithInteger:[str integerValue]]];
+            //初始化一个 课表 的可变数组
+            NSMutableArray *timetableArrayM = [NSMutableArray arrayWithArray:accountDict[@"timetable"]];
+            int i = 0;
+            for (NSMutableDictionary *d in accountDict[@"timetable"]) {
+                
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:d];
+                
+                //取出头和尾 []
+                NSString *weekValueSubPre = [dict[@"week"] substringFromIndex:1];
+                NSString *weekValueSubPreAndSuf = [weekValueSubPre substringToIndex:weekValueSubPre.length];
+                
+                NSArray *weekStrNumArr = [weekValueSubPreAndSuf componentsSeparatedByString:@","];
+                NSMutableArray *weekNumArr = [NSMutableArray array];
+                for (NSString *str in weekStrNumArr) {
+                    [weekNumArr addObject:[NSNumber numberWithInteger:[str integerValue]]];
+                }
+                
+                [dict setObject:weekNumArr forKey:@"week"];
+                
+                [timetableArrayM setObject:dict atIndexedSubscript:i];
+                i++;
+                
             }
             
-            [dict setObject:weekNumArr forKey:@"week"];
+            [accountDict setObject:timetableArrayM forKey:@"timetable"];
+            
+            //字典数组转存放天课表，周课表的二维数组
+            NSArray *planarArr = [self timetableDictArrConvertToPlanarArr:accountDict[@"timetable"]];
+            
+            
+            [NSKeyedArchiver archiveRootObject:planarArr toFile:ZSTimeTablePath];
+            
+            
+            accountDict[@"timetable"] = planarArr;
+            
 
-            [timetableArrayM setObject:dict atIndexedSubscript:i];
-            i++;
-           
-        }
-        
-        [accountDict setObject:timetableArrayM forKey:@"timetable"];
-    
-        //字典数组转存放天课表，周课表的二维数组
-        NSArray *planarArr = [self timetableDictArrConvertToPlanarArr:accountDict[@"timetable"]];
-        
-        
-        [NSKeyedArchiver archiveRootObject:planarArr toFile:ZSTimeTablePath];
-
-        
-        accountDict[@"timetable"] = planarArr;
-        
+        } 
+     
         //字典转模型
         ZSAccount *account = [ZSAccount objectWithKeyValues:accountDict];
-        
+     
         if (success) {
             
             success(account.state);
@@ -113,6 +117,8 @@
             
             [ZSAccountTool saveAccount:nil];
             failure(error);
+            
+            ZSLog(@"%@", error);
         }
         
     }];

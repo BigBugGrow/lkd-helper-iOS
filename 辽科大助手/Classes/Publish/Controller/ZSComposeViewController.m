@@ -359,7 +359,7 @@
 }
 
 
-- (void)sendImageWithImage:(UIImage *)image imagePath:(NSString *)imagePath
+- (void)sendImageWithImage:(UIImage *)image imagePath:(NSString *)imagePath imageCount:(NSInteger)imageCount path:(NSString *)path
 {
     //设置空间和秘钥
     [UPYUNConfig sharedInstance].DEFAULT_BUCKET = DEFAULT_BUCKET;
@@ -367,18 +367,26 @@
     [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 1000;
     
     __block UpYun *uy = [[UpYun alloc] init];
-//    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alert show];
-//        ZSLog(@"response body %@", responseData);
-//    };
-//    
-//    uy.failBlocker = ^(NSError * error) {
+    
+    uy.successBlocker = ^(NSURLResponse *response, id responseData) {
+        
+         NSInteger count = [[self.pictureView addPictrues] count];
+        if (count == imageCount) {
+            
+            [self sendWithImageInfoWithPath:path];
+        }
+        
+//        [self sendWithImageInfo];
+    };
+    
+    uy.failBlocker = ^(NSError * error) {
 //        NSString *message = [error.userInfo objectForKey:@"message"];
 //        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"message" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
 //        [alert show];
-//        ZSLog(@"error %@", message);
-//    };
+        
+    [MBProgressHUD showError:@"发送失败， 请检查网络!"];
+        
+    };
 
     /**
      *	@brief	根据 UIImage 上传
@@ -499,14 +507,30 @@
  */
 - (void)sendWithImage
 {
-    //图片名字
+    
+    
     NSString *path = [self getImageName];
     
+    NSInteger count = [[self.pictureView addPictrues] count];
+    for (int i = 0; i < count; i ++) {
+        
+        UIImage *picture = [self.pictureView addPictrues][i];
+        NSString *picturePath = self.imageArray[i];
+        [self sendImageWithImage:picture imagePath:picturePath imageCount:(i+1) path:path];
+        
+    }
+    
+    
+}
+
+
+- (void)sendWithImageInfoWithPath:(NSString *)path
+{
+    //发送带有图片的糯米
+    //图片名字
     //传递属性参数
     NSMutableDictionary *params = [self getParamsDict];
     params[@"pic"] = [NSString stringWithFormat:@"[%@]", path];
-    
-    //发送带有图片的糯米
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=novelty/NoveltyWrite" parameters:params success:^(id responseObject) {
         
@@ -516,26 +540,18 @@
             
         } else {
             
-            NSInteger count = [[self.pictureView addPictrues] count];
-            for (int i = 0; i < count; i ++) {
-                
-                UIImage *picture = [self.pictureView addPictrues][i];
-                NSString *picturePath = self.imageArray[i];
-                [self sendImageWithImage:picture imagePath:picturePath];
-                
-            }
             [MBProgressHUD showSuccess:@"发送成功"];
         }
         
     } failure:^(NSError *error) {
-       
+        
         [MBProgressHUD showError:@"发送失败"];
         
         ZSLog(@"%@", error);
-
+        
     }];
     
-    
+
 }
 
 //将图片保存到本地

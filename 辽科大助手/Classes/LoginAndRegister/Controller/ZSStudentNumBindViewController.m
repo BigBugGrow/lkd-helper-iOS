@@ -104,7 +104,7 @@
             [self xHBindButtonClicked:nil];
 
             
-        } else {
+        } else if(code == 100) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -117,6 +117,15 @@
             ZSTabBarController *tabBarVC = [[ZSTabBarController alloc] init];
             ZSKeyWindow.rootViewController = tabBarVC;
             
+        } else {
+            
+            //圆圈停止转动
+            [self.activityIndicator stopAnimating];
+            self.activityIndicator.hidden = YES;
+            
+            //再次点击按钮 识别验证码
+            [self xHBindButtonClicked:nil];
+
         }
      } failure:^(NSError *error) {
         [self.activityIndicator stopAnimating];

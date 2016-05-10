@@ -99,7 +99,7 @@
         //字典转模型
         ZSAccount *account = [ZSAccount objectWithKeyValues:accountDict];
         
-//        ZSLog(@"%@", account);
+        ZSLog(@"%@", account);
         
         //更新当前数据
         [ZSAccountTool saveAccount:account];
@@ -112,7 +112,7 @@
                 
                 //保存账户信息
                 [ZSAccountTool saveAccount:account];
-                
+
                 ZSLog(@"%@", account);
                 
                 //单独保存账号和密码，key，用用户偏好设置

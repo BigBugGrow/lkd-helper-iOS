@@ -18,10 +18,12 @@
 #import "ZSStudentNumBindViewController.h"
 
 #import "MBProgressHUD+MJ.h"
+#import "SVProgressHUD.h"
 
-@interface ZSRegisterViewController ()<UINavigationControllerDelegate ,UIImagePickerControllerDelegate>
+@interface ZSRegisterViewController ()<UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
+@property (weak, nonatomic) IBOutlet UITextField *passwordOk;
 /** 头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UIButton *registBtn;
@@ -53,6 +55,9 @@
     [self.passwordText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
     //添加监听
     [self textChange];
+    
+    self.passwordOk.delegate = self;
+    
 
 }
 
@@ -69,6 +74,14 @@
     NSString *userName = self.userNameText.text;
     NSString *pwd = self.passwordText.text;
 //    NSString *sex = @"boy";
+    NSString *pwdOk = self.passwordOk.text;
+    
+    if (![pwd isEqualToString:pwdOk]) {
+        
+        [SVProgressHUD showErrorWithStatus:@"原密码与确认密码不符，请重新填写"];
+        self.passwordOk.text = @"";
+        return;
+    }
  
     NSDictionary *parameters = @{@"nickname":userName,@"password":pwd};
     
@@ -259,5 +272,15 @@
     [root dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+#pragma mark - textFiled的代理方法
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [self registerButtonClicked:nil];
+    return YES;
+}
+
 
 @end

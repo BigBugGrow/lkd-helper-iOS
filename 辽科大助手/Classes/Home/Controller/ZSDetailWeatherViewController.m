@@ -47,7 +47,7 @@
     [self getDetailWeatherInfo];
     
     //添加下拉刷新
-    [self.tableView addHeaderWithTarget:self action:@selector(getDetailWeatherInfo)];
+//    [self.tableView addHeaderWithTarget:self action:@selector(getDetailWeatherInfo)];
     
 }
 

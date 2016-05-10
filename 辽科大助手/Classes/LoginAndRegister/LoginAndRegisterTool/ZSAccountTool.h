@@ -12,6 +12,8 @@
 + (void)saveAccount:(ZSAccount *)account;
 + (ZSAccount *)account;
 
++(instancetype)shareInstance;
+
 + (void)saveAccountTimeTable:(NSArray *)timeTable;
 
 @end

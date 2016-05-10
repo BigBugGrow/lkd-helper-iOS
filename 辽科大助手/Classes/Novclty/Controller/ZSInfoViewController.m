@@ -86,8 +86,7 @@ static NSString *ID = @"infoCell";
     ZSAccount *account = [ZSAccountTool account];
     
 
-    
-    if (([account.hasTimetable isEqualToString:@"no"] || account == nil) && [self.whoNickName isEqualToString:nickName]) {
+    if (([account.hasTimetable isEqualToString:@"no"] || account.zjh == nil ) && [self.whoNickName isEqualToString:nickName]) {
         
         [SVProgressHUD showErrorWithStatus:@"亲， 你还没绑定学号哦！不能加载个人信息..."];
         return;
@@ -529,7 +528,7 @@ static NSString *ID = @"infoCell";
     //设置空间和秘钥
     [UPYUNConfig sharedInstance].DEFAULT_BUCKET = DEFAULT_BUCKET;
     [UPYUNConfig sharedInstance].DEFAULT_PASSCODE = DEFAULT_PASSCODE;
-    [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 100;
+//    [UPYUNConfig sharedInstance].DEFAULT_EXPIRES_IN = 1000;
     
     [MBProgressHUD showMessage:@"正在修改中..." toView:self.view];
     
@@ -553,6 +552,10 @@ static NSString *ID = @"infoCell";
     
     };
     uy.failBlocker = ^(NSError * error) {
+        
+        
+        NSLog(@"%@", error);
+        
         NSString *message = [error.userInfo objectForKey:@"message"];
         
         
