@@ -100,7 +100,7 @@ static NSString *ID = @"infoCell";
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoRead" parameters:params success:^(NSDictionary *responseObject) {
         
         
-        user.sex = [responseObject[@"sex"] isEqualToString:@"boy"] ? @"男" : @"女";
+//        user.sex = [responseObject[@"sex"] isEqualToString:@"boy"] ? @"男" : @"女";
         user.name = self.whoNickName == nickName ? account.name : @"保密";
         user.college = self.whoNickName == nickName ? account.college : responseObject[@"college"];
         user.major = self.whoNickName == nickName ? account.major : responseObject[@"major"];
@@ -227,7 +227,7 @@ static NSString *ID = @"infoCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 0) {
-        return 7;
+        return 6;
     }
     
     return 3;
@@ -266,27 +266,28 @@ static NSString *ID = @"infoCell";
             cell.nameLabel.text = @"姓名";
             cell.detail.text = self.user.name;
             
-        } else if(indexPath.row == 2) {
+        } //else if(indexPath.row == 2) {
             
-            cell.nameLabel.text = @"性别";
-            cell.detail.text = self.user.sex;
+            //cell.nameLabel.text = @"性别";
+            //cell.detail.text = self.user.sex;
             
-        }else if(indexPath.row == 3) {
+    //    }
+    else if(indexPath.row == 2) {
             
             cell.nameLabel.text = @"班级";
             cell.detail.text = self.user.class;
             
-        }else if(indexPath.row == 4) {
+        }else if(indexPath.row == 3) {
             
             cell.nameLabel.text = @"专业";
             cell.detail.text = self.user.major;
             
-        }else if(indexPath.row == 5) {
+        }else if(indexPath.row == 4) {
             
             cell.nameLabel.text = @"学院";
             cell.detail.text = self.user.college;
             
-        }else if(indexPath.row == 6){
+        }else if(indexPath.row == 5){
             
             cell.nameLabel.text = @"故乡";
             cell.detail.text = self.user.home;

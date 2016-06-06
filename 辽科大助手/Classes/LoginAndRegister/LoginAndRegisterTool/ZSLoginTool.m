@@ -11,6 +11,8 @@
 #import "ZSAccountTool.h"
 #import "ZSAccount.h"
 
+#import "NSDate+Utilities.h"
+
 #import "ZSHttpTool.h"
 
 #import "ZSLoginParam.h"
@@ -182,26 +184,59 @@
             [timeCourseInfo setObject:timetable[@"course"] forKey:@"course"];
             [timeCourseInfo setObject:time forKey:@"orderLesson"];
             NSString *timeString = [NSString string];
-            switch ([time integerValue]) {
-                case 0:
-                    timeString = @"8:00";
-                    break;
-                case 1:
-                    timeString = @"10:00";
-                    break;
-                case 2:
-                    timeString = @"13:30";
-                    break;
-                case 3:
-                    timeString = @"15:30";
-                    break;
-                case 4:
-                    timeString = @"18:00";
-                    break;
-                    
-                default:
-                    break;
+            
+            NSDate *date = [NSDate date];
+            
+            NSInteger mouth = date.month;
+            
+            if (mouth >= 5 && mouth < 10) {
+                
+                switch ([time integerValue]) {
+                    case 0:
+                        timeString = @"8:00";
+                        break;
+                    case 1:
+                        timeString = @"10:00";
+                        break;
+                    case 2:
+                        timeString = @"14:00";
+                        break;
+                    case 3:
+                        timeString = @"16:00";
+                        break;
+                    case 4:
+                        timeString = @"19:00";
+                        break;
+                        
+                    default:
+                        break;
+                  
+                }
+            } else {
+                switch ([time integerValue]) {
+                        
+                    case 0:
+                        timeString = @"8:00";
+                        break;
+                    case 1:
+                        timeString = @"10:00";
+                        break;
+                    case 2:
+                        timeString = @"13:30";
+                        break;
+                    case 3:
+                        timeString = @"15:30";
+                        break;
+                    case 4:
+                        timeString = @"18:00";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
             }
+            
             [timeCourseInfo setObject:timeString forKey:@"timeOfLesson"];
             
             //给二维数组中的  第几节课的字典  赋值

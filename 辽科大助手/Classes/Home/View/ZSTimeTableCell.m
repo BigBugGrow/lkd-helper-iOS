@@ -126,7 +126,7 @@
     UIImage *dotImageGray = [UIImage imageCompressForSize:[UIImage imageNamed:@"gray"] targetSize:CGSizeMake(10, 10)];
     UIImage *dotImageCircleGray = [UIImage circleImageWithImage:dotImageGray borderColor:nil borderWidth:0];
 #warning 点图片的显示需要处理一下
-    NSDate *date = [NSDate date];
+    
    // NSLog(@"%ld",(long)date.minute)  ;
 
     
@@ -145,6 +145,12 @@
     //5.地点label
     self.adressLabel.text = model.classroom;
     
+//    NSDate *date = [NSDate date];
+//    
+//    NSInteger mouth = date.month;
+//    
+//    
+//    
     //6.时间laebl
     self.timeLabel.text = model.timeOfLesson;
     

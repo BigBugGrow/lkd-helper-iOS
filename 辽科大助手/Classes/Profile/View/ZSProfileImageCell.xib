@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDk-FZ-c3c">
-                        <rect key="frame" x="0.0" y="15" width="363" height="125.5"/>
+                        <rect key="frame" x="0.0" y="15" width="363" height="126"/>
                         <subviews>
                             <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_treehole_avatar_img" translatesAutoresizingMaskIntoConstraints="NO" id="G6r-I2-KBq">
                                 <rect key="frame" x="15" y="10" width="50" height="50"/>
@@ -33,8 +33,15 @@
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chevron" translatesAutoresizingMaskIntoConstraints="NO" id="Wuj-eu-uL4">
+                                <rect key="frame" x="333" y="20" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="3wS-gj-XQw"/>
+                                    <constraint firstAttribute="height" constant="15" id="anA-7G-dlI"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个性名言" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFO-Ao-Oif">
-                                <rect key="frame" x="83" y="35" width="48" height="15"/>
+                                <rect key="frame" x="83" y="45" width="48" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="nUd-DE-TKF"/>
                                 </constraints>
@@ -42,34 +49,18 @@
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chevron" translatesAutoresizingMaskIntoConstraints="NO" id="Wuj-eu-uL4">
-                                <rect key="frame" x="338" y="20" width="15" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="15" id="3wS-gj-XQw"/>
-                                    <constraint firstAttribute="height" constant="15" id="anA-7G-dlI"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Xj-B7-J1h">
-                                <rect key="frame" x="78" y="10" width="15" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="iFS-wd-tVa"/>
-                                    <constraint firstAttribute="width" constant="15" id="kLd-pC-pua"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6Xj-B7-J1h" firstAttribute="top" secondItem="G6r-I2-KBq" secondAttribute="top" id="CRF-zd-2AX"/>
+                            <constraint firstItem="g4O-07-AIj" firstAttribute="top" secondItem="fDk-FZ-c3c" secondAttribute="top" constant="5" id="Far-w0-mTy"/>
                             <constraint firstItem="G6r-I2-KBq" firstAttribute="leading" secondItem="fDk-FZ-c3c" secondAttribute="leading" constant="15" id="GWw-lW-aND"/>
-                            <constraint firstAttribute="trailing" secondItem="Wuj-eu-uL4" secondAttribute="trailing" constant="10" id="GrT-34-vTu"/>
+                            <constraint firstAttribute="trailing" secondItem="Wuj-eu-uL4" secondAttribute="trailing" constant="15" id="GrT-34-vTu"/>
                             <constraint firstAttribute="trailing" secondItem="g4O-07-AIj" secondAttribute="trailing" constant="50" id="Hv3-r3-Cn0"/>
-                            <constraint firstItem="eFO-Ao-Oif" firstAttribute="top" secondItem="g4O-07-AIj" secondAttribute="bottom" constant="5" id="K01-If-Rm5"/>
-                            <constraint firstItem="g4O-07-AIj" firstAttribute="leading" secondItem="6Xj-B7-J1h" secondAttribute="trailing" constant="5" id="Ysc-OG-Spf"/>
-                            <constraint firstItem="6Xj-B7-J1h" firstAttribute="leading" secondItem="G6r-I2-KBq" secondAttribute="trailing" constant="13" id="gHF-CK-QkY"/>
+                            <constraint firstItem="eFO-Ao-Oif" firstAttribute="top" secondItem="g4O-07-AIj" secondAttribute="bottom" constant="15" id="K01-If-Rm5"/>
+                            <constraint firstItem="eFO-Ao-Oif" firstAttribute="leading" secondItem="G6r-I2-KBq" secondAttribute="trailing" constant="18" id="ckl-Sx-KbY"/>
                             <constraint firstItem="Wuj-eu-uL4" firstAttribute="top" secondItem="fDk-FZ-c3c" secondAttribute="top" constant="20" id="nYf-Z9-tYn"/>
                             <constraint firstItem="G6r-I2-KBq" firstAttribute="top" secondItem="fDk-FZ-c3c" secondAttribute="top" constant="10" id="qQY-Pu-IkV"/>
                             <constraint firstItem="eFO-Ao-Oif" firstAttribute="leading" secondItem="g4O-07-AIj" secondAttribute="leading" constant="-15" id="s9x-iW-aI3"/>
-                            <constraint firstItem="g4O-07-AIj" firstAttribute="centerY" secondItem="6Xj-B7-J1h" secondAttribute="centerY" id="wQV-5z-70A"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -85,7 +76,6 @@
                 <outlet property="imgView" destination="G6r-I2-KBq" id="k7u-Yk-Lhc"/>
                 <outlet property="nameLabel" destination="g4O-07-AIj" id="L20-8v-gbk"/>
                 <outlet property="sayingLabel" destination="eFO-Ao-Oif" id="bpW-oX-TnN"/>
-                <outlet property="sexImageView" destination="6Xj-B7-J1h" id="uWw-GI-Hz3"/>
             </connections>
             <point key="canvasLocation" x="244.5" y="201.5"/>
         </tableViewCell>

@@ -25,7 +25,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWf-oU-6Qk">
-                    <rect key="frame" x="15" y="195" width="290" height="20.5"/>
+                    <rect key="frame" x="30" y="210" width="260" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -60,14 +60,14 @@
                 <constraint firstItem="KRE-GT-23K" firstAttribute="top" secondItem="wCx-Qu-RgC" secondAttribute="bottom" constant="20" id="BKG-JZ-yHS"/>
                 <constraint firstItem="jOz-HY-tU7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="HAC-Nb-AvY"/>
                 <constraint firstItem="vzC-Ex-OYX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="MuM-3d-48t"/>
-                <constraint firstItem="gWf-oU-6Qk" firstAttribute="top" secondItem="jOz-HY-tU7" secondAttribute="bottom" constant="15" id="PeZ-2L-egw"/>
+                <constraint firstItem="gWf-oU-6Qk" firstAttribute="top" secondItem="jOz-HY-tU7" secondAttribute="bottom" constant="30" id="PeZ-2L-egw"/>
                 <constraint firstAttribute="trailing" secondItem="vzC-Ex-OYX" secondAttribute="trailing" constant="10" id="RSP-Kr-aLP"/>
                 <constraint firstAttribute="bottom" secondItem="vzC-Ex-OYX" secondAttribute="bottom" constant="20" id="TjL-UV-LCK"/>
                 <constraint firstItem="KRE-GT-23K" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="YII-Aa-bTb"/>
                 <constraint firstItem="wCx-Qu-RgC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="alF-1D-9Uj"/>
                 <constraint firstAttribute="trailing" secondItem="jOz-HY-tU7" secondAttribute="trailing" constant="15" id="feq-cG-irx"/>
-                <constraint firstAttribute="trailing" secondItem="gWf-oU-6Qk" secondAttribute="trailing" constant="15" id="kLt-1k-5gl"/>
-                <constraint firstItem="gWf-oU-6Qk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="r12-tC-MvU"/>
+                <constraint firstAttribute="trailing" secondItem="gWf-oU-6Qk" secondAttribute="trailing" constant="30" id="kLt-1k-5gl"/>
+                <constraint firstItem="gWf-oU-6Qk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="r12-tC-MvU"/>
                 <constraint firstItem="vzC-Ex-OYX" firstAttribute="top" secondItem="KRE-GT-23K" secondAttribute="bottom" id="xCm-FO-Jj7"/>
                 <constraint firstItem="jOz-HY-tU7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="zJS-3N-Gjh"/>
             </constraints>
@@ -75,6 +75,6 @@
         </view>
     </objects>
     <resources>
-        <image name="about_lkdhelper" width="1080" height="565"/>
+        <image name="about_lkdhelper" width="562" height="376"/>
     </resources>
 </document>

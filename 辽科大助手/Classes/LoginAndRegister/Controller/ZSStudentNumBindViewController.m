@@ -113,8 +113,7 @@
                 [MBProgressHUD showSuccess:@"绑定成功"];
             });
             
-            
-            
+    
             ZSTabBarController *tabBarVC = [[ZSTabBarController alloc] init];
             ZSKeyWindow.rootViewController = tabBarVC;
             

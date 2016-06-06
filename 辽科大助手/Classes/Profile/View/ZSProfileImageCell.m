@@ -56,7 +56,12 @@
     
     UIImage *imageBoy = [UIImage imageNamed:@"boy"];
     UIImage *imageGril = [UIImage imageNamed:@"girl"];
-    self.sexImageView.image = [sex isEqualToString:@"boy"] ? imageBoy : imageGril;
+    if (sex) {
+        
+        self.sexImageView.image = [sex isEqualToString:@"boy"] ? imageBoy : imageGril;
+    } else {
+        self.sexImageView.hidden = YES;
+    }
     
     // 昵称
     self.nameLabel.text = nickName;

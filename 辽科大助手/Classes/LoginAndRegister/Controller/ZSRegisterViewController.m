@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *registBtn;
 
 @property  (nonatomic,strong) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlButton;
+//@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlButton;
 
 /**判断用户是否选择头像*/
 @property (nonatomic, assign) BOOL selectedIcon;
@@ -68,7 +68,7 @@
     
     NSString *userName = self.userNameText.text;
     NSString *pwd = self.passwordText.text;
-    NSString *sex = self.segmentedControlButton.selectedSegmentIndex ? @"girl" : @"boy";
+    NSString *sex = @"boy";
  
     NSDictionary *parameters = @{@"nickname":userName,@"password":pwd,@"sex":sex};
     

@@ -17,6 +17,8 @@
 
 #import "MJExtension.h"
 
+#import "NSDate+Utilities.h"
+
 @implementation ZSBindTool
 + (void)bindWithUser:(NSString *)nickname key:(NSString *)key zjh:(NSString *)zjh Andmm:(NSString *)mm success:(void(^)(NSInteger code))success failure:(void(^)(NSError *error))failure
 {
@@ -97,7 +99,7 @@
 //                [[NSUserDefaults standardUserDefaults] setObject:key forKey:ZSKey];
 //                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"zjh"] forKey:ZSZjh];
 //                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"mm"] forKey:ZSMm];
-                
+                    [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"sex"] forKey:ZSSex];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             } 
         }
@@ -168,25 +170,55 @@
             [timeCourseInfo setObject:timetable[@"course"] forKey:@"course"];
             [timeCourseInfo setObject:time forKey:@"orderLesson"];
             NSString *timeString = [NSString string];
-            switch ([time integerValue]) {
-                case 0:
-                    timeString = @"8:00";
-                    break;
-                case 1:
-                    timeString = @"10:00";
-                    break;
-                case 2:
-                    timeString = @"13:30";
-                    break;
-                case 3:
-                    timeString = @"15:30";
-                    break;
-                case 4:
-                    timeString = @"18:00";
-                    break;
-                    
-                default:
-                    break;
+            NSDate *date = [NSDate date];
+            
+            NSInteger mouth = date.month;
+            
+            if (mouth >= 5 && mouth < 10) {
+                
+                switch ([time integerValue]) {
+                    case 0:
+                        timeString = @"8:00";
+                        break;
+                    case 1:
+                        timeString = @"10:00";
+                        break;
+                    case 2:
+                        timeString = @"14:00";
+                        break;
+                    case 3:
+                        timeString = @"16:00";
+                        break;
+                    case 4:
+                        timeString = @"19:00";
+                        break;
+                        
+                    default:
+                        break;
+                }
+            } else {
+                switch ([time integerValue]) {
+                
+                    case 0:
+                        timeString = @"8:00";
+                        break;
+                    case 1:
+                        timeString = @"10:00";
+                        break;
+                    case 2:
+                        timeString = @"13:30";
+                        break;
+                    case 3:
+                        timeString = @"15:30";
+                        break;
+                    case 4:
+                        timeString = @"18:00";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
             }
             [timeCourseInfo setObject:timeString forKey:@"timeOfLesson"];
             
