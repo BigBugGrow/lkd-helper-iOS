@@ -44,7 +44,7 @@
         //warning 新接口返回的课表中的周，还是以字符串形式返回的，还是得重新处理，烦人
         
         
-//        ZSLog(@"%@", responseObject);
+        ZSLog(@"%@", responseObject);
         
         
         if ([accountDict[@"hasTimetable"] isEqualToString:@"no"]) {

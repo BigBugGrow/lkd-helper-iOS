@@ -21,6 +21,7 @@
 #import "ZSInfoViewCell.h"
 #import "MBProgressHUD+MJ.h"
 
+#define Sex [[NSUserDefaults standardUserDefaults] objectForKey:ZSSex]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
 @interface ZSInfoViewController ()<UINavigationControllerDelegate ,UIImagePickerControllerDelegate, UIActionSheetDelegate>
@@ -99,8 +100,9 @@ static NSString *ID = @"infoCell";
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoRead" parameters:params success:^(NSDictionary *responseObject) {
         
+        NSLog(@"%@", responseObject);
         
-//        user.sex = [responseObject[@"sex"] isEqualToString:@"boy"] ? @"男" : @"女";
+        user.sex = self.whoNickName == nickName ? Sex : @"保密";
         user.name = self.whoNickName == nickName ? account.name : @"保密";
         user.college = self.whoNickName == nickName ? account.college : responseObject[@"college"];
         user.major = self.whoNickName == nickName ? account.major : responseObject[@"major"];
@@ -266,13 +268,13 @@ static NSString *ID = @"infoCell";
             cell.nameLabel.text = @"姓名";
             cell.detail.text = self.user.name;
             
-        } //else if(indexPath.row == 2) {
+        } else if(indexPath.row == 2) {
             
-            //cell.nameLabel.text = @"性别";
-            //cell.detail.text = self.user.sex;
+            cell.nameLabel.text = @"性别";
+            cell.detail.text = self.user.sex;
             
-    //    }
-    else if(indexPath.row == 2) {
+        }
+        else if(indexPath.row == 2) {
             
             cell.nameLabel.text = @"班级";
             cell.detail.text = self.user.class;

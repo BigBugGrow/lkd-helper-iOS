@@ -112,7 +112,6 @@
     
     [ZSHttpTool POST:@"http://infinitytron.sinaapp.com/tron/index.php?r=base/userInfoWrite" parameters:params success:^(NSDictionary *responseObject) {
         
-
         if ([responseObject[@"state"] integerValue] == 100) {
             
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
@@ -122,10 +121,13 @@
         } else if([responseObject[@"state"] integerValue] == 602) {
             
             [SVProgressHUD showInfoWithStatus:@"您的账号在其它机器登陆，请注销重新登陆"];
+        } else {
+            
+            [SVProgressHUD showInfoWithStatus:@"您输入的字符格式有误，请重新输入"];
         }
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+      
     } failure:^(NSError *error) {
         
         

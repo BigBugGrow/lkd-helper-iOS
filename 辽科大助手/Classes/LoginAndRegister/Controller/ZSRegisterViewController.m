@@ -68,9 +68,9 @@
     
     NSString *userName = self.userNameText.text;
     NSString *pwd = self.passwordText.text;
-    NSString *sex = @"boy";
+//    NSString *sex = @"boy";
  
-    NSDictionary *parameters = @{@"nickname":userName,@"password":pwd,@"sex":sex};
+    NSDictionary *parameters = @{@"nickname":userName,@"password":pwd};
     
     self.activityIndicator.hidden = NO;
     [_activityIndicator startAnimating];
@@ -126,7 +126,7 @@
             //保存账号和密码,key sex
             [[NSUserDefaults standardUserDefaults] setObject:userName forKey:ZSUser];
             [[NSUserDefaults standardUserDefaults] setObject:pwd forKey:ZSPassword];
-            [[NSUserDefaults standardUserDefaults] setObject:sex forKey:ZSSex];
+//            [[NSUserDefaults standardUserDefaults] setObject:sex forKey:ZSSex];
             [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"key"] forKey:ZSKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
