@@ -12,6 +12,9 @@
 
 @interface ZSNewsResult : NSObject<MJKeyValue>
 
+/**最后的id*/
+@property (nonatomic, strong) NSString *end_ID;
+
 @property (nonatomic,strong)NSArray *latestNews;
 
 @property (nonatomic,copy)NSString *item_start;

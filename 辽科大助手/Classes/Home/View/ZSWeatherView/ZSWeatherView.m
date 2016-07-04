@@ -26,32 +26,36 @@
 {
     _weatherModel = weatherModel;
     
-    self.dayon_dateLabel.text = weatherModel.date ? weatherModel.date : @"下拉加载天气信息";
-    self.dayon_weatherLabel.text = weatherModel.weather ? weatherModel.weather : @"晴";
-    self.pm25Label.text = [NSString stringWithFormat:@"PM2.5: %@",weatherModel.pm25 ? weatherModel.pm25 : @"2.6"];
-    self.daon_temperatureLabel.text = weatherModel.temperature ? weatherModel.temperature : @"28";
-    self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",weatherModel.currentWeek ? weatherModel.currentWeek : @"2"];
+    self.dayon_dateLabel.text = weatherModel.date ? weatherModel.date : @"暂无数据";
+    self.dayon_weatherLabel.text = weatherModel.weather ? weatherModel.weather : @"";
+    self.pm25Label.text = [NSString stringWithFormat:@"服务器异常，正在修复%@",weatherModel.pm25 ? weatherModel.pm25 : @""];
+    self.daon_temperatureLabel.text = weatherModel.temperature ? weatherModel.temperature : @"";
+    self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",weatherModel.currentWeek ? weatherModel.currentWeek : @""];
     
     NSString *weather = weatherModel.weather;
     
-    if ([weather containsString:@"晴"] && ![weather containsString:@"转"]) {
+    if (weatherModel.date) {
         
-        self.weatherImageView.image = [UIImage imageNamed:@"sunny"];
-    } else if([weather containsString:@"雷"]) {
-        self.weatherImageView.image = [UIImage imageNamed:@"rain"];
-    } else if([weather containsString:@"雪"]) {
-        self.weatherImageView.image = [UIImage imageNamed:@"snow"];
-    } else if([weather containsString:@"雾"]) {
-        self.weatherImageView.image = [UIImage imageNamed:@"fog"];
-    } else if([weather containsString:@"霾"]) {
-        self.weatherImageView.image = [UIImage imageNamed:@"haze"];
-    } else if([weather containsString:@"云"]) {
-        self.weatherImageView.image = [UIImage imageNamed:@"cloudy"];
-    } else if([weather containsString:@"阴"]) {
-        self.weatherImageView.image = [UIImage imageNamed:@"overcast"];
-    } else if([weather containsString:@"雨"]) {
-        self.weatherImageView.image = [UIImage imageNamed:@"thunder"];
+        if ([weather containsString:@"晴"] && ![weather containsString:@"转"]) {
+            
+            self.weatherImageView.image = [UIImage imageNamed:@"sunny"];
+        } else if([weather containsString:@"雷"]) {
+            self.weatherImageView.image = [UIImage imageNamed:@"rain"];
+        } else if([weather containsString:@"雪"]) {
+            self.weatherImageView.image = [UIImage imageNamed:@"snow"];
+        } else if([weather containsString:@"雾"]) {
+            self.weatherImageView.image = [UIImage imageNamed:@"fog"];
+        } else if([weather containsString:@"霾"]) {
+            self.weatherImageView.image = [UIImage imageNamed:@"haze"];
+        } else if([weather containsString:@"云"]) {
+            self.weatherImageView.image = [UIImage imageNamed:@"cloudy"];
+        } else if([weather containsString:@"阴"]) {
+            self.weatherImageView.image = [UIImage imageNamed:@"overcast"];
+        } else if([weather containsString:@"雨"]) {
+            self.weatherImageView.image = [UIImage imageNamed:@"thunder"];
+        }
     }
+    
     
     
 }

@@ -39,6 +39,8 @@
         //字典转模型
         ZSNewsResult *newsResult = [ZSNewsResult objectWithKeyValues:newsDict];
         
+        newsResult.end_ID = responseObject[@"endId"];
+        
         if (success) {
             success(newsResult);
             

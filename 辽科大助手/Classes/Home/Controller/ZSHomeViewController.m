@@ -89,6 +89,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
+    
     //设置导航栏按钮
     [self setUpNavigtionItem];
     
@@ -484,5 +487,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+
 
 @end

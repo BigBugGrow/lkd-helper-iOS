@@ -148,7 +148,6 @@
     group1.items = @[item1,item2];
     [self.cellData addObject:group1];
     
-
     ZSModel *item3 = [ZSModel itemWithIcon:@"bind" title:@"学号绑定" detailTitle:@"" vcClass:[ZSStudentNumBindViewController class]];
 ////    ZSModel *item4 = [ZSModel itemWithIcon:@"lock1" title:@"设置" detailTitle:@""];
 //    ZSModel *item5 = [ZSModel itemWithIcon:@"ring" title:@"不提醒上课" detailTitle:@""];

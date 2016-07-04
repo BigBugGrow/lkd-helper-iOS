@@ -126,7 +126,7 @@ static NSString * const commentID = @"commentCell";
         NSArray *comments = responseObject[@"data"];
         
         
-        if ([responseObject[@"endId"] isKindOfClass:[NSNull class]]){
+        if ([responseObject[@"endId"] isKindOfClass:[NSNull class]]  || [responseObject[@"endId"] isEqualToString:@"0"] ){
             
             [SVProgressHUD showSuccessWithStatus:@"已经没有数据了哦..."];
             //结束下拉刷新

@@ -85,8 +85,9 @@ static NSString *ID = @"infoCell";
 {
     ZSAccount *account = [ZSAccountTool account];
     
+
     
-    if ([account.hasTimetable isEqualToString:@"no"] || account == nil) {
+    if (([account.hasTimetable isEqualToString:@"no"] || account == nil) && [self.whoNickName isEqualToString:nickName]) {
         
         [SVProgressHUD showErrorWithStatus:@"亲， 你还没绑定学号哦！不能加载个人信息..."];
         return;

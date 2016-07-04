@@ -435,7 +435,7 @@
         
         NSString *endId = [NSString stringWithFormat:@"%@", responseObject[@"endId"]];
         
-        if ([endId isEqualToString:@"<null>"]) {
+        if ([endId isEqualToString:@"<null>"] || [endId isEqualToString:@"0"]) {
             return ;
         }
         

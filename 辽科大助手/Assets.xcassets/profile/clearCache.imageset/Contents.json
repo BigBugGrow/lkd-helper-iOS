@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "clearCache.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "clearCache@2x.png",
       "scale" : "2x"
     },
     {

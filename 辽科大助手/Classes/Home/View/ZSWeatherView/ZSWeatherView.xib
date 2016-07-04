@@ -30,7 +30,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunny" translatesAutoresizingMaskIntoConstraints="NO" id="igz-Mb-YGs">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="igz-Mb-YGs">
                     <rect key="frame" x="244" y="31" width="45" height="45"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="45" id="Kb4-68-JR5"/>
@@ -80,7 +80,4 @@
             <point key="canvasLocation" x="310.5" y="160.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="sunny" width="200" height="200"/>
-    </resources>
 </document>

@@ -111,6 +111,7 @@
         
         if (failure) {
             
+            [ZSAccountTool saveAccount:nil];
             failure(error);
         }
         
