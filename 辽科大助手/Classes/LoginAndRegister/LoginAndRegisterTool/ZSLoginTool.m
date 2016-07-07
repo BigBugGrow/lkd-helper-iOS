@@ -113,6 +113,8 @@
                 //保存账户信息
                 [ZSAccountTool saveAccount:account];
                 
+                ZSLog(@"%@", account);
+                
                 //单独保存账号和密码，key，用用户偏好设置
                 [[NSUserDefaults standardUserDefaults] setObject:user forKey:ZSUser];
                 [[NSUserDefaults standardUserDefaults] setObject:password forKey:ZSPassword];

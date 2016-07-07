@@ -36,7 +36,7 @@
 //        //注册通知类型
 //        [application registerUserNotificationSettings:settings];
 //    }
-    
+//    
     
     //注册本地通知
 //    [self registerLocalNotification:5];
@@ -109,7 +109,7 @@
 //- (void)registerLocalNotification:(NSInteger)alertTime {
 //    UILocalNotification *notification = [[UILocalNotification alloc] init];
 //    // 设置触发通知的时间
-//    NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+//    NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:10];
 //    
 //    //获取本地时区(中国时区)
 //    NSTimeZone* localTimeZone = [NSTimeZone localTimeZone];
@@ -133,7 +133,7 @@
 //    
 //    // 通知内容
 //    notification.alertBody =  @"该去上课喽";
-//    //    notification.applicationIconBadgeNumber = 20;
+////        notification.applicationIconBadgeNumber = 20;
 //    // 通知被触发时播放的声音
 //    notification.soundName = UILocalNotificationDefaultSoundName;
 //    // 通知参数
@@ -194,12 +194,12 @@
 //                                          otherButtonTitles:nil];
 //    [alert show];
 //    
-////    // 更新显示的徽章个数
-////    NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
-////    badge--;
-////    badge = badge >= 0 ? badge : 0;
-////    [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
-////    
+//    // 更新显示的徽章个数
+//    NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
+//    badge--;
+//    badge = badge >= 0 ? badge : 0;
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
+//    
 //    // 在不需要再推送时，可以取消推送
 //    [self cancelLocalNotificationWithKey:@"key"];
 //}

@@ -26,9 +26,18 @@
 {
     _weatherModel = weatherModel;
     
-    self.dayon_dateLabel.text = weatherModel.date ? weatherModel.date : @"暂无数据";
+    self.dayon_dateLabel.text = weatherModel.date ? weatherModel.date : @"暂无天气数据";
     self.dayon_weatherLabel.text = weatherModel.weather ? weatherModel.weather : @"";
-    self.pm25Label.text = [NSString stringWithFormat:@"服务器异常，正在修复%@",weatherModel.pm25 ? weatherModel.pm25 : @""];
+    
+    NSString *weatherp25 = [NSMutableString string];
+    
+    weatherp25 = weatherModel.pm25 ? weatherModel.pm25 : @"服务器异常，正在修复";
+    if (weatherModel.pm25) {
+        
+        weatherp25 = [NSString stringWithFormat:@"pm2.5: %@", weatherp25];
+    }
+    
+    self.pm25Label.text = weatherp25;
     self.daon_temperatureLabel.text = weatherModel.temperature ? weatherModel.temperature : @"";
     self.currentWeekLabel.text = [NSString stringWithFormat:@"第%@周",weatherModel.currentWeek ? weatherModel.currentWeek : @""];
     

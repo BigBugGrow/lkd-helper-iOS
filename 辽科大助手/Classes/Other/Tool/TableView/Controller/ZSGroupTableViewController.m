@@ -111,7 +111,9 @@
         }
         
         ZSAccount *account = [ZSAccountTool account];
-        if (account.zjh && [vc isKindOfClass:[ZSStudentNumBindViewController class]] && ![account.zjh isEqualToString:@"暂无"]) {
+        
+        
+        if (account.zjh && [vc isKindOfClass:[ZSStudentNumBindViewController class]] && ![account.zjh isEqualToString:@"暂无"]  && [account.hasTimetable isEqualToString:@"yes"]) {
             
             [SVProgressHUD showErrorWithStatus:@"该账号以绑定学号！"];
             return;

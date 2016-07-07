@@ -89,9 +89,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
-    
     //设置导航栏按钮
     [self setUpNavigtionItem];
     
@@ -229,43 +226,56 @@
         ZSTimeTabelModel *timetable3 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@3]];
         ZSTimeTabelModel *timetable4 = [ZSTimeTabelModel objectWithKeyValues:dayDict[@4]];
         
+#warning 实现本地推送， 暂时还没有实现
         
-//        3.使用NSDateFormatter可以将字符串转换成NSDate类型。同样需要注意格式的问题。
-        NSTimeZone* localzone = [NSTimeZone localTimeZone];
+//        NSString *course0 = [NSString stringWithFormat:@"第一大节: %@", timetable0.course ? timetable0.course : @"无"];
+//        
+//        NSString *course1 = [NSString stringWithFormat:@"第二大节: %@", timetable1.course ? timetable1.course : @"无"];
+//        
+//        NSString *course2 = [NSString stringWithFormat:@"第三大节: %@", timetable2.course ? timetable2.course : @"无"];
+//        
+//        NSString *course3 = [NSString stringWithFormat:@"第四大节: %@", timetable3.course ? timetable3.course : @"无"];
+//        
+//        NSString *course4 = [NSString stringWithFormat:@"第五大节: %@", timetable4.course ? timetable4.course : @"无"];
         
-        NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-        
-        [formatter setDateFormat:@"HH:mm"];
-        
-        [formatter setTimeZone:localzone];
-        
-        NSString * dateStr = [formatter stringFromDate:[NSDate date]];
-        
-        
-        [formatter setDateFormat:@"HH:mm"];
-        
-        if (timetable0 && [timetable0.timeOfLesson isEqualToString:dateStr]) {
-            
-            //1.创建本地通知对对象
-            UILocalNotification *noti = [[UILocalNotification alloc] init];
-            
-            //指定通知发送的时间
-            noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
-            //指定时区
-            noti.timeZone = [NSTimeZone defaultTimeZone];
-            noti.alertBody = @"马上要上课喽";
-            
-            noti.alertAction = @"查看消息";
-            noti.alertLaunchImage = @"splash_tops";
-            noti.soundName = UILocalNotificationDefaultSoundName;
-            
-            
-            //2注册通知
-            UIApplication *app = [UIApplication sharedApplication];
-            
-            [app scheduleLocalNotification:noti];
-            
-        }
+//        NSString *course = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", course0, course1, course2, course3, course4];
+//        
+////        3.使用NSDateFormatter可以将字符串转换成NSDate类型。同样需要注意格式的问题。
+//        NSTimeZone* localzone = [NSTimeZone localTimeZone];
+//        
+//        NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+//        
+//        [formatter setDateFormat:@"HH:mm"];
+//        
+//        [formatter setTimeZone:localzone];
+//        
+//        NSInteger hour = currentDay.hour;
+//        NSInteger minute = currentDay.minute;
+//        
+//        
+//        if (hour == 7 && minute == 30) {
+//
+//            [self registerLocalNotification:15 withCourseStr:course];
+//            
+////            //1.创建本地通知对对象
+////            UILocalNotification *noti = [[UILocalNotification alloc] init];
+////            
+////            //指定通知发送的时间
+////            noti.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+////            //指定时区
+////            noti.timeZone = [NSTimeZone defaultTimeZone];
+////            noti.alertBody = @"马上要上课喽";
+////            
+////            noti.alertAction = @"查看消息";
+////            noti.alertLaunchImage = @"splash_tops";
+////            noti.soundName = UILocalNotificationDefaultSoundName;
+////            
+////            //2注册通知
+////            UIApplication *app = [UIApplication sharedApplication];
+////            
+////            [app scheduleLocalNotification:noti];
+//            
+//        }
         
     
         
@@ -487,6 +497,60 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - 本地通知
+// 设置本地通知
+- (void)registerLocalNotification:(NSInteger)alertTime withCourseStr:(NSString *)courseStr{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    // 设置触发通知的时间
+    NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:alertTime];
+
+    //获取本地时区(中国时区)
+    NSTimeZone* localTimeZone = [NSTimeZone localTimeZone];
+
+    //计算世界时间与本地时区的时间偏差值
+    NSInteger offset = [localTimeZone secondsFromGMTForDate:fireDate];
+
+    //世界时间＋偏差值 得出中国区时间
+    NSDate *localDate = [fireDate dateByAddingTimeInterval:offset];
+
+    ZSLog(@"fireDate=%@",fireDate);
+
+    ZSLog(@"fireDate=%@",localDate);
+
+    notification.fireDate = fireDate;
+    //    notification.fireDate = [NSDate dateWithTimeIntervalSince1970:];
+    // 时区
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    // 设置重复的间隔
+    notification.repeatInterval = kCFCalendarUnitDay;
+
+    // 通知内容
+    notification.alertBody =  courseStr;
+//        notification.applicationIconBadgeNumber = 20;
+    // 通知被触发时播放的声音
+    notification.soundName = UILocalNotificationDefaultSoundName;
+//    // 通知参数
+//    NSDictionary *userDict = [NSDictionary dictionaryWithObject:@"开始新的一天喽！" forKey:@"key"];
+//    notification.userInfo = userDict;
+
+    // ios8后，需要添加这个注册，才能得到授权
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type
+                                                                                 categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        // 通知重复提示的单位，可以是天、周、月
+        notification.repeatInterval = NSCalendarUnitDay;
+    } else {
+        // 通知重复提示的单位，可以是天、周、月
+        notification.repeatInterval = NSCalendarUnitDay;
+    }
+
+    // 执行通知注册
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
 
 
 
