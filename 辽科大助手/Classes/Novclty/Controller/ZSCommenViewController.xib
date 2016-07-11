@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSCommenViewController">
             <connections>
+                <outlet property="bottomView" destination="7yX-M4-IYG" id="sJE-Jd-94Z"/>
                 <outlet property="buttomSpace" destination="Ccu-hh-1tg" id="Vh5-z1-iB2"/>
-                <outlet property="inputTextFild" destination="BUT-bh-ZSe" id="CNC-jM-hNt"/>
                 <outlet property="sendBtn" destination="5Ha-Gu-oaR" id="Vgy-Yv-GJD"/>
                 <outlet property="tableView" destination="iWl-fv-rLk" id="tZQ-af-xnM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -40,26 +40,17 @@
                                 <action selector="send" destination="-1" eventType="touchUpInside" id="6Bf-hJ-uyv"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="我想评论..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BUT-bh-ZSe" userLabel="文本输入">
-                            <rect key="frame" x="15" y="5" width="261" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="5Ha-Gu-oaR" secondAttribute="bottom" id="BvR-BT-VQM"/>
                         <constraint firstAttribute="trailing" secondItem="egc-GA-sZ7" secondAttribute="trailing" id="IaZ-9e-VA9"/>
-                        <constraint firstAttribute="bottom" secondItem="BUT-bh-ZSe" secondAttribute="bottom" constant="5" id="Jsf-fK-HYv"/>
-                        <constraint firstItem="BUT-bh-ZSe" firstAttribute="top" secondItem="7yX-M4-IYG" secondAttribute="top" constant="5" id="NYR-bJ-3Hl"/>
-                        <constraint firstItem="5Ha-Gu-oaR" firstAttribute="leading" secondItem="BUT-bh-ZSe" secondAttribute="trailing" id="OfM-p9-jXX"/>
                         <constraint firstAttribute="height" constant="44" id="Ua9-vZ-DJz"/>
                         <constraint firstAttribute="trailing" secondItem="5Ha-Gu-oaR" secondAttribute="trailing" id="Vl5-V2-zpd"/>
                         <constraint firstItem="egc-GA-sZ7" firstAttribute="leading" secondItem="7yX-M4-IYG" secondAttribute="leading" id="gbf-Ae-Ugn"/>
                         <constraint firstAttribute="bottom" secondItem="egc-GA-sZ7" secondAttribute="bottom" id="p5q-Uk-Ku6"/>
                         <constraint firstItem="egc-GA-sZ7" firstAttribute="top" secondItem="7yX-M4-IYG" secondAttribute="top" id="qEZ-g7-dJE"/>
                         <constraint firstItem="5Ha-Gu-oaR" firstAttribute="top" secondItem="7yX-M4-IYG" secondAttribute="top" id="vrg-yb-Bis"/>
-                        <constraint firstItem="BUT-bh-ZSe" firstAttribute="leading" secondItem="7yX-M4-IYG" secondAttribute="leading" constant="15" id="yqi-NK-raN"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="iWl-fv-rLk" userLabel="内容">

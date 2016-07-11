@@ -183,6 +183,7 @@
 		52F3AF831CB15F7600E799D7 /* ZSInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F3AF821CB15F7600E799D7 /* ZSInfoViewController.m */; };
 		52FE8C481CA2B2660042A92C /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FE8C471CA2B2660042A92C /* NSDate+Extension.m */; };
 		52FE8C4B1CA2B8E60042A92C /* ZSMyNovcltyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FE8C4A1CA2B8E60042A92C /* ZSMyNovcltyViewController.m */; };
+		87FF741E1D33306700BD0FA7 /* LBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF741D1D33306700BD0FA7 /* LBTextView.m */; };
 		EF2AB5991C0F015F00DB93FC /* ZSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB5971C0F015F00DB93FC /* ZSLoginViewController.m */; };
 		EF2AB59A1C0F015F00DB93FC /* ZSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2AB5981C0F015F00DB93FC /* ZSLoginViewController.xib */; };
 		EF2AB5FE1C0F17A500DB93FC /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2AB5A31C0F17A500DB93FC /* AFHTTPRequestOperation.m */; };
@@ -614,6 +615,8 @@
 		52FE8C471CA2B2660042A92C /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		52FE8C491CA2B8E60042A92C /* ZSMyNovcltyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyNovcltyViewController.h; sourceTree = "<group>"; };
 		52FE8C4A1CA2B8E60042A92C /* ZSMyNovcltyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyNovcltyViewController.m; sourceTree = "<group>"; };
+		87FF741C1D33306700BD0FA7 /* LBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTextView.h; sourceTree = "<group>"; };
+		87FF741D1D33306700BD0FA7 /* LBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTextView.m; sourceTree = "<group>"; };
 		EF2AB5961C0F015F00DB93FC /* ZSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLoginViewController.h; sourceTree = "<group>"; };
 		EF2AB5971C0F015F00DB93FC /* ZSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSLoginViewController.m; sourceTree = "<group>"; };
 		EF2AB5981C0F015F00DB93FC /* ZSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSLoginViewController.xib; sourceTree = "<group>"; };
@@ -920,6 +923,8 @@
 				5275C28E1CBF8CC0007CEB56 /* ZSInfoViewCell.h */,
 				5275C28F1CBF8CC0007CEB56 /* ZSInfoViewCell.m */,
 				5275C2901CBF8CC0007CEB56 /* ZSInfoViewCell.xib */,
+				87FF741C1D33306700BD0FA7 /* LBTextView.h */,
+				87FF741D1D33306700BD0FA7 /* LBTextView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2300,6 +2305,7 @@
 				52F3AF831CB15F7600E799D7 /* ZSInfoViewController.m in Sources */,
 				528D5A321CC7765C0041A019 /* ZSCourseMenuViewController.m in Sources */,
 				EF2AB6251C0F17A500DB93FC /* UIImage+WebP.m in Sources */,
+				87FF741E1D33306700BD0FA7 /* LBTextView.m in Sources */,
 				52857AB61C9D7F2200F44C27 /* POPGeometry.mm in Sources */,
 				52857AAC1C9D7F2200F44C27 /* POPAnimation.mm in Sources */,
 				522D3BE51C9D81A700A6927F /* SDWebImageManager+MJ.m in Sources */,

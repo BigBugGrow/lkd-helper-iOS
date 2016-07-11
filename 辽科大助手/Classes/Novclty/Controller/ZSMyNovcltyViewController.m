@@ -268,12 +268,7 @@
     smallImageView.x = ZSScreenW - marginWidth - smallImageView.width;
     smallImageView.centerY = myImage.height * 0.9 + 15;
     
-    
-    //激活图片点击事件
-    headerView.userInteractionEnabled = YES;
-    myImage.userInteractionEnabled = YES;
-    smallImageView.userInteractionEnabled = YES;
-    [smallImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRightBtn)]];
+ 
     
     [smallImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"icon"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
@@ -286,10 +281,13 @@
         smallImageView.layer.borderWidth = 2;
         smallImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
         
-        smallImageView.image = picture;
+        smallImageView.userInteractionEnabled = YES;
+        [smallImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRightBtn1)]];
         
+        smallImageView.image = picture;
     }];
     
+
     self.smallImageView = smallImageView;
     
     [myImage addSubview:smallImageView];
@@ -309,6 +307,10 @@
     
 }
 
+- (void)clickRightBtn1
+{
+    ZSLog(@"%p", __func__);
+}
 
 - (void)dealloc
 {
@@ -625,6 +627,8 @@
     self.smallImageView.image = self.bigImageView.image;
 
 }
+
+
 
 
 @end

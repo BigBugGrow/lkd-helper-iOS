@@ -12,8 +12,14 @@
 
 @protocol ZSAllDynamicCellDelegate <NSObject>
 
+@optional
 /** 通知控制器push到myNovcltyController*/
 - (void)pushToMyNovcltyViewController:(ZSAllDynamicCell *)allDynamicCell nickName:(NSString *)nickName;
+
+
+/** 通知控制器push到个人信息界面*/
+- (void)pushToMyNovcltyViewControllerwithNickName:(NSString *)nickName;
+
 @end
 
 @interface ZSAllDynamicCell : UITableViewCell

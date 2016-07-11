@@ -11,7 +11,9 @@
 #import "ZSComment.h"
 #import "UIImageView+WebCache.h"
 
-@interface ZSCommentViewCell ()
+#import "ZSInfoViewController.h"
+
+@interface ZSCommentViewCell () 
 /** 头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 /** 昵称*/
@@ -79,8 +81,32 @@
 
 
 - (void)awakeFromNib {
-    // Initialization code
+
+    
+    self.iconView.userInteractionEnabled = YES;
+    [self.iconView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cliclImageView)]];
+
+    
 }
+
+
+/** 点击图片*/
+- (void)cliclImageView
+{
+
+    NSMutableDictionary *userInfoDict = [NSMutableDictionary dictionary];
+    userInfoDict[@"nickname"] = self.comment.nickname;
+    
+    [ZSNotificationCenter postNotificationName:@"goInfoViewControllerWithNickname" object:nil userInfo:userInfoDict];
+    
+}
+
+- (void)dealloc
+{
+    
+    [ZSNotificationCenter removeObserver:self];
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

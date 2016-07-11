@@ -125,11 +125,17 @@
     NSString *nickname = self.nameLabel.text;
     
     if ([nickname isEqualToString:@"匿名"]) return;
+    if ([self.delegate respondsToSelector:@selector(pushToMyNovcltyViewControllerwithNickName:  )]) {
+        
+        [self.delegate pushToMyNovcltyViewControllerwithNickName:nickname];
+    }
+    
     
     if ([self.delegate respondsToSelector:@selector(pushToMyNovcltyViewController: nickName:)]) {
         
         [self.delegate pushToMyNovcltyViewController:self nickName:nickname];
     }
+    
 }
 
 

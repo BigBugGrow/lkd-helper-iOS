@@ -17,21 +17,26 @@
 #import "MJRefresh.h"
 #import "SVProgressHUD.h"
 #import "ZSAudioTool.h"
+#import "ZSInfoViewController.h"
+#import "LBTextView.h"
+
+#import "ZSInfoViewController.h"
 
 #define key [[NSUserDefaults standardUserDefaults] objectForKey:ZSKey]
 #define nickName [[NSUserDefaults standardUserDefaults] objectForKey:ZSUser]
 
-@interface ZSCommenViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ZSCommenViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, ZSAllDynamicCellDelegate>
 
 - (IBAction)send;
 /** 工具条距离底部的间距*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomSpace;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 /** 内容显示*/
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (weak, nonatomic) IBOutlet UITextField *inputTextFild;
+//@property (weak, nonatomic) IBOutlet UITextView *inputTextFild;
 
 /**cell的高度*/
 @property (nonatomic, assign) CGFloat cellHeight;
@@ -41,6 +46,10 @@
 
 /**判断是否为第一次进来*/
 @property (nonatomic, assign) BOOL isFirstCome;
+
+@property (nonatomic, weak) LBTextView *inputTextFild;
+
+@property (nonatomic, weak) ZSAllDynamicCell *headerView;
 
 @end
 
@@ -79,8 +88,34 @@ static NSString * const commentID = @"commentCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    //添加评论TextView
+    LBTextView *textView = [[LBTextView alloc] init];
+    textView.placeHolder = @"留下你的评论吧...";
+    textView.placeHolderColor = [UIColor lightGrayColor];
+    textView.font = [UIFont systemFontOfSize:15];
+    
+    textView.layer.masksToBounds = YES;
+    
+    textView.layer.cornerRadius = 5;
+    
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    
+    textView.frame = CGRectMake(6, 6, width - 52, 32);
+
+    
+    [self.bottomView addSubview:textView];
+    self.inputTextFild = textView;
+    
+    
+
+    
     //添加键盘通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardFrameWillDidChanded:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    [ZSNotificationCenter addObserver:self selector:@selector(keyBoardFrameWillDidChanded:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    
+    [ZSNotificationCenter addObserver:self selector:@selector(goInfoViewControllerWithInfoDict:) name:@"goInfoViewControllerWithNickname" object:nil];
+
     
     //初始化headerView
     [self initHeaderView];
@@ -92,7 +127,9 @@ static NSString * const commentID = @"commentCell";
     [self addRefresh];
     
     // 1.addTarget
-    [self.inputTextFild addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+//    [self.inputTextFild addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    
+    self.inputTextFild.delegate = self;
     //添加监听
     [self textChange];
 
@@ -203,7 +240,12 @@ static NSString * const commentID = @"commentCell";
     headerView.y = 0;
     headerView.width = self.view.width;
     headerView.height = self.allDynamicFrame.cellHeight;
+    headerView.delegate = self;
+    
     self.tableView.tableHeaderView = headerView;
+    self.headerView = headerView;
+    
+    
     
 }
 
@@ -224,6 +266,21 @@ static NSString * const commentID = @"commentCell";
     }];
     
 }
+
+- (void)goInfoViewControllerWithInfoDict:(NSNotification *)notification
+{
+    ZSLog(@"%@", notification.userInfo);
+    
+    ZSInfoViewController *info = [[ZSInfoViewController alloc] init];
+    
+    NSString *whoNickname = notification.userInfo[@"nickname"];
+    
+    info.whoNickName = whoNickname ? whoNickname : nickName;
+    
+    [self.navigationController pushViewController:info animated:YES];
+    
+}
+
 
 /** 发送评论*/
 
@@ -356,6 +413,21 @@ static NSString * const commentID = @"commentCell";
     return @"最新评论";
 }
 
+#pragma mark - UITextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView
+{
+    // 判断两个文本框的内容
+    self.sendBtn.enabled =  _inputTextFild.text.length;
+}
 
+
+
+#pragma mark - ZSAllDynamicCellDelegate
+- (void)pushToMyNovcltyViewControllerwithNickName:(NSString *)whoNickname
+{
+    ZSInfoViewController *infoViewController = [[ZSInfoViewController alloc] init];
+    infoViewController.whoNickName = whoNickname;
+    [self.navigationController pushViewController:infoViewController animated:YES];
+}
 
 @end

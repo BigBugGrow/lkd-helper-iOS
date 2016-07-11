@@ -13,8 +13,8 @@
 @protocol commenViewControllerDelegate <NSObject>
 
 @optional
-- (void)loadNewData;
 
+- (void)loadNewData;
 @end
 
 @interface ZSCommenViewController : UIViewController
